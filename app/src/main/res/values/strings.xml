@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="no_disponible">No disponible</string>
+        <string name="nodisponible_contenido">\t\tEl contenido al que intentas acceder estará disponible cuando se publique el programa oficial de la fiesta.\n\n\t\tSe pondrá un aviso en la sección NOVEDADES para que actualices la aplicación.\n\n\t\tDisculpa las molestias.
+            </string>
+    <string name="app_name">Alubia \'15</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_info">Información</string>
+    <string name="image_main">Im</string>
+ 	<string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
+ 	<string name="sabado16">Sábado - 16/08/2015</string>
+ 	<string name="viernes">Viernes - 22/08/2015</string>
+ 	<string name="sabado">Sábado - 23/08/2015</string>
+ 	<string name="domingo">Domingo - 24/08/2015</string>
+ 	<string name="lunes">Lunes - 25/08/2015</string>
+ 	<string name="bienvenida">Fiesta de la Alubia 2015</string>
+ 	<string name="bienvenida_sub">Laguna de Negrillos</string>
+ 	<string name="programa">Programa de fiestas</string>
+ 	<string name="penyas">Peñas</string>
+ 	<string name="foro">Foro</string>
+ 	<string name="novedades">Novedades</string>
+ 	<string name="masinfo">Más información</string>
+ 	<string name="actualizar">actualizar</string>
+ 	<string name="enviar">-></string>
+ 	<string name="saludo">Saludo del alcalde</string>
+ 	<string name="reinas_damas">Reinas y Damas Alubia 2015</string>
+ 	<string name="carrera">XIII Carrera de la Alubia</string>
+ 	<string name="contactar">¡Envía una foto de tu peña!</string>
+ 	<string name="fotoPenya">Foto de la peña</string>
+ 	<string name="inicio">Inicio</string>
+ 	<string name="eleccion1">Nivel fácil</string>
+ 	<string name="eleccion2">Nivel medio</string>
+ 	<string name="eleccion3">Nivel difícil</string>
+ 	<string name="alubiaquiz">Alubia Quiz</string>
+ 	<string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
+ 	<string name="alubiaquiz2">Alubia Quiz - Nivel medio</string>
+ 	<string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
+ 	<string name="comenzar">¡Comenzar!</string>
+ 	<string name="siguiente">Siguiente-></string>
+ 	<string name="primera_ask1">1. La carrera de la Alubia consiste en</string>
+ 	<string name="primera11">Hacer medio trayecto corriendo y medio en bici</string>
+ 	<string name="primera12">Hacer todo el trayecto corriendo</string>
+ 	<string name="primera13">No hay ninguna carrera en la fiesta de la Alubia</string>
+ 	<string name="primera_ask2">1. ¿Cuál de estas peñas no existía cuando nació la fiesta de la Alubia?</string>
+ 	<string name="primera21">Sonic 2000</string>
+ 	<string name="primera22">Un millón de amigos</string>
+ 	<string name="primera23">Rockambole</string>
+ 	<string name="primera_ask3">1. ¿Quién fue la reina juvenil de la fiesta de la Alubia en el año 2006?</string>
+ 	<string name="primera31">Ana Mar Colinas Vivas</string>
+ 	<string name="primera32">Laura Morán Lozano</string>
+ 	<string name="primera33">Raquel González Vivas</string>
+ 	<string name="solucion_texto">Solución</string>
+ 	<string name="carrera_contenido"><b>DOMINGO 31 DE AGOSTO</b>
+\n\n<b>Inscripciones:</b>
+\n11:00 h. - Apertura de inscripciones para la XIII Carrera Popular "Alubia 2014".
+\nLugar: Plaza del castillo.
+\n\n<b>Horario:</b>
+\n12:00 h. - Comienzo de la XIII Carrera Popular "Alubia 2014".
+\nSalida: Plaza del castillo.</string>
+ 	<string name="reinas_damas_contenido"><b>Reina y Damas juveniles.</b>
+\n\nReina: Sara Contreras Ramos
+\nDama: Sandra Peláez Melgar
+\nDama: Sandra Novo Fierro
+\n\n\n<b>Reina y Damas infantiles.</b>
+\n\nReina: Noah Zotes Sastre
+\nDama: Alicia Pollán Baza
+\nDama: Julia Pollán Baza</string>
+ 	<string name="saludo_contenido">Doce meses más. El reloj no se detiene nunca y el tiempo pasa para todos. A los más jóvenes les parece que va muy despacio y a los que somos mayores nos da la impresión de que va a toda velocidad. Lo cierto es que pasa para todos igual aunque con distintas percepciones y que, tras el paso de un año, estamos de nuevo ante la Fiesta de la Alubia, la fiesta de la juventud.
+\n\nCada año, en el mes de Agosto, Laguna de Negrillos celebra su Fiesta de la Alubia. Uno de los aspectos más singulares es la reunión de las familias con los que, en su día, decidieron cambiar de aires y eligen estas fechas para volver a su tierra. Espero que todos los laguneses estéis en disposición de pasar unos días de confraternidad y divertimiento en compañía de familiares, vecinos y amigos.
+\n\nSentido recuerdo para los que ya no se encuentran entre nosotros y un abrazo muy cariñoso a todas las familias de nuestro municipio que han sufrido alguna pérdida irreparable en el último año.
+\n\nMi agradecimiento a los componentes de la Comisión de Fiestas que, con escasos recursos económicos con que cuentan, siempre nos sorprenden con alguna novedad participativa.
+\n\nAgradecimiento especial a las Reinas y Damas. Será prácticamente imposible encontrar un Ayuntamiento que sea representado por bellezas que superen a las nuestras. También las gracias a las peñas, asociaciones y jóvenes por su colaboración.
+\n\n¿Y que decir de nuestro pregonero, don José María González Rebollo? Cardiólogo de enorme prestigio que sera el encargado de poner en marcha nuestras fiestas. ¡Muchas gracias, Chema!
+\n\n¡Felices Fiestas!
+\n\n<b>El alcalde del Ayuntamiento de Laguna de Negrillos</b></string>
+
+ 	<string name="write_info"><b>INFORMACIÓN</b>
+\n\nLa fiesta comienza el penúltimo viernes de agosto y es la fiesta más grande del pueblo. Nace en 1977 recordando la alubia, el entonces producto típico por excelencia de la zona. Se celebra en fechas de vacaciones para facilitar la participación de los hijos y simpatizantes del pueblo, los cuales viven memorables aventuras. 
+\n\nSe alternan actividades culturales y deportivas. La juventud se moviliza organizando sus peñas. Hay peñas de niños, de mayores, de jóvenes, que se implican en la fiesta dándole colorido, y la mayoría con sus "chiringuitos". Algunos años hay suelta de vaquillas, para gente atrevida; otros descenso del reguero, para gente con imaginación; otros carreras profesionales o de aficionados para facilitar la participación. 
+\n\nNo faltan el pregón de fiestas, las reinas, damas, las carrozas ni tampoco las peñas. Esta fiesta se ha caracterizado desde sus primeras ediciones por contar con un nutrido grupo de peñas que se encargan de enriquecer los actos festivos (desfiles, juegos, competiciones, etc.) y dar ambiente a las calles del pueblo. Se trata de asociaciones no formalizadas, independientes del Ayuntamiento, y geneneralmente con una ubicación fija: el chiringuito en la que se reúnen grupos de amigos tanto nativos como forasteros.
+\n\n\n<b>CÓMO LLEGAR</b>
+\n\n<b>En coche:</b>
+\nLaguna de Negrillos se encuentra a 51 km al sur de León, unos 40 minutos en coche.
+\n-> LE-411. Carretera provincial.
+\nComunica con Villamañán y Saludes de Castroponce.
+\n-> CV-232-14. Camino vecinal.
+\nComunica con Villaestrigo, Conforcos y Toral de los Guzmanes.
+\n-> LE-7509- Carretera provincial.
+\nComunica con Pobladura de Pelayo García y Zuares del Páramo.
+\n\n<b>En autocar:</b>
+\nLaguna de Negrillos dispone de servicios de autocar todos los días de la semana. Para el transporte de viajeros, 
+las compañías Empresa Vivas y Autocares Franco ofrecen servicios por carretera entre Laguna de Negrillos y distintos destinos, como 
+León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se pueden consultar los horarios en la página web del pueblo.
+\n\n<i>Fuente: Wikipedia.</i></string>
+    <string name="registro">Registro</string>
+    <string name="solucion">Solución</string>
+    <string name="politica_privacidad">Política de privacidad</string>
+    <string name="contact">Contactar</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="informacion_fiesta">Información sobre la fiesta</string>
+    <string name="terminado">Terminado</string>
+    <string name="login">Iniciar sesión</string>
+
+</resources>

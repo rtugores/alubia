@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="huitca1212.alubia13"
+    android:versionCode="23"
+    android:versionName="2.5">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Programa"
+            android:label="@string/programa"/>
+        <activity
+            android:name=".Sabado16"
+            android:label="@string/sabado16"/>
+        <activity
+            android:name=".Viernes"
+            android:label="@string/viernes"/>
+        <activity
+            android:name=".Sabado"
+            android:label="@string/sabado"/>
+        <activity
+            android:name=".Domingo"
+            android:label="@string/domingo"/>
+        <activity
+            android:name=".Lunes"
+            android:label="@string/lunes"/>
+        <activity
+            android:name=".Saludo"
+            android:label="@string/saludo"/>
+        <activity
+            android:name=".ReinasDamas"
+            android:label="@string/reinas_damas"/>
+        <activity
+            android:name=".Carrera"
+            android:label="@string/carrera"/>
+        <activity
+            android:name=".MasInformacion"
+            android:label="@string/masinfo"/>
+        <activity
+            android:name=".InformacionFiesta"
+            android:label="@string/masinfo"/>
+        <activity
+            android:name=".Penyas"
+            android:label="@string/penyas"/>
+        <activity
+            android:name=".ForoInicial"
+            android:label="@string/foro"/>
+        <activity
+            android:name=".ForoRegistro"
+            android:label="@string/registro"/>
+        <activity
+            android:name=".ForoLogin"
+            android:label="@string/login"/>
+        <activity
+            android:name=".ForoOlvide"
+            android:label="@string/foro"/>
+        <activity
+            android:name=".Foro"
+            android:label="@string/foro"/>
+        <activity
+            android:name=".Novedades"
+            android:label="@string/novedades"/>
+        <activity
+            android:name=".AlubiaQuizMenu"
+            android:label="@string/alubiaquiz"/>
+        <activity
+            android:name=".AlubiaQuiz1"
+            android:label="@string/alubiaquiz1"/>
+        <activity
+            android:name=".AlubiaQuiz2"
+            android:label="@string/alubiaquiz2"/>
+        <activity
+            android:name=".AlubiaQuiz3"
+            android:label="@string/alubiaquiz3"/>
+        <activity
+            android:name=".Solucion"
+            android:label="@string/solucion"/>
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+    </application>
+</manifest>
