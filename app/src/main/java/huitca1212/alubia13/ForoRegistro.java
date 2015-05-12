@@ -77,22 +77,6 @@ public class ForoRegistro extends Activity {
                 "<a href=" + responsabilidad + ">términos y condiciones de uso</a>."));
     	terminos.setMovementMethod(LinkMovementMethod.getInstance());
 
-        // Código para la lista desplegable de peñas
-        Spinner lista = (Spinner) findViewById(R.id.penhas);
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, datos);
-        lista.setAdapter(adaptador);
-        lista.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                penya = datos[i];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                /* TODO Auto-generated method stub */
-            }
-        });
-
         // Al hacer click en el botón de enviar registro
         boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
