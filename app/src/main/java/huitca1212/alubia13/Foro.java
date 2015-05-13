@@ -309,15 +309,16 @@ public class Foro extends Activity {
     // Comprobamos conexión a Internet y descargamos lista de comentarios
     //====================================================================================================================
     public void accessWebService() {
-        JsonReadTask task = new JsonReadTask();
         if (!checkInternet()) {
             Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para ver el foro.", Toast.LENGTH_LONG).show();
-            task.cancel(true);
             finish();
         }
-        // passes values for the urls string array
-        String url = "http://rjapps.x10host.com/descargar_comentarios.php";
-        task.execute(url);
+        else {
+            JsonReadTask task = new JsonReadTask();
+            // passes values for the urls string array
+            String url = "http://rjapps.x10host.com/descargar_comentarios.php";
+            task.execute(url);
+        }
     }
 
     //====================================================================================================================

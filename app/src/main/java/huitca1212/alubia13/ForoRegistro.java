@@ -10,15 +10,14 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +28,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,24 +43,6 @@ public class ForoRegistro extends Activity {
     // Declaramos variables
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
-    private String penya = "Selecciona peña...";
-    private String[] datos = {"Selecciona peña...", "No tengo", "B12", "BBdoble", "Birlybirloke",
-            "Boogie", "B&N (Blanco y negro)",
-            "Costa azul", "Desfase", "Descoloke", "Dislokey",
-            "El Cachi", "El Ginkgo", "Embarazo no deseado",
-            "EUKZ (El Último Ke Zierre)", "FBI (Federación de Borrachos Inocentes)",
-            "Imperfectos", "Indis (Indiscretos)", "Jaia",
-            "Jarra y pedal", "Kachi-chirín", "Kalankoe", "Kalyke",
-            "Kamensoky", "Kamikaze", "Kelnozz & Ceda el vaso", "KQK",
-            "La coral", "La DGT (Dirección General de Tragos)",
-            "Los colgaos", "Los tocapelotas", "Motokaskaos",
-            "Nosting", "Pa' brujas nosotras", "Pk2 (Pecados)",
-            "Pocos pero locos", "Psicosys",
-            "¡¡Qué apostamos!!", "Rambosteroides", "Rockambole",
-            "Sin papeles", "Taboo", "The madness", "Tibuky",
-            "Trapicheos", "Vaganzia pura", "Vankenoven",
-            "Ya estamos todos", "Yokers", "Zumbagaritos",
-            "Zumbalitros", "Zumbapajascervecistas"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +52,16 @@ public class ForoRegistro extends Activity {
         pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_registro);
         final EditText username_edit = (EditText) findViewById(R.id.user);
         final EditText password_edit = (EditText) findViewById(R.id.password);
+        final EditText email_edit = (EditText) findViewById(R.id.email);
+        final EditText codigo_penya_edit = (EditText) findViewById(R.id.codigo_penha);
         final Button boton = (Button) findViewById(R.id.button);
 
-		// Código para la aceptación de la privacidad
-		final String responsabilidad = "http://rjapps.x10host.com/responsabilidad.html";
-		final TextView terminos = (TextView) findViewById(R.id.terminos);
-    	terminos.setText(Html.fromHtml("Al hacer click en Terminado, confirmas que has leído y aceptas los " +
+        // Código para la aceptación de la privacidad
+        final String responsabilidad = "http://rjapps.x10host.com/responsabilidad.html";
+        final TextView terminos = (TextView) findViewById(R.id.terminos);
+        terminos.setText(Html.fromHtml("Al hacer click en Terminado, confirmas que has leído y aceptas los " +
                 "<a href=" + responsabilidad + ">términos y condiciones de uso</a>."));
-    	terminos.setMovementMethod(LinkMovementMethod.getInstance());
+        terminos.setMovementMethod(LinkMovementMethod.getInstance());
 
         // Al hacer click en el botón de enviar registro
         boton.setOnClickListener(new View.OnClickListener() {
@@ -92,28 +78,33 @@ public class ForoRegistro extends Activity {
                     Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                // Preparamos la URL para usuarios sin peña
-                if (penya.equals("Selecciona peña...") || penya.equals("No tengo")) {
-                    penya = "";
+                // Comprobamos si el email está escrito correctamente
+                String email = email_edit.getText().toString();
+                if (password.length() < 1) {
+                    Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // Comprobamos si el código de peña es adecuado
+                String codigo_penya = codigo_penya_edit.getText().toString();
+                if (codigo_penya.length() == 0){
+                    codigo_penya = "0";
                 }
                 try {
                     String mobile_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                             Settings.Secure.ANDROID_ID);
                     mURL = "http://rjapps.x10host.com/anhadir_usuario.php?usuario=" + URLEncoder.encode(username, "UTF-8") +
-                            "&contrasenya=" + URLEncoder.encode(password, "UTF-8") + "&penya=" + URLEncoder.encode(penya, "UTF-8")+
-                            "&mobile_id=" + URLEncoder.encode(mobile_id, "UTF-8");
+                            "&contrasenya=" + URLEncoder.encode(password, "UTF-8") + "&email=" + URLEncoder.encode(email, "UTF-8") +
+                            "&codigo_penya=" + URLEncoder.encode(codigo_penya, "UTF-8") + "&mobile_id=" + URLEncoder.encode(mobile_id, "UTF-8");
                     mURL = mURL.replace(" ", "%20");
-                    Toast.makeText(getApplicationContext(), mURL, Toast.LENGTH_LONG).show();
                     // Chequear si está la conexión a Internet activa
                     if (!checkInternet()) {
                         Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para registrarte.", Toast.LENGTH_LONG).show();
-                        finish();
                     }
                     // Enviamos el registro
                     SendTask enviar = new SendTask();
                     enviar.execute(mURL);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error con la recuperacion de información, verifique su conexión a Internet.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error con la recuperacion de información, verifica tu conexión a Internet.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -151,7 +142,9 @@ public class ForoRegistro extends Activity {
         protected String doInBackground(String... params) {
             HttpPost httppost = new HttpPost(mURL);
             try {
-                httpclient.execute(httppost);
+                HttpResponse response = httpclient.execute(httppost);
+                jsonResult = inputStreamToString(
+                        response.getEntity().getContent()).toString();
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
                 error_envio = true;
@@ -162,6 +155,21 @@ public class ForoRegistro extends Activity {
             return null;
         }
 
+        private StringBuilder inputStreamToString(InputStream is) {
+            String rLine;
+            StringBuilder answer = new StringBuilder();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+            try {
+                while ((rLine = rd.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                Toast.makeText(getApplicationContext(),
+                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+            }
+            return answer;
+        }
+
         @Override
         protected void onCancelled() {
             httpclient.getConnectionManager().shutdown();
@@ -170,11 +178,35 @@ public class ForoRegistro extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
+            String resultado;
+            pantalla_cargando.setVisibility(View.GONE);
+            try {
+                JSONObject jsonResponse = new JSONObject(jsonResult);
+                resultado = jsonResponse.optString("resultado");
+                pantalla_cargando.setVisibility(View.GONE);
+            } catch (JSONException e) {
+                pantalla_cargando.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Error en la recepción de los datos.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int resultado_int = Integer.parseInt(resultado);
+            switch (resultado_int) {
+                case -1:
+                    Toast.makeText(getApplicationContext(), "Error al conectar a la base de datos.", Toast.LENGTH_LONG).show();
+                    return;
+                case -2:
+                    Toast.makeText(getApplicationContext(), "Ya existe un usuario con este nombre. Intenta otro.", Toast.LENGTH_LONG).show();
+                    return;
+                case -3:
+                    Toast.makeText(getApplicationContext(), "Ya existe un usuario con este email. Intenta otro.", Toast.LENGTH_LONG).show();
+                    return;
+                case -4:
+                    Toast.makeText(getApplicationContext(), "El código de peña no existe. Déjalo en blanco si no tienes.", Toast.LENGTH_LONG).show();
+                    return;
+            }
             if (error_envio) {
                 Toast.makeText(getApplicationContext(), "El registro no se ha completado correctamente. Revisa tu conexión a Internet.", Toast.LENGTH_LONG).show();
-                pantalla_cargando.setVisibility(View.GONE);
             } else {
-                pantalla_cargando.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), "El registro se ha completado con éxito.", Toast.LENGTH_SHORT).show();
                 final EditText username_edit = (EditText) findViewById(R.id.user);
                 String username = username_edit.getText().toString();
