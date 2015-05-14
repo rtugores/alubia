@@ -83,7 +83,7 @@ public class Foro extends Activity {
         enviar_id.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Checkear comentario
-                comentario = comentario_id.getText().toString();
+                comentario = comentario_id.getText().toString().trim();
                 if (!checkComentario(comentario))
                     return;
                 // Tomamos el usuario registrado (del SharedPreferences)
@@ -110,7 +110,7 @@ public class Foro extends Activity {
     public boolean checkComentario(String comentario){
         // Comentario vacío
         if (comentario.matches("")) {
-            Toast.makeText(getApplicationContext(), "¡Escribe algún comentario!", Toast.LENGTH_SHORT).show();
+            comentario_id.setText("");
             return false;
         }
         // Comentario con palabrotas

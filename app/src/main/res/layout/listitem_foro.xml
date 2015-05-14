@@ -9,12 +9,16 @@
         android:id="@+id/separador"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
         android:background="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/usuario_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
         android:layout_marginTop="5dip"
         android:textColor="#3A6EA5"
         android:textIsSelectable="false"
@@ -25,6 +29,8 @@
         android:id="@+id/comentario_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
         android:layout_marginBottom="2dip"
         android:textIsSelectable="false"
         android:textSize="15sp"
@@ -34,9 +40,12 @@
         android:id="@+id/fecha_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
         android:layout_marginBottom="5dip"
         android:gravity="end"
         android:textIsSelectable="false"
+        android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
         android:textStyle="normal" />
 
