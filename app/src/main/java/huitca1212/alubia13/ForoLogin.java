@@ -22,6 +22,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,17 +43,17 @@ public class ForoLogin extends Activity {
         setContentView(R.layout.foro_login);
 
         pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_registro);
-        final EditText username_edit = (EditText) findViewById(R.id.user);
+        final EditText email_edit = (EditText) findViewById(R.id.email);
         final EditText password_edit = (EditText) findViewById(R.id.password);
         final Button boton = (Button) findViewById(R.id.button);
 
         // Al hacer click en el botón de enviar login
         boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Comprobamos si el nombre de usuario está escrito correctamente
-                String username = username_edit.getText().toString();
-                if (username.length() < 3) {
-                    Toast.makeText(getApplicationContext(), "El nombre ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+                // Comprobamos si el email está escrito correctamente
+                String email = email_edit.getText().toString();
+                if (email.length() < 3) {
+                    Toast.makeText(getApplicationContext(), "El email ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Comprobamos si la contraseña está escrita correctamente
@@ -61,16 +63,16 @@ public class ForoLogin extends Activity {
                     return;
                 }
                 try {
-                    mURL = "http://rjapps.x10host.com/comprobar_usuario.php?email=" + URLEncoder.encode(username, "UTF-8") +
+                    mURL = "http://rjapps.x10host.com/comprobar_usuario.php?email=" + URLEncoder.encode(email, "UTF-8") +
                             "&contrasenya=" + URLEncoder.encode(password, "UTF-8");
                     mURL = mURL.replace(" ", "%20");
                     Toast.makeText(getApplicationContext(), mURL, Toast.LENGTH_LONG).show();
                     // Chequear si está la conexión a Internet activa
                     if (!checkInternet()) {
-                        Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para registrarte.", Toast.LENGTH_LONG).show();
-                        finish();
+                        Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para iniciar sesión.", Toast.LENGTH_LONG).show();
+                        return;
                     }
-                    // Enviamos el registro
+                    // Enviamos el login
                     SendTask enviar = new SendTask();
                     enviar.execute(mURL);
                 } catch (Exception e) {
@@ -96,7 +98,7 @@ public class ForoLogin extends Activity {
     }
 
     //====================================================================================================================
-    //Tarea para enviar registro
+    //Tarea para enviar login
     //====================================================================================================================
     private class SendTask extends AsyncTask<String, Void, String> {
         boolean error_envio = false;
@@ -112,74 +114,15 @@ public class ForoLogin extends Activity {
         protected String doInBackground(String... params) {
             HttpPost httppost = new HttpPost(mURL);
             try {
-                httpclient.execute(httppost);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-                error_envio = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-                error_envio = true;
-            }
-            return null;
-        }
-
-        @Override
-        protected void onCancelled() {
-            httpclient.getConnectionManager().shutdown();
-            pantalla_cargando.setVisibility(View.GONE);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (error_envio) {
-                Toast.makeText(getApplicationContext(), "El registro no se ha completado correctamente. Revisa tu conexión a Internet.", Toast.LENGTH_LONG).show();
-                pantalla_cargando.setVisibility(View.GONE);
-            } else {
-                pantalla_cargando.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), "El registro se ha completado con éxito.", Toast.LENGTH_SHORT).show();
-                final EditText username_edit = (EditText) findViewById(R.id.user);
-                String username = username_edit.getText().toString();
-                // Almacenamos el nombre de usuario en el teléfono
-                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                        .edit()
-                        .putString("username", username)
-                        .commit();
-                Intent intent = new Intent(ForoLogin.this, Foro.class);
-                // Almacenamos que el usuario ya se ha registrado en el teléfono
-                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                        .edit()
-                        .putBoolean("notregister", false)
-                        .commit();
-                // Abrimos nueva actividad y cerramos ya esta
-                startActivity(intent);
-                finish();
-            }
-        }
-    }
-
-    //====================================================================================================================
-    //Tarea asíncrona para acceder a la Web
-    //====================================================================================================================
-    private class JsonReadTask extends AsyncTask<String, Void, String> {
-        HttpClient httpclient = new DefaultHttpClient();
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pantalla_cargando.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            HttpPost httppost = new HttpPost(params[0]);
-            try {
-                HttpResponse response = httpclient.execute(httppost);
+                HttpResponse response =httpclient.execute(httppost);
                 jsonResult = inputStreamToString(
                         response.getEntity().getContent()).toString();
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
+                error_envio = true;
             } catch (IOException e) {
                 e.printStackTrace();
+                error_envio = true;
             }
             return null;
         }
@@ -188,7 +131,6 @@ public class ForoLogin extends Activity {
             String rLine;
             StringBuilder answer = new StringBuilder();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-
             try {
                 while ((rLine = rd.readLine()) != null) {
                     answer.append(rLine);
@@ -208,8 +150,44 @@ public class ForoLogin extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
-            super.onPostExecute(result);
+            String resultado;
             pantalla_cargando.setVisibility(View.GONE);
+            try {
+                JSONObject jsonResponse = new JSONObject(jsonResult);
+                resultado = jsonResponse.optString("resultado");
+                pantalla_cargando.setVisibility(View.GONE);
+            } catch (JSONException e) {
+                pantalla_cargando.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Error en la recepción de los datos.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (resultado.equals("-1")){
+                Toast.makeText(getApplicationContext(), "Error al conectar a la base de datos.", Toast.LENGTH_LONG).show();
+                return;
+            }
+            else if (resultado.equals("-2")){
+                Toast.makeText(getApplicationContext(), "El email o contraseña es incorrecto.", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (error_envio) {
+                Toast.makeText(getApplicationContext(), "El inicio de sesión no se ha completado correctamente. Revisa tu conexión a Internet.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "El inicio de sesión se ha completado con éxito.", Toast.LENGTH_SHORT).show();
+                // Almacenamos el nombre de usuario en el teléfono
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                        .edit()
+                        .putString("username", resultado)
+                        .commit();
+                Intent intent = new Intent(ForoLogin.this, Foro.class);
+                // Almacenamos que el usuario ya se ha registrado en el teléfono
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("notregister", false)
+                        .commit();
+                // Abrimos nueva actividad y cerramos ya esta
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
