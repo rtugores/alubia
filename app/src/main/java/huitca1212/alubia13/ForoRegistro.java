@@ -99,6 +99,7 @@ public class ForoRegistro extends Activity {
                     // Chequear si está la conexión a Internet activa
                     if (!checkInternet()) {
                         Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para registrarte.", Toast.LENGTH_LONG).show();
+                        return;
                     }
                     // Enviamos el registro
                     SendTask enviar = new SendTask();
@@ -185,6 +186,7 @@ public class ForoRegistro extends Activity {
                 resultado = jsonResponse.optString("resultado");
                 pantalla_cargando.setVisibility(View.GONE);
             } catch (JSONException e) {
+
                 pantalla_cargando.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), "Error en la recepción de los datos.", Toast.LENGTH_SHORT).show();
                 return;
