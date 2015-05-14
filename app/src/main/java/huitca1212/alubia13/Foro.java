@@ -5,11 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -46,14 +41,11 @@ public class Foro extends Activity {
 
     //Declaramos variables
     private String jsonResult;
-    private String minutos;
-    private String hora;
     private String mURL;
     private ListView listView;
     private LinearLayout layout;
     private String comentario;
     private EditText comentario_id;
-    private int minutos_int;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,20 +86,12 @@ public class Foro extends Activity {
                 comentario = comentario_id.getText().toString();
                 if (!checkComentario(comentario))
                     return;
-                // Ponemos bonita la fecha de envío del mensaje
-                String fecha = new SimpleDateFormat("dd 'de' MMM'.,'", Locale.getDefault()).format(new Date());
-                Calendar calendario = new GregorianCalendar();
-                if ((minutos_int = calendario.get(Calendar.MINUTE)) < 10)
-                    minutos = "0" + Integer.toString(minutos_int);
-                else minutos = Integer.toString(minutos_int);
-                hora = Integer.toString(calendario.get(Calendar.HOUR_OF_DAY));
-                fecha = fecha + " " + hora + ":" + minutos;
                 // Tomamos el usuario registrado (del SharedPreferences)
                 String usuario = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
                 try {
                     // Preparamos la URL
-                    mURL = "http://rjapps.x10host.com/anhadir_comentario.php?fecha=" + URLEncoder.encode(fecha, "UTF-8") +
-                            "&usuario=" + URLEncoder.encode(usuario, "UTF-8") + "&comentario=" + URLEncoder.encode(comentario, "UTF-8");
+                    mURL = "http://rjapps.x10host.com/anhadir_comentario.php?usuario=" + URLEncoder.encode(usuario, "UTF-8") +
+                            "&comentario=" + URLEncoder.encode(comentario, "UTF-8");
                     mURL = mURL.replace(" ", "%20");
                     //Enviamos el comentario
                     SendCommentRefresh enviar = new SendCommentRefresh();
@@ -311,7 +295,7 @@ public class Foro extends Activity {
     public void accessWebService() {
         if (!checkInternet()) {
             Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para ver el foro.", Toast.LENGTH_LONG).show();
-            finish();
+            layout.setVisibility(View.GONE);
         }
         else {
             JsonReadTask task = new JsonReadTask();
