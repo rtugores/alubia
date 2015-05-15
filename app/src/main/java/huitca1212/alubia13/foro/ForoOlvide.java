@@ -29,7 +29,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class ForoOlvide extends Activity {
 
@@ -58,7 +58,6 @@ public class ForoOlvide extends Activity {
                 try {
                     mURL = "http://rjapps.x10host.com/olvide_contrasenya.php?email=" + URLEncoder.encode(s_email, "UTF-8");
                     mURL = mURL.replace(" ", "%20");
-                    Toast.makeText(getApplicationContext(), mURL, Toast.LENGTH_LONG).show();
                     // Chequear si está la conexión a Internet activa
                     if (!checkInternet()) {
                         Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para solicitar tu contraseña.", Toast.LENGTH_LONG).show();

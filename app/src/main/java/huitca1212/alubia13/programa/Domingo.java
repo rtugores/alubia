@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class Domingo extends Activity {
 

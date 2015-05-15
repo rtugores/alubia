@@ -1,4 +1,4 @@
-package huitca1212.alubia13.funcionesWeb;
+package huitca1212.alubia13.masClases;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -1,6 +1,8 @@
 package huitca1212.alubia13.foro;
 
 import android.app.Activity;
+import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +32,10 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
         TextView usuario = (TextView) item.findViewById(R.id.usuario_text);
         TextView comentario = (TextView) item.findViewById(R.id.comentario_text);
         TextView fecha = (TextView) item.findViewById(R.id.fecha_text);
+        TextView id = (TextView) item.findViewById(R.id.id_text);
         View separador = item.findViewById(R.id.separador);
 
+        id.setText(datos[position].getId());
         usuario.setText(datos[position].getUsuario());
         if (position > 0) {
             if (datos[position - 1].getUsuario().equals(datos[position].getUsuario())) {
@@ -43,12 +47,23 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
         if (datos[position].getVip().equals("1")) {
             usuario.setText(datos[position].getUsuario() + " - VIP");
             usuario.setTextColor(0xFFDF013A);
+            item.setBackgroundColor(0xFFEFE4B0);
+        } else if (datos[position].getVip().equals("2")) {
+            usuario.setGravity(Gravity.CENTER);
+            comentario.setTypeface(null, Typeface.BOLD);
+            item.setBackgroundColor(0xFFCCFFFF);
         } else {
             usuario.setText(datos[position].getUsuario());
         }
 
+        if (datos[position].getBan().equals("1")) {
+            comentario.setText("El comentario ha sido baneado por infringir las normas del foro.");
+            comentario.setTextColor(0xFFFF0000);
+        } else {
+            comentario.setText(datos[position].getComentario());
+        }
+
         fecha.setText(datos[position].getFecha());
-        comentario.setText(datos[position].getComentario());
 
         return (item);
     }

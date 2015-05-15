@@ -11,7 +11,7 @@ import android.widget.Button;
 import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.foro.Foro;
 import huitca1212.alubia13.foro.ForoInicial;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 import huitca1212.alubia13.penyas.Penyas;
 import huitca1212.alubia13.programa.Programa;
 

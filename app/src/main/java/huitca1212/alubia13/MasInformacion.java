@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.foro.ForoRegistro;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 import huitca1212.alubia13.novedades.Novedades;
 
 

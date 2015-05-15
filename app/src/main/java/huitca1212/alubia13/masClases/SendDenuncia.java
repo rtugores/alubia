@@ -1,4 +1,4 @@
-package huitca1212.alubia13.funcionesWeb;
+package huitca1212.alubia13.masClases;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -58,9 +58,9 @@ public class SendDenuncia extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        layout.setVisibility(View.GONE);
         if (error_denuncia) {
             Toast.makeText(contexto, "El comentario no se pudo denunciar. Revisa tu conexión a Internet.", Toast.LENGTH_LONG).show();
-            layout.setVisibility(View.GONE);
         }
     }
 }

@@ -13,7 +13,7 @@ import android.widget.ListView;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class Programa extends Activity {
 

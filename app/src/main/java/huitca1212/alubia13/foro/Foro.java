@@ -37,8 +37,8 @@ import android.widget.Toast;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
-import huitca1212.alubia13.funcionesWeb.*;
+import huitca1212.alubia13.masClases.VariasFunciones;
+import huitca1212.alubia13.masClases.*;
 
 public class Foro extends Activity {
 
@@ -150,17 +150,11 @@ public class Foro extends Activity {
                 Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para denunciar el comentario.", Toast.LENGTH_LONG).show();
                 return false;
             }
-            TextView usuario_den = (TextView) (info.targetView).findViewById(R.id.usuario_text);
-            TextView fecha_den = (TextView) (info.targetView).findViewById(R.id.fecha_text);
-            TextView comentario_den = (TextView) (info.targetView).findViewById(R.id.comentario_text);
-            String fecha = fecha_den.getText().toString();
-            String usuario = usuario_den.getText().toString();
-            String comentario = comentario_den.getText().toString();
+            TextView id_den = (TextView) (info.targetView).findViewById(R.id.id_text);
+            String id = id_den.getText().toString();
             try {
                 // Preparamos la URL
-                mURL = "http://rjapps.x10host.com/denunciar_comentario.php?fecha=" + URLEncoder.encode(fecha, "UTF-8") +
-                        "&usuario=" + URLEncoder.encode(usuario, "UTF-8") + "&comentario=" + URLEncoder.encode(comentario, "UTF-8");
-                mURL = mURL.replace(" ", "%20");
+                mURL = "http://rjapps.x10host.com/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
                 //Enviamos la deuncia
                 SendDenuncia enviar = new SendDenuncia(this, layout, mURL);
                 enviar.execute(mURL);
@@ -327,13 +321,15 @@ public class Foro extends Activity {
                 String comentario = jsonChildNode.optString("comentario");
                 String fecha = jsonChildNode.optString("fecha");
                 String vip = jsonChildNode.optString("vip");
+                String ban = jsonChildNode.optString("ban");
+                String id = jsonChildNode.optString("id");
                 if (penya.length()>1) {
                     usuario_penya = usuario + " (" + penya + ")";
                 }
                 else{
                     usuario_penya = usuario;
                 }
-                datos[i] = new TitularForo(usuario_penya, comentario, fecha, vip);
+                datos[i] = new TitularForo(usuario_penya, comentario, fecha, vip, ban, id);
             }
 
             AdaptadorForo simpleAdapter = new AdaptadorForo(this, datos, listView);

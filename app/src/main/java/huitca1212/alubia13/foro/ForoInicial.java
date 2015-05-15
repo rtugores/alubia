@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 
 
 public class ForoInicial extends Activity {

@@ -32,7 +32,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class ForoLogin extends Activity {
 
