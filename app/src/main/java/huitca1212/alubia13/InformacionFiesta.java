@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
+import huitca1212.alubia13.funcionesWeb.VariasFunciones;
+
 public class InformacionFiesta extends Activity {
 
     @Override

@@ -19,31 +19,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Programa"
+            android:name=".programa.Programa"
             android:label="@string/programa"/>
         <activity
-            android:name=".Sabado16"
+            android:name=".programa.Sabado16"
             android:label="@string/sabado16"/>
         <activity
-            android:name=".Viernes"
+            android:name=".programa.Viernes"
             android:label="@string/viernes"/>
         <activity
-            android:name=".Sabado"
+            android:name=".programa.Sabado"
             android:label="@string/sabado"/>
         <activity
-            android:name=".Domingo"
+            android:name=".programa.Domingo"
             android:label="@string/domingo"/>
         <activity
-            android:name=".Lunes"
+            android:name=".programa.Lunes"
             android:label="@string/lunes"/>
         <activity
-            android:name=".Saludo"
+            android:name=".programa.Saludo"
             android:label="@string/saludo"/>
         <activity
-            android:name=".ReinasDamas"
+            android:name=".programa.ReinasDamas"
             android:label="@string/reinas_damas"/>
         <activity
-            android:name=".Carrera"
+            android:name=".programa.Carrera"
             android:label="@string/carrera"/>
         <activity
             android:name=".MasInformacion"
@@ -52,40 +52,40 @@
             android:name=".InformacionFiesta"
             android:label="@string/masinfo"/>
         <activity
-            android:name=".Penyas"
+            android:name=".penyas.Penyas"
             android:label="@string/penyas"/>
         <activity
-            android:name=".ForoInicial"
+            android:name=".foro.ForoInicial"
             android:label="@string/foro"/>
         <activity
-            android:name=".ForoRegistro"
+            android:name=".foro.ForoRegistro"
             android:label="@string/registro"/>
         <activity
-            android:name=".ForoLogin"
+            android:name=".foro.ForoLogin"
             android:label="@string/login"/>
         <activity
-            android:name=".ForoOlvide"
+            android:name=".foro.ForoOlvide"
             android:label="@string/foro"/>
         <activity
-            android:name=".Foro"
+            android:name=".foro.Foro"
             android:label="@string/foro"/>
         <activity
-            android:name=".Novedades"
+            android:name=".novedades.Novedades"
             android:label="@string/novedades"/>
         <activity
-            android:name=".AlubiaQuizMenu"
+            android:name=".alubiaQuiz.AlubiaQuizMenu"
             android:label="@string/alubiaquiz"/>
         <activity
-            android:name=".AlubiaQuiz1"
+            android:name=".alubiaQuiz.AlubiaQuiz1"
             android:label="@string/alubiaquiz1"/>
         <activity
-            android:name=".AlubiaQuiz2"
+            android:name=".alubiaQuiz.AlubiaQuiz2"
             android:label="@string/alubiaquiz2"/>
         <activity
-            android:name=".AlubiaQuiz3"
+            android:name=".alubiaQuiz.AlubiaQuiz3"
             android:label="@string/alubiaquiz3"/>
         <activity
-            android:name=".Solucion"
+            android:name=".alubiaQuiz.Solucion"
             android:label="@string/solucion"/>
         <activity
             android:name="com.google.ads.AdActivity"

@@ -1,4 +1,4 @@
-package huitca1212.alubia13;
+package huitca1212.alubia13.alubiaQuiz;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,72 +8,44 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
-import huitca1212.alubia13.foro.Foro;
-import huitca1212.alubia13.foro.ForoInicial;
+import huitca1212.alubia13.R;
 import huitca1212.alubia13.funcionesWeb.VariasFunciones;
-import huitca1212.alubia13.penyas.Penyas;
-import huitca1212.alubia13.programa.Programa;
 
 
-public class MainActivity extends Activity {
+public class AlubiaQuizMenu extends Activity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.alubia_quiz_menu);
 
         //================================================================
         //==============CODIGO PARA BOTONES===============================
         //================================================================
 
         final Button boton1 = (Button) findViewById(R.id.button1); //PRIMER BOTON
-        boton1.setBackgroundResource(R.drawable.alubia_button);
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Programa.class);
+                Intent intent = new Intent(AlubiaQuizMenu.this, AlubiaQuiz1.class);
                 startActivity(intent);
+                finish();
             }
         });
         final Button boton2 = (Button) findViewById(R.id.button2); //SEGUNDO BOTON
-        boton2.setBackgroundResource(R.drawable.alubia_button);
         boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Penyas.class);
+                Intent intent = new Intent(AlubiaQuizMenu.this, AlubiaQuiz2.class);
                 startActivity(intent);
+                finish();
             }
         });
-
         final Button boton3 = (Button) findViewById(R.id.button3); //TERCER BOTON
-        boton3.setBackgroundResource(R.drawable.alubia_button);
         boton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-                if (notregister) {
-                    Intent intent = new Intent(MainActivity.this, ForoInicial.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(MainActivity.this, Foro.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
-        final Button boton4 = (Button) findViewById(R.id.button4);  //CUARTO BOTON
-        boton4.setBackgroundResource(R.drawable.alubia_button);
-        boton4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlubiaQuizMenu.class);
+                Intent intent = new Intent(AlubiaQuizMenu.this, AlubiaQuiz3.class);
                 startActivity(intent);
-            }
-        });
-        final Button boton5 = (Button) findViewById(R.id.button5);  //QUINTO BOTON
-        boton5.setBackgroundResource(R.drawable.alubia_button);
-        boton5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MasInformacion.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
