@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -58,8 +59,8 @@ public class Foro extends Activity {
         layout = (LinearLayout) findViewById(R.id.progressbar_view);
         listView = (ListView) findViewById(R.id.listView1);
         comentario_id = (EditText) this.findViewById(R.id.comentario);
-        ImageButton actualizar_id = (ImageButton) this.findViewById(R.id.actualizar);
-        ImageButton enviar_id = (ImageButton) findViewById(R.id.enviar);
+        Button actualizar_id = (Button) this.findViewById(R.id.actualizar);
+        Button enviar_id = (Button) findViewById(R.id.enviar);
 
         // No se abre el teclado al entrar en el foro
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

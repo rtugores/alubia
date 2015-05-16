@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dip"
-        android:background="@drawable/back"
+        android:background="@drawable/d_back"
         android:gravity="center_vertical"
         android:text="@string/solucion_texto"
         android:textSize="28sp"

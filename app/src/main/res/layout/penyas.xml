@@ -9,18 +9,23 @@
         android:id="@+id/LstOpciones"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_weight="1" />
 
     <Button
         android:id="@+id/button_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:text="@string/contactar" />
-    <!-- android:background="#efe3af"-->
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/d_normal_button"
+        android:text="@string/contactar"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        />
 
     <com.google.ads.AdView
         android:id="@+id/adView"

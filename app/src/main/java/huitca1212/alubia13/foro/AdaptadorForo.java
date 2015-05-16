@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,31 +35,36 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
         TextView comentario = (TextView) item.findViewById(R.id.comentario_text);
         TextView fecha = (TextView) item.findViewById(R.id.fecha_text);
         TextView id = (TextView) item.findViewById(R.id.id_text);
-        View separador = item.findViewById(R.id.separador);
 
         id.setText(datos[position].getId());
         usuario.setText(datos[position].getUsuario());
+        FrameLayout frame_item_layout = (FrameLayout) item.findViewById(R.id.frame_item_foro);
+        LinearLayout item_layout = (LinearLayout) frame_item_layout.findViewById(R.id.layout_item_foro);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) item_layout.getLayoutParams();
+        params.setMargins(8, 11, 8, 0);
+        item_layout.setLayoutParams(params);
         if (position > 0) {
             if (datos[position - 1].getUsuario().equals(datos[position].getUsuario())) {
-                // Usuario del anterior mensaje es el mismo, quito separador y nombre
-                separador.setVisibility(View.GONE);
+                // Usuario del anterior mensaje es el mismo, quito nombre
                 usuario.setVisibility(View.GONE);
+                params.setMargins(8, 3, 8, 0);
+                item_layout.setLayoutParams(params);
             }
         }
         if (datos[position].getVip().equals("1")) {
             usuario.setText(datos[position].getUsuario() + " - VIP");
             usuario.setTextColor(0xFFDF013A);
-            item.setBackgroundColor(0xFFEFE4B0);
+            item_layout.setBackgroundResource(R.drawable.d_foro_vip);
         } else if (datos[position].getVip().equals("2")) {
             usuario.setGravity(Gravity.CENTER);
             comentario.setTypeface(null, Typeface.BOLD);
-            item.setBackgroundColor(0xFFCCFFFF);
+            item_layout.setBackgroundResource(R.drawable.d_foro_admin);
         } else {
             usuario.setText(datos[position].getUsuario());
         }
 
         if (datos[position].getBan().equals("1")) {
-            comentario.setText("El comentario ha sido baneado por infringir las normas del foro.");
+            comentario.setText("El comentario ha sido bloqueado por infringir las normas del foro.");
             comentario.setTextColor(0xFFFF0000);
         } else {
             comentario.setText(datos[position].getComentario());

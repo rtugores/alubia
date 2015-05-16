@@ -5,7 +5,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +14,6 @@
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="0dip"
-
             android:layout_weight="0.65"
             android:divider="@null"
             android:stackFromBottom="true" />
@@ -23,7 +21,7 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:id="@+id/barra_comentar"
@@ -38,7 +36,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
+                android:layout_marginRight="5dip"
+                android:layout_marginStart="10dip"
+                android:layout_marginEnd="5dip"
                 android:layout_weight="1"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine|textCapSentences"
@@ -47,16 +47,15 @@
                 android:maxLines="6"
                 android:minLines="1"
                 android:scrollbars="vertical"
-                android:textColor="#000000"
                 android:textSize="20sp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/enviar"
-                android:layout_width="wrap_content"
+                android:layout_width="50dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/actualizar"
-                android:src="@drawable/ab_icon_send" />
+                android:background="@drawable/d_send_comment_button" />
         </LinearLayout>
 
     </LinearLayout>
@@ -75,13 +74,13 @@
             android:layout_gravity="center_vertical|center_horizontal" />
     </LinearLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/actualizar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="top|end"
         android:contentDescription="@string/actualizar"
-        android:focusable="true"
-        android:src="@drawable/ic_action_refresh" />
+        android:background="@drawable/d_refresh_comment_button"
+        android:focusable="true" />
 
 </FrameLayout>

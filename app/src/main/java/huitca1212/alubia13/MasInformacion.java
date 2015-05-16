@@ -27,7 +27,7 @@ public class MasInformacion extends Activity {
         //================================================================
 
         final Button boton1 = (Button) findViewById(R.id.button1); //PRIMER BOTON
-        boton1.setBackgroundResource(R.drawable.alubia_button);
+        boton1.setBackgroundResource(R.drawable.d_alubia_button);
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MasInformacion.this, Novedades.class);
@@ -35,7 +35,7 @@ public class MasInformacion extends Activity {
             }
         });
         final Button boton2 = (Button) findViewById(R.id.button2); //SEGUNDO BOTON
-        boton2.setBackgroundResource(R.drawable.alubia_button);
+        boton2.setBackgroundResource(R.drawable.d_alubia_button);
         boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MasInformacion.this, InformacionFiesta.class);
@@ -44,7 +44,7 @@ public class MasInformacion extends Activity {
         });
 
         final Button boton3 = (Button) findViewById(R.id.button3); //TERCER BOTON
-        boton3.setBackgroundResource(R.drawable.alubia_button);
+        boton3.setBackgroundResource(R.drawable.d_alubia_button);
         boton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                     Intent intent = new Intent(MasInformacion.this, ForoRegistro.class);
@@ -53,7 +53,7 @@ public class MasInformacion extends Activity {
         });
 
         final Button boton4 = (Button) findViewById(R.id.button4);  //CUARTO BOTON
-        boton4.setBackgroundResource(R.drawable.alubia_button);
+        boton4.setBackgroundResource(R.drawable.d_alubia_button);
         boton4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MasInformacion.this, AlubiaQuizMenu.class);

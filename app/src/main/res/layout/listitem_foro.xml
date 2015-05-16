@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frame_item_foro"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <View
-        android:id="@+id/separador"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:background="@android:color/darker_gray" />
-
-    <TextView
-        android:id="@+id/usuario_text"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_item_foro"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="5dip"
-        android:textColor="#3A6EA5"
-        android:textIsSelectable="false"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:background="@drawable/d_foro"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/comentario_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginBottom="2dip"
-        android:textIsSelectable="false"
-        android:textSize="15sp"
-        android:textStyle="normal" />
+        <TextView
+            android:id="@+id/usuario_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="5dip"
+            android:textColor="#3A6EA5"
+            android:textIsSelectable="false"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/fecha_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginBottom="5dip"
-        android:gravity="end"
-        android:textIsSelectable="false"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="12sp"
-        android:textStyle="normal" />
+        <TextView
+            android:id="@+id/comentario_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:textIsSelectable="false"
+            android:textSize="15sp"
+            android:textStyle="normal" />
 
-    <TextView
-        android:id="@+id/id_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/fecha_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:gravity="end"
+            android:textColor="@android:color/darker_gray"
+            android:textIsSelectable="false"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
+        <TextView
+            android:id="@+id/id_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>
+
