@@ -2,52 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_nuevo">
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="70dip"
-        android:layout_marginBottom="10dip"
+        android:layout_weight="1"
+        android:layout_marginTop="40dip"
+        android:layout_marginBottom="40dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_yellow"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/novedades" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="70dip"
-        android:layout_marginBottom="10dip"
+        android:layout_weight="1"
+        android:layout_marginBottom="40dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_yellow"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/informacion_fiesta" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="70dip"
-        android:layout_marginBottom="10dip"
+        android:layout_weight="1"
+        android:layout_marginBottom="40dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_yellow"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/ajustes" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="70dip"
-        android:layout_marginBottom="10dip"
+        android:layout_weight="1"
+        android:layout_marginBottom="40dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_yellow"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/contact" />
 
 

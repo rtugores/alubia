@@ -49,6 +49,13 @@ public class ForoLogin extends Activity {
         final EditText email_edit = (EditText) findViewById(R.id.email);
         final EditText password_edit = (EditText) findViewById(R.id.password);
         final Button boton = (Button) findViewById(R.id.button);
+        final Button boton2 = (Button) findViewById(R.id.olvide_contrasenya); //OLVIDE CONTRASEÑA
+        boton2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ForoLogin.this, ForoOlvide.class);
+                startActivity(intent);
+            }
+        });
 
         // Al hacer click en el botón de enviar login
         boton.setOnClickListener(new View.OnClickListener() {

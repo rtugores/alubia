@@ -26,21 +26,24 @@ public class AlubiaQuiz2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alubia_quiz2);
+        setContentView(R.layout.alubia_quiz);
 
-        //================================================================
-        //==============SIGUIENTE===============================
-        //================================================================
         final Button boton1 = (Button) findViewById(R.id.button_sig);
+        final TextView bienvenida_quiz = (TextView) findViewById(R.id.bienvenida_quiz);
         final TextView pregunta = (TextView) findViewById(R.id.primera_ask);
         final RadioButton opcion1 = (RadioButton) findViewById(R.id.radio0);
         final RadioButton opcion2 = (RadioButton) findViewById(R.id.radio1);
         final RadioButton opcion3 = (RadioButton) findViewById(R.id.radio2);
+        bienvenida_quiz.setText(R.string.alubiaquiz2);
+        pregunta.setText("1. ¿Cuál de estas peñas no existía cuando nació la fiesta de la Alubia?");
+        opcion1.setText("Sonic 2000");
+        opcion2.setText("Un millón de amigos");
+        opcion3.setText("Rockambole");
 
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //PROCEDO CON LAS PREGUNTAS
+                //PROCEDO CON LAS SIGUIENTES PREGUNTAS
                 if (opcion3.isChecked()) {
                     respuesta += 1; //respuestas a la primera pregunta
                     crearDialogoHasAcertado(0, 0).show();
@@ -166,17 +169,6 @@ public class AlubiaQuiz2 extends Activity {
                         });
                     }
                 });
-            }
-        });
-
-        //================================================================
-        //==============INICIO===============================
-        //================================================================
-
-        final Button boton2 = (Button) findViewById(R.id.button_ini); //INICIO
-        boton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
             }
         });
     }

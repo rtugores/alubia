@@ -77,13 +77,13 @@
             android:label="@string/alubiaquiz"/>
         <activity
             android:name=".alubiaQuiz.AlubiaQuiz1"
-            android:label="@string/alubiaquiz1"/>
+            android:label="@string/alubiaquiz"/>
         <activity
             android:name=".alubiaQuiz.AlubiaQuiz2"
-            android:label="@string/alubiaquiz2"/>
+            android:label="@string/alubiaquiz"/>
         <activity
             android:name=".alubiaQuiz.AlubiaQuiz3"
-            android:label="@string/alubiaquiz3"/>
+            android:label="@string/alubiaquiz"/>
         <activity
             android:name=".alubiaQuiz.Solucion"
             android:label="@string/solucion"/>

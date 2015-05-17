@@ -61,5 +61,13 @@
             android:layout_marginTop="10dip"
             android:text="Inicia sesión" />
 
+        <Button
+            android:id="@+id/olvide_contrasenya"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:layout_gravity="center_horizontal"
+            android:text="Olvidé mi contraseña" />
+
     </LinearLayout>
 </LinearLayout>

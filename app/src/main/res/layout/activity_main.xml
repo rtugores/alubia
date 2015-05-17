@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_nuevo"
     android:orientation="vertical">
 
     <TextView
@@ -10,11 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dip"
-        android:layout_weight="0.3"
-        android:background="#3A6EA5"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="@string/bienvenida"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -23,12 +23,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="6dip"
         android:layout_marginBottom="10dip"
-        android:layout_weight="0.4"
-        android:background="#3A6EA5"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="@string/bienvenida_sub"
-        android:textColor="#FFFFFF"
         android:textSize="15sp" />
 
     <Button
@@ -79,10 +78,10 @@
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="70dip"
-        android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_weight="1"
+        android:layout_marginBottom="10dip"
         android:background="@drawable/alubia_boton"
         android:text="@string/masinfo" />
 

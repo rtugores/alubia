@@ -6,7 +6,7 @@
             </string>
     <string name="app_name">Alubia \'15</string>
     <string name="action_settings">Settings</string>
-    <string name="menu_share">Compartir</string>
+    <string name="menu_inicio">¡Genial!</string>
     <string name="menu_info">Información</string>
     <string name="image_main">Im</string>
  	<string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
@@ -37,20 +37,7 @@
  	<string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
  	<string name="alubiaquiz2">Alubia Quiz - Nivel medio</string>
  	<string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
- 	<string name="comenzar">¡Comenzar!</string>
- 	<string name="siguiente">Siguiente-></string>
- 	<string name="primera_ask1">1. La carrera de la Alubia consiste en</string>
- 	<string name="primera11">Hacer medio trayecto corriendo y medio en bici</string>
- 	<string name="primera12">Hacer todo el trayecto corriendo</string>
- 	<string name="primera13">No hay ninguna carrera en la fiesta de la Alubia</string>
- 	<string name="primera_ask2">1. ¿Cuál de estas peñas no existía cuando nació la fiesta de la Alubia?</string>
- 	<string name="primera21">Sonic 2000</string>
- 	<string name="primera22">Un millón de amigos</string>
- 	<string name="primera23">Rockambole</string>
- 	<string name="primera_ask3">1. ¿Quién fue la reina juvenil de la fiesta de la Alubia en el año 2006?</string>
- 	<string name="primera31">Ana Mar Colinas Vivas</string>
- 	<string name="primera32">Laura Morán Lozano</string>
- 	<string name="primera33">Raquel González Vivas</string>
+ 	<string name="siguiente">¡Siguiente!</string>
  	<string name="solucion_texto">Solución</string>
  	<string name="carrera_contenido"><b>DOMINGO 31 DE AGOSTO</b>
 \n\n<b>Inscripciones:</b>
@@ -102,5 +89,6 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="informacion_fiesta">Información sobre la fiesta</string>
     <string name="terminado">Terminado</string>
     <string name="login">Iniciar sesión</string>
+	<string name="menu_share">Compartir</string>
 
 </resources>

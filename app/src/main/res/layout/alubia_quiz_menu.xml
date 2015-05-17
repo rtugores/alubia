@@ -2,65 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/Bienvenida"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dip"
-        android:background="#3A6EA5"
-        android:gravity="center"
-        android:text="@string/bienvenida"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/Bienvenida_sub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dip"
-        android:background="#3A6EA5"
-        android:gravity="center"
-        android:text="@string/alubiaquiz"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp" />
-
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_nuevo">
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_green"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/eleccion1" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_green"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/eleccion2" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_normal_button_green"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:text="@string/eleccion3" />
 
 </LinearLayout>

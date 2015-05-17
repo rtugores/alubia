@@ -38,13 +38,6 @@ public class ForoInicial extends Activity {
                 startActivity(intent);
             }
         });
-        final Button boton3 = (Button) findViewById(R.id.olvide_contrasenya); //OLVIDE CONTRASEÑA
-        boton3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ForoInicial.this, ForoOlvide.class);
-                startActivity(intent);
-            }
-        });
     }
 
     //================================================================

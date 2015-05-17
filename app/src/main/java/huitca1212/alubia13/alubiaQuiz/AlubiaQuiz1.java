@@ -26,21 +26,24 @@ public class AlubiaQuiz1 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alubia_quiz1);
+        setContentView(R.layout.alubia_quiz);
 
-        //================================================================
-        //==============SIGUIENTE===============================
-        //================================================================
         final Button boton1 = (Button) findViewById(R.id.button_sig);
+        final TextView bienvenida_quiz = (TextView) findViewById(R.id.bienvenida_quiz);
         final TextView pregunta = (TextView) findViewById(R.id.primera_ask);
         final RadioButton opcion1 = (RadioButton) findViewById(R.id.radio0);
         final RadioButton opcion2 = (RadioButton) findViewById(R.id.radio1);
         final RadioButton opcion3 = (RadioButton) findViewById(R.id.radio2);
+        bienvenida_quiz.setText(R.string.alubiaquiz1);
+        pregunta.setText("1. La carrera de la Alubia consiste en");
+        opcion1.setText("Hacer medio trayecto corriendo y medio en bici");
+        opcion2.setText("Hacer todo el trayecto corriendo");
+        opcion3.setText("No hay ninguna carrera en la fiesta de la Alubia");
 
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //PROCEDO CON LAS PREGUNTAS
+                //PROCEDO CON LAS SIGUINTS PREGUNTAS
                 if (opcion2.isChecked()) {
                     respuesta += 1; //respuestas a la primera pregunta
                     crearDialogoHasAcertado(0, 0).show();
@@ -166,17 +169,6 @@ public class AlubiaQuiz1 extends Activity {
                         });
                     }
                 });
-            }
-        });
-
-        //================================================================
-        //==============INICIO===============================
-        //================================================================
-
-        final Button boton2 = (Button) findViewById(R.id.button_ini); //INICIO
-        boton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
             }
         });
     }

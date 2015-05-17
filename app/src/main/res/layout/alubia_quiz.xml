@@ -7,29 +7,17 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/Bienvenida"
+        android:id="@+id/bienvenida_quiz"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="40dip"
+        android:layout_weight="0.1"
         android:layout_marginTop="10dip"
-        android:background="#3A6EA5"
-        android:gravity="center"
-        android:text="@string/bienvenida"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/Bienvenida_sub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="10dip"
-        android:background="#3A6EA5"
+        android:background="#FFFFFF"
         android:gravity="center"
-        android:text="@string/alubiaquiz3"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp" />
+        android:text="@string/alubiaquiz1"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/primera_ask"
@@ -38,9 +26,9 @@
         android:layout_gravity="center"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
-        android:layout_weight="1.48"
+        android:layout_weight="0.8"
         android:gravity="center|center_vertical"
-        android:text="@string/primera_ask3"
+        android:text="@string/alubiaquiz"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -50,53 +38,43 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
-        android:layout_weight="1">
+        android:gravity="center_vertical"
+        android:layout_weight="0.8">
 
         <RadioButton
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/primera31" />
+            android:text="@string/alubiaquiz" />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/primera32" />
+            android:text="@string/alubiaquiz" />
 
         <RadioButton
             android:id="@+id/radio2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/primera33" />
+            android:text="@string/alubiaquiz" />
     </RadioGroup>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/button_sig"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dip"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button_ini"
-            android:layout_width="120dip"
-            android:layout_height="40dip"
-            android:background="#FFFFFF"
-            android:text="@string/inicio" />
-
-        <Button
-            android:id="@+id/button_sig"
-            android:layout_width="120dip"
-            android:layout_height="40dip"
-            android:layout_marginLeft="40dip"
-            android:background="#FFFFFF"
-            android:text="@string/siguiente" />
-
-    </LinearLayout>
+        android:layout_marginBottom="30dip"
+        android:layout_weight="0.05"
+        android:layout_gravity="center"
+        android:text="@string/siguiente"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="@drawable/d_normal_button_blue"/>
 
     <com.google.ads.AdView
         android:id="@+id/adView"

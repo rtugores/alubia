@@ -32,7 +32,6 @@ public class Solucion extends Activity {
         Integer resultado = Integer.parseInt(resultado_s);
         resultado_compartir = resultado;
         txtTamanho.setText("¡Has acertado " + Integer.toString(resultado) + " de 10!");
-        txtTamanho.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         MediaPlayer mpRes = new MediaPlayer();
 
         if (resultado <= 4) {
@@ -53,18 +52,6 @@ public class Solucion extends Activity {
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
-            }
-        });
-        final Button boton2 = (Button) findViewById(R.id.button_com); //PRIMER BOTON
-        boton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                intent.putExtra(Intent.EXTRA_SUBJECT, "¡Haz los quizs de la fiesta de la Alubia!");
-                intent.putExtra(Intent.EXTRA_TEXT, "He acertado " + Integer.toString(resultado_compartir) + " preguntas de 10 en uno de los quizs de la aplicación \"Fiesta de la Alubia 2015\"." +
-                        "¿Cuántas has acertado tú?: https://play.google.com/store/apps/details?id=huitca1212.alubia13");
-                startActivity(Intent.createChooser(intent, "Compartir mediante"));
             }
         });
     }

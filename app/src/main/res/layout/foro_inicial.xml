@@ -3,34 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:padding="15dip">
+    android:background="@drawable/fondo_nuevo"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/bienvenida_foro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="80dip"
-        android:text="Bienvenido al nuevo foro"
         android:layout_gravity="center"
-        android:textSize="24sp"/>
-
-    <Button
-        android:id="@+id/registro"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
-        android:text="Registrarme" />
+        android:layout_marginBottom="20dip"
+        android:text="Comienza"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/ya_registrado"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dip"
-        android:text="¿Ya estás registrado?"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="¿Ya tienes una cuenta?"
+        android:textStyle="bold"
         android:textSize="18sp" />
 
     <Button
@@ -39,14 +33,43 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dip"
-        android:text="Iniciar sesión" />
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:text="Iniciar sesión"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/d_normal_button_green"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/separador"/>
 
     <Button
-        android:id="@+id/olvide_contrasenya"
+        android:id="@+id/registro"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dip"
         android:layout_gravity="center_horizontal"
-        android:text="Olvidé mi contraseña" />
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:text="Registrarme"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/d_normal_button_blue"/>
+
+    <TextView
+        android:id="@+id/ya_registrado"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="Si no tienes cuenta, continúa y créate una"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
 
 </LinearLayout>
