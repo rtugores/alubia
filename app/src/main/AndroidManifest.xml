@@ -46,10 +46,7 @@
             android:name=".programa.Carrera"
             android:label="@string/carrera"/>
         <activity
-            android:name=".MasInformacion"
-            android:label="@string/masinfo"/>
-        <activity
-            android:name=".InformacionFiesta"
+            android:name=".mas.Mas"
             android:label="@string/masinfo"/>
         <activity
             android:name=".penyas.Penyas"
@@ -70,8 +67,17 @@
             android:name=".foro.Foro"
             android:label="@string/foro"/>
         <activity
-            android:name=".novedades.Novedades"
+            android:name=".mas.InformacionFiesta"
+            android:label="Sobre la fiesta"/>
+        <activity
+            android:name=".mas.novedades.Novedades"
             android:label="@string/novedades"/>
+        <activity
+            android:name=".mas.ajustes.Ajustes"
+            android:label="Ajustes"/>
+        <activity
+            android:name=".mas.Contactar"
+            android:label="Contactar"/>
         <activity
             android:name=".alubiaQuiz.AlubiaQuizMenu"
             android:label="@string/alubiaquiz"/>

@@ -47,7 +47,7 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
             if (datos[position - 1].getUsuario().equals(datos[position].getUsuario())) {
                 // Usuario del anterior mensaje es el mismo, quito nombre
                 usuario.setVisibility(View.GONE);
-                params.setMargins(8, 3, 8, 0);
+                params.setMargins(8, 0, 8, 0);
                 item_layout.setLayoutParams(params);
             }
         }

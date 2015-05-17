@@ -1,4 +1,4 @@
-package huitca1212.alubia13.novedades;
+package huitca1212.alubia13.mas.novedades;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

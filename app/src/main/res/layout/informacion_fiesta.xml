@@ -3,16 +3,18 @@
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_nuevo"
     android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scroller"
         android:layout_width="wrap_content"
         android:layout_height="0dip"
+        android:layout_weight="1.0"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
-        android:layout_weight="1.0"
+        android:layout_marginBottom="10dip"
         android:fillViewport="true"
         android:scrollbars="vertical">
 
@@ -24,20 +26,40 @@
             android:textSize="15sp" />
     </ScrollView>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
-
-    <TextView
-        android:id="@+id/tvEnlace_2"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
-        android:text="@string/link_text" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/d_normal_button_blue"
+            android:text="+ Info"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/d_normal_button_blue"
+            android:text="Ver mapa"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <com.google.ads.AdView
         android:id="@+id/adView"

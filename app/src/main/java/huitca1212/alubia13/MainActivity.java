@@ -12,6 +12,7 @@ import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.foro.Foro;
 import huitca1212.alubia13.foro.ForoInicial;
 import huitca1212.alubia13.masClases.VariasFunciones;
+import huitca1212.alubia13.mas.Mas;
 import huitca1212.alubia13.penyas.Penyas;
 import huitca1212.alubia13.programa.Programa;
 
@@ -72,7 +73,7 @@ public class MainActivity extends Activity {
         boton5.setBackgroundResource(R.drawable.d_alubia_button);
         boton5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MasInformacion.class);
+                Intent intent = new Intent(MainActivity.this, Mas.class);
                 startActivity(intent);
             }
         });

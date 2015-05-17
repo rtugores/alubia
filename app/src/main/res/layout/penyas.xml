@@ -24,8 +24,7 @@
         android:background="@drawable/d_normal_button_blue"
         android:text="@string/contactar"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
-        />
+        android:textColor="@android:color/white"/>
 
     <com.google.ads.AdView
         android:id="@+id/adView"

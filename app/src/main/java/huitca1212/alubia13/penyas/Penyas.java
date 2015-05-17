@@ -276,8 +276,7 @@ public class Penyas extends Activity {
     public Dialog crearDialogoContact(Context eso) {
         AlertDialog.Builder builder = new AlertDialog.Builder(eso);
         builder.setTitle("Foto de tu peña");
-        builder.setMessage("¡Envía una foto de tu peña para que aparezca en la aplicación! ¿Tu peña no aparece? " +
-                "¡Contacta y envía!");
+        builder.setMessage("¡Envía una foto de tu peña para que aparezca en la aplicación!");
         builder.setNegativeButton("WhatsApp", new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);

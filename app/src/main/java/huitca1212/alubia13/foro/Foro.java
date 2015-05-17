@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
+import huitca1212.alubia13.MainActivity;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.masClases.VariasFunciones;
 import huitca1212.alubia13.masClases.*;
@@ -110,8 +111,8 @@ public class Foro extends Activity {
 
     //Al cancelar, vamos al menú
     public void onBackPressed() {
-        Intent intent = new Intent(Foro.this, ForoLogin.class);
-        startActivity(intent);
+       // Intent intent = new Intent(Foro.this, MainActivity.class);
+       // startActivity(intent);
         finish();
     }
 

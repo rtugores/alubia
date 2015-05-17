@@ -133,7 +133,7 @@ public class AdaptadorPenyas extends ArrayAdapter<TitularPenyas> {
                 img = lblTitulo.getResources().getDrawable(R.drawable.ic_launcher2);
                 break;
         }
-        lblTitulo.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+        lblTitulo.setCompoundDrawablesWithIntrinsicBounds(null, null, img, null);
         return (item);
     }
 }
