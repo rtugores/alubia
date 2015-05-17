@@ -7,8 +7,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class AlubiaQuiz1 extends Activity {
 
@@ -146,7 +143,7 @@ public class AlubiaQuiz1 extends Activity {
                                                                                 opcion3.setText("Desde la plaza de toros");
                                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                                     public void onClick(View v) {
-                                                                                        if (opcion1.isChecked() == true) {
+                                                                                        if (opcion1.isChecked()) {
                                                                                             respuesta += 1;
                                                                                             crearDialogoHasAcertado(10, respuesta).show();
                                                                                         } else
@@ -171,32 +168,6 @@ public class AlubiaQuiz1 extends Activity {
                 });
             }
         });
-    }
-
-    //================================================================
-    //==============CODIGO PARA ACTION BAR============================
-    //================================================================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     //===========================================================================================

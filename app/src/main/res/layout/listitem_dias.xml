@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/layout_item_dia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.40"
                 android:textIsSelectable="false"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/LblTitulo2"
@@ -38,8 +37,7 @@
                 android:layout_gravity="center_vertical"
                 android:textIsSelectable="false"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView

@@ -1,12 +1,8 @@
 package huitca1212.alubia13.alubiaQuiz;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +10,6 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
 
 
 public class Solucion extends Activity {
@@ -32,7 +27,7 @@ public class Solucion extends Activity {
         Integer resultado = Integer.parseInt(resultado_s);
         resultado_compartir = resultado;
         txtTamanho.setText("¡Has acertado " + Integer.toString(resultado) + " de 10!");
-        MediaPlayer mpRes = new MediaPlayer();
+        MediaPlayer mpRes;
 
         if (resultado <= 4) {
             txtSolucion.setText("No has acertado muchas respuestas, pero no te preocupes.\n\n¡Inténtalo con otro nivel!");
@@ -54,32 +49,6 @@ public class Solucion extends Activity {
                 finish();
             }
         });
-    }
-
-    //================================================================
-    //==============CODIGO PARA ACTION BAR============================
-    //================================================================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     //================================================================

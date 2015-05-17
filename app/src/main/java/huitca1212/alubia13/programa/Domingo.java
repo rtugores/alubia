@@ -6,15 +6,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class Domingo extends Activity {
 
@@ -83,31 +80,5 @@ public class Domingo extends Activity {
             }
         });
         return builder.create();
-    }
-
-    //================================================================
-    //==============CODIGO PARA ACTION BAR============================
-    //================================================================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

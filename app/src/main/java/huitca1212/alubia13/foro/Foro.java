@@ -1,23 +1,7 @@
 package huitca1212.alubia13.foro;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URLEncoder;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -30,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,10 +21,23 @@ import android.widget.Toast;
 
 import com.google.analytics.tracking.android.EasyTracker;
 
-import huitca1212.alubia13.MainActivity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URLEncoder;
+
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
-import huitca1212.alubia13.masClases.*;
+import huitca1212.alubia13.masClases.SendDenuncia;
 
 public class Foro extends Activity {
 
@@ -349,32 +345,6 @@ public class Foro extends Activity {
             Toast.makeText(getApplicationContext(), "Error en la recepción de los datos.", Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-
-    //====================================================================================================================
-    // Código para el ActionBar
-    //====================================================================================================================
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     //====================================================================================================================

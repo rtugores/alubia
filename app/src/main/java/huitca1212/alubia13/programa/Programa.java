@@ -3,8 +3,6 @@ package huitca1212.alubia13.programa;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -13,7 +11,6 @@ import android.widget.ListView;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class Programa extends Activity {
 
@@ -22,11 +19,11 @@ public class Programa extends Activity {
             new TitularPrograma[]{
                     new TitularPrograma("Saludo del alcalde", ""),
                     new TitularPrograma("Reinas y Damas Alubia 2014", ""),
-                    new TitularPrograma("Sábado", "16/08/2014"),
-                    new TitularPrograma("Viernes", "22/08/2014"),
-                    new TitularPrograma("Sábado", "23/08/2014"),
-                    new TitularPrograma("Domingo", "24/08/2014"),
-                    new TitularPrograma("Lunes", "25/08/2014"),
+                    new TitularPrograma("Sábado", "16 de agosto"),
+                    new TitularPrograma("Viernes", "22 de agosto"),
+                    new TitularPrograma("Sábado", "23 de agosto"),
+                    new TitularPrograma("Domingo", "24 de agosto"),
+                    new TitularPrograma("Lunes", "25 de agosto"),
                     new TitularPrograma("XIII Carrera de la Alubia", "")};
 
     @Override
@@ -79,32 +76,6 @@ public class Programa extends Activity {
                 }
             }
         });
-    }
-
-    //================================================================
-    //==============CODIGO PARA ACTION BAR============================
-    //================================================================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     //================================================================

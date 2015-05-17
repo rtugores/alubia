@@ -7,8 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +30,6 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class ForoLogin extends Activity {
 
@@ -76,7 +73,6 @@ public class ForoLogin extends Activity {
                     mURL = "http://rjapps.x10host.com/comprobar_usuario.php?email=" + URLEncoder.encode(email, "UTF-8") +
                             "&contrasenya=" + URLEncoder.encode(password, "UTF-8");
                     mURL = mURL.replace(" ", "%20");
-                    Toast.makeText(getApplicationContext(), mURL, Toast.LENGTH_LONG).show();
                     // Chequear si está la conexión a Internet activa
                     if (!checkInternet()) {
                         Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para iniciar sesión.", Toast.LENGTH_LONG).show();
@@ -198,31 +194,6 @@ public class ForoLogin extends Activity {
                 startActivity(intent);
                 finish();
             }
-        }
-    }
-
-    //====================================================================================================================
-    // Código para el ActionBar
-    //====================================================================================================================
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 

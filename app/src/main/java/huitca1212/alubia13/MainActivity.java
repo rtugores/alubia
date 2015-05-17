@@ -11,7 +11,6 @@ import android.widget.Button;
 import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.foro.Foro;
 import huitca1212.alubia13.foro.ForoInicial;
-import huitca1212.alubia13.masClases.VariasFunciones;
 import huitca1212.alubia13.mas.Mas;
 import huitca1212.alubia13.penyas.Penyas;
 import huitca1212.alubia13.programa.Programa;
@@ -77,31 +76,5 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-    }
-
-    //================================================================
-    //==============CODIGO PARA ACTION BAR============================
-    //================================================================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

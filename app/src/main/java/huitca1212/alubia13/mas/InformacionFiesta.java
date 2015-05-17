@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.masClases.VariasFunciones;
 
 public class InformacionFiesta extends Activity {
 
@@ -44,38 +41,11 @@ public class InformacionFiesta extends Activity {
                 startActivity(intent);
             }
         });
-        //====================
     }
 
     //================================================================
-    //==============CODIGO PARA ACTION BAR============================
+    //==============CODIGO PARA ESTADISTICAS==========================
     //================================================================
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        VariasFunciones opcion = new VariasFunciones();
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                opcion.compartir(this);
-                return true;
-            case R.id.menu_info:
-                opcion.crearDialogoAlerta(this).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    //================================================================
-//==============CODIGO PARA ESTADISTICAS==========================
-//================================================================
     @Override
     public void onStart() {
         super.onStart();
