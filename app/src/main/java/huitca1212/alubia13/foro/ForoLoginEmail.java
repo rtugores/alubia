@@ -2,12 +2,15 @@ package huitca1212.alubia13.foro;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -36,36 +39,44 @@ import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
 
-public class ForoOlvide extends Activity {
+public class ForoLoginEmail extends Activity {
 
     // Declaramos variables
     boolean error = false;
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
+    public static Activity foro_login_email;
     String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.foro_olvide);
+        setContentView(R.layout.foro_login_email);
 
         getWindow().setBackgroundDrawableResource(R.drawable.fondo_nuevo);
 
-        pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_olvide);
+        foro_login_email = this;
 
-        final EditText email_edit = (EditText) findViewById(R.id.email_olvide);
+        pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_login);
+
+        final EditText email_edit = (EditText) findViewById(R.id.email);
         email_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    action_foro_olvide_contrasenya();
+                    action_foro_login_email();
                     return true;
                 }
                 return false;
             }
         });
 
-        final Button boton = (Button) findViewById(R.id.button_olvide);
+        final String responsabilidad = "http://rjapps.x10host.com/responsabilidad.html";
+        final TextView politica_edit = (TextView) findViewById(R.id.politica2_text);
+        politica_edit.setText(Html.fromHtml("<a href=" + responsabilidad + ">política de privacidad</a>"));
+        politica_edit.setMovementMethod(LinkMovementMethod.getInstance());
+
+        final Button boton = (Button) findViewById(R.id.button);
         // Manejador para cambios en el botón (estética)
         email_edit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -88,17 +99,17 @@ public class ForoOlvide extends Activity {
             }
         });
 
-        // Al hacer click en el botón de recuperar contraseña
+        // Al hacer click en el botón de enviar login
         boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                action_foro_olvide_contrasenya();
+                action_foro_login_email();
             }
         });
     }
 
-    protected void action_foro_olvide_contrasenya() {
+    protected void action_foro_login_email() {
         // Escondemos teclado
-        final EditText email_edit = (EditText) findViewById(R.id.email_olvide);
+        final EditText email_edit = (EditText) findViewById(R.id.email);
         InputMethodManager imm = (InputMethodManager) getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
@@ -109,14 +120,14 @@ public class ForoOlvide extends Activity {
             return;
         }
         try {
-            mURL = "http://rjapps.x10host.com/olvide_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8");
+            mURL = "http://rjapps.x10host.com/comprobar_email.php?email=" + URLEncoder.encode(email, "UTF-8");
             mURL = mURL.replace(" ", "%20");
             // Chequear si está la conexión a Internet activa
             if (!checkInternet()) {
                 Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [1]", Toast.LENGTH_LONG).show();
                 return;
             }
-            // Enviamos el email
+            // Enviamos el login
             SendTask enviar = new SendTask();
             enviar.execute(mURL);
         } catch (Exception e) {
@@ -141,7 +152,7 @@ public class ForoOlvide extends Activity {
     }
 
     //====================================================================================================================
-    //Tarea para enviar el email
+    //Tarea para enviar login
     //====================================================================================================================
     private class SendTask extends AsyncTask<String, Void, String> {
         HttpClient httpclient = new DefaultHttpClient();
@@ -212,12 +223,14 @@ public class ForoOlvide extends Activity {
             }
             if (error) {
                 Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
-                pantalla_cargando.setVisibility(View.GONE);
             } else {
-                pantalla_cargando.setVisibility(View.GONE);
-                finish();
-                Toast.makeText(getApplicationContext(), "Genial! En breve recibirás un correo electrónico con tu contraseña!", Toast.LENGTH_LONG).show();
+                // Enviamos el email a la nueva actividad (ForoLoginContrasenya)
+                Intent intent = new Intent(ForoLoginEmail.this, ForoLoginContrasenya.class);
+                intent.putExtra("email", email);
+                // Abrimos nueva actividad
+                startActivity(intent);
             }
+            pantalla_cargando.setVisibility(View.GONE);
         }
     }
 

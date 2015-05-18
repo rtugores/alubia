@@ -11,11 +11,13 @@ import huitca1212.alubia13.R;
 
 public class ForoInicial extends Activity {
 
+    public static Activity foro_inicial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foro_inicial);
+        foro_inicial = this;
 
         //================================================================
         //==============CODIGO PARA BOTONES===============================
@@ -31,7 +33,7 @@ public class ForoInicial extends Activity {
         final Button boton2 = (Button) findViewById(R.id.login); //LOGIN
         boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ForoInicial.this, ForoLogin.class);
+                Intent intent = new Intent(ForoInicial.this, ForoLoginEmail.class);
                 startActivity(intent);
             }
         });

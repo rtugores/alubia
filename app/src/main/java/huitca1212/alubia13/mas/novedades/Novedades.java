@@ -32,8 +32,8 @@ import huitca1212.alubia13.programa.TitularPrograma;
 
 public class Novedades extends Activity {
     private String jsonResult;
-    private ListView listView;
     private LinearLayout layout;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +42,8 @@ public class Novedades extends Activity {
         layout = (LinearLayout) findViewById(R.id.progressbar_view);
         listView = (ListView) findViewById(R.id.listView1);
 
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         // Comprobamos conexión a Internet y descargamos lista de comentarios
         accessWebService(); //ACTUALIZACION DE LA LISTA DE COMENTARIOS
-
     }
 
     //====================================================================================================================
@@ -60,22 +58,20 @@ public class Novedades extends Activity {
             if (!i.isAvailable())
                 return false;
         }
-        if (i == null)
-            return false;
-        return true;
+        return i != null;
     }
 
     //====================================================================================================================
     //Tarea asíncrona para acceder a la Web
     //====================================================================================================================
     private class JsonReadTask extends AsyncTask<String, Void, String> {
+        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             layout.setVisibility(View.VISIBLE);
-            listView.setVisibility(View.GONE);
         }
 
         @Override
@@ -87,8 +83,10 @@ public class Novedades extends Activity {
                         response.getEntity().getContent()).toString();
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
+                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
+                error = true;
             }
             return null;
         }
@@ -103,8 +101,8 @@ public class Novedades extends Activity {
                     answer.append(rLine);
                 }
             } catch (IOException e) {
-                Toast.makeText(getApplicationContext(),
-                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+                error = true;
             }
             return answer;
         }
@@ -113,15 +111,18 @@ public class Novedades extends Activity {
         protected void onCancelled() {
             httpclient.getConnectionManager().shutdown();
             layout.setVisibility(View.GONE);
-            listView.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             layout.setVisibility(View.GONE);
-            listView.setVisibility(View.VISIBLE);
-            ListDrawer();
+            if (error) {
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [1]", Toast.LENGTH_LONG).show();
+                return;
+            }
+            // Dibujamos la lista de novedades
+            listDrawer();
         }
     }
 
@@ -129,22 +130,22 @@ public class Novedades extends Activity {
     // Comprobamos conexión a Internet y descargamos lista de novedades
     //====================================================================================================================
     public void accessWebService() {
-        JsonReadTask task = new JsonReadTask();
         if (checkInternet() == false) {
-            Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para ver las novedades.", Toast.LENGTH_LONG).show();
-            task.cancel(true);
-            finish();
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [2]", Toast.LENGTH_LONG).show();
+            layout.setVisibility(View.GONE);
+        } else {
+            JsonReadTask task = new JsonReadTask();
+            // passes values for the urls string array
+            String url = "http://rjapps.x10host.com/descargar_novedades.php";
+            task.execute(url);
         }
-        // passes values for the urls string array
-        String url = "http://rjapps.x10host.com/descargar_novedades.php";
-        task.execute(url);
     }
 
     //====================================================================================================================
     // Decodifica la información JSON e imprime las novedades
     //====================================================================================================================
-    public void ListDrawer() {
-
+    public void listDrawer() {
+        boolean error = false;
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
             JSONArray jsonMainNode = jsonResponse.optJSONArray("novedades");
@@ -163,7 +164,14 @@ public class Novedades extends Activity {
 
 
         } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(), "Error en la recepción de los datos.", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            error = true;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            error = true;
+        }
+        if (error) {
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
         }
 
     }

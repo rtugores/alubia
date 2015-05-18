@@ -1,13 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:orientation="vertical"
-    android:background="@drawable/fondo_nuevo">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <ScrollView
+            android:id="@+id/scroller"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/password_text"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30dip"
+                    android:layout_marginTop="30dip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:text="Introduce tu contraseña"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dip"
+                    android:layout_marginTop="30dip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/d_normal_button_gray"
+                    android:enabled="false"
+                    android:text="Continuar"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/olvide_contrasenya" />
+
+                <TextView
+                    android:id="@+id/forgot_text"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dip"
+                    android:layout_marginTop="20dip"
+                    android:gravity="center"
+                    android:text="¿Olvidaste tu contraseña?"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/olvide_contrasenya"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/d_normal_button_blue"
+                    android:text="Envíamela a mi correo"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/progressbar_view_registro"
@@ -24,64 +112,4 @@
             android:layout_gravity="center_vertical|center_horizontal" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/password_text"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dip"
-        android:layout_marginBottom="30dip"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="Introduce tu contraseña"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dip"
-        android:layout_marginBottom="60dip"
-        android:text="Continuar"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/d_normal_button_blue"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:layout_gravity="center"
-        android:id="@+id/imageView"
-        android:src="@drawable/olvide_contrasenya"/>
-
-    <TextView
-        android:id="@+id/forgot_text"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dip"
-        android:layout_marginBottom="30dip"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="¿Olvidaste tu contraseña?"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/olvide_contrasenya"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Envíamela a mi correo"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/d_normal_button_blue"/>
-
-</LinearLayout>
-
+</FrameLayout>

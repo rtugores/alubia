@@ -2,6 +2,7 @@ package huitca1212.alubia13.foro;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -37,6 +38,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.mas.ajustes.Ajustes;
 import huitca1212.alubia13.masClases.SendDenuncia;
 
 public class Foro extends Activity {
@@ -48,11 +50,14 @@ public class Foro extends Activity {
     private LinearLayout layout;
     private String comentario;
     private EditText comentario_id;
+    public static Activity foro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foro);
+
+        foro = this;
 
         layout = (LinearLayout) findViewById(R.id.progressbar_view);
         listView = (ListView) findViewById(R.id.listView1);
@@ -99,17 +104,27 @@ public class Foro extends Activity {
                     SendCommentRefresh enviar = new SendCommentRefresh();
                     enviar.execute(mURL);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error con la recuperacion de información, verifica tu conexión a Internet.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [1]", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    //Al cancelar, vamos al menú
-    public void onBackPressed() {
-       // Intent intent = new Intent(Foro.this, MainActivity.class);
-       // startActivity(intent);
-        finish();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_ajustes:
+                Intent intent = new Intent(Foro.this, Ajustes.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     //====================================================================================================================
@@ -152,7 +167,7 @@ public class Foro extends Activity {
         if (menuItemIndex == 0) {
             // Comprobamos conexión a Internet para denunciar comentario
             if (!checkInternet()) {
-                Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para denunciar el comentario.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
                 return false;
             }
             TextView id_den = (TextView) (info.targetView).findViewById(R.id.id_text);
@@ -164,9 +179,9 @@ public class Foro extends Activity {
                 SendDenuncia enviar = new SendDenuncia(this, layout, mURL);
                 enviar.execute(mURL);
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Error al denunciar el comentario.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(getApplicationContext(), "Comentario denunciado correctamente. Será revisado por el admin.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Comentario denunciado correctamente. Será revisado por el administrador", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -191,7 +206,7 @@ public class Foro extends Activity {
     //Tarea para enviar comentario y recargar la lista de comentarios
     //====================================================================================================================
     private class SendCommentRefresh extends AsyncTask<String, Void, String> {
-        boolean error_comentario = false;
+        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
@@ -207,10 +222,10 @@ public class Foro extends Activity {
                 httpclient.execute(httppost);
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
-                error_comentario = true;
+                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
-                error_comentario = true;
+                error = true;
             }
             return null;
         }
@@ -223,8 +238,8 @@ public class Foro extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (error_comentario) {
-                Toast.makeText(getApplicationContext(), "El comentario no se pudo enviar. Revisa tu conexión a Internet.", Toast.LENGTH_LONG).show();
+            if (error) {
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
                 layout.setVisibility(View.GONE);
             } else {
                 comentario_id.setText("");
@@ -238,6 +253,7 @@ public class Foro extends Activity {
     //Tarea asíncrona para acceder a la Web
     //====================================================================================================================
     private class JsonReadTask extends AsyncTask<String, Void, String> {
+        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
@@ -255,8 +271,10 @@ public class Foro extends Activity {
                         response.getEntity().getContent()).toString();
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
+                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
+                error = true;
             }
             return null;
         }
@@ -270,8 +288,8 @@ public class Foro extends Activity {
                     answer.append(rLine);
                 }
             } catch (IOException e) {
-                Toast.makeText(getApplicationContext(),
-                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+                error = true;
             }
             return answer;
         }
@@ -286,8 +304,12 @@ public class Foro extends Activity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             layout.setVisibility(View.GONE);
+            if (error) {
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                return;
+            }
             // Dibujamos la lista de comentarios
-            ListDrawer();
+            listDrawer();
         }
     }
 
@@ -296,7 +318,7 @@ public class Foro extends Activity {
     //====================================================================================================================
     public void accessWebService() {
         if (!checkInternet()) {
-            Toast.makeText(getApplicationContext(), "Necesitas conexión a Internet para ver el foro.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
         }
         else {
@@ -310,8 +332,8 @@ public class Foro extends Activity {
     //====================================================================================================================
     // Decodifica la información JSON e imprime los comentarios
     //====================================================================================================================
-    public void ListDrawer() {
-
+    public void listDrawer() {
+        boolean error = false;
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
             JSONArray jsonMainNode = jsonResponse.optJSONArray("foro");
@@ -342,7 +364,14 @@ public class Foro extends Activity {
             registerForContextMenu(listView);
 
         } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(), "Error en la recepción de los datos.", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            error = true;
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            error = true;
+        }
+        if (error) {
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
         }
 
     }

@@ -3,35 +3,22 @@
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_nuevo"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/carrera"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="15dip"
-        android:layout_marginTop="15dip"
-        android:background="#3A6EA5"
-        android:gravity="center"
-        android:text="@string/carrera"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/carrera_contenido"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
+        android:layout_marginBottom="20dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:scrollbars="vertical"
         android:text="@string/carrera_contenido"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
     <com.google.ads.AdView
         android:id="@+id/adView"
@@ -39,6 +26,6 @@
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9645153779384738/4669268804"
-        ads:loadAdOnCreate="true"></com.google.ads.AdView>
+        ads:loadAdOnCreate="true"/>
 
 </LinearLayout>

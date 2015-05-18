@@ -17,6 +17,7 @@
             android:layout_weight="0.65"
             android:divider="@null"
             android:dividerHeight="0dp"
+            android:background="#D8D8D8"
             android:stackFromBottom="true" />
 
         <View

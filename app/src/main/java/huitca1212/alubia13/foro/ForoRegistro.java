@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -46,6 +47,9 @@ public class ForoRegistro extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foro_registro);
 
+        // Se muestra el teclado
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
         pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_registro);
         final EditText username_edit = (EditText) findViewById(R.id.user);
         final EditText password_edit = (EditText) findViewById(R.id.password);
@@ -53,7 +57,7 @@ public class ForoRegistro extends Activity {
         final EditText codigo_penya_edit = (EditText) findViewById(R.id.codigo_penha);
         final Button boton = (Button) findViewById(R.id.button);
 
-        // Código para la aceptación de la privacidad
+        // Código para mostrar la privacidad
         final String responsabilidad = "http://rjapps.x10host.com/responsabilidad.html";
         final TextView terminos = (TextView) findViewById(R.id.terminos);
         terminos.setText(Html.fromHtml("Al hacer click en Terminado, confirmas que has leído y aceptas los " +
@@ -64,25 +68,25 @@ public class ForoRegistro extends Activity {
         boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Comprobamos si el nombre de usuario está escrito correctamente
-                String username = username_edit.getText().toString();
+                String username = username_edit.getText().toString().trim();
                 if (username.length() < 3) {
                     Toast.makeText(getApplicationContext(), "El nombre ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Comprobamos si la contraseña está escrita correctamente
-                String password = password_edit.getText().toString();
+                String password = password_edit.getText().toString().trim();
                 if (password.length() < 5) {
                     Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Comprobamos si el email está escrito correctamente
-                String email = email_edit.getText().toString();
+                String email = email_edit.getText().toString().trim();
                 if (password.length() < 1) {
                     Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Comprobamos si el código de peña es adecuado
-                String codigo_penya = codigo_penya_edit.getText().toString();
+                String codigo_penya = codigo_penya_edit.getText().toString().trim();
                 if (codigo_penya.length() == 0) {
                     codigo_penya = "0";
                 }
@@ -212,7 +216,7 @@ public class ForoRegistro extends Activity {
             } else {
                 Toast.makeText(getApplicationContext(), "El registro se ha completado con éxito.", Toast.LENGTH_SHORT).show();
                 final EditText username_edit = (EditText) findViewById(R.id.user);
-                String username = username_edit.getText().toString();
+                String username = username_edit.getText().toString().trim();
                 // Almacenamos el nombre de usuario en el teléfono
                 getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                         .edit()

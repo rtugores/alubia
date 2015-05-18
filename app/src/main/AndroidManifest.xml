@@ -58,11 +58,14 @@
             android:name=".foro.ForoRegistro"
             android:label="@string/registro"/>
         <activity
-            android:name=".foro.ForoLogin"
+            android:name=".foro.ForoLoginEmail"
+            android:label="@string/login"/>
+        <activity
+            android:name=".foro.ForoLoginContrasenya"
             android:label="@string/login"/>
         <activity
             android:name=".foro.ForoOlvide"
-            android:label="@string/foro"/>
+            android:label="Olvidé mi contraseña"/>
         <activity
             android:name=".foro.Foro"
             android:label="@string/foro"/>

@@ -13,11 +13,13 @@ import huitca1212.alubia13.mas.novedades.Novedades;
 
 public class Mas extends Activity {
 
+    public static Activity mas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mas);
+        mas = this;
 
         //================================================================
         //==============CODIGO PARA BOTONES===============================

@@ -10,11 +10,11 @@
     <string name="menu_info">Información</string>
     <string name="image_main">Im</string>
  	<string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
- 	<string name="sabado16">Sábado - 16/08/2015</string>
- 	<string name="viernes">Viernes - 22/08/2015</string>
- 	<string name="sabado">Sábado - 23/08/2015</string>
- 	<string name="domingo">Domingo - 24/08/2015</string>
- 	<string name="lunes">Lunes - 25/08/2015</string>
+ 	<string name="sabado16">Sábado 16 de agosto</string>
+ 	<string name="viernes">Viernes 22 de agosto</string>
+ 	<string name="sabado">Sábado 23 de agosto</string>
+ 	<string name="domingo">Domingo 24 de agosto</string>
+ 	<string name="lunes">Lunes 25 de agosto</string>
  	<string name="bienvenida">Fiesta de la Alubia 2015</string>
  	<string name="bienvenida_sub">Laguna de Negrillos</string>
  	<string name="programa">Programa de fiestas</string>
@@ -25,7 +25,7 @@
  	<string name="actualizar">actualizar</string>
  	<string name="enviar">-></string>
  	<string name="saludo">Saludo del alcalde</string>
- 	<string name="reinas_damas">Reinas y Damas Alubia 2015</string>
+ 	<string name="reinas_damas">Reinas y Damas Alubia 2014</string>
  	<string name="carrera">XIII Carrera de la Alubia</string>
  	<string name="contactar">¡Envía una foto de tu peña!</string>
  	<string name="fotoPenya">Foto de la peña</string>

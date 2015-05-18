@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.foro.Foro;
+import huitca1212.alubia13.foro.ForoOlvide;
+import huitca1212.alubia13.mas.Mas;
 
 public class Ajustes extends Activity {
 
@@ -24,9 +27,11 @@ public class Ajustes extends Activity {
     private TitularAjustes[] datos =
             new TitularAjustes[]{
                     new TitularAjustes("Cerrar sesión", "Cierra tu sesión en el foro"),
+                    new TitularAjustes("Olvidé mi contraseña", "Recupera tu contraseña en tu correo"),
                     new TitularAjustes("Borrar cuenta", "Estamos trabajando para que funcione"),
                     new TitularAjustes("Política de privacidad", "Échale un vistazo a la política de privacidad"),
                     new TitularAjustes("Compartir", "Comparte la aplicación con tus amigos"),
+                    new TitularAjustes("Actualizar", "Obtén la versión más actualizada"),
                     new TitularAjustes("Versión", "3.0"),
             };
 
@@ -34,7 +39,6 @@ public class Ajustes extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajustes);
-
         //================================================================
         //==============CODIGO PARA LISTVIEW==============================
         //================================================================
@@ -55,16 +59,21 @@ public class Ajustes extends Activity {
                         }
                         break;
                     case 1:
-                        // Borrar cuenta
+                        // Olvidé contraseña
+                        Intent intent = new Intent(Ajustes.this, ForoOlvide.class);
+                        startActivity(intent);
                         break;
                     case 2:
+                        // Borrar cuenta;
+                        break;
+                    case 3:
                         // Revisar política de privacidad
                         String mapa_url = "http://rjapps.x10host.com/responsabilidad.html";
                         Uri uri = Uri.parse(mapa_url);
                         Intent intent_politica = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent_politica);
                         break;
-                    case 3:
+                    case 4:
                         // Compartir aplicación
                         final Intent intent_share = new Intent(android.content.Intent.ACTION_SEND);
                         intent_share.setType("text/plain");
@@ -72,6 +81,14 @@ public class Ajustes extends Activity {
                         intent_share.putExtra(Intent.EXTRA_SUBJECT, "¡Descarga Alubia '15!");
                         intent_share.putExtra(Intent.EXTRA_TEXT, "La aplicación de la fiesta de la Alubia en Laguna de Negrillos. Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13");
                         startActivity(Intent.createChooser(intent_share, "Compartir mediante"));
+                        break;
+                    case 5:
+                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
                         break;
                 }
             }
@@ -97,11 +114,21 @@ public class Ajustes extends Activity {
                         .edit()
                         .putBoolean("notregister", true)
                         .commit();
+                try{
+                    Mas.mas.finish();
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+                try{
+                    Foro.foro.finish();
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+                finish();
             }
         });
         return builder.create();
     }
-
 
     //================================================================
     //==============CODIGO PARA ESTADISTICAS==========================

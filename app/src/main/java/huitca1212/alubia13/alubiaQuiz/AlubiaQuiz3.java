@@ -49,7 +49,7 @@ public class AlubiaQuiz3 extends Activity {
                 pregunta.setText("2. ¿Cuántos años de existencia tiene la peña Kamensoky?");
                 opcion1.setText("6 años");
                 opcion2.setText("9 años");
-                opcion3.setText("13 años");
+                opcion3.setText("12 años");
                 boton1.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (opcion3.isChecked()) {
@@ -137,7 +137,7 @@ public class AlubiaQuiz3 extends Activity {
                                                                                 } else
                                                                                     crearDialogoHasFallado3(9, 0).show();
                                                                                 opcion1.setChecked(true);
-                                                                                pregunta.setText("10. ¿Qué otro nombre recibe la peña \"Ya estamos todos\"?");
+                                                                                pregunta.setText("10. ¿De qué otra peña proviene la peña \"Ya estamos todos\"?");
                                                                                 opcion1.setText("Jaia");
                                                                                 opcion2.setText("PocaPena");
                                                                                 opcion3.setText("Ketache");

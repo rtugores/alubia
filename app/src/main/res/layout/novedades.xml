@@ -26,6 +26,6 @@
         android:layout_marginRight="10dip"
         android:layout_weight="0.65"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="2.0sp"></ListView>
+        android:dividerHeight="2.0sp"/>
 
 </LinearLayout>
