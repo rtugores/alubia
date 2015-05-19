@@ -44,8 +44,8 @@ public class ForoRegistroEmail extends Activity {
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
     public static Activity foro_registro_email;
-    String email;
     String usuario;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,9 +121,10 @@ public class ForoRegistroEmail extends Activity {
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
         // Comprobamos si el email está escrito correctamente
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         email = email_edit.getText().toString().trim();
-        if (email.length() < 3) {
-            Toast.makeText(getApplicationContext(), "El email ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+        if(!email.matches(emailPattern)) {
+            Toast.makeText(getApplicationContext(), "El email tiene un formato incorrecto. Asegúrate de que esté bien escrito", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -233,6 +234,7 @@ public class ForoRegistroEmail extends Activity {
             } else {
                 // Enviamos el email a la nueva actividad (ForoRegistroContrasenya)
                 Intent intent = new Intent(ForoRegistroEmail.this, ForoRegistroContrasenya.class);
+                intent.putExtra("usuario", usuario);
                 intent.putExtra("email", email);
                 // Abrimos nueva actividad
                 startActivity(intent);

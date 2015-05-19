@@ -33,7 +33,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="Introduce tu nombre de usuario"
+                    android:text="Introduce tu nombre para mostrar"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -46,7 +46,7 @@
                     android:layout_marginRight="20dp"
                     android:hint="Ej.: Rodri Tugores"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textPersonName|textCapSentences" />
 
                 <Button
                     android:id="@+id/button"
@@ -67,6 +67,8 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:gravity="center"
                     android:text="Al continuar, confirmas que has leído y aceptas la"
                     android:textSize="18sp" />
@@ -77,6 +79,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="30dip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:gravity="center"
                     android:text="política de privacidad"
                     android:textColor="#2E64FE"

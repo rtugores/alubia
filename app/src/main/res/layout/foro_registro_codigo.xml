@@ -10,7 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
-
         <ScrollView
             android:id="@+id/scroller"
             android:layout_width="match_parent"
@@ -24,7 +23,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/olvide_text"
+                    android:id="@+id/codigo_text"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -33,66 +32,74 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="Introduce tu dirección de correo electrónico"
+                    android:text="Introduce el código de tu peña (opcional)"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/email_olvide"
+                    android:id="@+id/codigo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:hint="Email"
-                    android:imeOptions="actionDone"
-                    android:inputType="textEmailAddress" />
+                    android:ems="10"
+                    android:hint="Ej.: BS8TF1R39K"
+                    android:imeOptions="actionDone" />
 
                 <Button
-                    android:id="@+id/button_olvide"
+                    android:id="@+id/button"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dip"
+                    android:layout_marginBottom="20dip"
+                    android:layout_marginTop="30dip"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="30dip"
-                    android:background="@drawable/d_normal_button_gray"
-                    android:enabled="false"
-                    android:text="Recuperar contraseña"
+                    android:background="@drawable/d_normal_button_blue"
+                    android:text="Continuar"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/text1"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center"
-                    android:text="¿Ya has recuperado la contraseña?"
-                    android:textSize="18sp" />
+                    android:src="@drawable/codigo" />
 
                 <TextView
-                    android:id="@+id/text2"
+                    android:id="@+id/codigo_text"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="30dip"
+                    android:layout_marginBottom="20dip"
+                    android:layout_marginTop="20dip"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="Vuelve atrás para iniciar sesión"
+                    android:text="¿Todavía no conoces el código de tu peña?"
                     android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button_codigo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/d_normal_button_blue"
+                    android:text="Pregúntale al administrador"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/progressbar_view_olvide"
+        android:id="@+id/progressbar_view_registro"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center_horizontal"
@@ -107,4 +114,3 @@
     </LinearLayout>
 
 </FrameLayout>
-

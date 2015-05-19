@@ -21,8 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -114,9 +112,10 @@ public class ForoLoginEmail extends Activity {
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
         // Comprobamos si el email está escrito correctamente
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         email = email_edit.getText().toString().trim();
-        if (email.length() < 3) {
-            Toast.makeText(getApplicationContext(), "El email ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+        if (!email.matches(emailPattern)) {
+            Toast.makeText(getApplicationContext(), "El email tiene un formato incorrecto. Asegúrate de que esté bien escrito", Toast.LENGTH_SHORT).show();
             return;
         }
         try {

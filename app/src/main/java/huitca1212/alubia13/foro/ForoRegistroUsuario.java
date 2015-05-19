@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -54,6 +55,9 @@ public class ForoRegistroUsuario extends Activity {
         getWindow().setBackgroundDrawableResource(R.drawable.fondo_nuevo);
 
         foro_registro_usuario = this;
+
+        // Ocultamos teclado para que se pueda leer la política de privacidad
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_registro);
 
@@ -215,14 +219,14 @@ public class ForoRegistroUsuario extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "No podemos encontrar este email. Asegúrate de que esté bien escrito", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Este nombre de usuario ya existe. Prueba con otro", Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }
             if (error) {
                 Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
             } else {
-                // Enviamos el email a la nueva actividad (ForoRegistroEmail)
+                // Enviamos el usuario a la nueva actividad (ForoRegistroEmail)
                 Intent intent = new Intent(ForoRegistroUsuario.this, ForoRegistroEmail.class);
                 intent.putExtra("usuario", usuario);
                 // Abrimos nueva actividad

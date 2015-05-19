@@ -7,12 +7,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Html;
-import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
+import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,8 +18,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.analytics.tracking.android.EasyTracker;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -38,6 +34,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.mas.Contactar;
 
 public class ForoRegistroCodigo extends Activity {
 
@@ -45,82 +42,86 @@ public class ForoRegistroCodigo extends Activity {
     boolean error = false;
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
-    public static Activity foro_login_email;
+    String usuario;
     String email;
+    String contrasenya;
+    String codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.foro_login_email);
+        setContentView(R.layout.foro_registro_codigo);
 
         getWindow().setBackgroundDrawableResource(R.drawable.fondo_nuevo);
 
-        foro_login_email = this;
+        // Escondemos teclado
+        final EditText codigo_edit = (EditText) findViewById(R.id.codigo);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_login);
+        pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_registro);
 
-        final EditText email_edit = (EditText) findViewById(R.id.email);
-        email_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        codigo_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    action_foro_login_email();
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    action_foro_registro_codigo();
                     return true;
                 }
                 return false;
             }
         });
 
-        final String responsabilidad = "http://rjapps.x10host.com/responsabilidad.html";
-        final TextView politica_edit = (TextView) findViewById(R.id.politica2_text);
-        politica_edit.setText(Html.fromHtml("<a href=" + responsabilidad + ">política de privacidad</a>"));
-        politica_edit.setMovementMethod(LinkMovementMethod.getInstance());
+        // Tomamos el nombre de usuario y los demás datos de la pantalla anterior
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            usuario = extras.getString("usuario");
+            email = extras.getString("email");
+            contrasenya = extras.getString("contrasenya");
+        } else {
+            usuario = (String) savedInstanceState.getSerializable("usuario");
+            email = (String) savedInstanceState.getSerializable("email");
+            contrasenya = (String) savedInstanceState.getSerializable("contrasenya");
+        }
 
         final Button boton = (Button) findViewById(R.id.button);
-        // Manejador para cambios en el botón (estética)
-        email_edit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence str, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence str, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable str) {
-                if (str.toString().trim().length() > 0) {
-                    boton.setEnabled(true);
-                    boton.setBackgroundResource(R.drawable.d_normal_button_blue);
-                } else {
-                    boton.setEnabled(false);
-                    boton.setBackgroundResource(R.drawable.d_normal_button_gray);
-                }
+        // Al hacer click en el botón de enviar el registro
+        boton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                action_foro_registro_codigo();
             }
         });
 
-        // Al hacer click en el botón de enviar login
-        boton.setOnClickListener(new View.OnClickListener() {
+        final Button boton2 = (Button) findViewById(R.id.button_codigo); //OLVIDE CONTRASEÑA
+        boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                action_foro_login_email();
+                Intent intent = new Intent(ForoRegistroCodigo.this, Contactar.class);
+                startActivity(intent);
             }
         });
     }
 
-    protected void action_foro_login_email() {
+    protected void action_foro_registro_codigo() {
         // Escondemos teclado
-        final EditText email_edit = (EditText) findViewById(R.id.email);
+        final EditText codigo_edit = (EditText) findViewById(R.id.codigo);
         InputMethodManager imm = (InputMethodManager) getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
-        // Comprobamos si el email está escrito correctamente
-        email = email_edit.getText().toString().trim();
-        if (email.length() < 3) {
-            Toast.makeText(getApplicationContext(), "El email ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+        imm.hideSoftInputFromWindow(codigo_edit.getWindowToken(), 0);
+        // Comprobamos si el código está escrito correctamente
+        codigo = codigo_edit.getText().toString().trim();
+        if (codigo.length() != 10 && codigo.length() != 0) {
+            Toast.makeText(getApplicationContext(), "El código tiene que tener 10 caracteres o debe permanecer vacío", Toast.LENGTH_SHORT).show();
             return;
         }
+        // Convertimos para que nos entienda el servidor
+        if (codigo.length() == 0) {
+            codigo = "0";
+        }
         try {
-            mURL = "http://rjapps.x10host.com/comprobar_email.php?email=" + URLEncoder.encode(email, "UTF-8");
+            String mobile_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+            mURL = "http://rjapps.x10host.com/comprobar_codigo.php?usuario=" + URLEncoder.encode(usuario, "UTF-8") +
+                    "&contrasenya=" + URLEncoder.encode(contrasenya, "UTF-8") + "&email=" + URLEncoder.encode(email, "UTF-8") +
+                    "&codigo_penya=" + URLEncoder.encode(codigo, "UTF-8") + "&mobile_id=" + URLEncoder.encode(mobile_id, "UTF-8");
             mURL = mURL.replace(" ", "%20");
             // Chequear si está la conexión a Internet activa
             if (!checkInternet()) {
@@ -214,23 +215,64 @@ public class ForoRegistroCodigo extends Activity {
                 e.printStackTrace();
                 error = true;
             }
-            if (resultado.equals("-1")) {
-                error = true;
-            } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "No podemos encontrar este email. Asegúrate de que esté bien escrito", Toast.LENGTH_LONG).show();
-                pantalla_cargando.setVisibility(View.GONE);
-                return;
+            int resultado_int = Integer.parseInt(resultado);
+            switch (resultado_int) {
+                case -1:
+                    Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
+                    pantalla_cargando.setVisibility(View.GONE);
+                    return;
+                case -2:
+                    Toast.makeText(getApplicationContext(), "Se acaba de registrar un usuario con ese mismo nombre. Vuelve a empezar el registro", Toast.LENGTH_LONG).show();
+                    pantalla_cargando.setVisibility(View.GONE);
+                    return;
+                case -3:
+                    Toast.makeText(getApplicationContext(), "Se acaba de registrar un usuario con ese mismo email. Vuelve a empezar el registro", Toast.LENGTH_LONG).show();
+                    pantalla_cargando.setVisibility(View.GONE);
+                    return;
+                case -4:
+                    Toast.makeText(getApplicationContext(), "El código de peña introducido no existe. No escribas ninguno si no tienes peña", Toast.LENGTH_LONG).show();
+                    pantalla_cargando.setVisibility(View.GONE);
+                    return;
             }
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [4]", Toast.LENGTH_LONG).show();
+                pantalla_cargando.setVisibility(View.GONE);
             } else {
-                // Enviamos el email a la nueva actividad (ForoLoginContrasenya)
-                Intent intent = new Intent(ForoRegistroCodigo.this, ForoLoginContrasenya.class);
-                intent.putExtra("email", email);
-                // Abrimos nueva actividad
+                // Almacenamos el nombre de usuario en el teléfono
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                        .edit()
+                        .putString("username", usuario)
+                        .commit();
+                // Almacenamos que el usuario ya se ha registrado en el teléfono
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("notregister", false)
+                        .commit();
+                // Abrimos nueva actividad y cerramos las anteriores y esta
+                Intent intent = new Intent(ForoRegistroCodigo.this, Foro.class);
                 startActivity(intent);
+                try {
+                    ForoInicial.foro_inicial.finish();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    ForoRegistroUsuario.foro_registro_usuario.finish();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    ForoRegistroEmail.foro_registro_email.finish();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    ForoRegistroContrasenya.foro_registro_contrasenya.finish();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                finish();
             }
-            pantalla_cargando.setVisibility(View.GONE);
         }
     }
 }

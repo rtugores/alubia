@@ -20,8 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -43,7 +41,6 @@ public class ForoLoginContrasenya extends Activity {
     // Declaramos variables
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
-    String usuario;
     String email;
     String password;
 
@@ -101,7 +98,7 @@ public class ForoLoginContrasenya extends Activity {
             }
         });
 
-        // Tomamos el usuario y el email de la pantalla anterior
+        // Tomamos el email de la pantalla anterior
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             email = extras.getString("email");
@@ -242,13 +239,13 @@ public class ForoLoginContrasenya extends Activity {
                         .edit()
                         .putString("username", resultado)
                         .commit();
-                Intent intent = new Intent(ForoLoginContrasenya.this, Foro.class);
                 // Almacenamos que el usuario ya se ha registrado en el teléfono
                 getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                         .edit()
                         .putBoolean("notregister", false)
                         .commit();
                 // Abrimos nueva actividad y cerramos la anterior y esta
+                Intent intent = new Intent(ForoLoginContrasenya.this, Foro.class);
                 startActivity(intent);
                 try {
                     ForoInicial.foro_inicial.finish();

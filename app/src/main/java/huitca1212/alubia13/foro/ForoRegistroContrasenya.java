@@ -2,12 +2,12 @@ package huitca1212.alubia13.foro;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -21,6 +21,8 @@ public class ForoRegistroContrasenya extends Activity {
 
     // Declaramos variables
     public static Activity foro_registro_contrasenya;
+    String email;
+    String usuario;
     String contrasenya;
 
     @Override
@@ -43,6 +45,16 @@ public class ForoRegistroContrasenya extends Activity {
                 return false;
             }
         });
+
+        // Tomamos el nombre de usuario y el email de la pantalla anterior
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            usuario = extras.getString("usuario");
+            email = extras.getString("email");
+        } else {
+            usuario = (String) savedInstanceState.getSerializable("usuario");
+            email = (String) savedInstanceState.getSerializable("email");
+        }
 
         final Button boton = (Button) findViewById(R.id.button);
         // Manejador para cambios en el botón (estética)
@@ -83,8 +95,15 @@ public class ForoRegistroContrasenya extends Activity {
         imm.hideSoftInputFromWindow(contrasenya_edit.getWindowToken(), 0);
         // Comprobamos si la contraseña está escrita correctamente
         contrasenya = contrasenya_edit.getText().toString().trim();
-        if (contrasenya.length() < 3) {
-            Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+        if (contrasenya.length() < 5) {
+            Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
         }
+        // Enviamos los datos recogidos a la nueva actividad (ForoRegistroCodigo)
+        Intent intent = new Intent(ForoRegistroContrasenya.this, ForoRegistroCodigo.class);
+        intent.putExtra("usuario", usuario);
+        intent.putExtra("email", email);
+        intent.putExtra("contrasenya", contrasenya);
+        // Abrimos nueva actividad
+        startActivity(intent);
     }
 }
