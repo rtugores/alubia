@@ -14,7 +14,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/bienvenida"
-        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -38,7 +37,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_alubia_button"
         android:text="@string/programa" />
 
     <Button
@@ -49,7 +48,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_alubia_button"
         android:text="@string/penyas" />
 
     <Button
@@ -60,7 +59,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_alubia_button"
         android:text="@string/foro" />
 
     <Button
@@ -71,7 +70,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_weight="1"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_alubia_button"
         android:text="@string/alubiaquiz" />
 
     <Button
@@ -82,7 +81,7 @@
         android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:layout_marginBottom="10dip"
-        android:background="@drawable/alubia_boton"
+        android:background="@drawable/d_alubia_button"
         android:text="@string/masinfo" />
 
 </LinearLayout>

@@ -57,7 +57,7 @@ public class ForoOlvide extends Activity {
         email_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
                     action_foro_olvide_contrasenya();
                     return true;
                 }
@@ -219,20 +219,5 @@ public class ForoOlvide extends Activity {
                 Toast.makeText(getApplicationContext(), "Genial! En breve recibirás un correo electrónico con tu contraseña!", Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    //====================================================================================================================
-    // Código para las estadísticas
-    //====================================================================================================================
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance().activityStart(this); // Add this method.
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this); // Add this method.
     }
 }

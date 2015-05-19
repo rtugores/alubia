@@ -8,10 +8,11 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -38,41 +39,46 @@ import java.net.URLEncoder;
 
 import huitca1212.alubia13.R;
 
-public class ForoLoginContrasenya extends Activity {
+public class ForoRegistroCodigo extends Activity {
 
     // Declaramos variables
+    boolean error = false;
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
-    String usuario;
+    public static Activity foro_login_email;
     String email;
-    String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.foro_login_contrasenya);
+        setContentView(R.layout.foro_login_email);
 
         getWindow().setBackgroundDrawableResource(R.drawable.fondo_nuevo);
 
-        // Escondemos teclado
-        final EditText password_edit = (EditText) findViewById(R.id.password);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        foro_login_email = this;
 
-        pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_registro);
-        password_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        pantalla_cargando = (LinearLayout) findViewById(R.id.progressbar_view_login);
+
+        final EditText email_edit = (EditText) findViewById(R.id.email);
+        email_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    action_foro_login_contrasenya();
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    action_foro_login_email();
                     return true;
                 }
                 return false;
             }
         });
 
+        final String responsabilidad = "http://rjapps.x10host.com/responsabilidad.html";
+        final TextView politica_edit = (TextView) findViewById(R.id.politica2_text);
+        politica_edit.setText(Html.fromHtml("<a href=" + responsabilidad + ">política de privacidad</a>"));
+        politica_edit.setMovementMethod(LinkMovementMethod.getInstance());
+
         final Button boton = (Button) findViewById(R.id.button);
         // Manejador para cambios en el botón (estética)
-        password_edit.addTextChangedListener(new TextWatcher() {
+        email_edit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence str, int start, int count, int after) {
             }
@@ -93,45 +99,28 @@ public class ForoLoginContrasenya extends Activity {
             }
         });
 
-        final Button boton2 = (Button) findViewById(R.id.olvide_contrasenya); //OLVIDE CONTRASEÑA
-        boton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ForoLoginContrasenya.this, ForoOlvide.class);
-                startActivity(intent);
-            }
-        });
-
-        // Tomamos el usuario y el email de la pantalla anterior
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            email = extras.getString("email");
-        } else {
-            email = (String) savedInstanceState.getSerializable("email");
-        }
-
         // Al hacer click en el botón de enviar login
         boton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                action_foro_login_contrasenya();
+                action_foro_login_email();
             }
         });
     }
 
-    protected void action_foro_login_contrasenya() {
+    protected void action_foro_login_email() {
         // Escondemos teclado
-        final EditText password_edit = (EditText) findViewById(R.id.password);
+        final EditText email_edit = (EditText) findViewById(R.id.email);
         InputMethodManager imm = (InputMethodManager) getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(password_edit.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
         // Comprobamos si el email está escrito correctamente
-        password = password_edit.getText().toString().trim();
-        if (password.length() < 5) {
-            Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
+        email = email_edit.getText().toString().trim();
+        if (email.length() < 3) {
+            Toast.makeText(getApplicationContext(), "El email ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
-            mURL = "http://rjapps.x10host.com/comprobar_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8") +
-                    "&contrasenya=" + URLEncoder.encode(password, "UTF-8");
+            mURL = "http://rjapps.x10host.com/comprobar_email.php?email=" + URLEncoder.encode(email, "UTF-8");
             mURL = mURL.replace(" ", "%20");
             // Chequear si está la conexión a Internet activa
             if (!checkInternet()) {
@@ -166,7 +155,6 @@ public class ForoLoginContrasenya extends Activity {
     //Tarea para enviar login
     //====================================================================================================================
     private class SendTask extends AsyncTask<String, Void, String> {
-        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
@@ -229,39 +217,20 @@ public class ForoLoginContrasenya extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "La contraseña que introdujiste no coincide con la de la cuenta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "No podemos encontrar este email. Asegúrate de que esté bien escrito", Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
-                pantalla_cargando.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
             } else {
-                // Almacenamos el nombre de usuario en el teléfono
-                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                        .edit()
-                        .putString("username", resultado)
-                        .commit();
-                Intent intent = new Intent(ForoLoginContrasenya.this, Foro.class);
-                // Almacenamos que el usuario ya se ha registrado en el teléfono
-                getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                        .edit()
-                        .putBoolean("notregister", false)
-                        .commit();
-                // Abrimos nueva actividad y cerramos la anterior y esta
+                // Enviamos el email a la nueva actividad (ForoLoginContrasenya)
+                Intent intent = new Intent(ForoRegistroCodigo.this, ForoLoginContrasenya.class);
+                intent.putExtra("email", email);
+                // Abrimos nueva actividad
                 startActivity(intent);
-                try {
-                    ForoInicial.foro_inicial.finish();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    ForoLoginEmail.foro_login_email.finish();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-                finish();
             }
+            pantalla_cargando.setVisibility(View.GONE);
         }
     }
 }

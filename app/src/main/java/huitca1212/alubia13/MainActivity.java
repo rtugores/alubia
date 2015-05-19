@@ -29,7 +29,6 @@ public class MainActivity extends Activity {
         //================================================================
 
         final Button boton1 = (Button) findViewById(R.id.button1); //PRIMER BOTON
-        boton1.setBackgroundResource(R.drawable.d_alubia_button);
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Programa.class);
@@ -37,7 +36,6 @@ public class MainActivity extends Activity {
             }
         });
         final Button boton2 = (Button) findViewById(R.id.button2); //SEGUNDO BOTON
-        boton2.setBackgroundResource(R.drawable.d_alubia_button);
         boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Penyas.class);
@@ -46,7 +44,6 @@ public class MainActivity extends Activity {
         });
 
         final Button boton3 = (Button) findViewById(R.id.button3); //TERCER BOTON
-        boton3.setBackgroundResource(R.drawable.d_alubia_button);
         boton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
@@ -61,7 +58,6 @@ public class MainActivity extends Activity {
         });
 
         final Button boton4 = (Button) findViewById(R.id.button4);  //CUARTO BOTON
-        boton4.setBackgroundResource(R.drawable.d_alubia_button);
         boton4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AlubiaQuizMenu.class);
@@ -69,7 +65,6 @@ public class MainActivity extends Activity {
             }
         });
         final Button boton5 = (Button) findViewById(R.id.button5);  //QUINTO BOTON
-        boton5.setBackgroundResource(R.drawable.d_alubia_button);
         boton5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Mas.class);

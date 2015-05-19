@@ -26,7 +26,7 @@ public class ForoInicial extends Activity {
         final Button boton1 = (Button) findViewById(R.id.registro); //REGISTRO
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ForoInicial.this, ForoRegistro.class);
+                Intent intent = new Intent(ForoInicial.this, ForoRegistroEmail.class);
                 startActivity(intent);
             }
         });
