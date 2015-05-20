@@ -50,6 +50,7 @@ public class Foro extends Activity {
     private LinearLayout layout;
     private String comentario;
     private EditText comentario_id;
+    boolean error = false;
     public static Activity foro;
 
     @Override
@@ -104,7 +105,8 @@ public class Foro extends Activity {
                     SendCommentRefresh enviar = new SendCommentRefresh();
                     enviar.execute(mURL);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [1]", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -115,6 +117,7 @@ public class Foro extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -130,7 +133,7 @@ public class Foro extends Activity {
     //====================================================================================================================
     //Comprobar si el comentario es adecuado
     //====================================================================================================================
-    public boolean checkComentario(String comentario){
+    public boolean checkComentario(String comentario) {
         // Comentario vacío
         if (comentario.matches("")) {
             comentario_id.setText("");
@@ -156,13 +159,14 @@ public class Foro extends Activity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId()==R.id.listView1) {
+        if (v.getId() == R.id.listView1) {
             menu.add(Menu.NONE, 0, 0, "Denunciar comentario");
         }
     }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int menuItemIndex = item.getItemId();
         if (menuItemIndex == 0) {
             // Comprobamos conexión a Internet para denunciar comentario
@@ -181,7 +185,6 @@ public class Foro extends Activity {
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(getApplicationContext(), "Comentario denunciado correctamente. Será revisado por el administrador", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -206,7 +209,6 @@ public class Foro extends Activity {
     //Tarea para enviar comentario y recargar la lista de comentarios
     //====================================================================================================================
     private class SendCommentRefresh extends AsyncTask<String, Void, String> {
-        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
@@ -253,7 +255,6 @@ public class Foro extends Activity {
     //Tarea asíncrona para acceder a la Web
     //====================================================================================================================
     private class JsonReadTask extends AsyncTask<String, Void, String> {
-        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
@@ -320,8 +321,7 @@ public class Foro extends Activity {
         if (!checkInternet()) {
             Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             JsonReadTask task = new JsonReadTask();
             // passes values for the urls string array
             String url = "http://rjapps.x10host.com/descargar_comentarios.php";
@@ -333,9 +333,14 @@ public class Foro extends Activity {
     // Decodifica la información JSON e imprime los comentarios
     //====================================================================================================================
     public void listDrawer() {
-        boolean error = false;
+        String resultado;
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
+            resultado = jsonResponse.optString("resultado");
+            if (resultado.equals("-1")) {
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                return;
+            }
             JSONArray jsonMainNode = jsonResponse.optJSONArray("foro");
 
             TitularForo[] datos = new TitularForo[jsonMainNode.length()];
@@ -350,10 +355,9 @@ public class Foro extends Activity {
                 String vip = jsonChildNode.optString("vip");
                 String ban = jsonChildNode.optString("ban");
                 String id = jsonChildNode.optString("id");
-                if (penya.length()>1) {
+                if (penya.length() > 1) {
                     usuario_penya = usuario + " (" + penya + ")";
-                }
-                else{
+                } else {
                     usuario_penya = usuario;
                 }
                 datos[i] = new TitularForo(usuario_penya, comentario, fecha, vip, ban, id);
@@ -366,7 +370,7 @@ public class Foro extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
             error = true;
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
             error = true;
         }

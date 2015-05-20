@@ -31,6 +31,7 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.programa.TitularPrograma;
 
 public class Novedades extends Activity {
+    boolean error = false;
     private String jsonResult;
     private LinearLayout layout;
     private ListView listView;
@@ -65,7 +66,6 @@ public class Novedades extends Activity {
     //Tarea asíncrona para acceder a la Web
     //====================================================================================================================
     private class JsonReadTask extends AsyncTask<String, Void, String> {
-        boolean error = false;
         HttpClient httpclient = new DefaultHttpClient();
 
         @Override
@@ -118,7 +118,7 @@ public class Novedades extends Activity {
             super.onPostExecute(result);
             layout.setVisibility(View.GONE);
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [1]", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
                 return;
             }
             // Dibujamos la lista de novedades
@@ -130,8 +130,8 @@ public class Novedades extends Activity {
     // Comprobamos conexión a Internet y descargamos lista de novedades
     //====================================================================================================================
     public void accessWebService() {
-        if (checkInternet() == false) {
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [2]", Toast.LENGTH_LONG).show();
+        if (!checkInternet()) {
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
         } else {
             JsonReadTask task = new JsonReadTask();
@@ -145,9 +145,14 @@ public class Novedades extends Activity {
     // Decodifica la información JSON e imprime las novedades
     //====================================================================================================================
     public void listDrawer() {
-        boolean error = false;
+        String resultado;
         try {
             JSONObject jsonResponse = new JSONObject(jsonResult);
+            resultado = jsonResponse.optString("resultado");
+            if (resultado.equals("-1")) {
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                return;
+            }
             JSONArray jsonMainNode = jsonResponse.optJSONArray("novedades");
 
             TitularPrograma[] datos = new TitularPrograma[jsonMainNode.length()];
@@ -171,9 +176,8 @@ public class Novedades extends Activity {
             error = true;
         }
         if (error) {
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [3]", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
         }
-
     }
 
     //====================================================================================================================

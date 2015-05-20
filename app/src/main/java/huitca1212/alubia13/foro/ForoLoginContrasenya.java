@@ -132,7 +132,7 @@ public class ForoLoginContrasenya extends Activity {
             mURL = mURL.replace(" ", "%20");
             // Chequear si está la conexión a Internet activa
             if (!checkInternet()) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [1]", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
                 return;
             }
             // Enviamos el login
@@ -140,7 +140,7 @@ public class ForoLoginContrasenya extends Activity {
             enviar.execute(mURL);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo! [2]", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
         }
     }
 
