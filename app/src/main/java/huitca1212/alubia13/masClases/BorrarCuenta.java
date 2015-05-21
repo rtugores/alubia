@@ -20,11 +20,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.foro.Foro;
+import huitca1212.alubia13.mas.Mas;
 
 //====================================================================================================================
-//Tarea para denunciar comentario
+//Tarea para Borrar Cuenta
 //====================================================================================================================
-public class SendDenuncia extends AsyncTask<String, Void, String> {
+public class BorrarCuenta extends AsyncTask<String, Void, String> {
     protected boolean error = false;
     protected HttpClient httpclient = new DefaultHttpClient();
     protected Context contexto;
@@ -32,7 +34,7 @@ public class SendDenuncia extends AsyncTask<String, Void, String> {
     protected String mURL;
     private String jsonResult;
 
-    public SendDenuncia(Context contexto, LinearLayout layout, String mURL){
+    public BorrarCuenta(Context contexto, LinearLayout layout, String mURL) {
         this.contexto = contexto;
         this.layout = layout;
         this.mURL = mURL;
@@ -102,16 +104,23 @@ public class SendDenuncia extends AsyncTask<String, Void, String> {
         if (resultado.equals("-1")) {
             error = true;
         } else if (resultado.equals("-2")) {
-            Toast.makeText(contexto, "No podemos encontrar este comentario. Probablemente haya sido eliminado", Toast.LENGTH_LONG).show();
+            Toast.makeText(contexto, "No podemos encontrar tu cuenta. Probablemente ya haya sido eliminada", Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
             return;
         }
         if (error) {
             Toast.makeText(contexto, R.string.error_internet, Toast.LENGTH_LONG).show();
+            layout.setVisibility(View.GONE);
+        } else {
+            Toast.makeText(contexto, "Tu cuenta ha sido eliminada con éxito", Toast.LENGTH_SHORT).show();
+            contexto.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
+                    .edit()
+                    .putString("username", "")
+                    .commit();
+            contexto.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("notregister", true)
+                    .commit();
         }
-        else {
-            Toast.makeText(contexto, "Comentario denunciado correctamente. Será revisado por el administrador", Toast.LENGTH_SHORT).show();
-        }
-        layout.setVisibility(View.GONE);
     }
 }

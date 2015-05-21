@@ -106,7 +106,7 @@ public class Foro extends Activity {
                     enviar.execute(mURL);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -171,7 +171,7 @@ public class Foro extends Activity {
         if (menuItemIndex == 0) {
             // Comprobamos conexión a Internet para denunciar comentario
             if (!checkInternet()) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return false;
             }
             TextView id_den = (TextView) (info.targetView).findViewById(R.id.id_text);
@@ -183,7 +183,7 @@ public class Foro extends Activity {
                 SendDenuncia enviar = new SendDenuncia(this, layout, mURL);
                 enviar.execute(mURL);
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
             }
         }
         return true;
@@ -221,7 +221,9 @@ public class Foro extends Activity {
         protected String doInBackground(String... params) {
             HttpPost httppost = new HttpPost(mURL);
             try {
-                httpclient.execute(httppost);
+                HttpResponse response = httpclient.execute(httppost);
+                jsonResult = inputStreamToString(
+                        response.getEntity().getContent()).toString();
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
                 error = true;
@@ -232,6 +234,21 @@ public class Foro extends Activity {
             return null;
         }
 
+        private StringBuilder inputStreamToString(InputStream is) {
+            String rLine;
+            StringBuilder answer = new StringBuilder();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+            try {
+                while ((rLine = rd.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                error = true;
+            }
+            return answer;
+        }
+
         @Override
         protected void onCancelled() {
             httpclient.getConnectionManager().shutdown();
@@ -240,8 +257,27 @@ public class Foro extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
+            String resultado = "-1";
+            try {
+                JSONObject jsonResponse = new JSONObject(jsonResult);
+                resultado = jsonResponse.optString("resultado");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                error = true;
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                error = true;
+            }
+            if (resultado.equals("-1")) {
+                error = true;
+            } else if (resultado.equals("-2")) {
+                comentario_id.setText("");
+                layout.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Has sido bloqueado temporalmente por incumplir las normas del foro", Toast.LENGTH_LONG).show();
+                return;
+            }
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 layout.setVisibility(View.GONE);
             } else {
                 comentario_id.setText("");
@@ -306,7 +342,7 @@ public class Foro extends Activity {
             super.onPostExecute(result);
             layout.setVisibility(View.GONE);
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return;
             }
             // Dibujamos la lista de comentarios
@@ -319,7 +355,7 @@ public class Foro extends Activity {
     //====================================================================================================================
     public void accessWebService() {
         if (!checkInternet()) {
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
         } else {
             JsonReadTask task = new JsonReadTask();
@@ -338,7 +374,7 @@ public class Foro extends Activity {
             JSONObject jsonResponse = new JSONObject(jsonResult);
             resultado = jsonResponse.optString("resultado");
             if (resultado.equals("-1")) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return;
             }
             JSONArray jsonMainNode = jsonResponse.optJSONArray("foro");
@@ -375,7 +411,7 @@ public class Foro extends Activity {
             error = true;
         }
         if (error) {
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
         }
 
     }

@@ -125,7 +125,7 @@ public class ForoRegistroCodigo extends Activity {
             mURL = mURL.replace(" ", "%20");
             // Chequear si está la conexión a Internet activa
             if (!checkInternet()) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return;
             }
             // Enviamos el login
@@ -133,7 +133,7 @@ public class ForoRegistroCodigo extends Activity {
             enviar.execute(mURL);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -235,7 +235,7 @@ public class ForoRegistroCodigo extends Activity {
                     return;
             }
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
             } else {
                 // Almacenamos el nombre de usuario en el teléfono

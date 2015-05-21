@@ -5,6 +5,7 @@
         <string name="nodisponible_contenido">\t\tEl contenido al que intentas acceder estará disponible cuando se publique el programa oficial de la fiesta.\n\n\t\tSe pondrá un aviso en la sección NOVEDADES para que actualices la aplicación.\n\n\t\tDisculpa las molestias.
             </string>
     <string name="app_name">Alubia \'15</string>
+	<string name="error_internet">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
     <string name="action_settings">Settings</string>
     <string name="menu_inicio">¡Genial!</string>
     <string name="menu_info">Información</string>

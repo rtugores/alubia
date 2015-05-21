@@ -118,7 +118,7 @@ public class Novedades extends Activity {
             super.onPostExecute(result);
             layout.setVisibility(View.GONE);
             if (error) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return;
             }
             // Dibujamos la lista de novedades
@@ -131,7 +131,7 @@ public class Novedades extends Activity {
     //====================================================================================================================
     public void accessWebService() {
         if (!checkInternet()) {
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
         } else {
             JsonReadTask task = new JsonReadTask();
@@ -150,7 +150,7 @@ public class Novedades extends Activity {
             JSONObject jsonResponse = new JSONObject(jsonResult);
             resultado = jsonResponse.optString("resultado");
             if (resultado.equals("-1")) {
-                Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return;
             }
             JSONArray jsonMainNode = jsonResponse.optJSONArray("novedades");
@@ -176,7 +176,7 @@ public class Novedades extends Activity {
             error = true;
         }
         if (error) {
-            Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
         }
     }
 

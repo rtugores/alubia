@@ -25,23 +25,23 @@ public class Penyas extends Activity {
     private ListView lstOpciones;
     private TitularPenyas[] datos =
             new TitularPenyas[]{
-                    new TitularPenyas(" B12"), new TitularPenyas(" BBdoble"), new TitularPenyas(" Birlybirloke"),
-                    new TitularPenyas(" Boogie"), new TitularPenyas(" B&N (Blanco y negro)"),
-                    new TitularPenyas(" Costa azul"), new TitularPenyas(" Desfase"), new TitularPenyas(" Descoloke"), new TitularPenyas(" Dislokey"),
-                    new TitularPenyas(" El Cachi"), new TitularPenyas(" El Ginkgo"), new TitularPenyas(" Embarazo no deseado"),
-                    new TitularPenyas(" EUKZ (El Último Ke Zierre)"), new TitularPenyas(" FBI (Federación de Borrachos Inocentes)"),
-                    new TitularPenyas(" Imperfectos"), new TitularPenyas(" Indis (Indiscretos)"), new TitularPenyas(" Jaia"),
-                    new TitularPenyas(" Jarra y pedal"), new TitularPenyas(" Kachi-chirín"), new TitularPenyas(" Kalankoe"), new TitularPenyas(" Kalyke"),
-                    new TitularPenyas(" Kamensoky"), new TitularPenyas(" Kamikaze"), new TitularPenyas(" Kelnozz & Ceda el vaso"), new TitularPenyas(" KQK"),
-                    new TitularPenyas(" La coral"), new TitularPenyas(" La DGT (Dirección General de Tragos)"),
-                    new TitularPenyas(" Los colgaos"), new TitularPenyas(" Los tocapelotas"), new TitularPenyas(" Motokaskaos"),
-                    new TitularPenyas(" Nosting"), new TitularPenyas(" Pa' brujas nosotras"), new TitularPenyas(" Pk2 (Pecados)"),
-                    new TitularPenyas(" Pocos pero locos"), new TitularPenyas(" Psicosys"),
-                    new TitularPenyas(" ¡¡Qué apostamos!!"), new TitularPenyas(" Rambosteroides"), new TitularPenyas(" Rockambole"),
-                    new TitularPenyas(" Sin papeles"), new TitularPenyas(" Taboo"), new TitularPenyas(" The madness"), new TitularPenyas(" Tibuky"),
-                    new TitularPenyas(" Trapicheos"), new TitularPenyas(" Vaganzia pura"), new TitularPenyas(" Vankenoven"),
-                    new TitularPenyas(" Ya estamos todos"), new TitularPenyas(" Yokers"), new TitularPenyas(" Zumbagaritos"),
-                    new TitularPenyas(" Zumbalitros"), new TitularPenyas(" Zumbapajascervecistas")};
+                    new TitularPenyas("B12"), new TitularPenyas("BBdoble"), new TitularPenyas("Birlybirloke"),
+                    new TitularPenyas("Boogie"), new TitularPenyas("B&N (Blanco y negro)"),
+                    new TitularPenyas("Costa azul"), new TitularPenyas("Desfase"), new TitularPenyas("Descoloke"), new TitularPenyas("Dislokey"),
+                    new TitularPenyas("El Cachi"), new TitularPenyas("El Ginkgo"), new TitularPenyas("Embarazo no deseado"),
+                    new TitularPenyas("EUKZ (El Último Ke Zierre)"), new TitularPenyas("FBI (Federación de Borrachos Inocentes)"),
+                    new TitularPenyas("Imperfectos"), new TitularPenyas("Indis (Indiscretos)"), new TitularPenyas("Jaia"),
+                    new TitularPenyas("Jarra y pedal"), new TitularPenyas("Kachi-chirín"), new TitularPenyas("Kalankoe"), new TitularPenyas("Kalyke"),
+                    new TitularPenyas("Kamensoky"), new TitularPenyas("Kamikaze"), new TitularPenyas("Kelnozz & Ceda el vaso"), new TitularPenyas("KQK"),
+                    new TitularPenyas("La coral"), new TitularPenyas("La DGT (Dirección General de Tragos)"),
+                    new TitularPenyas("Los colgaos"), new TitularPenyas("Los tocapelotas"), new TitularPenyas("Motokaskaos"),
+                    new TitularPenyas("Nosting"), new TitularPenyas("Pa' brujas nosotras"), new TitularPenyas("Pk2 (Pecados)"),
+                    new TitularPenyas("Pocos pero locos"), new TitularPenyas("Psicosys"),
+                    new TitularPenyas("¡¡Qué apostamos!!"), new TitularPenyas("Rambosteroides"), new TitularPenyas("Rockambole"),
+                    new TitularPenyas("Sin papeles"), new TitularPenyas("Taboo"), new TitularPenyas("The madness"), new TitularPenyas("Tibuky"),
+                    new TitularPenyas("Trapicheos"), new TitularPenyas("Vaganzia pura"), new TitularPenyas("Vankenoven"),
+                    new TitularPenyas("Ya estamos todos"), new TitularPenyas("Yokers"), new TitularPenyas("Zumbagaritos"),
+                    new TitularPenyas("Zumbalitros"), new TitularPenyas("Zumbapajascervecistas")};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
