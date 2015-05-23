@@ -9,8 +9,6 @@
         android:id="@+id/LstOpciones"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_weight="1" />
 
     <Button
@@ -18,8 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/d_normal_button_blue"
         android:text="@string/contactar"
@@ -32,6 +32,6 @@
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9645153779384738/4669268804"
-        ads:loadAdOnCreate="true"></com.google.ads.AdView>
+        ads:loadAdOnCreate="true"/>
 
 </LinearLayout>

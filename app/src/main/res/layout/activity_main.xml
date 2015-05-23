@@ -8,10 +8,9 @@
     <TextView
         android:id="@+id/Bienvenida"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dip"
-        android:layout_weight="1"
+        android:layout_marginTop="6dp"
         android:gravity="center"
         android:text="@string/bienvenida"
         android:textSize="20sp"
@@ -20,66 +19,64 @@
     <TextView
         android:id="@+id/Bienvenida_sub"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+
         android:layout_gravity="center"
-        android:layout_marginTop="6dip"
-        android:layout_marginBottom="10dip"
-        android:layout_weight="1"
+        android:layout_marginBottom="6dp"
         android:gravity="center"
-        android:text="@string/bienvenida_sub"
-        android:textSize="15sp" />
+        android:text="@string/bienvenida_sub"/>
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
+        android:layout_height="66dip"
+        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/programa" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
+        android:layout_height="66dip"
+        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/penyas" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
+        android:layout_height="66dip"
+        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/foro" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
+        android:layout_height="66dip"
+        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/alubiaquiz" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
+        android:layout_height="66dip"
+        android:layout_weight="1"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:background="@drawable/d_alubia_button"
         android:text="@string/masinfo" />

@@ -53,7 +53,7 @@
 
             <Button
                 android:id="@+id/enviar"
-                android:layout_width="50dip"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/actualizar"

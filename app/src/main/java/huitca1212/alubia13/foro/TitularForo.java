@@ -1,10 +1,11 @@
 package huitca1212.alubia13.foro;
 
 public class TitularForo {
-    private String usuario, comentario, fecha, vip, ban, id;
+    private String usuario, penya, comentario, fecha, vip, ban, id;
 
-    public TitularForo(String usuario, String comentario, String fecha, String vip, String ban, String id) {
+    public TitularForo(String usuario,  String penya, String comentario, String fecha, String vip, String ban, String id) {
         this.usuario = usuario;
+        this.penya = penya;
         this.comentario = comentario;
         this.fecha = fecha;
         this.vip = vip;
@@ -14,6 +15,9 @@ public class TitularForo {
 
     public String getUsuario() {
         return this.usuario;
+    }
+    public String getPenya() {
+        return this.penya;
     }
     public String getComentario() {
         return this.comentario;

@@ -391,12 +391,7 @@ public class Foro extends Activity {
                 String vip = jsonChildNode.optString("vip");
                 String ban = jsonChildNode.optString("ban");
                 String id = jsonChildNode.optString("id");
-                if (penya.length() > 1) {
-                    usuario_penya = usuario + " (" + penya + ")";
-                } else {
-                    usuario_penya = usuario;
-                }
-                datos[i] = new TitularForo(usuario_penya, comentario, fecha, vip, ban, id);
+                datos[i] = new TitularForo(usuario, penya, comentario, fecha, vip, ban, id);
             }
 
             AdaptadorForo simpleAdapter = new AdaptadorForo(this, datos, listView);

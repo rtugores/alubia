@@ -32,6 +32,7 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
         View item = inflater.inflate(R.layout.listitem_foro, null);
 
         TextView usuario = (TextView) item.findViewById(R.id.usuario_text);
+        TextView penya = (TextView) item.findViewById(R.id.penya_text);
         TextView comentario = (TextView) item.findViewById(R.id.comentario_text);
         TextView fecha = (TextView) item.findViewById(R.id.fecha_text);
         TextView id = (TextView) item.findViewById(R.id.id_text);
@@ -45,14 +46,16 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
         item_layout.setLayoutParams(params);
         if (position > 0) {
             if (datos[position - 1].getUsuario().equals(datos[position].getUsuario())) {
-                // Usuario del anterior mensaje es el mismo, quito nombre
+                // Usuario del anterior mensaje es el mismo, quito nombre y peña
                 usuario.setVisibility(View.GONE);
+                penya.setVisibility(View.GONE);
                 params.setMargins(8, 0, 8, 0);
                 item_layout.setLayoutParams(params);
             }
         }
         if (datos[position].getVip().equals("1")) {
-            usuario.setText(datos[position].getUsuario() + " - VIP");
+            usuario.setText(datos[position].getUsuario());
+            penya.setText(datos[position].getPenya());
             usuario.setTextColor(0xFFDF013A);
             item_layout.setBackgroundResource(R.drawable.d_foro_vip);
         } else if (datos[position].getVip().equals("2")) {
@@ -61,6 +64,7 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
             item_layout.setBackgroundResource(R.drawable.d_foro_admin);
         } else {
             usuario.setText(datos[position].getUsuario());
+            penya.setText(datos[position].getPenya());
         }
 
         if (datos[position].getBan().equals("1")) {

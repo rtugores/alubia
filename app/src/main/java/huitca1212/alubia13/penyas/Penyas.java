@@ -61,199 +61,199 @@ public class Penyas extends Activity {
                 Dialog d = new Dialog(Penyas.this);
                 switch (position) {
                     case 0:
-                        d.setTitle("Peña B12");
+                        d.setTitle("B12");
                         im.setImageResource(R.drawable.b12_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 1:
-                        d.setTitle("Peña BBdoble");
+                        d.setTitle("BBdoble");
                         im.setImageResource(R.drawable.bbdoble_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 2:
-                        d.setTitle("Peña Birlybirloke");
+                        d.setTitle("Birlybirloke");
                         im.setImageResource(R.drawable.birlybirloke_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 4:
-                        d.setTitle("Peña B&N");
+                        d.setTitle("B&N");
                         im.setImageResource(R.drawable.blanconegro_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 6:
-                        d.setTitle("Peña Desfase");
+                        d.setTitle("Desfase");
                         im.setImageResource(R.drawable.desfase_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 7:
-                        d.setTitle("Peña Descoloke");
+                        d.setTitle("Descoloke");
                         im.setImageResource(R.drawable.descoloke_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 8:
-                        d.setTitle("Peña Dislokey");
+                        d.setTitle("Dislokey");
                         im.setImageResource(R.drawable.dislokey_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 11:
-                        d.setTitle("Peña Embarazo");
+                        d.setTitle("Embarazo");
                         im.setImageResource(R.drawable.embarazo_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 13:
-                        d.setTitle("Peña FBI");
+                        d.setTitle("FBI");
                         im.setImageResource(R.drawable.fbi_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 14:
-                        d.setTitle("Peña Imperfectos");
+                        d.setTitle("Imperfectos");
                         im.setImageResource(R.drawable.imperfectos_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 15:
-                        d.setTitle("Peña Indis");
+                        d.setTitle("Indis");
                         im.setImageResource(R.drawable.indis_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 16:
-                        d.setTitle("Peña Jaia");
+                        d.setTitle("Jaia");
                         im.setImageResource(R.drawable.jaia_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 18:
-                        d.setTitle("Peña Kachi-chirín");
+                        d.setTitle("Kachi-chirín");
                         im.setImageResource(R.drawable.kachi_chirin_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 21:
-                        d.setTitle("Peña Kamensoky");
+                        d.setTitle("Kamensoky");
                         im.setImageResource(R.drawable.kamensoky_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 23:
-                        d.setTitle("Peña Kelnozz & Ceda el vaso");
+                        d.setTitle("Kelnozz & Ceda el vaso");
                         im.setImageResource(R.drawable.kelnozz_ceda_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 25:
-                        d.setTitle("Peña La coral");
+                        d.setTitle("La coral");
                         im.setImageResource(R.drawable.coral_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 27:
-                        d.setTitle("Peña Los colgaos");
+                        d.setTitle("Los colgaos");
                         im.setImageResource(R.drawable.loscolgaos_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 28:
-                        d.setTitle("Peña Los tocapelotas");
+                        d.setTitle("Los tocapelotas");
                         im.setImageResource(R.drawable.tocapelotas_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 29:
-                        d.setTitle("Peña Motokaskaos");
+                        d.setTitle("Motokaskaos");
                         im.setImageResource(R.drawable.motokaskaos_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 30:
-                        d.setTitle("Peña Nosting");
+                        d.setTitle("Nosting");
                         im.setImageResource(R.drawable.nosting_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 31:
-                        d.setTitle("Peña Pa' brujas nosotras");
+                        d.setTitle("Pa' brujas nosotras");
                         im.setImageResource(R.drawable.brujas_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 32:
-                        d.setTitle("Peña Pk2");
+                        d.setTitle("Pk2");
                         im.setImageResource(R.drawable.pk2_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 33:
-                        d.setTitle("Peña Pocos pero locos");
+                        d.setTitle("Pocos pero locos");
                         im.setImageResource(R.drawable.pocos_pero_locos_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 34:
-                        d.setTitle("Peña Psicosys");
+                        d.setTitle("Psicosys");
                         im.setImageResource(R.drawable.psicosys_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 36:
-                        d.setTitle("Peña Rambosteroides");
+                        d.setTitle("Rambosteroides");
                         im.setImageResource(R.drawable.rambosteroides_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 37:
-                        d.setTitle("Peña Rockambole");
+                        d.setTitle("Rockambole");
                         im.setImageResource(R.drawable.rockambole_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 39:
-                        d.setTitle("Peña Taboo");
+                        d.setTitle("Taboo");
                         im.setImageResource(R.drawable.taboo_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 41:
-                        d.setTitle("Peña Tibuky");
+                        d.setTitle("Tibuky");
                         im.setImageResource(R.drawable.tibuky_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 43:
-                        d.setTitle("Peña Vaganzia pura");
+                        d.setTitle("Vaganzia pura");
                         im.setImageResource(R.drawable.vaganzia_pura_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 44:
-                        d.setTitle("Peña Vankenoven");
+                        d.setTitle("Vankenoven");
                         im.setImageResource(R.drawable.vankenoven_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 45:
-                        d.setTitle("Peña Ya estamos todos");
+                        d.setTitle("Ya estamos todos");
                         im.setImageResource(R.drawable.yaestamostodos_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 46:
-                        d.setTitle("Peña Yokers");
+                        d.setTitle("Yokers");
                         im.setImageResource(R.drawable.yokers_g);
                         d.setContentView(im);
                         d.show();
                         break;
                     case 47:
-                        d.setTitle("Peña Zumbagaritos");
+                        d.setTitle("Zumbagaritos");
                         im.setImageResource(R.drawable.zumbagaritos_g);
                         d.setContentView(im);
                         d.show();
