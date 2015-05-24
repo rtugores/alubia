@@ -121,6 +121,16 @@ public class ForoRegistroUsuario extends Activity {
             Toast.makeText(getApplicationContext(), "El usuario ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
             return;
         }
+        String usuario_minus = usuario.toLowerCase();
+        if (usuario_minus.contains("joder") || usuario_minus.contains("puta") ||
+                usuario_minus.contains("ostia") || usuario_minus.contains("polla") ||
+                usuario_minus.contains("imbecil") || usuario_minus.contains("poya") ||
+                usuario_minus.contains("subnormal") || usuario_minus.contains("mierda") ||
+                usuario_minus.contains("cabron") || usuario_minus.contains("coño") ||
+                usuario_minus.contains("maric") || usuario_minus.contains("marik")) {
+            Toast.makeText(getApplicationContext(), "No está permitido escribir palabrotas", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             mURL = "http://rjapps.x10host.com/comprobar_usuario.php?usuario=" + URLEncoder.encode(usuario, "UTF-8");
             mURL = mURL.replace(" ", "%20");
