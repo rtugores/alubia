@@ -82,37 +82,37 @@ public class AdaptadorPenyas extends ArrayAdapter<TitularPenyas> {
                 img = lblTitulo.getResources().getDrawable(R.drawable.loscolgaos_p);
                 break;
             case 28:
-                img = lblTitulo.getResources().getDrawable(R.drawable.tocapelotas_p);
-                break;
-            case 29:
                 img = lblTitulo.getResources().getDrawable(R.drawable.motokaskaos_p);
                 break;
-            case 30:
+            case 29:
                 img = lblTitulo.getResources().getDrawable(R.drawable.nosting_p);
                 break;
-            case 31:
+            case 30:
                 img = lblTitulo.getResources().getDrawable(R.drawable.brujas_p);
                 break;
-            case 32:
+            case 31:
                 img = lblTitulo.getResources().getDrawable(R.drawable.pk2_p);
                 break;
-            case 33:
+            case 32:
                 img = lblTitulo.getResources().getDrawable(R.drawable.pocos_pero_locos_p);
                 break;
-            case 34:
+            case 33:
                 img = lblTitulo.getResources().getDrawable(R.drawable.psicosys_p);
                 break;
-            case 36:
+            case 35:
                 img = lblTitulo.getResources().getDrawable(R.drawable.rambosteroides_p);
                 break;
-            case 37:
+            case 36:
                 img = lblTitulo.getResources().getDrawable(R.drawable.rockambole_p);
                 break;
-            case 39:
+            case 38:
                 img = lblTitulo.getResources().getDrawable(R.drawable.taboo_p);
                 break;
-            case 41:
+            case 40:
                 img = lblTitulo.getResources().getDrawable(R.drawable.tibuky_p);
+                break;
+            case 41:
+                img = lblTitulo.getResources().getDrawable(R.drawable.tocapelotas_p);
                 break;
             case 43:
                 img = lblTitulo.getResources().getDrawable(R.drawable.vaganzia_pura_p);

@@ -68,7 +68,7 @@
                     android:src="@drawable/codigo" />
 
                 <TextView
-                    android:id="@+id/codigo_text"
+                    android:id="@+id/no_tienes_text"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

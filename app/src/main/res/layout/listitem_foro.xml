@@ -35,7 +35,7 @@
             android:textStyle="normal" />
 
         <LinearLayout
-            android:id="@+id/layout_item_foro"
+            android:id="@+id/layout_horizontal_foro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"

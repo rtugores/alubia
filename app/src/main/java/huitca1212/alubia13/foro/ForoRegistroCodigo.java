@@ -101,6 +101,7 @@ public class ForoRegistroCodigo extends Activity {
     }
 
     protected void action_foro_registro_codigo() {
+        String mobile_id = "";
         // Escondemos teclado
         final EditText codigo_edit = (EditText) findViewById(R.id.codigo);
         InputMethodManager imm = (InputMethodManager) getSystemService(
@@ -117,8 +118,12 @@ public class ForoRegistroCodigo extends Activity {
             codigo = "0";
         }
         try {
-            String mobile_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+            mobile_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
             mURL = "http://rjapps.x10host.com/comprobar_codigo.php?usuario=" + URLEncoder.encode(usuario, "UTF-8") +
                     "&contrasenya=" + URLEncoder.encode(contrasenya, "UTF-8") + "&email=" + URLEncoder.encode(email, "UTF-8") +
                     "&codigo_penya=" + URLEncoder.encode(codigo, "UTF-8") + "&mobile_id=" + URLEncoder.encode(mobile_id, "UTF-8");
@@ -140,6 +145,7 @@ public class ForoRegistroCodigo extends Activity {
     //====================================================================================================================
     //Función que comprueba si está Internet habilitado
     //====================================================================================================================
+
     protected boolean checkInternet() {
         ConnectivityManager conMgr = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo i = conMgr.getActiveNetworkInfo();

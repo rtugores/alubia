@@ -58,7 +58,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/ya_registrado"
+        android:id="@+id/nombre"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -34,14 +34,14 @@ public class Penyas extends Activity {
                     new TitularPenyas("Jarra y pedal"), new TitularPenyas("Kachi-chirín"), new TitularPenyas("Kalankoe"), new TitularPenyas("Kalyke"),
                     new TitularPenyas("Kamensoky"), new TitularPenyas("Kamikaze"), new TitularPenyas("Kelnozz & Ceda el vaso"), new TitularPenyas("KQK"),
                     new TitularPenyas("La coral"), new TitularPenyas("La DGT (Dirección General de Tragos)"),
-                    new TitularPenyas("Los colgaos"), new TitularPenyas("Los tocapelotas"), new TitularPenyas("Motokaskaos"),
+                    new TitularPenyas("Los colgaos"), new TitularPenyas("Motokaskaos"),
                     new TitularPenyas("Nosting"), new TitularPenyas("Pa' brujas nosotras"), new TitularPenyas("Pk2 (Pecados)"),
                     new TitularPenyas("Pocos pero locos"), new TitularPenyas("Psicosys"),
                     new TitularPenyas("¡¡Qué apostamos!!"), new TitularPenyas("Rambosteroides"), new TitularPenyas("Rockambole"),
                     new TitularPenyas("Sin papeles"), new TitularPenyas("Taboo"), new TitularPenyas("The madness"), new TitularPenyas("Tibuky"),
-                    new TitularPenyas("Trapicheos"), new TitularPenyas("Vaganzia pura"), new TitularPenyas("Vankenoven"),
-                    new TitularPenyas("Ya estamos todos"), new TitularPenyas("Yokers"), new TitularPenyas("Zumbagaritos"),
-                    new TitularPenyas("Zumbalitros"), new TitularPenyas("Zumbapajascervecistas")};
+                    new TitularPenyas("TOCAPELOTAS 2.0"), new TitularPenyas("Trapicheos"), new TitularPenyas("Vaganzia pura"),
+                    new TitularPenyas("Vankenoven"), new TitularPenyas("Ya estamos todos"), new TitularPenyas("Yokers"),
+                    new TitularPenyas("Zumbagaritos"), new TitularPenyas("Zumbalitros"), new TitularPenyas("Zumbapajascervecistas")};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,68 +163,68 @@ public class Penyas extends Activity {
                         d.show();
                         break;
                     case 28:
-                        d.setTitle("Los tocapelotas");
-                        im.setImageResource(R.drawable.tocapelotas_g);
-                        d.setContentView(im);
-                        d.show();
-                        break;
-                    case 29:
                         d.setTitle("Motokaskaos");
                         im.setImageResource(R.drawable.motokaskaos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 30:
+                    case 29:
                         d.setTitle("Nosting");
                         im.setImageResource(R.drawable.nosting_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 31:
+                    case 30:
                         d.setTitle("Pa' brujas nosotras");
                         im.setImageResource(R.drawable.brujas_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 32:
+                    case 31:
                         d.setTitle("Pk2");
                         im.setImageResource(R.drawable.pk2_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 33:
+                    case 32:
                         d.setTitle("Pocos pero locos");
                         im.setImageResource(R.drawable.pocos_pero_locos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 34:
+                    case 33:
                         d.setTitle("Psicosys");
                         im.setImageResource(R.drawable.psicosys_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 36:
+                    case 35:
                         d.setTitle("Rambosteroides");
                         im.setImageResource(R.drawable.rambosteroides_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 37:
+                    case 36:
                         d.setTitle("Rockambole");
                         im.setImageResource(R.drawable.rockambole_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 39:
+                    case 38:
                         d.setTitle("Taboo");
                         im.setImageResource(R.drawable.taboo_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 41:
+                    case 40:
                         d.setTitle("Tibuky");
                         im.setImageResource(R.drawable.tibuky_g);
+                        d.setContentView(im);
+                        d.show();
+                        break;
+                    case 41:
+                        d.setTitle("TOCAPELOTAS 2.0");
+                        im.setImageResource(R.drawable.tocapelotas_g);
                         d.setContentView(im);
                         d.show();
                         break;
