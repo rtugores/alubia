@@ -19,15 +19,15 @@ public class Sabado extends Activity {
 
     private TitularPrograma[] datos =
             new TitularPrograma[]{
-                    new TitularPrograma("08:00 Concentración de participantes del Máster de san Huberto", "Bar-restaurante Casa Baudilia"),
-                    new TitularPrograma("09:00 Prueba del Máster de san Huberto", "Monte de santa Cruz (camino de Toral)"),
+                    new TitularPrograma("11:30 Partido de fútbol", "Campo de fútbol municipal"),
                     new TitularPrograma("12:00 Concentración de peñas", "Plaza de san Juan Bautista"),
                     new TitularPrograma("13:00 Santa misa", "Iglesia de san Juan Bautista"),
-                    new TitularPrograma("14:30 Concurso mata de alubia de las variedades pinta y blanca", "Casa de la cultura"),
+                    new TitularPrograma("13:00-14:00 Exposición de dibujo y pintura", "Casa de la cultura"),
+                    new TitularPrograma("14:30 Concurso mata de alubia de las variedades blanca y pinta", "Casa de la cultura"),
                     new TitularPrograma("17:00 Descenso del Reguero", "Salida: Puente navarro"),
                     new TitularPrograma("18:00-21:00 Exposición de dibujo y pintura", "Casa de la cultura"),
                     new TitularPrograma("19:30 Desfile de disfraces", "Salida: Colegio público"),
-                    new TitularPrograma("23:00 Verbena", "Explanada de la casa de la cultura"),
+                    new TitularPrograma("23:30 Verbena", "Explanada de la casa de la cultura"),
                     new TitularPrograma("00:00 Party Dance", "Recorrido por los chiringuitos")};
 
     //================================================================
@@ -55,21 +55,21 @@ public class Sabado extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         switch (id) {
             case 0:
-                builder.setTitle("Concentración de san Huberto");
-                builder.setMessage("Modalidad de caza-competición en la que cazador y perro demuestran sus cualidades venatorias.");
+                builder.setTitle("Partido de fútbol");
+                builder.setMessage("Enfrentamiento del Juristas de León contra el Candas en el campo de fútbol municipal.");
                 break;
             case 1:
-                builder.setTitle("Prueba de san Huberto");
-                builder.setMessage("Inscripción: 45 €/participante. Al finalizar, comida para todos los participantes y entrega de premios.");
-                break;
-            case 2:
                 builder.setTitle("Concentración de peñas");
                 builder.setMessage("Las peñas de la fiesta se reunen para recoger a Reinas y Damas. Primer " +
                         "control de peñas.");
                 break;
-            case 3:
+            case 2:
                 builder.setTitle("Santa misa");
                 builder.setMessage("Santa misa en la iglesia de san Juan Bautista.");
+                break;
+            case 3:
+                builder.setTitle("Exposición de dibujo y pintura");
+                builder.setMessage("Muestra de cuadros en la casa de la cultura.");
                 break;
             case 4:
                 builder.setTitle("Concurso mata de alubia");
@@ -82,7 +82,7 @@ public class Sabado extends Activity {
                 break;
             case 6:
                 builder.setTitle("Exposición de dibujo y pintura");
-                builder.setMessage("Muestra de cuadros en la Casa de la Cultura.");
+                builder.setMessage("Muestra de cuadros en la casa de la cultura.");
                 break;
             case 7:
                 builder.setTitle("Desfile de disfraces");
@@ -91,7 +91,7 @@ public class Sabado extends Activity {
                 break;
             case 8:
                 builder.setTitle("Verbena");
-                builder.setMessage("La discoteca móvil \"Christian\" se encarga de dar color a la noche " +
+                builder.setMessage("La orquesta \"Ipanema\" se encarga de dar color a la noche " +
                         "con la música de fiestas más actual.");
                 break;
             case 9:

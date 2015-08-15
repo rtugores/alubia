@@ -17,11 +17,11 @@ public class Viernes extends Activity {
 
     private TitularPrograma[] datos =
             new TitularPrograma[]{
-                    new TitularPrograma("18:30 Fútbol sala infantil", "Frontón municipal"),
+                    new TitularPrograma("19:30 Fútbol sala infantil", "Frontón municipal"),
                     new TitularPrograma("23:00 Pregón de fiestas", "Plaza del castillo"),
                     new TitularPrograma("23:30 Coronación de Reinas y Damas", "Plaza del castillo"),
-                    new TitularPrograma("00:00 V Alubia Rock", "Calle el Jardín"),
                     new TitularPrograma("00:00 Party Dance", "Salida: Plaza del castillo"),
+                    new TitularPrograma("00:00 VI Alubia Rock", "Plaza de toros"),
                     new TitularPrograma("00:30 Verbena", "Explanada de la casa de la cultura")};
 
     //================================================================
@@ -56,27 +56,27 @@ public class Viernes extends Activity {
                 break;
             case 1:
                 builder.setTitle("Pregon de fiestas");
-                builder.setMessage("Anunciamiento a cargo de don José María González Rebollo, médico cardiólogo " +
-                        "en el hospital de León.");
+                builder.setMessage("Anunciamiento a cargo de don Alberto Rodríguez Santos, sacerdote de la parroquia " +
+                        "San Juan Bautista de Laguna de Negrillos.");
                 break;
             case 2:
                 builder.setTitle("Coronación de Reinas y Damas");
-                builder.setMessage("Gran evento donde las Reinas y Damas de la Alubia 2014 " +
+                builder.setMessage("Gran evento donde las Reinas y Damas de la Alubia 2015 " +
                         "toman sus bandas y son coronadas en la plaza del castillo.");
                 break;
             case 3:
-                builder.setTitle("V Alubia Rock");
-                builder.setMessage("Participación de los grupos \"Me la sopla\", " +
-                        "\"Alpaka HxC\", \"Seiskafés\" y \"Vagos Permanentes\" en directo. Entrada gratuita.");
-                break;
-            case 4:
                 builder.setTitle("Party Dance");
                 builder.setMessage("Recorrido por las calles del pueblo y paradas en los chiringuitos " +
                         "con la \"Supermartxé\".");
                 break;
+            case 4:
+                builder.setTitle("V Alubia Rock");
+                builder.setMessage("Participación de los grupos \"Envidia Kotxina\", " +
+                        "\"Limando\", \"Debakle\" y \"T.A.K.E.\" (Tributo a Kaos Etíliko) en directo. Entrada gratuita.");
+                break;
             case 5:
                 builder.setTitle("Verbena");
-                builder.setMessage("La discoteca móvil \"Toño\" se encarga de dar color a la noche " +
+                builder.setMessage("La discoteca móvil \"Christian\" se encarga de dar color a la noche " +
                         "con la música de fiestas más actual.");
                 break;
         }

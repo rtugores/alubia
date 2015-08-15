@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.mas.ajustes.Ajustes;
 import huitca1212.alubia13.mas.novedades.Novedades;
 
@@ -28,7 +29,7 @@ public class Mas extends Activity {
         final Button boton1 = (Button) findViewById(R.id.button1); //PRIMER BOTON
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Mas.this, Novedades.class);
+                Intent intent = new Intent(Mas.this, AlubiaQuizMenu.class);
                 startActivity(intent);
             }
         });

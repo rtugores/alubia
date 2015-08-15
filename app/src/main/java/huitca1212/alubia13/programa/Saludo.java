@@ -13,7 +13,7 @@ public class Saludo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.saludo);
-        final TextView texto = (TextView) findViewById(R.id.saludo_contenido); //PRIMER BOTON
+        final TextView texto = (TextView) findViewById(R.id.saludo_contenido);
         texto.setMovementMethod(new ScrollingMovementMethod());
     }
 }

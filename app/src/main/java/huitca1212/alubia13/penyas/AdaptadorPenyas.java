@@ -54,79 +54,82 @@ public class AdaptadorPenyas extends ArrayAdapter<TitularPenyas> {
             case 11:
                 img = lblTitulo.getResources().getDrawable(R.drawable.embarazo_p);
                 break;
-            case 13:
-                img = lblTitulo.getResources().getDrawable(R.drawable.fbi_p);
+            case 12:
+                img = lblTitulo.getResources().getDrawable(R.drawable.estress_p);
                 break;
             case 14:
-                img = lblTitulo.getResources().getDrawable(R.drawable.imperfectos_p);
+                img = lblTitulo.getResources().getDrawable(R.drawable.fbi_p);
                 break;
             case 15:
-                img = lblTitulo.getResources().getDrawable(R.drawable.indis_p);
+                img = lblTitulo.getResources().getDrawable(R.drawable.imperfectos_p);
                 break;
             case 16:
-                img = lblTitulo.getResources().getDrawable(R.drawable.jaia_p);
+                img = lblTitulo.getResources().getDrawable(R.drawable.indis_p);
                 break;
             case 18:
+                img = lblTitulo.getResources().getDrawable(R.drawable.jaia_p);
+                break;
+            case 20:
                 img = lblTitulo.getResources().getDrawable(R.drawable.kachi_chirin_p);
                 break;
-            case 21:
+            case 23:
                 img = lblTitulo.getResources().getDrawable(R.drawable.kamensoky_p);
                 break;
-            case 23:
+            case 25:
                 img = lblTitulo.getResources().getDrawable(R.drawable.kelnozz_ceda_p);
                 break;
-            case 25:
+            case 27:
                 img = lblTitulo.getResources().getDrawable(R.drawable.coral_p);
                 break;
-            case 27:
+            case 29:
                 img = lblTitulo.getResources().getDrawable(R.drawable.loscolgaos_p);
                 break;
-            case 28:
+            case 30:
                 img = lblTitulo.getResources().getDrawable(R.drawable.motokaskaos_p);
                 break;
-            case 29:
+            case 31:
                 img = lblTitulo.getResources().getDrawable(R.drawable.nosting_p);
                 break;
-            case 30:
+            case 32:
                 img = lblTitulo.getResources().getDrawable(R.drawable.brujas_p);
                 break;
-            case 31:
+            case 33:
                 img = lblTitulo.getResources().getDrawable(R.drawable.pk2_p);
                 break;
-            case 32:
+            case 34:
                 img = lblTitulo.getResources().getDrawable(R.drawable.pocos_pero_locos_p);
                 break;
-            case 33:
+            case 35:
                 img = lblTitulo.getResources().getDrawable(R.drawable.psicosys_p);
                 break;
-            case 35:
+            case 37:
                 img = lblTitulo.getResources().getDrawable(R.drawable.rambosteroides_p);
                 break;
-            case 36:
+            case 38:
                 img = lblTitulo.getResources().getDrawable(R.drawable.rockambole_p);
                 break;
-            case 38:
+            case 40:
                 img = lblTitulo.getResources().getDrawable(R.drawable.taboo_p);
                 break;
-            case 40:
+            case 42:
                 img = lblTitulo.getResources().getDrawable(R.drawable.tibuky_p);
                 break;
-            case 41:
+            case 43:
                 img = lblTitulo.getResources().getDrawable(R.drawable.tocapelotas_p);
                 break;
-            case 43:
+            case 45:
                 img = lblTitulo.getResources().getDrawable(R.drawable.vaganzia_pura_p);
                 break;
-            case 44:
+            case 46:
                 img = lblTitulo.getResources().getDrawable(R.drawable.vankenoven_p);
                 break;
-            case 45:
+            case 47:
                 img = lblTitulo.getResources().getDrawable(R.drawable.yaestamostodos_p);
                 break;
-            case 46:
+            case 48:
                 img = lblTitulo.getResources().getDrawable(R.drawable.yokers_p);
                 break;
-            case 47:
+            case 49:
                 img = lblTitulo.getResources().getDrawable(R.drawable.zumbagaritos_p);
                 break;
             default:

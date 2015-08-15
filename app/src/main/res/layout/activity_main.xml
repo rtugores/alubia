@@ -68,7 +68,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/alubiaquiz" />
+        android:text="@string/novedades" />
 
     <Button
         android:id="@+id/button5"

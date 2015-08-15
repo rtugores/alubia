@@ -20,8 +20,10 @@ public class Domingo extends Activity {
             new TitularPrograma[]{
                     new TitularPrograma("12:00 Concentración de peñas", "Plaza de san Juan Bautista"),
                     new TitularPrograma("13:00 Santa misa", "Iglesia de san Juan Bautista"),
+                    new TitularPrograma("13:00-14.00 Exposición de dibujo y pintura", "Casa de la cultura"),
+                    new TitularPrograma("14:30 Colocación de placa identificativa", "Polideportivo municipal"),
                     new TitularPrograma("18:00-21.00 Exposición de dibujo y pintura", "Casa de la cultura"),
-                    new TitularPrograma("19:00 Desfile Mayor Alubia 2014", "Salida: Colegio público"),
+                    new TitularPrograma("19:00 Desfile Mayor Alubia 2015", "Salida: Colegio público"),
                     new TitularPrograma("23:30 Verbena", "Explanada de la casa de la cultura"),
                     new TitularPrograma("00:00 Party Dance", "Recorrido por los chiringuitos")};
 
@@ -49,7 +51,7 @@ public class Domingo extends Activity {
         switch (id) {
             case 0:
                 builder.setTitle("Concentración de peñas");
-                builder.setMessage("Reunión de las peñas de la fiesta para recoger a las Reinas y Damas de la Alubia 2014. Tercer control de pe�as.");
+                builder.setMessage("Reunión de las peñas de la fiesta para recoger a las Reinas y Damas de la Alubia 2015. Tercer control de peñas.");
                 break;
             case 1:
                 builder.setTitle("Santa misa");
@@ -60,15 +62,23 @@ public class Domingo extends Activity {
                 builder.setMessage("Muestra de cuadros en la Casa de la Cultura.");
                 break;
             case 3:
-                builder.setTitle("Desfile Mayor Alubia 2014");
-                builder.setMessage("Desfile de carrozas por las calles del pueblo. Cuarto control de peñas.");
+                builder.setTitle("Colocación placa identificativa");
+                builder.setMessage("Colocación de la placa identificativa de la nueva denominación del Polideportivo Municipal Fidel Rodríguez Rodríguez.");
                 break;
             case 4:
+                builder.setTitle("Exposición de dibujo y pintura");
+                builder.setMessage("Muestra de cuadros en la Casa de la Cultura.");
+                break;
+            case 5:
+                builder.setTitle("Desfile Mayor Alubia 2015");
+                builder.setMessage("Desfile de carrozas por las calles del pueblo. Cuarto control de peñas.");
+                break;
+            case 6:
                 builder.setTitle("Verbena");
                 builder.setMessage("El grupo \"Radar\" se encarga de dar color a la noche " +
                         "con la música de fiestas más actual.");
                 break;
-            case 5:
+            case 7:
                 builder.setTitle("Party Dance");
                 builder.setMessage("Recorrido por las calles del pueblo y paradas en los chiringuitos " +
                         "con la \"Supermartxé\".");

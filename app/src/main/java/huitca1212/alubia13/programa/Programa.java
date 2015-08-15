@@ -18,13 +18,12 @@ public class Programa extends Activity {
     private TitularPrograma[] datos =
             new TitularPrograma[]{
                     new TitularPrograma("Saludo del alcalde", ""),
-                    new TitularPrograma("Reinas y Damas Alubia 2014", ""),
-                    new TitularPrograma("Sábado", "16 de agosto"),
-                    new TitularPrograma("Viernes", "22 de agosto"),
-                    new TitularPrograma("Sábado", "23 de agosto"),
-                    new TitularPrograma("Domingo", "24 de agosto"),
-                    new TitularPrograma("Lunes", "25 de agosto"),
-                    new TitularPrograma("XIII Carrera de la Alubia", "")};
+                    new TitularPrograma("Reinas y Damas Alubia 2015", ""),
+                    new TitularPrograma("Viernes", "21 de agosto"),
+                    new TitularPrograma("Sábado", "22 de agosto"),
+                    new TitularPrograma("Domingo", "23 de agosto"),
+                    new TitularPrograma("Lunes", "24 de agosto"),
+                    new TitularPrograma("XIV Carrera de la Alubia", "")};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,26 +49,22 @@ public class Programa extends Activity {
                         startActivity(intent1);
                         break;
                     case 2:
-                        Intent intent2 = new Intent(Programa.this, Sabado16.class);
-                        startActivity(intent2);
-                        break;
-                    case 3:
                         Intent intent3 = new Intent(Programa.this, Viernes.class);
                         startActivity(intent3);
                         break;
-                    case 4:
+                    case 3:
                         Intent intent4 = new Intent(Programa.this, Sabado.class);
                         startActivity(intent4);
                         break;
-                    case 5:
+                    case 4:
                         Intent intent5 = new Intent(Programa.this, Domingo.class);
                         startActivity(intent5);
                         break;
-                    case 6:
+                    case 5:
                         Intent intent6 = new Intent(Programa.this, Lunes.class);
                         startActivity(intent6);
                         break;
-                    case 7:
+                    case 6:
                         Intent intent7 = new Intent(Programa.this, Carrera.class);
                         startActivity(intent7);
                         break;

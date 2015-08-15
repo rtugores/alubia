@@ -11,11 +11,10 @@
     <string name="menu_info">Información</string>
     <string name="image_main">Im</string>
  	<string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
- 	<string name="sabado16">Sábado 16 de agosto</string>
- 	<string name="viernes">Viernes 22 de agosto</string>
- 	<string name="sabado">Sábado 23 de agosto</string>
- 	<string name="domingo">Domingo 24 de agosto</string>
- 	<string name="lunes">Lunes 25 de agosto</string>
+ 	<string name="viernes">Viernes 21 de agosto</string>
+ 	<string name="sabado">Sábado 22 de agosto</string>
+ 	<string name="domingo">Domingo 23 de agosto</string>
+ 	<string name="lunes">Lunes 24 de agosto</string>
  	<string name="bienvenida">Fiesta de la Alubia 2015</string>
  	<string name="bienvenida_sub">Laguna de Negrillos</string>
  	<string name="programa">Programa de fiestas</string>
@@ -26,8 +25,8 @@
  	<string name="actualizar">actualizar</string>
  	<string name="enviar">-></string>
  	<string name="saludo">Saludo del alcalde</string>
- 	<string name="reinas_damas">Reinas y Damas Alubia 2014</string>
- 	<string name="carrera">XIII Carrera de la Alubia</string>
+ 	<string name="reinas_damas">Reinas y Damas Alubia 2015</string>
+ 	<string name="carrera">XIV Carrera de la Alubia</string>
  	<string name="contactar">¡Envía una foto de tu peña!</string>
  	<string name="fotoPenya">Foto de la peña</string>
  	<string name="inicio">Inicio</string>
@@ -40,28 +39,28 @@
  	<string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
  	<string name="siguiente">¡Siguiente!</string>
  	<string name="solucion_texto">Solución</string>
- 	<string name="carrera_contenido"><b>DOMINGO 31 DE AGOSTO</b>
+ 	<string name="carrera_contenido"><b>SÁBADO 29 DE AGOSTO</b>
 \n\n<b>Inscripciones:</b>
-\n11:00 h. - Apertura de inscripciones para la XIII Carrera Popular "Alubia 2014".
+\n18:30 h. - Apertura de inscripciones para la XIV Carrera Popular "Alubia 2015".
 \nLugar: Plaza del castillo.
 \n\n<b>Horario:</b>
-\n12:00 h. - Comienzo de la XIII Carrera Popular "Alubia 2014".
+\n19:00 h. - Comienzo de la XIV Carrera Popular "Alubia 2015".
 \nSalida: Plaza del castillo.</string>
  	<string name="reinas_damas_contenido"><b>Reina y Damas juveniles.</b>
-\n\nReina: Sara Contreras Ramos
-\nDama: Sandra Peláez Melgar
-\nDama: Sandra Novo Fierro
+\n\nReina: Noelia Murciego Casado
+\nDama: Laura Morán Lozano
+\nDama: Raquel Ugidos López
 \n\n\n<b>Reina y Damas infantiles.</b>
-\n\nReina: Noah Zotes Sastre
-\nDama: Alicia Pollán Baza
-\nDama: Julia Pollán Baza</string>
- 	<string name="saludo_contenido">Doce meses más. El reloj no se detiene nunca y el tiempo pasa para todos. A los más jóvenes les parece que va muy despacio y a los que somos mayores nos da la impresión de que va a toda velocidad. Lo cierto es que pasa para todos igual aunque con distintas percepciones y que, tras el paso de un año, estamos de nuevo ante la Fiesta de la Alubia, la fiesta de la juventud.
-\n\nCada año, en el mes de Agosto, Laguna de Negrillos celebra su Fiesta de la Alubia. Uno de los aspectos más singulares es la reunión de las familias con los que, en su día, decidieron cambiar de aires y eligen estas fechas para volver a su tierra. Espero que todos los laguneses estéis en disposición de pasar unos días de confraternidad y divertimiento en compañía de familiares, vecinos y amigos.
-\n\nSentido recuerdo para los que ya no se encuentran entre nosotros y un abrazo muy cariñoso a todas las familias de nuestro municipio que han sufrido alguna pérdida irreparable en el último año.
-\n\nMi agradecimiento a los componentes de la Comisión de Fiestas que, con escasos recursos económicos con que cuentan, siempre nos sorprenden con alguna novedad participativa.
-\n\nAgradecimiento especial a las Reinas y Damas. Será prácticamente imposible encontrar un Ayuntamiento que sea representado por bellezas que superen a las nuestras. También las gracias a las peñas, asociaciones y jóvenes por su colaboración.
-\n\n¿Y que decir de nuestro pregonero, don José María González Rebollo? Cardiólogo de enorme prestigio que sera el encargado de poner en marcha nuestras fiestas. ¡Muchas gracias, Chema!
-\n\n¡Felices Fiestas!
+\n\nReina: Kiara Martínez Blanco
+\nDama: María Caramazana García
+\nDama: Belén Santo Tomás Merino</string>
+ 	<string name="saludo_contenido">Llega de nuevo la Fiesta de la Alubia, fiesta de la juventud, que vuelve a ser motivo de alegría y disfrute. Momento para olvidar la rutina cotidiana pero, también, la ocasión para demostrar que sabemos divertirnos, respetando lo que nos rodea y a la gente con la que convivimos.
+\n\nOs invito a que dejéis a un lado vuestras preocupaciones durante estos días y a que salgáis a la calle a vivir el bullicio y la alegría que van a inundar nuestro pueblo.
+\n\nEl pregonero de este año será D. Alberto Rodríguez Santos, nuestro párroco, al que agradecemos su colaboración al igual que a las Reinas y Damas Juveniles e Infantiles que, con su belleza y simpatía, nos harán sentirnos orgullosos de las nuevas generaciones lagunesas.
+\n\nQuiero manifestar también nuestro agradecimiento a las Peñas y sus fantásticos peñistas porque sin vosotros nada de esto habría sido posible. Asimismo a los trabajadores municipales por su dedicación con el fin de que todo esté en orden.
+\nUn recuerdo muy especial a quienes, en años anteriores, compartieron y disfrutaron de nuestra fiesta y ya no están entre nosotros. Estamos plenamente convencidos de que allá donde se encuentren, se sentirán felices viendo cómo seguimos alimentando la tradición.
+\n\nEn nombre de la Corporación Municipal os deseamos que paséis unas felices fiestas.
+\nUn abrazo muy fuerte de vuestro amigo y, a la vez, vuestro alcalde.
 \n\n<b>El alcalde del Ayuntamiento de Laguna de Negrillos</b></string>
 
  	<string name="write_info"><b>INFORMACIÓN</b>

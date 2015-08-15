@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="huitca1212.alubia13"
-    android:versionCode="26"
-    android:versionName="3.0.2">
+    android:versionCode="27"
+    android:versionName="3.1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,9 +21,6 @@
         <activity
             android:name=".programa.Programa"
             android:label="@string/programa"/>
-        <activity
-            android:name=".programa.Sabado16"
-            android:label="@string/sabado16"/>
         <activity
             android:name=".programa.Viernes"
             android:label="@string/viernes"/>

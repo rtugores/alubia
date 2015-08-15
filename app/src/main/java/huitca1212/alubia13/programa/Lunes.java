@@ -20,9 +20,10 @@ public class Lunes extends Activity {
     private TitularPrograma[] datos =
             new TitularPrograma[]{
                     new TitularPrograma("13:00 Santa misa de peñas", "Iglesia de san Juan Bautista"),
-                    new TitularPrograma("15:00 Alubiada popular", "Zona recreativa del polideportivo municipal"),
-                    new TitularPrograma("17:00 Juegos infantiles", "Frontón municipal"),
+                    new TitularPrograma("15:00 Alubiada popular", "Merendero del polideportivo municipal"),
+                    new TitularPrograma("18:00-20:00 Bumperbal y actividades infantiles", "Campo de fútbol municipal"),
                     new TitularPrograma("19:00 Fiesta de la espuma", "Campo de fútbol"),
+                    new TitularPrograma("20:30 Entrega de premios del concurso de pintura", "Casa de la cultura"),
                     new TitularPrograma("21:00 Bollo preñao", "Explanada de la casa de la cultura"),
                     new TitularPrograma("22:30 Verbena", "Explanada de la casa de la cultura")};
 
@@ -60,17 +61,21 @@ public class Lunes extends Activity {
                 break;
             case 2:
                 builder.setTitle("Juegos infantiles");
-                builder.setMessage("Juegos para todas los niños y niñas en el frontón municipal. Diversión asegurada.");
+                builder.setMessage("Bumperbal para peñas a partir de 12 años de edad y actividades infantiles. Diversión asegurada.");
                 break;
             case 3:
                 builder.setTitle("Fiesta de la espuma");
                 builder.setMessage("El campo de fútbol se cubre de espuma para los más atrevidos.");
                 break;
             case 4:
+                builder.setTitle("Entrega de premios");
+                builder.setMessage("Entrega de premios para los ganadores del concurso de pintura.");
+                break;
+            case 5:
                 builder.setTitle("Bollo preñao");
                 builder.setMessage("Bollo preñao para todos.");
                 break;
-            case 5:
+            case 6:
                 builder.setTitle("Verbena");
                 builder.setMessage("Baile fin de fiesta amenizado por la discoteca móvil \"Christian\". Dará color a la noche " +
                         "con la música de fiestas más actual.");

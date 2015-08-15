@@ -28,9 +28,9 @@ public class Penyas extends Activity {
                     new TitularPenyas("B12"), new TitularPenyas("BBdoble"), new TitularPenyas("Birlybirloke"),
                     new TitularPenyas("Boogie"), new TitularPenyas("B&N (Blanco y negro)"),
                     new TitularPenyas("Costa azul"), new TitularPenyas("Desfase"), new TitularPenyas("Descoloke"), new TitularPenyas("Dislokey"),
-                    new TitularPenyas("El Cachi"), new TitularPenyas("El Ginkgo"), new TitularPenyas("Embarazo no deseado"),
+                    new TitularPenyas("El Cachi"), new TitularPenyas("El Ginkgo"), new TitularPenyas("Embarazo no deseado"), new TitularPenyas("Estress"),
                     new TitularPenyas("EUKZ (El Último Ke Zierre)"), new TitularPenyas("FBI (Federación de Borrachos Inocentes)"),
-                    new TitularPenyas("Imperfectos"), new TitularPenyas("Indis (Indiscretos)"), new TitularPenyas("Jaia"),
+                    new TitularPenyas("Imperfectos"), new TitularPenyas("Indis (Indiscretos)"), new TitularPenyas("Infinity"), new TitularPenyas("Jaia"),
                     new TitularPenyas("Jarra y pedal"), new TitularPenyas("Kachi-chirín"), new TitularPenyas("Kalankoe"), new TitularPenyas("Kalyke"),
                     new TitularPenyas("Kamensoky"), new TitularPenyas("Kamikaze"), new TitularPenyas("Kelnozz & Ceda el vaso"), new TitularPenyas("KQK"),
                     new TitularPenyas("La coral"), new TitularPenyas("La DGT (Dirección General de Tragos)"),
@@ -108,151 +108,157 @@ public class Penyas extends Activity {
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 13:
+                    case 12:
+                        d.setTitle("Estress");
+                        im.setImageResource(R.drawable.estress_g);
+                        d.setContentView(im);
+                        d.show();
+                        break;
+                    case 14:
                         d.setTitle("FBI");
                         im.setImageResource(R.drawable.fbi_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 14:
+                    case 15:
                         d.setTitle("Imperfectos");
                         im.setImageResource(R.drawable.imperfectos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 15:
+                    case 16:
                         d.setTitle("Indis");
                         im.setImageResource(R.drawable.indis_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 16:
+                    case 18:
                         d.setTitle("Jaia");
                         im.setImageResource(R.drawable.jaia_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 18:
+                    case 20:
                         d.setTitle("Kachi-chirín");
                         im.setImageResource(R.drawable.kachi_chirin_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 21:
+                    case 23:
                         d.setTitle("Kamensoky");
                         im.setImageResource(R.drawable.kamensoky_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 23:
+                    case 25:
                         d.setTitle("Kelnozz & Ceda el vaso");
                         im.setImageResource(R.drawable.kelnozz_ceda_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 25:
+                    case 27:
                         d.setTitle("La coral");
                         im.setImageResource(R.drawable.coral_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 27:
+                    case 29:
                         d.setTitle("Los colgaos");
                         im.setImageResource(R.drawable.loscolgaos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 28:
+                    case 30:
                         d.setTitle("Motokaskaos");
                         im.setImageResource(R.drawable.motokaskaos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 29:
+                    case 31:
                         d.setTitle("Nosting");
                         im.setImageResource(R.drawable.nosting_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 30:
+                    case 32:
                         d.setTitle("Pa' brujas nosotras");
                         im.setImageResource(R.drawable.brujas_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 31:
+                    case 33:
                         d.setTitle("Pk2");
                         im.setImageResource(R.drawable.pk2_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 32:
+                    case 34:
                         d.setTitle("Pocos pero locos");
                         im.setImageResource(R.drawable.pocos_pero_locos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 33:
+                    case 35:
                         d.setTitle("Psicosys");
                         im.setImageResource(R.drawable.psicosys_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 35:
+                    case 37:
                         d.setTitle("Rambosteroides");
                         im.setImageResource(R.drawable.rambosteroides_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 36:
+                    case 38:
                         d.setTitle("Rockambole");
                         im.setImageResource(R.drawable.rockambole_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 38:
+                    case 40:
                         d.setTitle("Taboo");
                         im.setImageResource(R.drawable.taboo_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 40:
+                    case 42:
                         d.setTitle("Tibuky");
                         im.setImageResource(R.drawable.tibuky_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 41:
+                    case 43:
                         d.setTitle("TOCAPELOTAS 2.0");
                         im.setImageResource(R.drawable.tocapelotas_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 43:
+                    case 45:
                         d.setTitle("Vaganzia pura");
                         im.setImageResource(R.drawable.vaganzia_pura_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 44:
+                    case 46:
                         d.setTitle("Vankenoven");
                         im.setImageResource(R.drawable.vankenoven_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 45:
+                    case 47:
                         d.setTitle("Ya estamos todos");
                         im.setImageResource(R.drawable.yaestamostodos_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 46:
+                    case 48:
                         d.setTitle("Yokers");
                         im.setImageResource(R.drawable.yokers_g);
                         d.setContentView(im);
                         d.show();
                         break;
-                    case 47:
+                    case 49:
                         d.setTitle("Zumbagaritos");
                         im.setImageResource(R.drawable.zumbagaritos_g);
                         d.setContentView(im);

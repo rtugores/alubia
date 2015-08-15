@@ -12,6 +12,7 @@ import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.foro.Foro;
 import huitca1212.alubia13.foro.ForoInicial;
 import huitca1212.alubia13.mas.Mas;
+import huitca1212.alubia13.mas.novedades.Novedades;
 import huitca1212.alubia13.penyas.Penyas;
 import huitca1212.alubia13.programa.Programa;
 
@@ -60,7 +61,7 @@ public class MainActivity extends Activity {
         final Button boton4 = (Button) findViewById(R.id.button4);  //CUARTO BOTON
         boton4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlubiaQuizMenu.class);
+                Intent intent = new Intent(MainActivity.this, Novedades.class);
                 startActivity(intent);
             }
         });
