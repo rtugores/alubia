@@ -66,6 +66,9 @@ public class AdaptadorPenyas extends ArrayAdapter<TitularPenyas> {
             case 16:
                 img = lblTitulo.getResources().getDrawable(R.drawable.indis_p);
                 break;
+            case 17:
+                img = lblTitulo.getResources().getDrawable(R.drawable.infinity_p);
+                break;
             case 18:
                 img = lblTitulo.getResources().getDrawable(R.drawable.jaia_p);
                 break;

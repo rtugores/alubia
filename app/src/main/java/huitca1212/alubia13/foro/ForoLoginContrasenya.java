@@ -246,6 +246,7 @@ public class ForoLoginContrasenya extends Activity {
                         .commit();
                 // Abrimos nueva actividad y cerramos la anterior y esta
                 Intent intent = new Intent(ForoLoginContrasenya.this, Foro.class);
+                intent.putExtra("invitado", "NOK");
                 startActivity(intent);
                 try {
                     ForoInicial.foro_inicial.finish();

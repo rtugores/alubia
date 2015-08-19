@@ -256,6 +256,7 @@ public class ForoRegistroCodigo extends Activity {
                         .commit();
                 // Abrimos nueva actividad y cerramos las anteriores y esta
                 Intent intent = new Intent(ForoRegistroCodigo.this, Foro.class);
+                intent.putExtra("invitado", "NOK");
                 startActivity(intent);
                 try {
                     ForoInicial.foro_inicial.finish();

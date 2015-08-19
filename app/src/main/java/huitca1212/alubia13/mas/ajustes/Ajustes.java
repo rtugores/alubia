@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,10 +38,13 @@ public class Ajustes extends Activity {
                     new TitularAjustes("Política de privacidad", "Échale un vistazo a la política de privacidad"),
                     new TitularAjustes("Compartir", "Comparte la aplicación con tus amigos"),
                     new TitularAjustes("Actualizar", "Obtén la versión más actualizada"),
-                    new TitularAjustes("Versión", "3.1"),
+                    new TitularAjustes("Versión", "3.2"),
             };
     private boolean notregister;
     private LinearLayout layout;
+    private int veces = 10;
+    private ImageView im;
+    private Dialog d;
 
 
     @Override
@@ -53,6 +57,8 @@ public class Ajustes extends Activity {
         //================================================================
         AdaptadorAjustes adaptador = new AdaptadorAjustes(this, datos);
         ListView lstOpciones = (ListView) findViewById(R.id.LstOpciones);
+        im = new ImageView(Ajustes.this);
+        d = new Dialog(Ajustes.this);
         lstOpciones.setAdapter(adaptador);
         lstOpciones.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -62,7 +68,7 @@ public class Ajustes extends Activity {
                         // Cerrar sesión
                         notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
                         if (notregister) {
-                            Toast.makeText(getApplicationContext(), "Ya has cerrado la sesión", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "No hay ninguna sesión abierta", Toast.LENGTH_SHORT).show();
                         } else {
                             crearDialogoCerrar(Ajustes.this).show();
                         }
@@ -98,11 +104,21 @@ public class Ajustes extends Activity {
                         startActivity(Intent.createChooser(intent_share, "Compartir mediante"));
                         break;
                     case 5:
-                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                        final String appPackageName = getPackageName();
                         try {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                         } catch (android.content.ActivityNotFoundException anfe) {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
+                        break;
+                    case 6:
+                        veces = veces - 1;
+                        if (veces == 0) {
+                            d.setTitle("¡Portada!");
+                            im.setImageResource(R.drawable.portada);
+                            d.setContentView(im);
+                            d.show();
+                            veces = 10;
                         }
                         break;
                 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="huitca1212.alubia13"
-    android:versionCode="27"
-    android:versionName="3.1">
+    android:versionCode="28"
+    android:versionName="3.2">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -79,7 +79,7 @@
             android:name=".mas.InformacionFiesta"
             android:label="Sobre la fiesta"/>
         <activity
-            android:name=".mas.novedades.Novedades"
+            android:name=".novedades.Novedades"
             android:label="@string/novedades"/>
         <activity
             android:name=".mas.ajustes.Ajustes"
@@ -88,19 +88,19 @@
             android:name=".mas.Contactar"
             android:label="Contactar"/>
         <activity
-            android:name=".alubiaQuiz.AlubiaQuizMenu"
+            android:name=".mas.alubiaQuiz.AlubiaQuizMenu"
             android:label="@string/alubiaquiz"/>
         <activity
-            android:name=".alubiaQuiz.AlubiaQuiz1"
+            android:name=".mas.alubiaQuiz.AlubiaQuiz1"
             android:label="@string/alubiaquiz"/>
         <activity
-            android:name=".alubiaQuiz.AlubiaQuiz2"
+            android:name=".mas.alubiaQuiz.AlubiaQuiz2"
             android:label="@string/alubiaquiz"/>
         <activity
-            android:name=".alubiaQuiz.AlubiaQuiz3"
+            android:name=".mas.alubiaQuiz.AlubiaQuiz3"
             android:label="@string/alubiaquiz"/>
         <activity
-            android:name=".alubiaQuiz.Solucion"
+            android:name=".mas.alubiaQuiz.Solucion"
             android:label="@string/solucion"/>
         <activity
             android:name="com.google.ads.AdActivity"

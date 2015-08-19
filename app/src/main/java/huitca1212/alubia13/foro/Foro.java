@@ -44,11 +44,9 @@ import huitca1212.alubia13.masClases.SendDenuncia;
 public class Foro extends Activity {
 
     //Declaramos variables
-    private String jsonResult;
-    private String mURL;
+    private String invitado, comentario, jsonResult, mURL;
     private ListView listView;
-    private LinearLayout layout;
-    private String comentario;
+    private LinearLayout layout, barra_comentar;
     private EditText comentario_id;
     boolean error = false;
     public static Activity foro;
@@ -62,12 +60,25 @@ public class Foro extends Activity {
 
         layout = (LinearLayout) findViewById(R.id.progressbar_view);
         listView = (ListView) findViewById(R.id.listView1);
+        barra_comentar = (LinearLayout) findViewById(R.id.barra_comentar);
         comentario_id = (EditText) this.findViewById(R.id.comentario);
         Button actualizar_id = (Button) this.findViewById(R.id.actualizar);
         Button enviar_id = (Button) findViewById(R.id.enviar);
 
         // No se abre el teclado al entrar en el foro
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        // ¿Es el usuario invitado?
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            invitado = extras.getString("invitado");
+        } else {
+            invitado = (String) savedInstanceState.getSerializable("invitado");
+        }
+        if (invitado != null && invitado.equals("OK")) {
+            barra_comentar.setVisibility(View.GONE);
+        }
+
         // Comprobamos conexión a Internet y descargamos lista de comentarios
         accessWebService();
 
@@ -114,6 +125,9 @@ public class Foro extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if (invitado != null && invitado.equals("OK")) {
+            return false;
+        }
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -159,8 +173,10 @@ public class Foro extends Activity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.listView1) {
-            menu.add(Menu.NONE, 0, 0, "Denunciar comentario");
+        if (invitado != null && invitado.equals("NOK")) {
+            if (v.getId() == R.id.listView1) {
+                menu.add(Menu.NONE, 0, 0, "Denunciar comentario");
+            }
         }
     }
 

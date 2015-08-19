@@ -3,16 +3,13 @@ package huitca1212.alubia13;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.foro.Foro;
 import huitca1212.alubia13.foro.ForoInicial;
 import huitca1212.alubia13.mas.Mas;
-import huitca1212.alubia13.mas.novedades.Novedades;
+import huitca1212.alubia13.novedades.Novedades;
 import huitca1212.alubia13.penyas.Penyas;
 import huitca1212.alubia13.programa.Programa;
 
@@ -53,6 +50,7 @@ public class MainActivity extends Activity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(MainActivity.this, Foro.class);
+                    intent.putExtra("invitado", "NOK");
                     startActivity(intent);
                 }
             }

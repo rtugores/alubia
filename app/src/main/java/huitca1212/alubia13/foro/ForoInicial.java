@@ -37,5 +37,13 @@ public class ForoInicial extends Activity {
                 startActivity(intent);
             }
         });
+        final Button boton3 = (Button) findViewById(R.id.invitado); //ACCESO COMO INVITADO
+        boton3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ForoInicial.this, Foro.class);
+                intent.putExtra("invitado", "OK");
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    
     <string name="no_disponible">No disponible</string>
         <string name="nodisponible_contenido">\t\tEl contenido al que intentas acceder estará disponible cuando se publique el programa oficial de la fiesta.\n\n\t\tSe pondrá un aviso en la sección NOVEDADES para que actualices la aplicación.\n\n\t\tDisculpa las molestias.
             </string>
     <string name="app_name">Alubia \'15</string>
-	<string name="error_internet">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
+    <string name="error_internet">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
     <string name="action_settings">Settings</string>
     <string name="menu_inicio">¡Genial!</string>
     <string name="menu_info">Información</string>
     <string name="image_main">Im</string>
- 	<string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
- 	<string name="viernes">Viernes 21 de agosto</string>
- 	<string name="sabado">Sábado 22 de agosto</string>
- 	<string name="domingo">Domingo 23 de agosto</string>
- 	<string name="lunes">Lunes 24 de agosto</string>
- 	<string name="bienvenida">Fiesta de la Alubia 2015</string>
- 	<string name="bienvenida_sub">Laguna de Negrillos</string>
- 	<string name="programa">Programa de fiestas</string>
- 	<string name="penyas">Peñas</string>
- 	<string name="foro">Foro</string>
- 	<string name="novedades">Novedades</string>
- 	<string name="masinfo">Más</string>
- 	<string name="actualizar">actualizar</string>
- 	<string name="enviar">-></string>
- 	<string name="saludo">Saludo del alcalde</string>
- 	<string name="reinas_damas">Reinas y Damas Alubia 2015</string>
- 	<string name="carrera">XIV Carrera de la Alubia</string>
- 	<string name="contactar">¡Envía una foto de tu peña!</string>
- 	<string name="fotoPenya">Foto de la peña</string>
- 	<string name="inicio">Inicio</string>
- 	<string name="eleccion1">Nivel fácil</string>
- 	<string name="eleccion2">Nivel medio</string>
- 	<string name="eleccion3">Nivel difícil</string>
- 	<string name="alubiaquiz">Alubia Quiz</string>
- 	<string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
- 	<string name="alubiaquiz2">Alubia Quiz - Nivel medio</string>
- 	<string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
- 	<string name="siguiente">¡Siguiente!</string>
- 	<string name="solucion_texto">Solución</string>
+    <string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
+    <string name="viernes">Viernes 21 de agosto</string>
+    <string name="sabado">Sábado 22 de agosto</string>
+    <string name="domingo">Domingo 23 de agosto</string>
+    <string name="lunes">Lunes 24 de agosto</string>
+    <string name="bienvenida">Fiesta de la Alubia 2015</string>
+    <string name="bienvenida_sub">Laguna de Negrillos</string>
+    <string name="programa">Programa de fiestas</string>
+    <string name="penyas">Peñas</string>
+    <string name="foro">Foro</string>
+    <string name="novedades">Novedades</string>
+    <string name="masinfo">Más</string>
+    <string name="actualizar">actualizar</string>
+    <string name="enviar">-></string>
+    <string name="saludo">Saludo del alcalde</string>
+    <string name="reinas_damas">Reinas y Damas Alubia 2015</string>
+    <string name="carrera">XIV Carrera de la Alubia</string>
+    <string name="contactar">¡Envía una foto de tu peña!</string>
+    <string name="fotoPenya">Foto de la peña</string>
+    <string name="inicio">Inicio</string>
+    <string name="eleccion1">Nivel fácil</string>
+    <string name="eleccion2">Nivel medio</string>
+    <string name="eleccion3">Nivel difícil</string>
+    <string name="alubiaquiz">Alubia Quiz</string>
+    <string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
+    <string name="alubiaquiz2">Alubia Quiz - Nivel medio</string>
+    <string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
+    <string name="siguiente">¡Siguiente!</string>
+    <string name="solucion_texto">Solución</string>
  	<string name="carrera_contenido"><b>SÁBADO 29 DE AGOSTO</b>
 \n\n<b>Inscripciones:</b>
 \n18:30 h. - Apertura de inscripciones para la XIV Carrera Popular "Alubia 2015".
@@ -89,6 +89,6 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="informacion_fiesta">Información sobre la fiesta</string>
     <string name="terminado">Terminado</string>
     <string name="login">Iniciar sesión</string>
-	<string name="menu_share">Compartir</string>
+    <string name="menu_share">Compartir</string>
 
 </resources>

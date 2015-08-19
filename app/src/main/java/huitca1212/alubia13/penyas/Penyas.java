@@ -132,6 +132,12 @@ public class Penyas extends Activity {
                         d.setContentView(im);
                         d.show();
                         break;
+                    case 17:
+                        d.setTitle("Infinity");
+                        im.setImageResource(R.drawable.infinity_g);
+                        d.setContentView(im);
+                        d.show();
+                        break;
                     case 18:
                         d.setTitle("Jaia");
                         im.setImageResource(R.drawable.jaia_g);
@@ -279,7 +285,7 @@ public class Penyas extends Activity {
     public Dialog crearDialogoContact(Context eso) {
         AlertDialog.Builder builder = new AlertDialog.Builder(eso);
         builder.setTitle("Foto de tu peña");
-        builder.setMessage("¡Envía una foto de tu peña para que aparezca en la aplicación!");
+        builder.setMessage("Envía una foto de tu peña para que aparezca en la aplicación");
         builder.setNegativeButton("WhatsApp", new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
@@ -295,7 +301,7 @@ public class Penyas extends Activity {
                 startActivity(Intent.createChooser(i, "Enviar mediante"));
             }
         });
-        builder.setPositiveButton("Salir", new OnClickListener() {
+        builder.setPositiveButton("Cancelar", new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

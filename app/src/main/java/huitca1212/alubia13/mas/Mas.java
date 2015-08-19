@@ -7,9 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.alubiaQuiz.AlubiaQuizMenu;
+import huitca1212.alubia13.mas.alubiaQuiz.AlubiaQuizMenu;
 import huitca1212.alubia13.mas.ajustes.Ajustes;
-import huitca1212.alubia13.mas.novedades.Novedades;
 
 
 public class Mas extends Activity {
