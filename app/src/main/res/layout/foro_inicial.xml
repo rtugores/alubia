@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:background="@drawable/fondo_nuevo"
+    android:gravity="center_vertical"
     android:orientation="vertical">
 
     <TextView
@@ -12,61 +12,63 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dip"
-        android:text="Bienvenido al foro"
-        android:textStyle="bold"
-        android:textSize="30sp"/>
+        android:text="@string/bienvenido"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dip"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
-        android:text="Iniciar sesión"
-        android:textStyle="bold"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/d_normal_button_green"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
-        android:background="@drawable/d_normal_button_green"/>
+        android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/separador"/>
+        android:contentDescription="@string/foro"
+        android:src="@drawable/separador" />
 
     <Button
         android:id="@+id/registro"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
-        android:layout_marginBottom="10dip"
-        android:text="Registrarme"
-        android:textStyle="bold"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/d_normal_button_blue"
+        android:text="@string/registrarme"
         android:textColor="#FFFFFF"
-        android:background="@drawable/d_normal_button_blue"/>
+        android:textStyle="bold" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/separador"/>
+        android:contentDescription="@string/foro"
+        android:src="@drawable/separador" />
 
     <Button
         android:id="@+id/invitado"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dip"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
-        android:text="Entrar como invitado"
-        android:textStyle="bold"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/d_normal_button_yellow"
+        android:text="@string/invitado"
         android:textColor="#FFFFFF"
-        android:background="@drawable/d_normal_button_yellow"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

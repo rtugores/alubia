@@ -24,11 +24,6 @@ public class Viernes extends Activity {
                     new TitularPrograma("00:00 VI Alubia Rock", "Plaza de toros"),
                     new TitularPrograma("00:30 Verbena", "Explanada de la casa de la cultura")};
 
-    //================================================================
-    //==============CODIGO PARA LISTVIEW==============================
-    //================================================================
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +75,7 @@ public class Viernes extends Activity {
                         "con la música de fiestas más actual.");
                 break;
         }
-        builder.setPositiveButton("Aceptar", new OnClickListener() {
+        builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

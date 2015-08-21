@@ -10,6 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
+
         <ScrollView
             android:id="@+id/scroller"
             android:layout_width="match_parent"
@@ -28,11 +29,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="30dip"
-                    android:layout_marginTop="30dip"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="30dip"
                     android:gravity="center"
-                    android:text="Introduce el código de tu peña (opcional)"
+                    android:text="@string/introduceCodigo"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -44,7 +45,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:ems="10"
-                    android:hint="Ej.: BS8TF1R39K"
+                    android:hint="@string/ejemploCodigo"
                     android:imeOptions="actionDone" />
 
                 <Button
@@ -52,11 +53,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dip"
-                    android:layout_marginTop="30dip"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="30dip"
                     android:background="@drawable/d_normal_button_blue"
-                    android:text="Continuar"
+                    android:text="@string/continuar"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
@@ -65,6 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/foro"
                     android:src="@drawable/codigo" />
 
                 <TextView
@@ -73,11 +75,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="20dip"
-                    android:layout_marginTop="15dip"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dip"
                     android:gravity="center"
-                    android:text="¿Todavía no conoces el código de tu peña?"
+                    android:text="@string/codigoDesconocido"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -85,12 +87,12 @@
                     android:id="@+id/button_codigo"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_gravity="center_horizontal"
                     android:background="@drawable/d_normal_button_blue"
-                    android:text="Pregúntale al administrador"
+                    android:text="@string/preguntaCodigo"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 

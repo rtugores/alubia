@@ -32,7 +32,7 @@ public class SendDenuncia extends AsyncTask<String, Void, String> {
     protected String mURL;
     private String jsonResult;
 
-    public SendDenuncia(Context contexto, LinearLayout layout, String mURL){
+    public SendDenuncia(Context contexto, LinearLayout layout, String mURL) {
         this.contexto = contexto;
         this.layout = layout;
         this.mURL = mURL;
@@ -102,15 +102,14 @@ public class SendDenuncia extends AsyncTask<String, Void, String> {
         if (resultado.equals("-1")) {
             error = true;
         } else if (resultado.equals("-2")) {
-            Toast.makeText(contexto, "No podemos encontrar este comentario. Probablemente haya sido eliminado", Toast.LENGTH_LONG).show();
+            Toast.makeText(contexto, R.string.comentarioYaEliminado, Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
             return;
         }
         if (error) {
             Toast.makeText(contexto, R.string.error_internet, Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(contexto, "Comentario denunciado correctamente. Será revisado por el administrador", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(contexto, R.string.comentarioDenunciado, Toast.LENGTH_SHORT).show();
         }
         layout.setVisibility(View.GONE);
     }

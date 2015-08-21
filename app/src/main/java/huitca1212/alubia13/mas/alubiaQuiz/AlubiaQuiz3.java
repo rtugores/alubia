@@ -32,10 +32,10 @@ public class AlubiaQuiz3 extends Activity {
         final RadioButton opcion2 = (RadioButton) findViewById(R.id.radio1);
         final RadioButton opcion3 = (RadioButton) findViewById(R.id.radio2);
         bienvenida_quiz.setText(R.string.alubiaquiz3);
-        pregunta.setText("1. ¿Quién fue la reina juvenil de la fiesta de la Alubia en el año 2006?");
-        opcion1.setText("Ana Mar Colinas Vivas");
-        opcion2.setText("Laura Morán Lozano");
-        opcion3.setText("Raquel González Vivas");
+        pregunta.setText(R.string.q1_d);
+        opcion1.setText(R.string.r11_d);
+        opcion2.setText(R.string.r12_d);
+        opcion3.setText(R.string.r13_d);
 
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -46,10 +46,10 @@ public class AlubiaQuiz3 extends Activity {
                     crearDialogoHasAcertado(0, 0).show();
                 } else crearDialogoHasFallado3(1, 0).show();
                 opcion1.setChecked(true);
-                pregunta.setText("2. ¿Cuántos años de existencia tiene la peña Kamensoky?");
-                opcion1.setText("6 años");
-                opcion2.setText("9 años");
-                opcion3.setText("12 años");
+                pregunta.setText(R.string.q2_d);
+                opcion1.setText(R.string.r21_d);
+                opcion2.setText(R.string.r22_d);
+                opcion3.setText(R.string.r23_d);
                 boton1.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (opcion3.isChecked()) {
@@ -57,10 +57,10 @@ public class AlubiaQuiz3 extends Activity {
                             crearDialogoHasAcertado(0, 0).show();
                         } else crearDialogoHasFallado3(2, 0).show();
                         opcion1.setChecked(true);
-                        pregunta.setText("3. ¿En qué calle se encuentra la peña Desfase?");
-                        opcion1.setText("Calle Onésimo Redondo");
-                        opcion2.setText("Calle la Paz");
-                        opcion3.setText("Calle Santa Cruz");
+                        pregunta.setText(R.string.q3_d);
+                        opcion1.setText(R.string.r31_d);
+                        opcion2.setText(R.string.r32_d);
+                        opcion3.setText(R.string.r33_d);
                         boton1.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 if (opcion2.isChecked()) {
@@ -68,10 +68,10 @@ public class AlubiaQuiz3 extends Activity {
                                     crearDialogoHasAcertado(0, 0).show();
                                 } else crearDialogoHasFallado3(3, 0).show();
                                 opcion1.setChecked(true);
-                                pregunta.setText("4. ¿En qué año se celebró por primera vez el descenso del reguero?");
-                                opcion1.setText("1985");
-                                opcion2.setText("1997");
-                                opcion3.setText("2001");
+                                pregunta.setText(R.string.q4_d);
+                                opcion1.setText(R.string.r41_d);
+                                opcion2.setText(R.string.r42_d);
+                                opcion3.setText(R.string.r43_d);
                                 boton1.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (opcion3.isChecked()) {
@@ -79,10 +79,10 @@ public class AlubiaQuiz3 extends Activity {
                                             crearDialogoHasAcertado(0, 0).show();
                                         } else crearDialogoHasFallado3(4, 0).show();
                                         opcion1.setChecked(true);
-                                        pregunta.setText("5. ¿Cuál de estos grupos no participó en el Alubia Rock 2013?");
-                                        opcion1.setText("Dementes");
-                                        opcion2.setText("Rayadura");
-                                        opcion3.setText("Def con Dos");
+                                        pregunta.setText(R.string.q5_d);
+                                        opcion1.setText(R.string.r51_d);
+                                        opcion2.setText(R.string.r52_d);
+                                        opcion3.setText(R.string.r53_d);
                                         boton1.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
                                                 if (opcion1.isChecked()) {
@@ -90,21 +90,22 @@ public class AlubiaQuiz3 extends Activity {
                                                     crearDialogoHasAcertado(0, 0).show();
                                                 } else crearDialogoHasFallado3(5, 0).show();
                                                 opcion1.setChecked(true);
-                                                pregunta.setText("6. ¿Qué peña colaboró en el reparto del bollo preñao de la fiesta de la Alubia en el 2013?");
-                                                opcion1.setText("La coral");
-                                                opcion2.setText("Kalankoe");
-                                                opcion3.setText("Jarra y pedal");
+                                                pregunta.setText(R.string.q6_d);
+                                                opcion1.setText(R.string.r61_d);
+                                                opcion2.setText(R.string.r62_d);
+                                                opcion3.setText(R.string.r63_d);
                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                     public void onClick(View v) {
                                                         if (opcion3.isChecked()) {
                                                             respuesta += 1;
                                                             crearDialogoHasAcertado(0, 0).show();
-                                                        } else crearDialogoHasFallado3(6, 0).show();
+                                                        } else
+                                                            crearDialogoHasFallado3(6, 0).show();
                                                         opcion1.setChecked(true);
-                                                        pregunta.setText("7. ¿Qué pelotaris se enfrentaron en el partido de pelota a mano del 2005?");
-                                                        opcion1.setText("Bengoetxea-Eraso VS Garciandia-Apecetxea");
-                                                        opcion2.setText("Beroiz-TintínIII VS Cecilio-Ongay");
-                                                        opcion3.setText("Apraiz-Begino VS Arruti-BerasaluzeVIII");
+                                                        pregunta.setText(R.string.q7_d);
+                                                        opcion1.setText(R.string.r71_d);
+                                                        opcion2.setText(R.string.r72_d);
+                                                        opcion3.setText(R.string.r73_d);
                                                         boton1.setOnClickListener(new View.OnClickListener() {
                                                             public void onClick(View v) {
                                                                 if (opcion1.isChecked()) {
@@ -113,10 +114,10 @@ public class AlubiaQuiz3 extends Activity {
                                                                 } else
                                                                     crearDialogoHasFallado3(7, 0).show();
                                                                 opcion1.setChecked(true);
-                                                                pregunta.setText("8. ¿De qué color tiene la camiseta la peña Los colgaos?");
-                                                                opcion1.setText("Amarilla");
-                                                                opcion2.setText("Roja");
-                                                                opcion3.setText("Verde");
+                                                                pregunta.setText(R.string.q8_d);
+                                                                opcion1.setText(R.string.r81_d);
+                                                                opcion2.setText(R.string.r82_d);
+                                                                opcion3.setText(R.string.r83_d);
                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                     public void onClick(View v) {
                                                                         if (opcion1.isChecked()) {
@@ -125,10 +126,10 @@ public class AlubiaQuiz3 extends Activity {
                                                                         } else
                                                                             crearDialogoHasFallado3(8, 0).show();
                                                                         opcion1.setChecked(true);
-                                                                        pregunta.setText("9. ¿Quién fue la primera dama juvenil de la fiesta de la Alubia 2012?");
-                                                                        opcion1.setText("Sara Sutil Gómez");
-                                                                        opcion2.setText("Jennifer Ceñera Fernández");
-                                                                        opcion3.setText("Ana Montero González");
+                                                                        pregunta.setText(R.string.q9_d);
+                                                                        opcion1.setText(R.string.r91_d);
+                                                                        opcion2.setText(R.string.r92_d);
+                                                                        opcion3.setText(R.string.r93_d);
                                                                         boton1.setOnClickListener(new View.OnClickListener() {
                                                                             public void onClick(View v) {
                                                                                 if (opcion2.isChecked()) {
@@ -137,10 +138,10 @@ public class AlubiaQuiz3 extends Activity {
                                                                                 } else
                                                                                     crearDialogoHasFallado3(9, 0).show();
                                                                                 opcion1.setChecked(true);
-                                                                                pregunta.setText("10. ¿De qué otra peña proviene la peña \"Ya estamos todos\"?");
-                                                                                opcion1.setText("Jaia");
-                                                                                opcion2.setText("PocaPena");
-                                                                                opcion3.setText("Ketache");
+                                                                                pregunta.setText(R.string.q10_d);
+                                                                                opcion1.setText(R.string.r101_d);
+                                                                                opcion2.setText(R.string.r102_d);
+                                                                                opcion3.setText(R.string.r103_d);
                                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                                     public void onClick(View v) {
                                                                                         if (opcion3.isChecked()) {
@@ -174,10 +175,10 @@ public class AlubiaQuiz3 extends Activity {
     //DIALOGO PARA EL QUIZ ACIERTA PREGUNTA
     public Dialog crearDialogoHasAcertado(int numeroPregunta, final int respuesta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuiz3.this);
-        builder.setTitle("¡Enhorabuena!");
-        builder.setMessage("Has acertado la pregunta.");
+        builder.setTitle(R.string.enhorabuena);
+        builder.setMessage(R.string.hasAcertado);
         if (numeroPregunta == 10) {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(AlubiaQuiz3.this, Solucion.class);
                     String respuesta_s = Integer.toString(respuesta);
@@ -189,7 +190,7 @@ public class AlubiaQuiz3 extends Activity {
                 }
             });
         } else {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
@@ -202,38 +203,38 @@ public class AlubiaQuiz3 extends Activity {
     //DIALOGO PARA EL QUIZ FALLA PREGUNTA (3)
     public Dialog crearDialogoHasFallado3(int numeroPregunta, final int respuesta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuiz3.this);
-        builder.setTitle("¡Mala suerte!");
+        builder.setTitle(R.string.malaSuerte);
         switch (numeroPregunta) {
             case 1:
-                builder.setMessage("Era algo difícil. La reina juvenil de la fiesta de la Alubia 2006 fue Raquel González Vivas.");
+                builder.setMessage(R.string.s1_d);
                 break;
             case 2:
-                builder.setMessage("Incorrecto. La peña Kamensoky fue fundada en 2003, por lo que tiene 12 años.");
+                builder.setMessage(R.string.s2_d);
                 break;
             case 3:
-                builder.setMessage("¿Andas algo perdido? La peña Desfase se encuentra en la calle la Paz.");
+                builder.setMessage(R.string.s3_d);
                 break;
             case 4:
-                builder.setMessage("Error. El descenso del reguero se celebró por primera vez en el año 2001.");
+                builder.setMessage(R.string.s4_d);
                 break;
             case 5:
-                builder.setMessage("Mal. El grupo que no participó en el Alubia Rock 2013 fue el conjunto paramés Dementes.");
+                builder.setMessage(R.string.s5_d);
                 break;
             case 6:
-                builder.setMessage("Has fallado. La peña que colaboró en el reparto fue Jarra y pedal.");
+                builder.setMessage(R.string.s6_d);
                 break;
             case 7:
-                builder.setMessage("Pregunta difícil. Los pelotaris que se enfrentaron fueron Bengoetxea-Eraso y Garciandia-Apecetxea.");
+                builder.setMessage(R.string.s7_d);
                 break;
             case 8:
-                builder.setMessage("Fíjate bien en ellos para la próxima. La peña Los colgaos visten camiseta amarilla.");
+                builder.setMessage(R.string.s8_d);
                 break;
             case 9:
-                builder.setMessage("Te has equivocado. La primera dama juvenil del 2012 fue Jennifer Ceñera Fernández.");
+                builder.setMessage(R.string.s9_d);
                 break;
             case 10:
-                builder.setMessage("Mal. La peña \"Ya estamos todos\" proviene de la peña \"Ketache\".");
-                builder.setPositiveButton("Aceptar", new OnClickListener() {
+                builder.setMessage(R.string.s10_d);
+                builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(AlubiaQuiz3.this, Solucion.class);
                         String respuesta_s = Integer.toString(respuesta);
@@ -247,7 +248,7 @@ public class AlubiaQuiz3 extends Activity {
                 break;
         }
         if (numeroPregunta != 10) {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }

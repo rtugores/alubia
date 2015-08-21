@@ -96,7 +96,7 @@ public class ForoRegistroContrasenya extends Activity {
         // Comprobamos si la contraseña está escrita correctamente
         contrasenya = contrasenya_edit.getText().toString().trim();
         if (contrasenya.length() < 5) {
-            Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.contrasenyaError, Toast.LENGTH_SHORT).show();
             return;
         }
         // Enviamos los datos recogidos a la nueva actividad (ForoRegistroCodigo)

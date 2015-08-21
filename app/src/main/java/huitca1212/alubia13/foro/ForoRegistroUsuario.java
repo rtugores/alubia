@@ -118,7 +118,7 @@ public class ForoRegistroUsuario extends Activity {
         // Comprobamos si el usuario está escrito correctamente
         usuario = usuario_edit.getText().toString().trim();
         if (usuario.length() < 3) {
-            Toast.makeText(getApplicationContext(), "El usuario ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.usuarioError, Toast.LENGTH_SHORT).show();
             return;
         }
         String usuario_minus = usuario.toLowerCase();
@@ -128,7 +128,7 @@ public class ForoRegistroUsuario extends Activity {
                 usuario_minus.contains("subnormal") || usuario_minus.contains("mierda") ||
                 usuario_minus.contains("cabron") || usuario_minus.contains("coño") ||
                 usuario_minus.contains("maric") || usuario_minus.contains("marik")) {
-            Toast.makeText(getApplicationContext(), "No está permitido escribir palabrotas", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.noPalabrotas, Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -229,7 +229,7 @@ public class ForoRegistroUsuario extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "Este nombre de usuario ya existe. Prueba con otro", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.usuarioEnUso, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }

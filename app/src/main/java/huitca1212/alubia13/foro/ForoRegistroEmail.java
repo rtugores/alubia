@@ -124,7 +124,7 @@ public class ForoRegistroEmail extends Activity {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         email = email_edit.getText().toString().trim();
         if(!email.matches(emailPattern)) {
-            Toast.makeText(getApplicationContext(), "El email tiene un formato incorrecto. Asegúrate de que esté bien escrito", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -225,7 +225,7 @@ public class ForoRegistroEmail extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("1")) { // [IMPORTANTE] SIGNIFICA ERROR POR EL SCRIPT PHP QUE REUTILIZAMOS DEL LOGIN  (comprobar_email.php)
-                Toast.makeText(getApplicationContext(), "El email que has escrito ya existe. Prueba con otro", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.emailEnUso, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }

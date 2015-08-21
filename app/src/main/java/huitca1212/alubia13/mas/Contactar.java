@@ -4,14 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.analytics.tracking.android.EasyTracker;
 
 import huitca1212.alubia13.R;
 
@@ -38,7 +32,7 @@ public class Contactar extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("message/rfc822")
-                        .putExtra(Intent.EXTRA_EMAIL, new String[]{"huitca1212@gmail.com"});
+                        .putExtra(Intent.EXTRA_EMAIL, "huitca1212@gmail.com");
                 startActivity(Intent.createChooser(i, "Enviar mediante"));
             }
         });

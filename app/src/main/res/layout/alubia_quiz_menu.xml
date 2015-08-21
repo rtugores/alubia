@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_nuevo"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/fondo_nuevo">
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/button1"
@@ -14,9 +14,9 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:background="@drawable/d_normal_button_green"
+        android:text="@string/eleccion1"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:text="@string/eleccion1" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button2"
@@ -26,9 +26,9 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:background="@drawable/d_normal_button_green"
+        android:text="@string/eleccion2"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:text="@string/eleccion2" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button3"
@@ -37,8 +37,8 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:background="@drawable/d_normal_button_green"
+        android:text="@string/eleccion3"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:text="@string/eleccion3" />
+        android:textStyle="bold" />
 
 </LinearLayout>

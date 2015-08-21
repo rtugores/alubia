@@ -1,60 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <string name="no_disponible">No disponible</string>
-        <string name="nodisponible_contenido">\t\tEl contenido al que intentas acceder estará disponible cuando se publique el programa oficial de la fiesta.\n\n\t\tSe pondrá un aviso en la sección NOVEDADES para que actualices la aplicación.\n\n\t\tDisculpa las molestias.
-            </string>
+
+    <!-- MANIFEST Y COMUNES-->
     <string name="app_name">Alubia \'15</string>
     <string name="error_internet">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
-    <string name="action_settings">Settings</string>
+    <string name="login">Iniciar sesión</string>
     <string name="menu_inicio">¡Genial!</string>
     <string name="menu_info">Información</string>
     <string name="image_main">Im</string>
     <string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <!-- PROGRAMA DE FIESTAS -->
     <string name="viernes">Viernes 21 de agosto</string>
     <string name="sabado">Sábado 22 de agosto</string>
     <string name="domingo">Domingo 23 de agosto</string>
     <string name="lunes">Lunes 24 de agosto</string>
-    <string name="bienvenida">Fiesta de la Alubia 2015</string>
-    <string name="bienvenida_sub">Laguna de Negrillos</string>
-    <string name="programa">Programa de fiestas</string>
-    <string name="penyas">Peñas</string>
-    <string name="foro">Foro</string>
-    <string name="novedades">Novedades</string>
-    <string name="masinfo">Más</string>
-    <string name="actualizar">actualizar</string>
-    <string name="enviar">-></string>
     <string name="saludo">Saludo del alcalde</string>
-    <string name="reinas_damas">Reinas y Damas Alubia 2015</string>
-    <string name="carrera">XIV Carrera de la Alubia</string>
-    <string name="contactar">¡Envía una foto de tu peña!</string>
-    <string name="fotoPenya">Foto de la peña</string>
-    <string name="inicio">Inicio</string>
-    <string name="eleccion1">Nivel fácil</string>
-    <string name="eleccion2">Nivel medio</string>
-    <string name="eleccion3">Nivel difícil</string>
-    <string name="alubiaquiz">Alubia Quiz</string>
-    <string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
-    <string name="alubiaquiz2">Alubia Quiz - Nivel medio</string>
-    <string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
-    <string name="siguiente">¡Siguiente!</string>
-    <string name="solucion_texto">Solución</string>
- 	<string name="carrera_contenido"><b>SÁBADO 29 DE AGOSTO</b>
-\n\n<b>Inscripciones:</b>
-\n18:30 h. - Apertura de inscripciones para la XIV Carrera Popular "Alubia 2015".
-\nLugar: Plaza del castillo.
-\n\n<b>Horario:</b>
-\n19:00 h. - Comienzo de la XIV Carrera Popular "Alubia 2015".
-\nSalida: Plaza del castillo.</string>
- 	<string name="reinas_damas_contenido"><b>Reina y Damas juveniles.</b>
-\n\nReina: Noelia Murciego Casado
-\nDama: Laura Morán Lozano
-\nDama: Raquel Ugidos López
-\n\n\n<b>Reina y Damas infantiles.</b>
-\n\nReina: Kiara Martínez Blanco
-\nDama: María Caramazana García
-\nDama: Belén Santo Tomás Merino</string>
- 	<string name="saludo_contenido">Llega de nuevo la Fiesta de la Alubia, fiesta de la juventud, que vuelve a ser motivo de alegría y disfrute. Momento para olvidar la rutina cotidiana pero, también, la ocasión para demostrar que sabemos divertirnos, respetando lo que nos rodea y a la gente con la que convivimos.
+    <string name="saludo_contenido">Llega de nuevo la Fiesta de la Alubia, fiesta de la juventud, que vuelve a ser motivo de alegría y disfrute. Momento para olvidar la rutina cotidiana pero, también, la ocasión para demostrar que sabemos divertirnos, respetando lo que nos rodea y a la gente con la que convivimos.
 \n\nOs invito a que dejéis a un lado vuestras preocupaciones durante estos días y a que salgáis a la calle a vivir el bullicio y la alegría que van a inundar nuestro pueblo.
 \n\nEl pregonero de este año será D. Alberto Rodríguez Santos, nuestro párroco, al que agradecemos su colaboración al igual que a las Reinas y Damas Juveniles e Infantiles que, con su belleza y simpatía, nos harán sentirnos orgullosos de las nuevas generaciones lagunesas.
 \n\nQuiero manifestar también nuestro agradecimiento a las Peñas y sus fantásticos peñistas porque sin vosotros nada de esto habría sido posible. Asimismo a los trabajadores municipales por su dedicación con el fin de que todo esté en orden.
@@ -62,7 +26,211 @@
 \n\nEn nombre de la Corporación Municipal os deseamos que paséis unas felices fiestas.
 \nUn abrazo muy fuerte de vuestro amigo y, a la vez, vuestro alcalde.
 \n\n<b>El alcalde del Ayuntamiento de Laguna de Negrillos</b></string>
+    <string name="reinas_damas">Reinas y Damas Alubia 2015</string>
+    <string name="reinas_damas_contenido"><b>Reina y Damas juveniles.</b>
+\n\nReina: Noelia Murciego Casado
+\nDama: Laura Morán Lozano
+\nDama: Raquel Ugidos López
+\n\n\n<b>Reina y Damas infantiles.</b>
+\n\nReina: Kiara Martínez Blanco
+\nDama: María Caramazana García
+\nDama: Belén Santo Tomás Merino</string>
+    <string name="carrera">XIV Carrera de la Alubia</string>
+    <string name="carrera_contenido"><b>SÁBADO 29 DE AGOSTO</b>
+\n\n<b>Inscripciones:</b>
+\n18:30 h. - Apertura de inscripciones para la XIV Carrera Popular "Alubia 2015".
+\nLugar: Plaza del castillo.
+\n\n<b>Horario:</b>
+\n19:00 h. - Comienzo de la XIV Carrera Popular "Alubia 2015".
+\nSalida: Plaza del castillo.</string>
 
+    <!-- ACTIVIDAD PRINCIPAL -->
+    <string name="bienvenida">Fiesta de la Alubia 2015</string>
+    <string name="bienvenida_sub">Laguna de Negrillos</string>
+    <string name="programa">Programa de fiestas</string>
+    <string name="penyas">Peñas</string>
+    <string name="foro">Foro</string>
+    <string name="novedades">Novedades</string>
+    <string name="masinfo">Más</string>
+
+    <!-- PEÑAS -->
+    <string name="contactar">¡Envía una foto de tu peña!</string>
+    <string name="fotoPenya">Foto de tu peña</string>
+    <string name="fotoPenyaTexto">Envía una foto de tu peña para que aparezca en la aplicación</string>
+
+    <!-- ALUBIA QUIZ -->
+    <string name="alubiaquiz">Alubia Quiz</string>
+    <string name="enhorabuena">¡Enhorabuena!</string>
+    <string name="pocasRespuestas">No has acertado muchas respuestas, pero no te preocupes.
+\n\n¡Inténtalo con otro nivel!</string>
+    <string name="muchasRespuestas">¡Enhorabuena!
+\n\n¿Sabes ya si has acertado más que tus amigos?</string>
+    <string name="hasAcertado">Has acertado la pregunta.</string>
+    <string name="malaSuerte">¡Mala suerte!</string>
+    <string name="siguiente">¡Siguiente!</string>
+    <string name="solucion">Solución</string>
+    <!-- NIVEL FÁCIL -->
+    <string name="eleccion1">Nivel fácil</string>
+    <string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
+    <string name="q1_f">1. La carrera de la Alubia consiste en</string>
+    <string name="r11_f">Hacer medio trayecto corriendo y medio en bici</string>
+    <string name="r12_f">Hacer todo el trayecto corriendo</string>
+    <string name="r13_f">No hay ninguna carrera en la fiesta de la Alubia</string>
+    <string name="s1_f">Has fallado. La carrera de la Alubia consiste en hacer todo el trayecto corriendo.</string>
+    <string name="q2_f">2. ¿Dónde se celebraron los primeros conciertos del Alubia Rock?</string>
+    <string name="r21_f">En la plaza de toros</string>
+    <string name="r22_f">En el campo de fútbol</string>
+    <string name="r23_f">En la explanada de la Casa de la cultura</string>
+    <string name="s2_f">Mal. El Alubia Rock se suele celebrar en la plaza de toros del pueblo.</string>
+    <string name="q3_f">3. ¿Qué famoso juego tuvo relevancia hace algunos años en la fiesta de la Alubia?</string>
+    <string name="r31_f">La petanca</string>
+    <string name="r32_f">La maceta</string>
+    <string name="r33_f">Tiro al blanco</string>
+    <string name="s3_f">Incorrecto. El juego del que hubo concursos en la fiesta fue la maceta.</string>
+    <string name="q4_f">4. Las misas de peñas se celebran:</string>
+    <string name="r41_f">Al amanecer</string>
+    <string name="r42_f">Al mediodía</string>
+    <string name="r43_f">Al atardecer</string>
+    <string name="s4_f">Te has equivocado. Las misas de peñas se suelen celebrar a las 13h, es decir, al mediodía.</string>
+    <string name="q5_f">5. ¿De qué es la exposición que se muestra cada año en la Casa de la cultura?</string>
+    <string name="r51_f">De escultura</string>
+    <string name="r52_f">De arquitectura</string>
+    <string name="r53_f">De pintura</string>
+    <string name="s5_f">No. La exposición que se muestra en la Casa de la cultura es de pintura.</string>
+    <string name="q6_f">6. ¿Qué es la Party Dance?</string>
+    <string name="r61_f">Un tractor con un remolque donde se sube la gente para bailar</string>
+    <string name="r62_f">Un local ubicado cerca de las piscinas donde se baila y se sirven copas</string>
+    <string name="r63_f">Una expresión que se utiliza como sinónimo de desmadre</string>
+    <string name="s6_f">¿Qué sería de las noches sin ella? La Party Dance es un tractor con un remolque donde se sube la gente para bailar.</string>
+    <string name="q7_f">7. ¿Qué día se celebra el desfile de peñas y carrozas?</string>
+    <string name="r71_f">Sábado</string>
+    <string name="r72_f">Domingo</string>
+    <string name="r73_f">Lunes</string>
+    <string name="s7_f">Error. El famoso desfile de peñas y carrozas se celebra el domingo por la tarde.</string>
+    <string name="q8_f">8. ¿Cuál de estos concursos nunca se ha celebrado en una fiesta de la Alubia?</string>
+    <string name="r81_f">Concurso de grafitis</string>
+    <string name="r82_f">Concurso de disfraces</string>
+    <string name="r83_f">Concurso de ballet</string>
+    <string name="s8_f">No. El concurso que nunca se celebró fue el de ballet.</string>
+    <string name="q9_f">9. La entrada anticipada en el Alubia Rock tiene un precio de:</string>
+    <string name="r91_f">Un euro</string>
+    <string name="r92_f">Cinco euros</string>
+    <string name="r93_f">No hay entradas, es gratis</string>
+    <string name="s9_f">Respuesta incorrecta. El Alubia Rock es gratis, no hay entradas.</string>
+    <string name="q10_f">10. ¿Desde dónde sale el desfile infantil de disfraces?</string>
+    <string name="r101_f">Desde el colegio público</string>
+    <string name="r102_f">Desde el castillo</string>
+    <string name="r103_f">Desde la plaza de toros</string>
+    <string name="s10_f">Mal. El desfile infantil de disfraces sale desde el colegio público.</string>
+    <!-- NIVEL MEDIO -->
+    <string name="eleccion2">Nivel medio</string>
+    <string name="alubiaquiz2">Alubia Quiz - Nivel medio</string>
+    <string name="q1_m">1. ¿Cuál de estas peñas no existía cuando nació la fiesta de la Alubia?</string>
+    <string name="r11_m">Sonic 2000</string>
+    <string name="r12_m">Un millón de amigos</string>
+    <string name="r13_m">Rockambole</string>
+    <string name="s1_m">Has fallado. La peña que no existía cuando nació la fiesta es la peña Rockambole.</string>
+    <string name="q2_m">2. ¿Cuál fue el último año en el que hubo suelta de vaquillas?</string>
+    <string name="r21_m">2009</string>
+    <string name="r22_m">2011</string>
+    <string name="r23_m">2013</string>
+    <string name="s2_m">Te has equivocado. El último año que hubo suelta de vaquillas fue el 2009.</string>
+    <string name="q3_m">3. ¿Quién fue la reina infantil de la fiesta de la Alubia en el año 2013?</string>
+    <string name="r31_m">Amaia Rodríguez Cubero</string>
+    <string name="r32_m">Irene Gorgojo Sordo</string>
+    <string name="r33_m">Alba Ugidos Matilla</string>
+    <string name="s3_m">Incorrecto. La reina infantil de la fiesta de la Alubia 2013 fue Amaia Rodríguez Cubero.</string>
+    <string name="q4_m">4. ¿Qué típica degustación se hace el lunes de cada fiesta al mediodía?</string>
+    <string name="r41_m">Bollo Preñao</string>
+    <string name="r42_m">Alubiada</string>
+    <string name="r43_m">Paella</string>
+    <string name="s4_m">Falso. Los lunes al mediodía se sirve Alubiada para todos.</string>
+    <string name="q5_m">5. ¿Qué dos peñas se fusionaron en la fiesta de la Alubia 2013?</string>
+    <string name="r51_m">Kelnozz &amp; Ceda el vaso</string>
+    <string name="r52_m">Taboo &amp; Descoloke</string>
+    <string name="r53_m">Kachi-chirín &amp; La coral</string>
+    <string name="s5_m">Ellos sí que la acertaron. Las peña fusionada se llama "Kelnozz &amp; Ceda el vaso"</string>
+    <string name="q6_m">6. ¿En qué año nació la fiesta de la Alubia?</string>
+    <string name="r61_m">1969</string>
+    <string name="r62_m">1977</string>
+    <string name="r63_m">1985</string>
+    <string name="s6_m">Esta había que acertarla. La fiesta de la Alubia nació en 1977.</string>
+    <string name="q7_m">7. En la fiesta de la Alubia nunca ha habido un torneo de:</string>
+    <string name="r71_m">Pelota a mano</string>
+    <string name="r72_m">Balonmano</string>
+    <string name="r73_m">Hockey</string>
+    <string name="s7_m">Te has equivocado. El torneo que nunca hubo en la Alubia fue de Hockey.</string>
+    <string name="q8_m">8. La peña Indis (Indiscretos) está formada por:</string>
+    <string name="r81_m">Sólo chicos</string>
+    <string name="r82_m">Sólo chicas</string>
+    <string name="r83_m">Es mixta</string>
+    <string name="s8_m">Mal. La peña Indis (Indiscretos) está formada por chicos y chicas.</string>
+    <string name="q9_m">9. ¿Qué conocida cantante de Operación Triunfo dio un concierto en una fiesta de la Alubia?</string>
+    <string name="r91_m">Edurne</string>
+    <string name="r92_m">Chenoa</string>
+    <string name="r93_m">Natalia</string>
+    <string name="s9_m">Has fallado. La artista que cantó en Laguna de Negrillos en el año 2003 fue Natalia.</string>
+    <string name="q10_m">10. ¿Cuál de estas peñas tiene menos de 7 años de existencia?</string>
+    <string name="r101_m">Taboo</string>
+    <string name="r102_m">Kachi-chirín</string>
+    <string name="r103_m">El Ginkgo</string>
+    <string name="s10_m">Error. La peña con menos de 7 años es Taboo. Nació en 2011.</string>
+    <!-- NIVEL DIFÍCIL -->
+    <string name="eleccion3">Nivel difícil</string>
+    <string name="alubiaquiz3">Alubia Quiz - Nivel difícil</string>
+    <string name="q1_d">1. ¿Quién fue la reina juvenil de la fiesta de la Alubia en el año 2006?</string>
+    <string name="r11_d">Ana Mar Colinas Vivas</string>
+    <string name="r12_d">Laura Morán Lozano</string>
+    <string name="r13_d">Raquel González Vivas</string>
+    <string name="s1_d">Era algo difícil. La reina juvenil de la fiesta de la Alubia 2006 fue Raquel González Vivas.</string>
+    <string name="q2_d">2. ¿Cuántos años de existencia tiene la peña Kamensoky?</string>
+    <string name="r21_d">6 años</string>
+    <string name="r22_d">9 años</string>
+    <string name="r23_d">12 años</string>
+    <string name="s2_d">Incorrecto. La peña Kamensoky fue fundada en 2003, por lo que tiene 12 años.</string>
+    <string name="q3_d">3. ¿En qué calle se encuentra la peña Desfase?</string>
+    <string name="r31_d">Calle Onésimo Redondo</string>
+    <string name="r32_d">Calle la Paz</string>
+    <string name="r33_d">Calle Santa Cruz</string>
+    <string name="s3_d">¿Andas algo perdido? La peña Desfase se encuentra en la calle la Paz.</string>
+    <string name="q4_d">4. ¿En qué año se celebró por primera vez el descenso del reguero?</string>
+    <string name="r41_d">1985</string>
+    <string name="r42_d">1997</string>
+    <string name="r43_d">2001</string>
+    <string name="s4_d">Error. El descenso del reguero se celebró por primera vez en el año 2001.</string>
+    <string name="q5_d">5. ¿Cuál de estos grupos no participó en el Alubia Rock 2013?</string>
+    <string name="r51_d">Dementes</string>
+    <string name="r52_d">Rayadura</string>
+    <string name="r53_d">Def con Dos</string>
+    <string name="s5_d">Mal. El grupo que no participó en el Alubia Rock 2013 fue el conjunto paramés Dementes.</string>
+    <string name="q6_d">6. ¿Qué peña colaboró en el reparto del bollo preñao de la fiesta de la Alubia en el 2013?</string>
+    <string name="r61_d">La coral</string>
+    <string name="r62_d">Kalankoe</string>
+    <string name="r63_d">Jarra y pedal</string>
+    <string name="s6_d">Has fallado. La peña que colaboró en el reparto fue Jarra y pedal.</string>
+    <string name="q7_d">7. ¿Qué pelotaris se enfrentaron en el partido de pelota a mano del 2005?</string>
+    <string name="r71_d">Bengoetxea-Eraso VS Garciandia-Apecetxea</string>
+    <string name="r72_d">Beroiz-TintínIII VS Cecilio-Ongay</string>
+    <string name="r73_d">Apraiz-Begino VS Arruti-BerasaluzeVIII</string>
+    <string name="s7_d">Respuesta difícil. Los pelotaris que se enfrentaron fueron Bengoetxea-Eraso y Garciandia-Apecetxea.</string>
+    <string name="q8_d">8. ¿De qué color tiene la camiseta la peña Los colgaos?</string>
+    <string name="r81_d">Amarilla</string>
+    <string name="r82_d">Roja</string>
+    <string name="r83_d">Verde</string>
+    <string name="s8_d">Fíjate bien en ellos para la próxima. La peña Los colgaos visten camiseta amarilla.</string>
+    <string name="q9_d">9. ¿Quién fue la primera dama juvenil de la fiesta de la Alubia 2012?</string>
+    <string name="r91_d">Sara Sutil Gómez</string>
+    <string name="r92_d">Jennifer Ceñera Fernández</string>
+    <string name="r93_d">Ana Montero González</string>
+    <string name="s9_d">Te has equivocado. La primera dama juvenil del 2012 fue Jennifer Ceñera Fernández.</string>
+    <string name="q10_d">10. ¿De qué peña proviene la peña "Ya estamos todos"?</string>
+    <string name="r101_d">Jaia</string>
+    <string name="r102_d">PocaPena</string>
+    <string name="r103_d">Ketache</string>
+    <string name="s10_d">Mal. La peña "Ya estamos todos" proviene de la peña "Ketache".</string>
+
+    <!-- SOBRE LA FIESTA -->
+    <string name="verMapa">Ver en mapa</string>
  	<string name="write_info"><b>INFORMACIÓN</b>
 \n\nLa fiesta comienza el penúltimo viernes de agosto y es la fiesta más grande del pueblo. Nace en 1977 recordando la alubia, el entonces producto típico por excelencia de la zona. Se celebra en fechas de vacaciones para facilitar la participación de los hijos y simpatizantes del pueblo, los cuales viven memorables aventuras. 
 \n\nSe alternan actividades culturales y deportivas. La juventud se moviliza organizando sus peñas. Hay peñas de niños, de mayores, de jóvenes, que se implican en la fiesta dándole colorido, y la mayoría con sus "chiringuitos". Algunos años hay suelta de vaquillas, para gente atrevida; otros descenso del reguero, para gente con imaginación; otros carreras profesionales o de aficionados para facilitar la participación. 
@@ -81,14 +249,79 @@
 las compañías Empresa Vivas y Autocares Franco ofrecen servicios por carretera entre Laguna de Negrillos y distintos destinos, como 
 León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se pueden consultar los horarios en la página web del pueblo.
 \n\n<i>Fuente: Wikipedia.</i></string>
+
+    <!-- FORO -->
+    <string name="bienvenido">Bienvenido</string>
     <string name="registro">Registro</string>
-    <string name="solucion">Solución</string>
+    <string name="registrarme">Registrarme</string>
+    <string name="invitado">Entrar como invitado</string>
+    <string name="introduceContrasenya">Introduce tu contraseña</string>
+    <string name="contrasenya">Contraseña</string>
+    <string name="continuar">Continuar</string>
+    <string name="olvidasteContrasenya">¿Olvidaste tu contraseña?</string>
+    <string name="enviameContrasenya">Envíamela a mi correo</string>
+    <string name="introduceEmail">Introduce tu dirección de correo electrónico</string>
+    <string name="pprivacidad1">Tómate un minuto para revisar la</string>
+    <string name="pprivacidad2">política de privacidad</string>
+    <string name="pprivacidad3">Al continuar, confirmas que has leído y aceptas la</string>
+    <string name="recuperarContrasenya">Recuperar contraseña</string>
+    <string name="recuperadaContrasenya">¿Ya has recuperado la contraseña?</string>
+    <string name="volverAtras">Vuelve atrás para iniciar sesión</string>
+    <string name="introduceCodigo">Introduce el código de tu peña (opcional)</string>
+    <string name="ejemploCodigo">Ej.: BS8TF1R39K</string>
+    <string name="codigoDesconocido">¿Todavía no conoces el código de tu peña?</string>
+    <string name="preguntaCodigo">Pregúntale al administrador</string>
+    <string name="introduceContrasenya2">Introduce una contraseña</string>
+    <string name="introduceUsuario">Introduce tu nombre para mostrar</string>
+    <string name="ejemploUsuario">Ej.: Rodri Tugores</string>
+
+    <string name="bloqueado">El comentario ha sido bloqueado por infringir las normas del foro.</string>
+    <string name="noPalabrotas">No está permitido escribir palabrotas</string>
+    <string name="denunciarComentario">Denunciar comentario</string>
+    <string name="usuarioBloqueado">Has sido bloqueado por incumplir las normas del foro</string>
+    <string name="usuarioError">El usuario ha de tener al menos 3 caracteres</string>
+    <string name="usuarioEnUso">Este nombre de usuario ya existe. Prueba con otro</string>
+    <string name="contrasenyaError">La contraseña ha de tener al menos 5 caracteres</string>
+    <string name="contrasenyaDistinta">La contraseña que introdujiste no coincide con la de la cuenta</string>
+    <string name="emailError">El email tiene un formato incorrecto. Asegúrate de que esté bien escrito</string>
+    <string name="emailDistinto">No podemos encontrar este email. Asegúrate de que esté bien escrito</string>
+    <string name="olvideOK">Genial! En breve recibirás un correo electrónico con tu contraseña!</string>
+    <string name="codigoError">El código tiene que tener 10 caracteres o debe permanecer vacío</string>
+    <string name="usuarioRepetido">Se acaba de registrar un usuario con ese mismo nombre. Vuelve a empezar el registro</string>
+    <string name="emailRepetido">Se acaba de registrar un usuario con ese mismo email. Vuelve a empezar el registro</string>
+    <string name="emailEnUso">El email que has escrito ya existe. Prueba con otro</string>
+    <string name="codigoDistinto">El código de peña introducido no existe. No escribas ninguno si no tienes peña</string>
+
+    <!-- MÁS  -->
     <string name="politica_privacidad">Política de privacidad</string>
     <string name="contact">Contactar</string>
     <string name="ajustes">Ajustes</string>
+    <string name="sobreFiesta">Sobre la fiesta</string>
     <string name="informacion_fiesta">Información sobre la fiesta</string>
-    <string name="terminado">Terminado</string>
-    <string name="login">Iniciar sesión</string>
-    <string name="menu_share">Compartir</string>
+
+    <!-- AJUSTES -->
+    <string name="cerrarSesion">Cerrar sesión</string>
+    <string name="cerrarSesionConf">¿Estás seguro de que quieres cerrar la sesión en el foro?</string>
+    <string name="sesionCerrada">No hay ninguna sesión abierta</string>
+    <string name="borrarCuenta">Borrar cuenta</string>
+    <string name="borrarCuentaConf">¿Estás seguro de que quieres borrar tu cuenta del foro?</string>
+    <string name="cuentaYaEliminada">No podemos encontrar tu cuenta. Probablemente ya haya sido eliminada</string>
+    <string name="cuentaEliminada">Tu cuenta ha sido eliminada con éxito</string>
+    <string name="comentarioYaEliminado">No podemos encontrar este comentario. Probablemente ya haya sido eliminado</string>
+    <string name="comentarioDenunciado">Comentario denunciado correctamente. Será revisado por el administrador</string>
+    <string name="shareSubject">¡Descarga Alubia \'15!</string>
+    <string name="shareText">La aplicación de la fiesta de la Alubia en Laguna de Negrillos. Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13</string>
+    <string name="trick">¡Portada!</string>
+
+    <!-- CONTACTAR -->
+    <string name="algunaDuda">¿Tienes alguna duda o sugerencia?</string>
+    <string name="miNombre">Rodrigo J. Tugores Blanco</string>
+
+    <!-- NOVEDADES -->
+    <string name="email">Email</string>
+    <string name="whatsApp">WhatsApp</string>
+    <string name="evento">Evento</string>
+    <string name="enviaEvento">¡Envía un evento!</string>
+    <string name="eventoTexto">Envía un evento para que aparezca en la aplicación</string>
 
 </resources>

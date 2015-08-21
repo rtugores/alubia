@@ -110,7 +110,7 @@ public class ForoRegistroCodigo extends Activity {
         // Comprobamos si el código está escrito correctamente
         codigo = codigo_edit.getText().toString().trim();
         if (codigo.length() != 10 && codigo.length() != 0) {
-            Toast.makeText(getApplicationContext(), "El código tiene que tener 10 caracteres o debe permanecer vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.codigoError, Toast.LENGTH_SHORT).show();
             return;
         }
         // Convertimos para que nos entienda el servidor
@@ -224,19 +224,19 @@ public class ForoRegistroCodigo extends Activity {
             int resultado_int = Integer.parseInt(resultado);
             switch (resultado_int) {
                 case -1:
-                    Toast.makeText(getApplicationContext(), "Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                     pantalla_cargando.setVisibility(View.GONE);
                     return;
                 case -2:
-                    Toast.makeText(getApplicationContext(), "Se acaba de registrar un usuario con ese mismo nombre. Vuelve a empezar el registro", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.usuarioRepetido, Toast.LENGTH_LONG).show();
                     pantalla_cargando.setVisibility(View.GONE);
                     return;
                 case -3:
-                    Toast.makeText(getApplicationContext(), "Se acaba de registrar un usuario con ese mismo email. Vuelve a empezar el registro", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.emailRepetido, Toast.LENGTH_LONG).show();
                     pantalla_cargando.setVisibility(View.GONE);
                     return;
                 case -4:
-                    Toast.makeText(getApplicationContext(), "El código de peña introducido no existe. No escribas ninguno si no tienes peña", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.codigoDistinto, Toast.LENGTH_LONG).show();
                     pantalla_cargando.setVisibility(View.GONE);
                     return;
             }

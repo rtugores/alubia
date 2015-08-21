@@ -30,11 +30,11 @@ public class Solucion extends Activity {
         MediaPlayer mpRes;
 
         if (resultado <= 4) {
-            txtSolucion.setText("No has acertado muchas respuestas, pero no te preocupes.\n\n¡Inténtalo con otro nivel!");
+            txtSolucion.setText(R.string.pocasRespuestas);
             mpRes = MediaPlayer.create(getApplicationContext(), R.raw.abucheo);
             mpRes.start();
         } else {
-            txtSolucion.setText("¡Enhorabuena!\n\n¿Sabes ya si has acertado más que tus amigos?");
+            txtSolucion.setText(R.string.muchasRespuestas);
             mpRes = MediaPlayer.create(getApplicationContext(), R.raw.aplausos);
             mpRes.start();
         }

@@ -20,8 +20,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.foro.Foro;
-import huitca1212.alubia13.mas.Mas;
 
 //====================================================================================================================
 //Tarea para Borrar Cuenta
@@ -104,7 +102,7 @@ public class BorrarCuenta extends AsyncTask<String, Void, String> {
         if (resultado.equals("-1")) {
             error = true;
         } else if (resultado.equals("-2")) {
-            Toast.makeText(contexto, "No podemos encontrar tu cuenta. Probablemente ya haya sido eliminada", Toast.LENGTH_LONG).show();
+            Toast.makeText(contexto, R.string.cuentaYaEliminada, Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
             return;
         }
@@ -112,7 +110,7 @@ public class BorrarCuenta extends AsyncTask<String, Void, String> {
             Toast.makeText(contexto, R.string.error_internet, Toast.LENGTH_LONG).show();
             layout.setVisibility(View.GONE);
         } else {
-            Toast.makeText(contexto, "Tu cuenta ha sido eliminada con éxito", Toast.LENGTH_SHORT).show();
+            Toast.makeText(contexto, R.string.cuentaEliminada, Toast.LENGTH_SHORT).show();
             contexto.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
                     .edit()
                     .putString("username", "")

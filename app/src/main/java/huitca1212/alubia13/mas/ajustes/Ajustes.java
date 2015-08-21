@@ -38,7 +38,7 @@ public class Ajustes extends Activity {
                     new TitularAjustes("Política de privacidad", "Échale un vistazo a la política de privacidad"),
                     new TitularAjustes("Compartir", "Comparte la aplicación con tus amigos"),
                     new TitularAjustes("Actualizar", "Obtén la versión más actualizada"),
-                    new TitularAjustes("Versión", "3.2"),
+                    new TitularAjustes("Versión", "3.3"),
             };
     private boolean notregister;
     private LinearLayout layout;
@@ -68,7 +68,7 @@ public class Ajustes extends Activity {
                         // Cerrar sesión
                         notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
                         if (notregister) {
-                            Toast.makeText(getApplicationContext(), "No hay ninguna sesión abierta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.sesionCerrada, Toast.LENGTH_SHORT).show();
                         } else {
                             crearDialogoCerrar(Ajustes.this).show();
                         }
@@ -82,7 +82,7 @@ public class Ajustes extends Activity {
                         // Borrar cuenta
                         notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
                         if (notregister) {
-                            Toast.makeText(getApplicationContext(), "No has iniciado ninguna sesión", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.sesionCerrada, Toast.LENGTH_SHORT).show();
                         } else {
                             crearDialogoBorrar(Ajustes.this).show();
                         }
@@ -99,8 +99,8 @@ public class Ajustes extends Activity {
                         final Intent intent_share = new Intent(android.content.Intent.ACTION_SEND);
                         intent_share.setType("text/plain");
                         intent_share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        intent_share.putExtra(Intent.EXTRA_SUBJECT, "¡Descarga Alubia '15!");
-                        intent_share.putExtra(Intent.EXTRA_TEXT, "La aplicación de la fiesta de la Alubia en Laguna de Negrillos. Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13");
+                        intent_share.putExtra(Intent.EXTRA_SUBJECT, R.string.shareSubject);
+                        intent_share.putExtra(Intent.EXTRA_TEXT, R.string.shareText);
                         startActivity(Intent.createChooser(intent_share, "Compartir mediante"));
                         break;
                     case 5:
@@ -114,7 +114,7 @@ public class Ajustes extends Activity {
                     case 6:
                         veces = veces - 1;
                         if (veces == 0) {
-                            d.setTitle("¡Portada!");
+                            d.setTitle(R.string.trick);
                             im.setImageResource(R.drawable.portada);
                             d.setContentView(im);
                             d.show();
@@ -128,14 +128,14 @@ public class Ajustes extends Activity {
 
     public Dialog crearDialogoCerrar(Context eso) {
         AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-        builder.setTitle("Cerrar sesión");
-        builder.setMessage("¿Estás seguro de que quieres cerrar la sesión en el foro?");
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.cerrarSesion);
+        builder.setMessage(R.string.cerrarSesionConf);
+        builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                         .edit()
@@ -164,14 +164,14 @@ public class Ajustes extends Activity {
 
     public Dialog crearDialogoBorrar(Context eso) {
         AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-        builder.setTitle("Borrar cuenta");
-        builder.setMessage("¿Estás seguro de que quieres borrar tu cuenta del foro?");
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.borrarCuenta);
+        builder.setMessage(R.string.borrarCuentaConf);
+        builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 if (!checkInternet()) {
                     Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();

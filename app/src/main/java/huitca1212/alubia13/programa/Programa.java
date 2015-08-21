@@ -14,7 +14,6 @@ import huitca1212.alubia13.R;
 
 public class Programa extends Activity {
 
-    private ListView lstOpciones;
     private TitularPrograma[] datos =
             new TitularPrograma[]{
                     new TitularPrograma("Saludo del alcalde", ""),
@@ -30,11 +29,8 @@ public class Programa extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.programa);
 
-        //================================================================
-        //==============CODIGO PARA LISTVIEW==============================
-        //================================================================
         AdaptadorPrograma adaptador = new AdaptadorPrograma(this, datos);
-        lstOpciones = (ListView) findViewById(R.id.LstOpciones);
+        ListView lstOpciones = (ListView) findViewById(R.id.LstOpciones);
         lstOpciones.setAdapter(adaptador);
         lstOpciones.setOnItemClickListener(new OnItemClickListener() {
             @Override

@@ -18,8 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -42,7 +40,6 @@ public class ForoOlvide extends Activity {
     boolean error = false;
     private String jsonResult, mURL;
     private LinearLayout pantalla_cargando;
-    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +100,10 @@ public class ForoOlvide extends Activity {
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
         // Comprobamos si el email está escrito correctamente
-        email = email_edit.getText().toString().trim();
-        if (email.length() < 3) {
-            Toast.makeText(getApplicationContext(), "El email ha de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        String email = email_edit.getText().toString().trim();
+        if (!email.matches(emailPattern)) {
+            Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -206,17 +204,17 @@ public class ForoOlvide extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "No podemos encontrar este email. Asegúrate de que esté bien escrito", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.emailDistinto, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }
             if (error) {
-                Toast.makeText(getApplicationContext(), R.string.error_internet , Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
             } else {
                 pantalla_cargando.setVisibility(View.GONE);
                 finish();
-                Toast.makeText(getApplicationContext(), "Genial! En breve recibirás un correo electrónico con tu contraseña!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.olvideOK, Toast.LENGTH_LONG).show();
             }
         }
     }

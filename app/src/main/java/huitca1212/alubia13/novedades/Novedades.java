@@ -195,24 +195,24 @@ public class Novedades extends Activity {
 
     public Dialog crearDialogoContact(Context eso) {
         AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-        builder.setTitle("Evento");
-        builder.setMessage("Envía un evento para que aparezca en la aplicación");
-        builder.setNegativeButton("WhatsApp", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.evento);
+        builder.setMessage(R.string.eventoTexto);
+        builder.setNegativeButton(R.string.whatsApp, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:664732632"));
                 startActivity(callIntent);
             }
         });
-        builder.setNeutralButton("Email", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(R.string.email, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("message/rfc822")
-                        .putExtra(Intent.EXTRA_EMAIL, new String[]{"huitca1212@gmail.com"});
+                        .putExtra(Intent.EXTRA_EMAIL, "huitca1212@gmail.com");
                 startActivity(Intent.createChooser(i, "Enviar mediante"));
             }
         });
-        builder.setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.cancelar, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

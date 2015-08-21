@@ -123,7 +123,7 @@ public class ForoLoginContrasenya extends Activity {
         // Comprobamos si el email está escrito correctamente
         password = password_edit.getText().toString().trim();
         if (password.length() < 5) {
-            Toast.makeText(getApplicationContext(), "La contraseña ha de tener al menos 5 caracteres", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.contrasenyaError, Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -132,7 +132,7 @@ public class ForoLoginContrasenya extends Activity {
             mURL = mURL.replace(" ", "%20");
             // Chequear si está la conexión a Internet activa
             if (!checkInternet()) {
-                Toast.makeText(getApplicationContext(), R.string.error_internet , Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 return;
             }
             // Enviamos el login
@@ -226,12 +226,12 @@ public class ForoLoginContrasenya extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "La contraseña que introdujiste no coincide con la de la cuenta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.contrasenyaDistinta, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }
             if (error) {
-                Toast.makeText(getApplicationContext(), R.string.error_internet , Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
             } else {
                 // Almacenamos el nombre de usuario en el teléfono

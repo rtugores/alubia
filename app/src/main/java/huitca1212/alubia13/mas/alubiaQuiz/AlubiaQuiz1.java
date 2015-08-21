@@ -32,10 +32,10 @@ public class AlubiaQuiz1 extends Activity {
         final RadioButton opcion2 = (RadioButton) findViewById(R.id.radio1);
         final RadioButton opcion3 = (RadioButton) findViewById(R.id.radio2);
         bienvenida_quiz.setText(R.string.alubiaquiz1);
-        pregunta.setText("1. La carrera de la Alubia consiste en");
-        opcion1.setText("Hacer medio trayecto corriendo y medio en bici");
-        opcion2.setText("Hacer todo el trayecto corriendo");
-        opcion3.setText("No hay ninguna carrera en la fiesta de la Alubia");
+        pregunta.setText(R.string.q1_f);
+        opcion1.setText(R.string.r11_f);
+        opcion2.setText(R.string.r12_f);
+        opcion3.setText(R.string.r13_f);
 
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -46,10 +46,10 @@ public class AlubiaQuiz1 extends Activity {
                     crearDialogoHasAcertado(0, 0).show();
                 } else crearDialogoHasFallado1(1, 0).show();
                 opcion1.setChecked(true);
-                pregunta.setText("2. ¿Dónde se celebraron los primeros conciertos del Alubia Rock?");
-                opcion1.setText("En la plaza de toros");
-                opcion2.setText("En el campo de fútbol");
-                opcion3.setText("En la explanada de la Casa de la cultura");
+                pregunta.setText(R.string.q2_f);
+                opcion1.setText(R.string.r21_f);
+                opcion2.setText(R.string.r22_f);
+                opcion3.setText(R.string.r23_f);
                 boton1.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (opcion1.isChecked()) {
@@ -57,10 +57,10 @@ public class AlubiaQuiz1 extends Activity {
                             crearDialogoHasAcertado(0, 0).show();
                         } else crearDialogoHasFallado1(2, 0).show();
                         opcion1.setChecked(true);
-                        pregunta.setText("3. ¿Qué famoso juego tuvo relevancia hace algunos años en la fiesta de la Alubia?");
-                        opcion1.setText("La petanca");
-                        opcion2.setText("La maceta");
-                        opcion3.setText("Tiro al blanco");
+                        pregunta.setText(R.string.q3_f);
+                        opcion1.setText(R.string.r31_f);
+                        opcion2.setText(R.string.r32_f);
+                        opcion3.setText(R.string.r33_f);
                         boton1.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 if (opcion2.isChecked()) {
@@ -68,10 +68,10 @@ public class AlubiaQuiz1 extends Activity {
                                     crearDialogoHasAcertado(0, 0).show();
                                 } else crearDialogoHasFallado1(3, 0).show();
                                 opcion1.setChecked(true);
-                                pregunta.setText("4. Las misas de peñas se celebran:");
-                                opcion1.setText("Al amanecer");
-                                opcion2.setText("Al mediodía");
-                                opcion3.setText("Al atardecer");
+                                pregunta.setText(R.string.q4_f);
+                                opcion1.setText(R.string.r41_f);
+                                opcion2.setText(R.string.r42_f);
+                                opcion3.setText(R.string.r43_f);
                                 boton1.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (opcion2.isChecked()) {
@@ -79,10 +79,10 @@ public class AlubiaQuiz1 extends Activity {
                                             crearDialogoHasAcertado(0, 0).show();
                                         } else crearDialogoHasFallado1(4, 0).show();
                                         opcion1.setChecked(true);
-                                        pregunta.setText("5. ¿De qué es la exposición que se muestra cada año en la Casa de la cultura?");
-                                        opcion1.setText("De escultura");
-                                        opcion2.setText("De arquitectura");
-                                        opcion3.setText("De pintura");
+                                        pregunta.setText(R.string.q5_f);
+                                        opcion1.setText(R.string.r51_f);
+                                        opcion2.setText(R.string.r52_f);
+                                        opcion3.setText(R.string.r53_f);
                                         boton1.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
                                                 if (opcion3.isChecked()) {
@@ -90,10 +90,10 @@ public class AlubiaQuiz1 extends Activity {
                                                     crearDialogoHasAcertado(0, 0).show();
                                                 } else crearDialogoHasFallado1(5, 0).show();
                                                 opcion1.setChecked(true);
-                                                pregunta.setText("6. ¿Qué es la Party Dance?");
-                                                opcion1.setText("Un tractor con un remolque donde se sube la gente para bailar");
-                                                opcion2.setText("Un local ubicado cerca de las piscinas donde se baila y se sirven copas");
-                                                opcion3.setText("Una expresión que se utiliza como sinónimo de desmadre");
+                                                pregunta.setText(R.string.q6_f);
+                                                opcion1.setText(R.string.r61_f);
+                                                opcion2.setText(R.string.r62_f);
+                                                opcion3.setText(R.string.r63_f);
                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                     public void onClick(View v) {
                                                         if (opcion1.isChecked()) {
@@ -101,10 +101,10 @@ public class AlubiaQuiz1 extends Activity {
                                                             crearDialogoHasAcertado(0, 0).show();
                                                         } else crearDialogoHasFallado1(6, 0).show();
                                                         opcion1.setChecked(true);
-                                                        pregunta.setText("7. ¿Qué día se celebra el desfile de peñas y carrozas?");
-                                                        opcion1.setText("Sábado");
-                                                        opcion2.setText("Domingo");
-                                                        opcion3.setText("Lunes");
+                                                        pregunta.setText(R.string.q7_f);
+                                                        opcion1.setText(R.string.r71_f);
+                                                        opcion2.setText(R.string.r72_f);
+                                                        opcion3.setText(R.string.r73_f);
                                                         boton1.setOnClickListener(new View.OnClickListener() {
                                                             public void onClick(View v) {
                                                                 if (opcion2.isChecked()) {
@@ -113,10 +113,10 @@ public class AlubiaQuiz1 extends Activity {
                                                                 } else
                                                                     crearDialogoHasFallado1(7, 0).show();
                                                                 opcion1.setChecked(true);
-                                                                pregunta.setText("8. ¿Cuál de estos concursos nunca se ha celebrado en una fiesta de la Alubia?");
-                                                                opcion1.setText("Concurso de grafitis");
-                                                                opcion2.setText("Concurso de disfraces");
-                                                                opcion3.setText("Concurso de ballet");
+                                                                pregunta.setText(R.string.q8_f);
+                                                                opcion1.setText(R.string.r81_f);
+                                                                opcion2.setText(R.string.r82_f);
+                                                                opcion3.setText(R.string.r83_f);
                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                     public void onClick(View v) {
                                                                         if (opcion3.isChecked()) {
@@ -125,10 +125,10 @@ public class AlubiaQuiz1 extends Activity {
                                                                         } else
                                                                             crearDialogoHasFallado1(8, 0).show();
                                                                         opcion1.setChecked(true);
-                                                                        pregunta.setText("9. La entrada anticipada al Alubia Rock tiene un precio de:");
-                                                                        opcion1.setText("Un euro");
-                                                                        opcion2.setText("Cinco euros");
-                                                                        opcion3.setText("No hay entradas, es gratis");
+                                                                        pregunta.setText(R.string.q9_f);
+                                                                        opcion1.setText(R.string.r91_f);
+                                                                        opcion2.setText(R.string.r92_f);
+                                                                        opcion3.setText(R.string.r93_f);
                                                                         boton1.setOnClickListener(new View.OnClickListener() {
                                                                             public void onClick(View v) {
                                                                                 if (opcion3.isChecked()) {
@@ -137,10 +137,10 @@ public class AlubiaQuiz1 extends Activity {
                                                                                 } else
                                                                                     crearDialogoHasFallado1(9, 0).show();
                                                                                 opcion1.setChecked(true);
-                                                                                pregunta.setText("10. ¿Desde dónde sale el desfile infantil de disfraces?");
-                                                                                opcion1.setText("Desde el colegio púlico");
-                                                                                opcion2.setText("Desde el castillo");
-                                                                                opcion3.setText("Desde la plaza de toros");
+                                                                                pregunta.setText(R.string.q10_f);
+                                                                                opcion1.setText(R.string.r101_f);
+                                                                                opcion2.setText(R.string.r102_f);
+                                                                                opcion3.setText(R.string.r103_f);
                                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                                     public void onClick(View v) {
                                                                                         if (opcion1.isChecked()) {
@@ -174,10 +174,10 @@ public class AlubiaQuiz1 extends Activity {
     //DIALOGO PARA EL QUIZ ACIERTA PREGUNTA
     public Dialog crearDialogoHasAcertado(int numeroPregunta, final int respuesta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuiz1.this);
-        builder.setTitle("¡Enhorabuena!");
-        builder.setMessage("Has acertado la pregunta.");
+        builder.setTitle(R.string.enhorabuena);
+        builder.setMessage(R.string.hasAcertado);
         if (numeroPregunta == 10) {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(AlubiaQuiz1.this, Solucion.class);
                     String respuesta_s = Integer.toString(respuesta);
@@ -189,7 +189,7 @@ public class AlubiaQuiz1 extends Activity {
                 }
             });
         } else {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
@@ -201,38 +201,38 @@ public class AlubiaQuiz1 extends Activity {
     //DIALOGO PARA EL QUIZ FALLA PREGUNTA (1)
     public Dialog crearDialogoHasFallado1(int numeroPregunta, final int respuesta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuiz1.this);
-        builder.setTitle("¡Mala suerte!");
+        builder.setTitle(R.string.malaSuerte);
         switch (numeroPregunta) {
             case 1:
-                builder.setMessage("Has fallado. La carrera de la Alubia consiste en hacer todo el trayecto corriendo.");
+                builder.setMessage(R.string.s1_f);
                 break;
             case 2:
-                builder.setMessage("Mal. El Alubia Rock se suele celebrar en la plaza de toros del pueblo.");
+                builder.setMessage(R.string.s2_f);
                 break;
             case 3:
-                builder.setMessage("Incorrecto. El juego del que hubo concursos en la fiesta fue la maceta.");
+                builder.setMessage(R.string.s3_f);
                 break;
             case 4:
-                builder.setMessage("Te has equivocado. Las misas de peñas se suelen celebrar a las 13h, es decir, al mediodía.");
+                builder.setMessage(R.string.s4_f);
                 break;
             case 5:
-                builder.setMessage("No. La exposición que se muestra en la Casa de la cultura es de pintura.");
+                builder.setMessage(R.string.s5_f);
                 break;
             case 6:
-                builder.setMessage("¿Qué sería de las noches sin ella? La Party Dance es un tractor con un remolque donde se sube la gente para bailar.");
+                builder.setMessage(R.string.s6_f);
                 break;
             case 7:
-                builder.setMessage("Error. El famoso desfile de peñas y carrozas se celebra el domingo por la tarde.");
+                builder.setMessage(R.string.s7_f);
                 break;
             case 8:
-                builder.setMessage("No. El cocurso que nunca se celebró fue el de ballet.");
+                builder.setMessage(R.string.s8_f);
                 break;
             case 9:
-                builder.setMessage("Respuesta incorrecta. El Alubia Rock es gratis y no hay entradas.");
+                builder.setMessage(R.string.s9_f);
                 break;
             case 10:
-                builder.setMessage("Mal. El desfile infantil de disfraces sale desde el colegio público.");
-                builder.setPositiveButton("Aceptar", new OnClickListener() {
+                builder.setMessage(R.string.s10_f);
+                builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(AlubiaQuiz1.this, Solucion.class);
                         String respuesta_s = Integer.toString(respuesta);
@@ -246,7 +246,7 @@ public class AlubiaQuiz1 extends Activity {
                 break;
         }
         if (numeroPregunta != 10) {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }

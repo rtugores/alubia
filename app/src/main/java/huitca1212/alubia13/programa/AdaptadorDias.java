@@ -43,7 +43,6 @@ public class AdaptadorDias extends ArrayAdapter<TitularPrograma> {
 
         lblTitulo.setText(Html.fromHtml("<font color='#B40431'>" + hora + "</font>" + titulo));
 
-
         TextView lblSubtitulo = (TextView) item.findViewById(R.id.LblSubTitulo);
         lblSubtitulo.setText(datos[position].getSubtitulo());
 

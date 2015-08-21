@@ -22,16 +22,6 @@ public class InformacionFiesta extends Activity {
         final TextView texto = (TextView) findViewById(R.id.info_write); //PRIMER BOTON
         texto.setMovementMethod(new ScrollingMovementMethod());
 
-        //====================
-        final Button mas = (Button) findViewById(R.id.button_more);
-        mas.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String mas_url = "http://www.lagunadenegrillos.com/index.do?metodo=visualizarSeccion&idSeccion=27";
-                Uri uri = Uri.parse(mas_url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
         final Button mapa = (Button) findViewById(R.id.button_maps);
         mapa.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

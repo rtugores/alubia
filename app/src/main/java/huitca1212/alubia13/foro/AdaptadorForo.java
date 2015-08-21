@@ -68,7 +68,7 @@ class AdaptadorForo extends ArrayAdapter<TitularForo> {
         }
 
         if (datos[position].getBan().equals("1")) {
-            comentario.setText("El comentario ha sido bloqueado por infringir las normas del foro.");
+            comentario.setText(R.string.bloqueado);
             comentario.setTextColor(0xFFFF0000);
         } else {
             comentario.setText(datos[position].getComentario());

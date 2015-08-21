@@ -32,10 +32,10 @@ public class AlubiaQuiz2 extends Activity {
         final RadioButton opcion2 = (RadioButton) findViewById(R.id.radio1);
         final RadioButton opcion3 = (RadioButton) findViewById(R.id.radio2);
         bienvenida_quiz.setText(R.string.alubiaquiz2);
-        pregunta.setText("1. ¿Cuál de estas peñas no existía cuando nació la fiesta de la Alubia?");
-        opcion1.setText("Sonic 2000");
-        opcion2.setText("Un millón de amigos");
-        opcion3.setText("Rockambole");
+        pregunta.setText(R.string.q1_m);
+        opcion1.setText(R.string.r11_m);
+        opcion2.setText(R.string.r12_m);
+        opcion3.setText(R.string.r13_m);
 
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -46,10 +46,10 @@ public class AlubiaQuiz2 extends Activity {
                     crearDialogoHasAcertado(0, 0).show();
                 } else crearDialogoHasFallado2(1, 0).show();
                 opcion1.setChecked(true);
-                pregunta.setText("2. ¿Cuál fue el último año en el que hubo suelta de vaquillas?");
-                opcion1.setText("2009");
-                opcion2.setText("2011");
-                opcion3.setText("2013");
+                pregunta.setText(R.string.q2_m);
+                opcion1.setText(R.string.r21_m);
+                opcion2.setText(R.string.r22_m);
+                opcion3.setText(R.string.r23_m);
                 boton1.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (opcion1.isChecked()) {
@@ -57,10 +57,10 @@ public class AlubiaQuiz2 extends Activity {
                             crearDialogoHasAcertado(0, 0).show();
                         } else crearDialogoHasFallado2(2, 0).show();
                         opcion1.setChecked(true);
-                        pregunta.setText("3. ¿Quién fue la reina infantil de la fiesta de la Alubia en el año 2013?");
-                        opcion1.setText("Amaia Rodríguez Cubero");
-                        opcion2.setText("Irene Gorgojo Sordo");
-                        opcion3.setText("Alba Ugidos Matilla");
+                        pregunta.setText(R.string.q3_m);
+                        opcion1.setText(R.string.r31_m);
+                        opcion2.setText(R.string.r32_m);
+                        opcion3.setText(R.string.r33_m);
                         boton1.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 if (opcion1.isChecked()) {
@@ -68,10 +68,10 @@ public class AlubiaQuiz2 extends Activity {
                                     crearDialogoHasAcertado(0, 0).show();
                                 } else crearDialogoHasFallado2(3, 0).show();
                                 opcion1.setChecked(true);
-                                pregunta.setText("4. ¿Qué típica degustación se hace el lunes de cada fiesta al mediodía?");
-                                opcion1.setText("Bollo Preñao");
-                                opcion2.setText("Alubiada");
-                                opcion3.setText("Paella");
+                                pregunta.setText(R.string.q4_m);
+                                opcion1.setText(R.string.r41_m);
+                                opcion2.setText(R.string.r42_m);
+                                opcion3.setText(R.string.r43_m);
                                 boton1.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (opcion2.isChecked()) {
@@ -79,10 +79,10 @@ public class AlubiaQuiz2 extends Activity {
                                             crearDialogoHasAcertado(0, 0).show();
                                         } else crearDialogoHasFallado2(4, 0).show();
                                         opcion1.setChecked(true);
-                                        pregunta.setText("5. ¿Qué dos peñas se fusionaron en la fiesta de la Alubia 2013?");
-                                        opcion1.setText("Kelnozz & Ceda el vaso");
-                                        opcion2.setText("Taboo & Despista2");
-                                        opcion3.setText("Kachi-chirín & La coral");
+                                        pregunta.setText(R.string.q5_m);
+                                        opcion1.setText(R.string.r51_m);
+                                        opcion2.setText(R.string.r52_m);
+                                        opcion3.setText(R.string.r53_m);
                                         boton1.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
                                                 if (opcion1.isChecked()) {
@@ -90,10 +90,10 @@ public class AlubiaQuiz2 extends Activity {
                                                     crearDialogoHasAcertado(0, 0).show();
                                                 } else crearDialogoHasFallado2(5, 0).show();
                                                 opcion1.setChecked(true);
-                                                pregunta.setText("6. ¿En qué año nació la fiesta de la Alubia?");
-                                                opcion1.setText("1969");
-                                                opcion2.setText("1977");
-                                                opcion3.setText("1985");
+                                                pregunta.setText(R.string.q6_m);
+                                                opcion1.setText(R.string.r61_m);
+                                                opcion2.setText(R.string.r62_m);
+                                                opcion3.setText(R.string.r63_m);
                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                     public void onClick(View v) {
                                                         if (opcion2.isChecked()) {
@@ -101,10 +101,10 @@ public class AlubiaQuiz2 extends Activity {
                                                             crearDialogoHasAcertado(0, 0).show();
                                                         } else crearDialogoHasFallado2(6, 0).show();
                                                         opcion1.setChecked(true);
-                                                        pregunta.setText("7. En la fiesta de la Alubia nunca ha habido un torneo de:");
-                                                        opcion1.setText("Pelota vasca");
-                                                        opcion2.setText("Balonmano");
-                                                        opcion3.setText("Hockey");
+                                                        pregunta.setText(R.string.q7_m);
+                                                        opcion1.setText(R.string.r71_m);
+                                                        opcion2.setText(R.string.r72_m);
+                                                        opcion3.setText(R.string.r73_m);
                                                         boton1.setOnClickListener(new View.OnClickListener() {
                                                             public void onClick(View v) {
                                                                 if (opcion3.isChecked()) {
@@ -113,10 +113,10 @@ public class AlubiaQuiz2 extends Activity {
                                                                 } else
                                                                     crearDialogoHasFallado2(7, 0).show();
                                                                 opcion1.setChecked(true);
-                                                                pregunta.setText("8. La peña Indis (Indiscretos) está formada por:");
-                                                                opcion1.setText("Sólo chicos");
-                                                                opcion2.setText("Sólo chicas");
-                                                                opcion3.setText("Es mixta");
+                                                                pregunta.setText(R.string.q8_m);
+                                                                opcion1.setText(R.string.r81_m);
+                                                                opcion2.setText(R.string.r82_m);
+                                                                opcion3.setText(R.string.r83_m);
                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                     public void onClick(View v) {
                                                                         if (opcion3.isChecked()) {
@@ -125,10 +125,10 @@ public class AlubiaQuiz2 extends Activity {
                                                                         } else
                                                                             crearDialogoHasFallado2(8, 0).show();
                                                                         opcion1.setChecked(true);
-                                                                        pregunta.setText("9. ¿Qué conocida cantante de Operación Triunfo asistió a una fiesta de la Alubia?");
-                                                                        opcion1.setText("Edurne");
-                                                                        opcion2.setText("Chenoa");
-                                                                        opcion3.setText("Natalia");
+                                                                        pregunta.setText(R.string.q9_m);
+                                                                        opcion1.setText(R.string.r91_m);
+                                                                        opcion2.setText(R.string.r92_m);
+                                                                        opcion3.setText(R.string.r93_m);
                                                                         boton1.setOnClickListener(new View.OnClickListener() {
                                                                             public void onClick(View v) {
                                                                                 if (opcion3.isChecked()) {
@@ -137,10 +137,10 @@ public class AlubiaQuiz2 extends Activity {
                                                                                 } else
                                                                                     crearDialogoHasFallado2(9, 0).show();
                                                                                 opcion1.setChecked(true);
-                                                                                pregunta.setText("10. ¿Cuál de estas peñas tiene menos de 7 años de existencia?");
-                                                                                opcion1.setText("Taboo");
-                                                                                opcion2.setText("Kachi-chirín");
-                                                                                opcion3.setText("Ginkgo");
+                                                                                pregunta.setText(R.string.q10_m);
+                                                                                opcion1.setText(R.string.r101_m);
+                                                                                opcion2.setText(R.string.r102_m);
+                                                                                opcion3.setText(R.string.r103_m);
                                                                                 boton1.setOnClickListener(new View.OnClickListener() {
                                                                                     public void onClick(View v) {
                                                                                         if (opcion1.isChecked()) {
@@ -174,10 +174,10 @@ public class AlubiaQuiz2 extends Activity {
     //DIALOGO PARA EL QUIZ ACIERTA PREGUNTA
     public Dialog crearDialogoHasAcertado(int numeroPregunta, final int respuesta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuiz2.this);
-        builder.setTitle("¡Enhorabuena!");
-        builder.setMessage("Has acertado la pregunta.");
+        builder.setTitle(R.string.enhorabuena);
+        builder.setMessage(R.string.hasAcertado);
         if (numeroPregunta == 10) {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(AlubiaQuiz2.this, Solucion.class);
                     String respuesta_s = Integer.toString(respuesta);
@@ -189,7 +189,7 @@ public class AlubiaQuiz2 extends Activity {
                 }
             });
         } else {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
@@ -202,38 +202,38 @@ public class AlubiaQuiz2 extends Activity {
     //DIALOGO PARA EL QUIZ FALLA PREGUNTA (2)
     public Dialog crearDialogoHasFallado2(int numeroPregunta, final int respuesta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuiz2.this);
-        builder.setTitle("¡Mala suerte!");
+        builder.setTitle(R.string.malaSuerte);
         switch (numeroPregunta) {
             case 1:
-                builder.setMessage("Has fallado. La peña que no existía cuando nació la fiesta es la peña Rockambole.");
+                builder.setMessage(R.string.s1_m);
                 break;
             case 2:
-                builder.setMessage("Te has equivocado. El último año que hubo suelta de vaquillas fue el 2009.");
+                builder.setMessage(R.string.s2_m);
                 break;
             case 3:
-                builder.setMessage("Incorrecto. La reina infantil de la fiesta de la Alubia 2013 fue Amaia Rodríguez Cubero.");
+                builder.setMessage(R.string.s3_m);
                 break;
             case 4:
-                builder.setMessage("Falso. Los lunes al mediodía se sirve Alubiada para todos.");
+                builder.setMessage(R.string.s4_m);
                 break;
             case 5:
-                builder.setMessage("Ellos sí que la acertaron. Las peña fusionada se llaman \"Kelnozz & Ceda el vaso\"");
+                builder.setMessage(R.string.s5_m);
                 break;
             case 6:
-                builder.setMessage("Esta había que acertarla. La fiesta de la Alubia nació en 1977.");
+                builder.setMessage(R.string.s6_m);
                 break;
             case 7:
-                builder.setMessage("Te has equivocado. El torneo que nunca hubo en la Alubia fue de Hockey.");
+                builder.setMessage(R.string.s7_m);
                 break;
             case 8:
-                builder.setMessage("Mal. La peña Indis (Indiscretos) está formada por chicos y chicas.");
+                builder.setMessage(R.string.s8_m);
                 break;
             case 9:
-                builder.setMessage("Has fallado. La artista que cantó en Laguna de Negrillos en el año 2003 fue Natalia.");
+                builder.setMessage(R.string.s9_m);
                 break;
             case 10:
-                builder.setMessage("Error. La peña con menos de 6 años es Taboo, con 5 años de vida.");
-                builder.setPositiveButton("Aceptar", new OnClickListener() {
+                builder.setMessage(R.string.s10_m);
+                builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(AlubiaQuiz2.this, Solucion.class);
                         String respuesta_s = Integer.toString(respuesta);
@@ -247,7 +247,7 @@ public class AlubiaQuiz2 extends Activity {
                 break;
         }
         if (numeroPregunta != 10) {
-            builder.setPositiveButton("Aceptar", new OnClickListener() {
+            builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }

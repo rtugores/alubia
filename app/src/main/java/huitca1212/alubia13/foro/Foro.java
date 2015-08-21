@@ -46,7 +46,7 @@ public class Foro extends Activity {
     //Declaramos variables
     private String invitado, comentario, jsonResult, mURL;
     private ListView listView;
-    private LinearLayout layout, barra_comentar;
+    private LinearLayout layout;
     private EditText comentario_id;
     boolean error = false;
     public static Activity foro;
@@ -60,7 +60,7 @@ public class Foro extends Activity {
 
         layout = (LinearLayout) findViewById(R.id.progressbar_view);
         listView = (ListView) findViewById(R.id.listView1);
-        barra_comentar = (LinearLayout) findViewById(R.id.barra_comentar);
+        LinearLayout barra_comentar = (LinearLayout) findViewById(R.id.barra_comentar);
         comentario_id = (EditText) this.findViewById(R.id.comentario);
         Button actualizar_id = (Button) this.findViewById(R.id.actualizar);
         Button enviar_id = (Button) findViewById(R.id.enviar);
@@ -161,7 +161,7 @@ public class Foro extends Activity {
                 comentario_minus.contains("subnormal") || comentario_minus.contains("mierda") ||
                 comentario_minus.contains("cabron") || comentario_minus.contains("coño") ||
                 comentario_minus.contains("maric") || comentario_minus.contains("marik")) {
-            Toast.makeText(getApplicationContext(), "No está permitido escribir palabrotas", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.noPalabrotas, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -175,7 +175,7 @@ public class Foro extends Activity {
                                     ContextMenu.ContextMenuInfo menuInfo) {
         if (invitado != null && invitado.equals("NOK")) {
             if (v.getId() == R.id.listView1) {
-                menu.add(Menu.NONE, 0, 0, "Denunciar comentario");
+                menu.add(Menu.NONE, 0, 0, R.string.denunciarComentario);
             }
         }
     }
@@ -289,7 +289,7 @@ public class Foro extends Activity {
             } else if (resultado.equals("-2")) {
                 comentario_id.setText("");
                 layout.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), "Has sido bloqueado temporalmente por incumplir las normas del foro", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.usuarioBloqueado, Toast.LENGTH_LONG).show();
                 return;
             }
             if (error) {
@@ -399,7 +399,6 @@ public class Foro extends Activity {
 
             for (int i = 0; i < jsonMainNode.length(); i++) {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                String usuario_penya;
                 String usuario = jsonChildNode.optString("usuario");
                 String penya = jsonChildNode.optString("penya");
                 String comentario = jsonChildNode.optString("comentario");

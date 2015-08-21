@@ -115,7 +115,7 @@ public class ForoLoginEmail extends Activity {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         email = email_edit.getText().toString().trim();
         if (!email.matches(emailPattern)) {
-            Toast.makeText(getApplicationContext(), "El email tiene un formato incorrecto. Asegúrate de que esté bien escrito", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -131,7 +131,7 @@ public class ForoLoginEmail extends Activity {
             enviar.execute(mURL);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), R.string.error_internet , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -216,12 +216,12 @@ public class ForoLoginEmail extends Activity {
             if (resultado.equals("-1")) {
                 error = true;
             } else if (resultado.equals("-2")) {
-                Toast.makeText(getApplicationContext(), "No podemos encontrar este email. Asegúrate de que esté bien escrito", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.emailDistinto, Toast.LENGTH_LONG).show();
                 pantalla_cargando.setVisibility(View.GONE);
                 return;
             }
             if (error) {
-                Toast.makeText(getApplicationContext(), R.string.error_internet , Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.error_internet, Toast.LENGTH_LONG).show();
             } else {
                 // Enviamos el email a la nueva actividad (ForoLoginContrasenya)
                 Intent intent = new Intent(ForoLoginEmail.this, ForoLoginContrasenya.class);

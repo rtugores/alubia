@@ -20,20 +20,19 @@
         android:id="@+id/Bienvenida_sub"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-
         android:layout_gravity="center"
         android:layout_marginBottom="6dp"
         android:gravity="center"
-        android:text="@string/bienvenida_sub"/>
+        android:text="@string/bienvenida_sub" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="66dip"
-        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
+        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/programa" />
 
@@ -41,10 +40,10 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="66dip"
-        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
+        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/penyas" />
 
@@ -52,10 +51,10 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="66dip"
-        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
+        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/foro" />
 
@@ -63,10 +62,10 @@
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="66dip"
-        android:layout_weight="1"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
+        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/novedades" />
 
@@ -74,10 +73,10 @@
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="66dip"
-        android:layout_weight="1"
+        android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginBottom="10dip"
+        android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
         android:text="@string/masinfo" />
 

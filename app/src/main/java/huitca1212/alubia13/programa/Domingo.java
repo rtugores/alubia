@@ -15,7 +15,6 @@ import huitca1212.alubia13.R;
 
 public class Domingo extends Activity {
 
-    private ListView lstOpciones;
     private TitularPrograma[] datos =
             new TitularPrograma[]{
                     new TitularPrograma("12:00 Concentración de peñas", "Plaza de san Juan Bautista"),
@@ -31,12 +30,9 @@ public class Domingo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dia);
-        //================================================================
-        //==============CODIGO PARA LISTVIEW==============================
-        //================================================================
         //====================
         AdaptadorDias adaptadorDias = new AdaptadorDias(this, datos);
-        lstOpciones = (ListView) findViewById(R.id.LstOpciones);
+        ListView lstOpciones = (ListView) findViewById(R.id.LstOpciones);
         lstOpciones.setAdapter(adaptadorDias);
         lstOpciones.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -84,7 +80,7 @@ public class Domingo extends Activity {
                         "con la \"Supermartxé\".");
                 break;
         }
-        builder.setPositiveButton("Aceptar", new OnClickListener() {
+        builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

@@ -33,7 +33,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="Introduce tu nombre para mostrar"
+                    android:text="@string/introduceUsuario"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -44,7 +44,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:hint="Ej.: Rodri Tugores"
+                    android:hint="@string/ejemploUsuario"
                     android:imeOptions="actionNext"
                     android:inputType="textPersonName|textCapSentences" />
 
@@ -58,7 +58,7 @@
                     android:layout_marginTop="30dip"
                     android:background="@drawable/d_normal_button_gray"
                     android:enabled="false"
-                    android:text="Continuar"
+                    android:text="@string/continuar"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="Al continuar, confirmas que has leído y aceptas la"
+                    android:text="@string/pprivacidad3"
                     android:textSize="18sp" />
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="política de privacidad"
+                    android:text="@string/pprivacidad2"
                     android:textColor="#2E64FE"
                     android:textSize="18sp"
                     android:textStyle="bold" />

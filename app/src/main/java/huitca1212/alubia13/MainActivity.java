@@ -16,15 +16,10 @@ import huitca1212.alubia13.programa.Programa;
 
 public class MainActivity extends Activity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //================================================================
-        //==============CODIGO PARA BOTONES===============================
-        //================================================================
 
         final Button boton1 = (Button) findViewById(R.id.button1); //PRIMER BOTON
         boton1.setOnClickListener(new View.OnClickListener() {
