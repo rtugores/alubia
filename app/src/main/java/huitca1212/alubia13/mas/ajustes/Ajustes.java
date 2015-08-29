@@ -38,7 +38,7 @@ public class Ajustes extends Activity {
                     new TitularAjustes("Política de privacidad", "Échale un vistazo a la política de privacidad"),
                     new TitularAjustes("Compartir", "Comparte la aplicación con tus amigos"),
                     new TitularAjustes("Actualizar", "Obtén la versión más actualizada"),
-                    new TitularAjustes("Versión", "3.3"),
+                    new TitularAjustes("Versión", "3.4"),
             };
     private boolean notregister;
     private LinearLayout layout;
@@ -99,8 +99,8 @@ public class Ajustes extends Activity {
                         final Intent intent_share = new Intent(android.content.Intent.ACTION_SEND);
                         intent_share.setType("text/plain");
                         intent_share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        intent_share.putExtra(Intent.EXTRA_SUBJECT, R.string.shareSubject);
-                        intent_share.putExtra(Intent.EXTRA_TEXT, R.string.shareText);
+                        intent_share.putExtra(Intent.EXTRA_SUBJECT, "¡Descarga Alubia '15!");
+                        intent_share.putExtra(Intent.EXTRA_TEXT, "La aplicación de la fiesta de la Alubia en Laguna de Negrillos. Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13");
                         startActivity(Intent.createChooser(intent_share, "Compartir mediante"));
                         break;
                     case 5:
