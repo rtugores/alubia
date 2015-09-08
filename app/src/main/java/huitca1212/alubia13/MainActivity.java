@@ -11,6 +11,7 @@ import huitca1212.alubia13.foro.ForoInicial;
 import huitca1212.alubia13.mas.Mas;
 import huitca1212.alubia13.novedades.Novedades;
 import huitca1212.alubia13.penyas.Penyas;
+import huitca1212.alubia13.penyas.SubirImagen;
 import huitca1212.alubia13.programa.Programa;
 
 
@@ -31,7 +32,7 @@ public class MainActivity extends Activity {
         final Button boton2 = (Button) findViewById(R.id.button2); //SEGUNDO BOTON
         boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Penyas.class);
+                Intent intent = new Intent(MainActivity.this, SubirImagen.class);
                 startActivity(intent);
             }
         });
