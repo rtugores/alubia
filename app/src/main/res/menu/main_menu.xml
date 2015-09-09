@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/item_clear_memory_cache"
+        android:title="Borrar memoria caché"/>
+    <item
+        android:id="@+id/item_clear_disc_cache"
+        android:title="Borrar disco caché"/>
+    <item
+        android:id="@+id/item_pause_on_scroll"
+        android:checkable="true"
+        android:title="Pausar en scroll"
+        android:visible="false"/>
+    <item
+        android:id="@+id/item_pause_on_fling"
+        android:checkable="true"
+        android:title="Pausar en fling"
+        android:visible="false"/>
+
+</menu>
