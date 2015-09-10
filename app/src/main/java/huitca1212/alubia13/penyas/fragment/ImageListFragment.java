@@ -74,6 +74,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
     private static class ImageAdapter extends BaseAdapter {
 
         private static final String[] IMAGE_URLS = Constants.IMAGES;
+        private static final String[] IMAGE_STRINGS = Constants.IMAGE_TITLES;
 
         private LayoutInflater inflater;
         private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
@@ -123,7 +124,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
                 holder = (ViewHolder) view.getTag();
             }
 
-            holder.text.setText("Item " + (position + 1));
+            holder.text.setText(IMAGE_STRINGS[position]);
 
             ImageLoader.getInstance().displayImage(IMAGE_URLS[position], holder.image, options, animateFirstListener);
 
