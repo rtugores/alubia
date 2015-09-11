@@ -58,7 +58,7 @@ public class ImagePagerFragment extends BaseFragment {
 
     private static class ImageAdapter extends PagerAdapter {
 
-        private static final String[] IMAGE_URLS = Constants.IMAGES;
+        private static final String[] IMAGE_URLS = Constants.IMAGES_PENYAS;
 
         private LayoutInflater inflater;
         private DisplayImageOptions options;

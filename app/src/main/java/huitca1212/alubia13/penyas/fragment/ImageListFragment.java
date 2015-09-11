@@ -73,7 +73,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
 
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] IMAGE_URLS = Constants.IMAGES;
+        private static final String[] IMAGE_URLS = Constants.IMAGES_PENYAS;
         private static final String[] IMAGE_STRINGS = Constants.IMAGE_TITLES;
 
         private LayoutInflater inflater;

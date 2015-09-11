@@ -46,9 +46,6 @@
             android:name=".mas.Mas"
             android:label="@string/masinfo" />
         <activity
-            android:name=".penyas.Penyas"
-            android:label="@string/penyas" />
-        <activity
             android:name=".penyas.SubirImagen"
             android:label="@string/penyas" />
         <activity

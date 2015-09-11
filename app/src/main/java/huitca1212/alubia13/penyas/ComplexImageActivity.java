@@ -88,7 +88,7 @@ public class ComplexImageActivity extends FragmentActivity {
                 case 0:
                     return getString(R.string.penyas);
                 case 1:
-                    return getString(R.string.penyas);
+                    return getString(R.string.app_name);
                 default:
                     return null;
             }

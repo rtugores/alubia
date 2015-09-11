@@ -62,7 +62,7 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
 
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] IMAGE_URLS = Constants.IMAGES;
+        private static final String[] IMAGE_URLS = Constants.IMAGES_ALUBIA15;
 
         private LayoutInflater inflater;
 
