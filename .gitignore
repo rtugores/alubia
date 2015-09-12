@@ -17,9 +17,6 @@ gen/
 build/
 /*/build/
 
-# Private images
-app/src/main/res/drawable-*/
-
 # Local configuration file (sdk path, etc)
 local.properties
 

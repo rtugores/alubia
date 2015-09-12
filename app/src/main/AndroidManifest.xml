@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="huitca1212.alubia13"
-    android:versionCode="29"
-    android:versionName="3.3">
+    package="huitca1212.alubia13">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:name=".UILApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
@@ -20,90 +20,96 @@
         </activity>
         <activity
             android:name=".programa.Programa"
-            android:label="@string/programa"/>
+            android:label="@string/programa" />
         <activity
             android:name=".programa.Viernes"
-            android:label="@string/viernes"/>
+            android:label="@string/viernes" />
         <activity
             android:name=".programa.Sabado"
-            android:label="@string/sabado"/>
+            android:label="@string/sabado" />
         <activity
             android:name=".programa.Domingo"
-            android:label="@string/domingo"/>
+            android:label="@string/domingo" />
         <activity
             android:name=".programa.Lunes"
-            android:label="@string/lunes"/>
+            android:label="@string/lunes" />
         <activity
             android:name=".programa.Saludo"
-            android:label="@string/saludo"/>
+            android:label="@string/saludo" />
         <activity
             android:name=".programa.ReinasDamas"
-            android:label="@string/reinas_damas"/>
+            android:label="@string/reinas_damas" />
         <activity
             android:name=".programa.Carrera"
-            android:label="@string/carrera"/>
+            android:label="@string/carrera" />
         <activity
             android:name=".mas.Mas"
-            android:label="@string/masinfo"/>
+            android:label="@string/masinfo" />
         <activity
-            android:name=".penyas.Penyas"
-            android:label="@string/penyas"/>
+            android:name=".penyas.SubirImagen"
+            android:label="@string/penyas" />
         <activity
             android:name=".foro.ForoInicial"
-            android:label="@string/foro"/>
+            android:label="@string/foro" />
         <activity
             android:name=".foro.ForoLoginEmail"
-            android:label="@string/login"/>
+            android:label="@string/login" />
         <activity
             android:name=".foro.ForoLoginContrasenya"
-            android:label="@string/login"/>
+            android:label="@string/login" />
         <activity
             android:name=".foro.ForoOlvide"
-            android:label="Olvidé mi contraseña"/>
+            android:label="Olvidé mi contraseña" />
         <activity
             android:name=".foro.ForoRegistroUsuario"
-            android:label="@string/registro"/>
+            android:label="@string/registro" />
         <activity
             android:name=".foro.ForoRegistroEmail"
-            android:label="@string/registro"/>
+            android:label="@string/registro" />
         <activity
             android:name=".foro.ForoRegistroContrasenya"
-            android:label="@string/registro"/>
+            android:label="@string/registro" />
         <activity
             android:name=".foro.ForoRegistroCodigo"
-            android:label="@string/registro"/>
+            android:label="@string/registro" />
         <activity
             android:name=".foro.Foro"
-            android:label="@string/foro"/>
+            android:label="@string/foro" />
         <activity
             android:name=".mas.InformacionFiesta"
-            android:label="Sobre la fiesta"/>
+            android:label="Sobre la fiesta" />
         <activity
             android:name=".novedades.Novedades"
-            android:label="@string/novedades"/>
+            android:label="@string/novedades" />
         <activity
             android:name=".mas.ajustes.Ajustes"
-            android:label="Ajustes"/>
+            android:label="Ajustes" />
         <activity
             android:name=".mas.Contactar"
-            android:label="Contactar"/>
+            android:label="Contactar" />
         <activity
             android:name=".mas.alubiaQuiz.AlubiaQuizMenu"
-            android:label="@string/alubiaquiz"/>
+            android:label="@string/alubiaquiz" />
         <activity
             android:name=".mas.alubiaQuiz.AlubiaQuiz1"
-            android:label="@string/alubiaquiz"/>
+            android:label="@string/alubiaquiz" />
         <activity
             android:name=".mas.alubiaQuiz.AlubiaQuiz2"
-            android:label="@string/alubiaquiz"/>
+            android:label="@string/alubiaquiz" />
         <activity
             android:name=".mas.alubiaQuiz.AlubiaQuiz3"
-            android:label="@string/alubiaquiz"/>
+            android:label="@string/alubiaquiz" />
         <activity
             android:name=".mas.alubiaQuiz.Solucion"
-            android:label="@string/solucion"/>
+            android:label="@string/solucion" />
+        <activity
+            android:name=".penyas.SimpleImageActivity"
+            android:label="@string/ac_name_image_list" />
+        <activity
+            android:name=".penyas.ComplexImageActivity"
+            android:label="Complex" />
         <activity
             android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     </application>
 </manifest>

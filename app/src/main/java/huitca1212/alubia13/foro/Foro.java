@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -240,9 +239,6 @@ public class Foro extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = inputStreamToString(
                         response.getEntity().getContent()).toString();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
                 error = true;
@@ -277,10 +273,7 @@ public class Foro extends Activity {
             try {
                 JSONObject jsonResponse = new JSONObject(jsonResult);
                 resultado = jsonResponse.optString("resultado");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                error = true;
-            } catch (NullPointerException e) {
+            } catch (JSONException | NullPointerException e) {
                 e.printStackTrace();
                 error = true;
             }
@@ -322,9 +315,6 @@ public class Foro extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = inputStreamToString(
                         response.getEntity().getContent()).toString();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
                 error = true;
@@ -413,10 +403,7 @@ public class Foro extends Activity {
             listView.setAdapter(simpleAdapter);
             registerForContextMenu(listView);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-            error = true;
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
             error = true;
         }

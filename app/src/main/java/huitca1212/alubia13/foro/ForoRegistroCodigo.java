@@ -177,9 +177,6 @@ public class ForoRegistroCodigo extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = inputStreamToString(
                         response.getEntity().getContent()).toString();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
                 error = true;
@@ -214,10 +211,7 @@ public class ForoRegistroCodigo extends Activity {
             try {
                 JSONObject jsonResponse = new JSONObject(jsonResult);
                 resultado = jsonResponse.optString("resultado");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                error = true;
-            } catch (NullPointerException e) {
+            } catch (JSONException | NullPointerException e) {
                 e.printStackTrace();
                 error = true;
             }
