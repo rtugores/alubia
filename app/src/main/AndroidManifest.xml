@@ -46,7 +46,7 @@
             android:name=".mas.Mas"
             android:label="@string/masinfo" />
         <activity
-            android:name=".penyas.SubirImagen"
+            android:name=".album.SubirImagen"
             android:label="@string/penyas" />
         <activity
             android:name=".foro.ForoInicial"
@@ -103,11 +103,11 @@
             android:name=".mas.alubiaQuiz.Solucion"
             android:label="@string/solucion" />
         <activity
-            android:name=".penyas.SimpleImageActivity"
+            android:name=".album.SimpleImageActivity"
             android:label="@string/ac_name_image_list" />
         <activity
-            android:name=".penyas.ComplexImageActivity"
-            android:label="Complex" />
+            android:name=".album.ComplexImageActivity"
+            android:label="Álbum" />
         <activity
             android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />

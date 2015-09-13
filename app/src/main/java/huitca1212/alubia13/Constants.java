@@ -72,6 +72,19 @@ public final class Constants {
             "http://rjapps.x10host.com/alubia15/8.jpg",
             "http://rjapps.x10host.com/alubia15/9.jpg",
             "http://rjapps.x10host.com/alubia15/10.jpg",
+            "http://rjapps.x10host.com/alubia15/11.jpg",
+            "http://rjapps.x10host.com/alubia15/12.jpg",
+            "http://rjapps.x10host.com/alubia15/13.jpg",
+            "http://rjapps.x10host.com/alubia15/14.jpg",
+            "http://rjapps.x10host.com/alubia15/15.jpg",
+            "http://rjapps.x10host.com/alubia15/16.jpg",
+            "http://rjapps.x10host.com/alubia15/17.jpg",
+            "http://rjapps.x10host.com/alubia15/18.jpg",
+            "http://rjapps.x10host.com/alubia15/19.jpg",
+            "http://rjapps.x10host.com/alubia15/20.jpg",
+            "http://rjapps.x10host.com/alubia15/21.jpg",
+            "http://rjapps.x10host.com/alubia15/22.jpg",
+
     };
 
     public static final String[] IMAGE_TITLES = new String[]{

@@ -15,10 +15,9 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas.fragment;
+package huitca1212.alubia13.album.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,52 +26,58 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import huitca1212.alubia13.Constants;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.penyas.SimpleImageActivity;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImageGalleryFragment extends BaseFragment {
+public class ImageListFragment extends AbsListViewBaseFragment {
 
-    public static final int INDEX = 3;
+    public static final int INDEX = 0;
 
-    @SuppressWarnings("deprecation")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fr_image_gallery, container, false);
-        Gallery gallery = (Gallery) rootView.findViewById(R.id.gallery);
-        gallery.setAdapter(new ImageAdapter(getActivity()));
-        gallery.setOnItemClickListener(new OnItemClickListener() {
+        View rootView = inflater.inflate(R.layout.fr_image_list, container, false);
+        listView = (ListView) rootView.findViewById(android.R.id.list);
+        listView.setAdapter(new ImageAdapter(getActivity()));
+        listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startImagePagerActivity(position);
+                startImagePagerActivityPenyas(position);
             }
         });
         return rootView;
     }
 
-
-    private void startImagePagerActivity(int position) {
-        Intent intent = new Intent(getActivity(), SimpleImageActivity.class);
-        intent.putExtra(Constants.Extra.FRAGMENT_INDEX, ImagePagerFragment.INDEX);
-        intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
-        startActivity(intent);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        AnimateFirstDisplayListener.displayedImages.clear();
     }
 
     private static class ImageAdapter extends BaseAdapter {
 
         private static final String[] IMAGE_URLS = Constants.IMAGES_PENYAS;
+        private static final String[] IMAGE_STRINGS = Constants.IMAGE_TITLES;
 
         private LayoutInflater inflater;
+        private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
         private DisplayImageOptions options;
 
@@ -86,8 +91,7 @@ public class ImageGalleryFragment extends BaseFragment {
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
                     .considerExifParams(true)
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .displayer(new RoundedBitmapDisplayer(20))
+                    .displayer(new RoundedBitmapDisplayer(5))
                     .build();
         }
 
@@ -107,13 +111,46 @@ public class ImageGalleryFragment extends BaseFragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView = (ImageView) convertView;
-            if (imageView == null) {
-                imageView = (ImageView) inflater.inflate(R.layout.item_gallery_image, parent, false);
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            View view = convertView;
+            final ViewHolder holder;
+            if (convertView == null) {
+                view = inflater.inflate(R.layout.item_list_image, parent, false);
+                holder = new ViewHolder();
+                holder.text = (TextView) view.findViewById(R.id.text);
+                holder.image = (ImageView) view.findViewById(R.id.image);
+                view.setTag(holder);
+            } else {
+                holder = (ViewHolder) view.getTag();
             }
-            ImageLoader.getInstance().displayImage(IMAGE_URLS[position], imageView, options);
-            return imageView;
+
+            holder.text.setText(IMAGE_STRINGS[position]);
+
+            ImageLoader.getInstance().displayImage(IMAGE_URLS[position], holder.image, options, animateFirstListener);
+
+            return view;
+        }
+    }
+
+    static class ViewHolder {
+        TextView text;
+        ImageView image;
+    }
+
+    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+
+        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+
+        @Override
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            if (loadedImage != null) {
+                ImageView imageView = (ImageView) view;
+                boolean firstDisplay = !displayedImages.contains(imageUri);
+                if (firstDisplay) {
+                    FadeInBitmapDisplayer.animate(imageView, 500);
+                    displayedImages.add(imageUri);
+                }
+            }
         }
     }
 }

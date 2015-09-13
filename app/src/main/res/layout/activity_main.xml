@@ -45,7 +45,7 @@
         android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/penyas" />
+        android:text="@string/album" />
 
     <Button
         android:id="@+id/button3"

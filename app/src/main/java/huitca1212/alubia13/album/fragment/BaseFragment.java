@@ -15,7 +15,7 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas.fragment;
+package huitca1212.alubia13.album.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

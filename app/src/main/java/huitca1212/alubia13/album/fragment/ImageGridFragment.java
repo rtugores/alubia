@@ -15,7 +15,7 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas.fragment;
+package huitca1212.alubia13.album.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -26,20 +26,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 import huitca1212.alubia13.Constants;
 import huitca1212.alubia13.R;
@@ -47,37 +42,29 @@ import huitca1212.alubia13.R;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImageListFragment extends AbsListViewBaseFragment {
+public class ImageGridFragment extends AbsListViewBaseFragment {
 
-    public static final int INDEX = 0;
+    public static final int INDEX = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fr_image_list, container, false);
-        listView = (ListView) rootView.findViewById(android.R.id.list);
-        listView.setAdapter(new ImageAdapter(getActivity()));
+        View rootView = inflater.inflate(R.layout.fr_image_grid, container, false);
+        listView = (GridView) rootView.findViewById(R.id.grid);
+        ((GridView) listView).setAdapter(new ImageAdapter(getActivity()));
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startImagePagerActivity(position);
+                startImagePagerActivityAlubia15(position);
             }
         });
         return rootView;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        AnimateFirstDisplayListener.displayedImages.clear();
-    }
-
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] IMAGE_URLS = Constants.IMAGES_PENYAS;
-        private static final String[] IMAGE_STRINGS = Constants.IMAGE_TITLES;
+        private static final String[] IMAGE_URLS = Constants.IMAGES_ALUBIA15;
 
         private LayoutInflater inflater;
-        private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
         private DisplayImageOptions options;
 
@@ -91,7 +78,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
                     .considerExifParams(true)
-                    .displayer(new RoundedBitmapDisplayer(5))
+                    .bitmapConfig(Bitmap.Config.RGB_565)
                     .build();
         }
 
@@ -102,7 +89,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
 
         @Override
         public Object getItem(int position) {
-            return position;
+            return null;
         }
 
         @Override
@@ -111,46 +98,50 @@ public class ImageListFragment extends AbsListViewBaseFragment {
         }
 
         @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            View view = convertView;
+        public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder holder;
-            if (convertView == null) {
-                view = inflater.inflate(R.layout.item_list_image, parent, false);
+            View view = convertView;
+            if (view == null) {
+                view = inflater.inflate(R.layout.item_grid_image, parent, false);
                 holder = new ViewHolder();
-                holder.text = (TextView) view.findViewById(R.id.text);
-                holder.image = (ImageView) view.findViewById(R.id.image);
+                assert view != null;
+                holder.imageView = (ImageView) view.findViewById(R.id.image);
+                holder.progressBar = (ProgressBar) view.findViewById(R.id.progress);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
             }
 
-            holder.text.setText(IMAGE_STRINGS[position]);
+            ImageLoader.getInstance()
+                    .displayImage(IMAGE_URLS[position], holder.imageView, options, new SimpleImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String imageUri, View view) {
+                            holder.progressBar.setProgress(0);
+                            holder.progressBar.setVisibility(View.VISIBLE);
+                        }
 
-            ImageLoader.getInstance().displayImage(IMAGE_URLS[position], holder.image, options, animateFirstListener);
+                        @Override
+                        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                            holder.progressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                            holder.progressBar.setVisibility(View.GONE);
+                        }
+                    }, new ImageLoadingProgressListener() {
+                        @Override
+                        public void onProgressUpdate(String imageUri, View view, int current, int total) {
+                            holder.progressBar.setProgress(Math.round(100.0f * current / total));
+                        }
+                    });
 
             return view;
         }
     }
 
     static class ViewHolder {
-        TextView text;
-        ImageView image;
-    }
-
-    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
-
-        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
-
-        @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            if (loadedImage != null) {
-                ImageView imageView = (ImageView) view;
-                boolean firstDisplay = !displayedImages.contains(imageUri);
-                if (firstDisplay) {
-                    FadeInBitmapDisplayer.animate(imageView, 500);
-                    displayedImages.add(imageUri);
-                }
-            }
-        }
+        ImageView imageView;
+        ProgressBar progressBar;
     }
 }

@@ -15,7 +15,7 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas.fragment;
+package huitca1212.alubia13.album.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -43,7 +43,7 @@ import huitca1212.alubia13.R;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImagePagerFragment extends BaseFragment {
+public class ImagePagerFragmentPenyas extends BaseFragment {
 
     public static final int INDEX = 2;
 
@@ -92,7 +92,7 @@ public class ImagePagerFragment extends BaseFragment {
         public Object instantiateItem(ViewGroup view, int position) {
             View imageLayout = inflater.inflate(R.layout.item_pager_image, view, false);
             assert imageLayout != null;
-            ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
+            final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
             final ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
 
             ImageLoader.getInstance().displayImage(IMAGE_URLS[position], imageView, options, new SimpleImageLoadingListener() {

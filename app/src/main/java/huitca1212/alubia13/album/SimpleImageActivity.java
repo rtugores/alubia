@@ -15,7 +15,7 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas;
+package huitca1212.alubia13.album;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,10 +23,10 @@ import android.support.v4.app.FragmentActivity;
 
 import huitca1212.alubia13.Constants;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.penyas.fragment.ImageGalleryFragment;
-import huitca1212.alubia13.penyas.fragment.ImageGridFragment;
-import huitca1212.alubia13.penyas.fragment.ImageListFragment;
-import huitca1212.alubia13.penyas.fragment.ImagePagerFragment;
+import huitca1212.alubia13.album.fragment.ImageGridFragment;
+import huitca1212.alubia13.album.fragment.ImageListFragment;
+import huitca1212.alubia13.album.fragment.ImagePagerFragmentAlubia15;
+import huitca1212.alubia13.album.fragment.ImagePagerFragmentPenyas;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -42,38 +42,23 @@ public class SimpleImageActivity extends FragmentActivity {
         int titleRes;
         switch (frIndex) {
             default:
-            case ImageListFragment.INDEX:
-                tag = ImageListFragment.class.getSimpleName();
+            case ImagePagerFragmentPenyas.INDEX:
+                tag = ImagePagerFragmentPenyas.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 if (fr == null) {
-                    fr = new ImageListFragment();
-                }
-                titleRes = R.string.ac_name_image_list;
-                break;
-            case ImageGridFragment.INDEX:
-                tag = ImageGridFragment.class.getSimpleName();
-                fr = getSupportFragmentManager().findFragmentByTag(tag);
-                if (fr == null) {
-                    fr = new ImageGridFragment();
-                }
-                titleRes = R.string.ac_name_image_grid;
-                break;
-            case ImagePagerFragment.INDEX:
-                tag = ImagePagerFragment.class.getSimpleName();
-                fr = getSupportFragmentManager().findFragmentByTag(tag);
-                if (fr == null) {
-                    fr = new ImagePagerFragment();
+                    fr = new ImagePagerFragmentPenyas();
                     fr.setArguments(getIntent().getExtras());
                 }
-                titleRes = R.string.ac_name_image_pager;
+                titleRes = R.string.ac_name_image_pager_penyas;
                 break;
-            case ImageGalleryFragment.INDEX:
-                tag = ImageGalleryFragment.class.getSimpleName();
+            case ImagePagerFragmentAlubia15.INDEX:
+                tag = ImagePagerFragmentAlubia15.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 if (fr == null) {
-                    fr = new ImageGalleryFragment();
+                    fr = new ImagePagerFragmentAlubia15();
+                    fr.setArguments(getIntent().getExtras());
                 }
-                titleRes = R.string.ac_name_image_gallery;
+                titleRes = R.string.ac_name_image_pager_alubia15;
                 break;
         }
 

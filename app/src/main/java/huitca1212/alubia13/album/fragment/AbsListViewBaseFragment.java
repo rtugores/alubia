@@ -15,7 +15,7 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas.fragment;
+package huitca1212.alubia13.album.fragment;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -27,7 +27,7 @@ import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
 import huitca1212.alubia13.Constants;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.penyas.SimpleImageActivity;
+import huitca1212.alubia13.album.SimpleImageActivity;
 
 
 /**
@@ -78,9 +78,16 @@ public abstract class AbsListViewBaseFragment extends BaseFragment {
         }
     }
 
-    protected void startImagePagerActivity(int position) {
+    protected void startImagePagerActivityPenyas(int position) {
         Intent intent = new Intent(getActivity(), SimpleImageActivity.class);
-        intent.putExtra(Constants.Extra.FRAGMENT_INDEX, ImagePagerFragment.INDEX);
+        intent.putExtra(Constants.Extra.FRAGMENT_INDEX, ImagePagerFragmentPenyas.INDEX);
+        intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
+        startActivity(intent);
+    }
+
+    protected void startImagePagerActivityAlubia15(int position) {
+        Intent intent = new Intent(getActivity(), SimpleImageActivity.class);
+        intent.putExtra(Constants.Extra.FRAGMENT_INDEX, ImagePagerFragmentAlubia15.INDEX);
         intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
         startActivity(intent);
     }

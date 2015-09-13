@@ -15,7 +15,7 @@
  * limitations under the License.
  * *****************************************************************************
  */
-package huitca1212.alubia13.penyas;
+package huitca1212.alubia13.album;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,8 +25,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.penyas.fragment.ImageGridFragment;
-import huitca1212.alubia13.penyas.fragment.ImageListFragment;
+import huitca1212.alubia13.album.fragment.ImageGridFragment;
+import huitca1212.alubia13.album.fragment.ImageListFragment;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)

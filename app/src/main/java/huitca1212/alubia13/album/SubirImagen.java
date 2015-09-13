@@ -1,4 +1,4 @@
-package huitca1212.alubia13.penyas;
+package huitca1212.alubia13.album;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

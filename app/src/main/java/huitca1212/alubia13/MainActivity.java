@@ -16,11 +16,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import huitca1212.alubia13.album.ComplexImageActivity;
 import huitca1212.alubia13.foro.Foro;
 import huitca1212.alubia13.foro.ForoInicial;
 import huitca1212.alubia13.mas.Mas;
 import huitca1212.alubia13.novedades.Novedades;
-import huitca1212.alubia13.penyas.ComplexImageActivity;
 import huitca1212.alubia13.programa.Programa;
 
 
@@ -38,14 +38,14 @@ public class MainActivity extends Activity {
             copyTestImageToSdCard(testImageOnSdCard);
         }
 
-        final Button boton1 = (Button) findViewById(R.id.button1); //PRIMER BOTON
+        final Button boton1 = (Button) findViewById(R.id.button1); //PROGRAMA
         boton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Programa.class);
                 startActivity(intent);
             }
         });
-        final Button boton2 = (Button) findViewById(R.id.button2); //SEGUNDO BOTON
+        final Button boton2 = (Button) findViewById(R.id.button2); //ÁLBUM
         boton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ComplexImageActivity.class);
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        final Button boton3 = (Button) findViewById(R.id.button3); //TERCER BOTON
+        final Button boton3 = (Button) findViewById(R.id.button3); //FORO
         boton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
@@ -68,14 +68,14 @@ public class MainActivity extends Activity {
             }
         });
 
-        final Button boton4 = (Button) findViewById(R.id.button4);  //CUARTO BOTON
+        final Button boton4 = (Button) findViewById(R.id.button4);  //NOVEDADES
         boton4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Novedades.class);
                 startActivity(intent);
             }
         });
-        final Button boton5 = (Button) findViewById(R.id.button5);  //QUINTO BOTON
+        final Button boton5 = (Button) findViewById(R.id.button5);  //MÁS
         boton5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Mas.class);
