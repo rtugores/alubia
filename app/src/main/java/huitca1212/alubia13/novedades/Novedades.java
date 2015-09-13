@@ -17,10 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -41,11 +41,20 @@ public class Novedades extends Activity {
     private String jsonResult;
     private LinearLayout layout;
     private ListView listView;
+    public static GoogleAnalytics analytics;
+    public static Tracker tracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.novedades);
+        analytics = GoogleAnalytics.getInstance(this);
+        analytics.setLocalDispatchPeriod(1800);
+        tracker = analytics.newTracker("UA-42496077-1"); // Replace with actual tracker/property Id
+        tracker.enableExceptionReporting(true);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.enableAutoActivityTracking(true);
+
         layout = (LinearLayout) findViewById(R.id.progressbar_view);
         listView = (ListView) findViewById(R.id.listView1);
 
@@ -94,9 +103,6 @@ public class Novedades extends Activity {
                 HttpResponse response = httpclient.execute(httppost);
                 jsonResult = inputStreamToString(
                         response.getEntity().getContent()).toString();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-                error = true;
             } catch (IOException e) {
                 e.printStackTrace();
                 error = true;
@@ -181,10 +187,7 @@ public class Novedades extends Activity {
             listView.setAdapter(simpleAdapter);
 
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-            error = true;
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
             error = true;
         }
@@ -218,20 +221,5 @@ public class Novedades extends Activity {
             }
         });
         return builder.create();
-    }
-
-    //====================================================================================================================
-    // Código para las estadísticas
-    //====================================================================================================================
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance().activityStart(this); // Add this method.
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this); // Add this method.
     }
 }

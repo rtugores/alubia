@@ -15,6 +15,7 @@
     <!-- Activity titles -->
     <string name="ac_name_image_pager_penyas">Peñas</string>
     <string name="ac_name_image_pager_alubia15">Alubia \'15</string>
+    <string name="ac_name_image_list">Image List</string>
     <string name="album">Álbum</string>
 
     <!-- PROGRAMA DE FIESTAS -->

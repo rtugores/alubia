@@ -55,6 +55,5 @@ public class Mas extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 }

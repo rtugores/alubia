@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 import huitca1212.alubia13.R;
 
 public class AlubiaQuiz1 extends Activity {
@@ -253,21 +251,5 @@ public class AlubiaQuiz1 extends Activity {
             });
         }
         return builder.create();
-    }
-    //===========================================================================================
-
-    //================================================================
-    //==============CODIGO PARA ESTADISTICAS==========================
-    //================================================================
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance().activityStart(this); // Add this method.
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this); // Add this method.
     }
 }

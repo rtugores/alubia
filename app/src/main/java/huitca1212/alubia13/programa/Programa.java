@@ -8,7 +8,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
 import huitca1212.alubia13.R;
 
@@ -23,11 +24,19 @@ public class Programa extends Activity {
                     new TitularPrograma("Domingo", "23 de agosto"),
                     new TitularPrograma("Lunes", "24 de agosto"),
                     new TitularPrograma("XIV Carrera de la Alubia", "")};
+    public static GoogleAnalytics analytics;
+    public static Tracker tracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.programa);
+        analytics = GoogleAnalytics.getInstance(this);
+        analytics.setLocalDispatchPeriod(1800);
+        tracker = analytics.newTracker("UA-42496077-1"); // Replace with actual tracker/property Id
+        tracker.enableExceptionReporting(true);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.enableAutoActivityTracking(true);
 
         AdaptadorPrograma adaptador = new AdaptadorPrograma(this, datos);
         ListView lstOpciones = (ListView) findViewById(R.id.LstOpciones);
@@ -67,20 +76,5 @@ public class Programa extends Activity {
                 }
             }
         });
-    }
-
-    //================================================================
-    //==============CODIGO PARA ESTADISTICAS==========================
-    //================================================================
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance().activityStart(this); // Add this method.
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this); // Add this method.
     }
 }

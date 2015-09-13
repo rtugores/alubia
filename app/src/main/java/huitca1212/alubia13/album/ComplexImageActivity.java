@@ -24,6 +24,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.album.fragment.ImageGridFragment;
 import huitca1212.alubia13.album.fragment.ImageListFragment;
@@ -33,14 +36,21 @@ import huitca1212.alubia13.album.fragment.ImageListFragment;
  */
 public class ComplexImageActivity extends FragmentActivity {
 
+    public static GoogleAnalytics analytics;
+    public static Tracker tracker;
     private static final String STATE_POSITION = "STATE_POSITION";
-
     private ViewPager pager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_complex);
+        analytics = GoogleAnalytics.getInstance(this);
+        analytics.setLocalDispatchPeriod(1800);
+        tracker = analytics.newTracker("UA-42496077-1"); // Replace with actual tracker/property Id
+        tracker.enableExceptionReporting(true);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.enableAutoActivityTracking(true);
 
         int pagerPosition = savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
 

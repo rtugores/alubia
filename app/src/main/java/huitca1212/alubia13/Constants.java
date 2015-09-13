@@ -47,6 +47,7 @@ public final class Constants {
             "http://rjapps.x10host.com/penyas/motokaskaos.jpg",
             "http://rjapps.x10host.com/penyas/nosting.jpg",
             "http://rjapps.x10host.com/penyas/brujas.jpg",
+            "http://rjapps.x10host.com/penyas/pk2.jpg",
             "http://rjapps.x10host.com/penyas/pocos_pero_locos.jpg",
             "http://rjapps.x10host.com/penyas/psicosys.jpg",
             "http://rjapps.x10host.com/penyas/rambosteroides.jpg",
@@ -84,7 +85,6 @@ public final class Constants {
             "http://rjapps.x10host.com/alubia15/20.jpg",
             "http://rjapps.x10host.com/alubia15/21.jpg",
             "http://rjapps.x10host.com/alubia15/22.jpg",
-
     };
 
     public static final String[] IMAGE_TITLES = new String[]{
@@ -112,6 +112,7 @@ public final class Constants {
             "Motokaskaos",
             "Nosting",
             "Pa' brujas nosotras",
+            "PK2",
             "Pocos pero locos",
             "Psicosys",
             "Rambosteroides",
