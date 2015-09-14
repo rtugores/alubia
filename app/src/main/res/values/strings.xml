@@ -6,9 +6,7 @@
     <string name="error_internet">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
     <string name="login">Iniciar sesión</string>
     <string name="menu_inicio">¡Genial!</string>
-    <string name="menu_info">Información</string>
     <string name="image_main">Im</string>
-    <string name="link_text">Para más información sobre la fiesta, pinche en el siguiente enlace.</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
 
@@ -60,9 +58,6 @@
     <string name="masinfo">Más</string>
 
     <!-- PEÑAS -->
-    <string name="contactar">¡Envía una foto de tu peña!</string>
-    <string name="fotoPenya">Foto de tu peña</string>
-    <string name="fotoPenyaTexto">Envía una foto de tu peña para que aparezca en la aplicación</string>
 
     <!-- ALUBIA QUIZ -->
     <string name="alubiaquiz">Alubia Quiz</string>
@@ -299,11 +294,9 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="codigoDistinto">El código de peña introducido no existe. No escribas ninguno si no tienes peña</string>
 
     <!-- MÁS  -->
-    <string name="politica_privacidad">Política de privacidad</string>
     <string name="contact">Contactar</string>
     <string name="ajustes">Ajustes</string>
     <string name="sobreFiesta">Sobre la fiesta</string>
-    <string name="informacion_fiesta">Información sobre la fiesta</string>
 
     <!-- AJUSTES -->
     <string name="cerrarSesion">Cerrar sesión</string>

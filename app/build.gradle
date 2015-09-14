@@ -24,7 +24,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:22.2.0'
    // compile 'com.squareup.okhttp:okhttp:2.4.0'
-    compile 'com.google.android.gms:play-services-analytics:7.0.0'
+    compile 'com.google.android.gms:play-services-analytics:7.8.0'
 }
 
 File propFile = file('signing.properties');

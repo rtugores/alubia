@@ -85,6 +85,8 @@ public final class Constants {
             "http://rjapps.x10host.com/alubia15/20.jpg",
             "http://rjapps.x10host.com/alubia15/21.jpg",
             "http://rjapps.x10host.com/alubia15/22.jpg",
+            "http://rjapps.x10host.com/alubia15/23.jpg",
+            "http://rjapps.x10host.com/alubia15/24.jpg",
     };
 
     public static final String[] IMAGE_TITLES = new String[]{
