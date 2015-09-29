@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.util.Locale;
 
 import huitca1212.alubia13.R;
 
@@ -120,7 +121,7 @@ public class ForoRegistroUsuario extends Activity {
             Toast.makeText(getApplicationContext(), R.string.usuarioError, Toast.LENGTH_SHORT).show();
             return;
         }
-        String usuario_minus = usuario.toLowerCase();
+        String usuario_minus = usuario.toLowerCase(Locale.getDefault());
         if (usuario_minus.contains("joder") || usuario_minus.contains("puta") ||
                 usuario_minus.contains("ostia") || usuario_minus.contains("polla") ||
                 usuario_minus.contains("imbecil") || usuario_minus.contains("poya") ||

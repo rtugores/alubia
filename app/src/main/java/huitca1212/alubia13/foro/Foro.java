@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.util.Locale;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.mas.ajustes.Ajustes;
@@ -162,7 +163,7 @@ public class Foro extends Activity {
             return false;
         }
         // Comentario con palabrotas
-        String comentario_minus = comentario.toLowerCase();
+        String comentario_minus = comentario.toLowerCase(Locale.getDefault());
         if (comentario_minus.contains("joder") || comentario_minus.contains("puta") ||
                 comentario_minus.contains("ostia") || comentario_minus.contains("polla") ||
                 comentario_minus.contains("imbecil") || comentario_minus.contains("poya") ||

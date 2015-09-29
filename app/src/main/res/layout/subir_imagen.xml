@@ -16,7 +16,7 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:text="Profile Picture"
-            android:textSize="18dip"
+            android:textSize="18sp"
             android:textColor="#FFFFFF"
             />
     </RelativeLayout>
