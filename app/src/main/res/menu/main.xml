@@ -4,11 +4,4 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/ajustes" />
 
-    <item
-        android:id="@+id/camera"
-        android:title="Camera" />
-    <item
-        android:id="@+id/gallery"
-        android:title="Gallery" />
-
 </menu>

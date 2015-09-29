@@ -90,25 +90,6 @@ public class MainActivity extends Activity {
         super.onBackPressed();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_clear_memory_cache:
-                ImageLoader.getInstance().clearMemoryCache();
-                return true;
-            case R.id.item_clear_disc_cache:
-                ImageLoader.getInstance().clearDiskCache();
-                return true;
-            default:
-                return false;
-        }
-    }
 
     private void copyTestImageToSdCard(final File testImageOnSdCard) {
         new Thread(new Runnable() {

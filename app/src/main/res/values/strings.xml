@@ -59,11 +59,6 @@
     <string name="novedades">Novedades</string>
     <string name="masinfo">Más</string>
 
-    <!-- PEÑAS -->
-    <string name="contactar">¡Envía una foto de tu peña!</string>
-    <string name="fotoPenya">Foto de tu peña</string>
-    <string name="fotoPenyaTexto">Envía una foto de tu peña para que aparezca en la aplicación</string>
-
     <!-- ALUBIA QUIZ -->
     <string name="alubiaquiz">Alubia Quiz</string>
     <string name="enhorabuena">¡Enhorabuena!</string>
