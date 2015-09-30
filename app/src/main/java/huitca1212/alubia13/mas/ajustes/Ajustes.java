@@ -36,7 +36,7 @@ public class Ajustes extends Activity {
                     new TitularAjustes("Política de privacidad", "Échale un vistazo a la política de privacidad"),
                     new TitularAjustes("Compartir", "Comparte la aplicación con tus amigos"),
                     new TitularAjustes("Actualizar", "Obtén la versión más actualizada"),
-                    new TitularAjustes("Versión", "3.4"),
+                    new TitularAjustes("Versión", "3.5"),
             };
     private boolean notregister;
     private LinearLayout layout;
