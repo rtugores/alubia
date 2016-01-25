@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_nuevo"
-    android:orientation="vertical">
+    android:background="@drawable/background_image"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="5">
 
     <TextView
-        android:id="@+id/Bienvenida"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_gravity="center"
         android:layout_marginTop="6dp"
         android:gravity="center"
         android:text="@string/bienvenida"
@@ -17,18 +17,16 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/Bienvenida_sub"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_gravity="center"
         android:layout_marginBottom="6dp"
         android:gravity="center"
         android:text="@string/bienvenida_sub" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/schedule_button"
         android:layout_width="match_parent"
-        android:layout_height="66dip"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
@@ -37,9 +35,9 @@
         android:text="@string/programa" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/complex_image_button"
         android:layout_width="match_parent"
-        android:layout_height="66dip"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
@@ -48,9 +46,9 @@
         android:text="@string/album" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/forum_button"
         android:layout_width="match_parent"
-        android:layout_height="66dip"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
@@ -59,9 +57,9 @@
         android:text="@string/foro" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/news_button"
         android:layout_width="match_parent"
-        android:layout_height="66dip"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
@@ -70,9 +68,9 @@
         android:text="@string/novedades" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/more_button"
         android:layout_width="match_parent"
-        android:layout_height="66dip"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"

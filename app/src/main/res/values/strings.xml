@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- MANIFEST Y COMUNES-->
-    <string name="app_name">Alubia \'15</string>
-    <string name="error_internet">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
+    <!-- Manifest and common-->
+    <string name="app_name">Alubia \'16</string>
+    <string name="internet_error">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
+    <string name="internet_news_advise">Conéctate a Internet para obtener las novedades actualizadas!</string>
     <string name="login">Iniciar sesión</string>
     <string name="menu_inicio">¡Genial!</string>
     <string name="image_main">Im</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="api_error">Necesitas un móvil con una versión de Android superior a la 2.3.7 para ver el álbum</string>
 
     <!-- Activity titles -->
     <string name="ac_name_image_pager_penyas">Peñas</string>
@@ -16,13 +18,13 @@
     <string name="ac_name_image_list">Image List</string>
     <string name="album">Álbum</string>
 
-    <!-- PROGRAMA DE FIESTAS -->
+    <!-- Schedule -->
     <string name="viernes">Viernes 21 de agosto</string>
     <string name="sabado">Sábado 22 de agosto</string>
     <string name="domingo">Domingo 23 de agosto</string>
     <string name="lunes">Lunes 24 de agosto</string>
     <string name="saludo">Saludo del alcalde</string>
-    <string name="saludo_contenido">Llega de nuevo la Fiesta de la Alubia, fiesta de la juventud, que vuelve a ser motivo de alegría y disfrute. Momento para olvidar la rutina cotidiana pero, también, la ocasión para demostrar que sabemos divertirnos, respetando lo que nos rodea y a la gente con la que convivimos.
+    <string name="saludo_contenido" tools:ignore="Typos">Llega de nuevo la Fiesta de la Alubia, fiesta de la juventud, que vuelve a ser motivo de alegría y disfrute. Momento para olvidar la rutina cotidiana pero, también, la ocasión para demostrar que sabemos divertirnos, respetando lo que nos rodea y a la gente con la que convivimos.
 \n\nOs invito a que dejéis a un lado vuestras preocupaciones durante estos días y a que salgáis a la calle a vivir el bullicio y la alegría que van a inundar nuestro pueblo.
 \n\nEl pregonero de este año será D. Alberto Rodríguez Santos, nuestro párroco, al que agradecemos su colaboración al igual que a las Reinas y Damas Juveniles e Infantiles que, con su belleza y simpatía, nos harán sentirnos orgullosos de las nuevas generaciones lagunesas.
 \n\nQuiero manifestar también nuestro agradecimiento a las Peñas y sus fantásticos peñistas porque sin vosotros nada de esto habría sido posible. Asimismo a los trabajadores municipales por su dedicación con el fin de que todo esté en orden.
@@ -42,14 +44,18 @@
     <string name="carrera">XIV Carrera de la Alubia</string>
     <string name="carrera_contenido"><b>SÁBADO 29 DE AGOSTO</b>
 \n\n<b>Inscripciones:</b>
-\n18:30 h. - Apertura de inscripciones para la XIV Carrera Popular "Alubia 2015".
+\n18:30 h. - Apertura de inscripciones para la XIV Carrera Popular “Alubia 2015”.
 \nLugar: Plaza del castillo.
 \n\n<b>Horario:</b>
-\n19:00 h. - Comienzo de la XIV Carrera Popular "Alubia 2015".
+\n19:00 h. - Comienzo de la XIV Carrera Popular “Alubia 2015”.
 \nSalida: Plaza del castillo.</string>
+    <string name="saturday_ac1_hour">11:30</string>
+    <string name="saturday_ac1_title">Partido de fútbol</string>
+    <string name="saturday_ac1_subtitle">Campo de fútbol municipal</string>
+    <string name="saturday_ac1_explanation">Enfrentamiento del Juristas de León contra el Candas en el campo de fútbol municipal.</string>
 
-    <!-- ACTIVIDAD PRINCIPAL -->
-    <string name="bienvenida">Fiesta de la Alubia 2015</string>
+    <!-- Main Activity -->
+    <string name="bienvenida">Fiesta de la Alubia 2016</string>
     <string name="bienvenida_sub">Laguna de Negrillos</string>
     <string name="programa">Programa de fiestas</string>
     <string name="penyas">Peñas</string>
@@ -57,7 +63,7 @@
     <string name="novedades">Novedades</string>
     <string name="masinfo">Más</string>
 
-    <!-- ALUBIA QUIZ -->
+    <!-- AlubiaQuiz -->
     <string name="alubiaquiz">Alubia Quiz</string>
     <string name="enhorabuena">¡Enhorabuena!</string>
     <string name="pocasRespuestas">No has acertado muchas respuestas, pero no te preocupes.
@@ -68,7 +74,7 @@
     <string name="malaSuerte">¡Mala suerte!</string>
     <string name="siguiente">¡Siguiente!</string>
     <string name="solucion">Solución</string>
-    <!-- NIVEL FÁCIL -->
+    <!-- Easy level -->
     <string name="eleccion1">Nivel fácil</string>
     <string name="alubiaquiz1">Alubia Quiz - Nivel fácil</string>
     <string name="q1_f">1. La carrera de la Alubia consiste en</string>
@@ -148,7 +154,7 @@
     <string name="r51_m">Kelnozz &amp; Ceda el vaso</string>
     <string name="r52_m">Taboo &amp; Descoloke</string>
     <string name="r53_m">Kachi-chirín &amp; La coral</string>
-    <string name="s5_m">Ellos sí que la acertaron. Las peña fusionada se llama "Kelnozz &amp; Ceda el vaso"</string>
+    <string name="s5_m"><![CDATA[Ellos sí que la acertaron. Las peña fusionada se llama “Kelnozz & Ceda el vaso”]]></string>
     <string name="q6_m">6. ¿En qué año nació la fiesta de la Alubia?</string>
     <string name="r61_m">1969</string>
     <string name="r62_m">1977</string>
@@ -222,17 +228,17 @@
     <string name="r92_d">Jennifer Ceñera Fernández</string>
     <string name="r93_d">Ana Montero González</string>
     <string name="s9_d">Te has equivocado. La primera dama juvenil del 2012 fue Jennifer Ceñera Fernández.</string>
-    <string name="q10_d">10. ¿De qué peña proviene la peña "Ya estamos todos"?</string>
+    <string name="q10_d">10. ¿De qué peña proviene la peña “Ya estamos todos”?</string>
     <string name="r101_d">Jaia</string>
     <string name="r102_d">PocaPena</string>
     <string name="r103_d">Ketache</string>
     <string name="s10_d">Mal. La peña "Ya estamos todos" proviene de la peña "Ketache".</string>
 
-    <!-- SOBRE LA FIESTA -->
+    <!-- About the festivity -->
     <string name="verMapa">Ver en mapa</string>
  	<string name="write_info"><b>INFORMACIÓN</b>
 \n\nLa fiesta comienza el penúltimo viernes de agosto y es la fiesta más grande del pueblo. Nace en 1977 recordando la alubia, el entonces producto típico por excelencia de la zona. Se celebra en fechas de vacaciones para facilitar la participación de los hijos y simpatizantes del pueblo, los cuales viven memorables aventuras. 
-\n\nSe alternan actividades culturales y deportivas. La juventud se moviliza organizando sus peñas. Hay peñas de niños, de mayores, de jóvenes, que se implican en la fiesta dándole colorido, y la mayoría con sus "chiringuitos". Algunos años hay suelta de vaquillas, para gente atrevida; otros descenso del reguero, para gente con imaginación; otros carreras profesionales o de aficionados para facilitar la participación. 
+\n\nSe alternan actividades culturales y deportivas. La juventud se moviliza organizando sus peñas. Hay peñas de niños, de mayores, de jóvenes, que se implican en la fiesta dándole colorido, y la mayoría con sus "chiringuitos". Algunos años hay suelta de vaquillas, para gente atrevida; otros descenso del reguero, para gente con imaginación; otros carreras profesionales o de aficionados para facilitar la participación.
 \n\nNo faltan el pregón de fiestas, las reinas, damas, las carrozas ni tampoco las peñas. Esta fiesta se ha caracterizado desde sus primeras ediciones por contar con un nutrido grupo de peñas que se encargan de enriquecer los actos festivos (desfiles, juegos, competiciones, etc.) y dar ambiente a las calles del pueblo. Se trata de asociaciones no formalizadas, independientes del Ayuntamiento, y geneneralmente con una ubicación fija: el chiringuito en la que se reúnen grupos de amigos tanto nativos como forasteros.
 \n\n\n<b>CÓMO LLEGAR</b>
 \n\n<b>En coche:</b>
@@ -249,7 +255,7 @@ las compañías Empresa Vivas y Autocares Franco ofrecen servicios por carretera
 León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se pueden consultar los horarios en la página web del pueblo.
 \n\n<i>Fuente: Wikipedia.</i></string>
 
-    <!-- FORO -->
+    <!-- Forum -->
     <string name="bienvenido">Bienvenido</string>
     <string name="registro">Registro</string>
     <string name="registrarme">Registrarme</string>
@@ -275,44 +281,42 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="ejemploUsuario">Ej.: Rodri Tugores</string>
 
     <string name="bloqueado">El comentario ha sido bloqueado por infringir las normas del foro.</string>
-    <string name="noPalabrotas">No está permitido escribir palabrotas</string>
-    <string name="denunciarComentario">Denunciar comentario</string>
-    <string name="usuarioBloqueado">Has sido bloqueado por incumplir las normas del foro</string>
+    <string name="no_bad_words">No está permitido escribir palabrotas</string>
+    <string name="user_bloqued">Has sido bloqueado por incumplir las normas del foro</string>
     <string name="usuarioError">El usuario ha de tener al menos 3 caracteres</string>
     <string name="usuarioEnUso">Este nombre de usuario ya existe. Prueba con otro</string>
     <string name="contrasenyaError">La contraseña ha de tener al menos 5 caracteres</string>
     <string name="contrasenyaDistinta">La contraseña que introdujiste no coincide con la de la cuenta</string>
     <string name="emailError">El email tiene un formato incorrecto. Asegúrate de que esté bien escrito</string>
-    <string name="emailDistinto">No podemos encontrar este email. Asegúrate de que esté bien escrito</string>
-    <string name="olvideOK">Genial! En breve recibirás un correo electrónico con tu contraseña!</string>
+    <string name="different_email">No podemos encontrar este email. Asegúrate de que esté bien escrito</string>
+    <string name="forgotten_ok">Genial! En breve recibirás un correo electrónico con tu contraseña!</string>
     <string name="codigoError">El código tiene que tener 10 caracteres o debe permanecer vacío</string>
     <string name="usuarioRepetido">Se acaba de registrar un usuario con ese mismo nombre. Vuelve a empezar el registro</string>
     <string name="emailRepetido">Se acaba de registrar un usuario con ese mismo email. Vuelve a empezar el registro</string>
     <string name="emailEnUso">El email que has escrito ya existe. Prueba con otro</string>
     <string name="codigoDistinto">El código de peña introducido no existe. No escribas ninguno si no tienes peña</string>
 
-    <!-- MÁS  -->
+    <!-- More -->
     <string name="contact">Contactar</string>
     <string name="ajustes">Ajustes</string>
     <string name="sobreFiesta">Sobre la fiesta</string>
 
-    <!-- AJUSTES -->
+    <!-- Settings -->
     <string name="cerrarSesion">Cerrar sesión</string>
     <string name="cerrarSesionConf">¿Estás seguro de que quieres cerrar la sesión en el foro?</string>
     <string name="sesionCerrada">No hay ninguna sesión abierta</string>
-    <string name="borrarCuenta">Borrar cuenta</string>
-    <string name="borrarCuentaConf">¿Estás seguro de que quieres borrar tu cuenta del foro?</string>
+    <string name="delete_account">Borrar cuenta</string>
+    <string name="delete_account_confirmation">¿Estás seguro de que quieres borrar tu cuenta del foro?</string>
     <string name="cuentaYaEliminada">No podemos encontrar tu cuenta. Probablemente ya haya sido eliminada</string>
     <string name="cuentaEliminada">Tu cuenta ha sido eliminada con éxito</string>
     <string name="comentarioYaEliminado">No podemos encontrar este comentario. Probablemente ya haya sido eliminado</string>
     <string name="comentarioDenunciado">Comentario denunciado correctamente. Será revisado por el administrador</string>
-    <string name="trick">¡Portada!</string>
 
-    <!-- CONTACTAR -->
+    <!-- Conctact -->
     <string name="algunaDuda">¿Tienes alguna duda o sugerencia?</string>
     <string name="miNombre">Rodrigo J. Tugores Blanco</string>
 
-    <!-- NOVEDADES -->
+    <!-- News -->
     <string name="email">Email</string>
     <string name="whatsApp">WhatsApp</string>
     <string name="evento">Evento</string>

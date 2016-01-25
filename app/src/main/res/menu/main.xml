@@ -1,7 +1,9 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_ajustes"
+        android:id="@+id/settings_menu"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/ajustes" />
+        android:title="@string/ajustes"
+        compat:showAsAction="ifRoom" />
 
 </menu>
