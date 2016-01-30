@@ -14,7 +14,7 @@
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
-        android:text="@string/bienvenida"
+        android:text="@string/home_title"
         android:textSize="26sp"
         android:textStyle="bold" />
 
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dip"
         android:gravity="center"
-        android:text="@string/algunaDuda"
+        android:text="@string/contact_any_doubt"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
         android:layout_marginRight="20dip"
         android:layout_marginTop="30dip"
         android:background="@drawable/d_normal_button_green"
-        android:text="@string/whatsApp"
+        android:text="@string/news_whatsapp"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
         android:background="@drawable/d_normal_button_blue"
-        android:text="@string/email"
+        android:text="@string/news_email"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dip"
         android:gravity="center"
-        android:text="@string/miNombre"
+        android:text="@string/contact_my_name"
         android:textSize="18sp"
         android:textStyle="bold" />
 

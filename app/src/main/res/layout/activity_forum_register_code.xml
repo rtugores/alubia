@@ -30,7 +30,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="30dip"
                     android:gravity="center"
-                    android:text="@string/introduceCodigo"
+                    android:text="@string/forum_insert_code"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:ems="10"
-                    android:hint="@string/ejemploCodigo"
+                    android:hint="@string/forum_code_example"
                     android:imeOptions="actionDone" />
 
                 <Button
@@ -54,7 +54,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="30dip"
                     android:background="@drawable/d_normal_button_blue"
-                    android:text="@string/continuar"
+                    android:text="@string/forum_continue"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:contentDescription="@string/foro"
+                    android:contentDescription="@string/home_forum"
                     android:src="@drawable/codigo" />
 
                 <TextView
@@ -74,7 +74,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dip"
                     android:gravity="center"
-                    android:text="@string/codigoDesconocido"
+                    android:text="@string/forum_code_unknown_question"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/d_normal_button_blue"
-                    android:text="@string/preguntaCodigo"
+                    android:text="@string/forum_ask_to_admin"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 

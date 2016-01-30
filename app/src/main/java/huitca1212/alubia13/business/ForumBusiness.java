@@ -6,6 +6,8 @@ import com.google.gson.GsonBuilder;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -101,7 +103,7 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendCommentToBackend(final String mUrl, final AllListenerResultBusiness<Comment> listener) {
+	public static void sendCommentToBackend(final String user, final String comment, final ServerListenerBusiness<Comment> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			CommentWrapper data;
 
@@ -113,16 +115,22 @@ public class ForumBusiness {
 			public String onBackground() {
 				OkHttpClient client = new OkHttpClient();
 
-				Request request = new Request.Builder()
-						.url(mUrl)
-						.build();
 				try {
+					String mUrl = "http://rjapps.x10host.com/anhadir_comentario.php?usuario=" + URLEncoder.encode(user, "UTF-8") +
+							"&comentario=" + URLEncoder.encode(comment, "UTF-8").replace(" ", "%20");
+
+					Request request = new Request.Builder()
+							.url(mUrl)
+							.build();
+
 					Response response = client.newCall(request).execute();
 					String jsonResult = response.body().string();
 					GsonBuilder gsonBuilder = new GsonBuilder();
 					Gson gson = gsonBuilder.create();
 					data = gson.fromJson(jsonResult, CommentWrapper.class);
 					return data.getResult();
+				} catch (UnsupportedEncodingException e) {
+					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				} catch (IOException e) {
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
@@ -137,6 +145,51 @@ public class ForumBusiness {
 						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR);
 					default:
 						listener.onServerSuccess(data.getComment());
+						break;
+				}
+			}
+		}).execute();
+	}
+
+	public static void sendReportToBackend(final String id, final ServerListenerBusiness<String> listener) {
+		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+			CommentWrapper data;
+
+			@Override
+			public void onStart() {
+			}
+
+			@Override
+			public String onBackground() {
+				OkHttpClient client = new OkHttpClient();
+
+				try {
+					String mUrl= "http://rjapps.x10host.com/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
+
+					Request request = new Request.Builder()
+							.url(mUrl)
+							.build();
+
+					Response response = client.newCall(request).execute();
+					String jsonResult = response.body().string();
+					GsonBuilder gsonBuilder = new GsonBuilder();
+					Gson gson = gsonBuilder.create();
+					data = gson.fromJson(jsonResult, CommentWrapper.class);
+					return data.getResult();
+				} catch (Exception e){
+					return DefaultAsyncTask.ASYNC_TASK_ERROR;
+				}
+			}
+
+			@Override
+			public void onFinish(String result) {
+				switch (result) {
+					case DefaultAsyncTask.ASYNC_TASK_ERROR:
+						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR);
+					case "-2":
+						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR);
+					default:
+						listener.onServerSuccess(null);
 						break;
 				}
 			}

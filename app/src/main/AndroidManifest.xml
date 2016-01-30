@@ -11,7 +11,7 @@
         android:name=".AlubiaApplication"
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/common_app_name"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.gms.analytics.globalConfigResource"
@@ -25,64 +25,64 @@
         </activity>
         <activity
             android:name=".ui.schedule.ScheduleActivity"
-            android:label="@string/programa" />
+            android:label="@string/home_schedule" />
         <activity
             android:name=".ui.schedule.FridayActivity"
-            android:label="@string/viernes" />
+            android:label="@string/schedule_friday" />
         <activity
             android:name=".ui.schedule.SaturdayActivity"
-            android:label="@string/sabado" />
+            android:label="@string/schedule_saturday" />
         <activity
             android:name=".ui.schedule.SundayActivity"
-            android:label="@string/domingo" />
+            android:label="@string/schedule_sunday" />
         <activity
             android:name=".ui.schedule.MondayActivity"
-            android:label="@string/lunes" />
+            android:label="@string/schedule_monday" />
         <activity
             android:name=".ui.schedule.GreetingActivity"
-            android:label="@string/saludo" />
+            android:label="@string/schedule_greeting_title" />
         <activity
             android:name=".ui.schedule.QueensLadiesActivity"
-            android:label="@string/reinas_damas" />
+            android:label="@string/schedule_queens_ladies_title" />
         <activity
             android:name=".ui.schedule.RaceActivity"
-            android:label="@string/carrera" />
+            android:label="@string/schedule_race_title" />
         <activity
             android:name=".ui.more.MoreActivity"
-            android:label="@string/masinfo" />
+            android:label="@string/home_more" />
         <activity
             android:name=".ui.forum.ForumMenuActivity"
-            android:label="@string/foro" />
+            android:label="@string/home_forum" />
         <activity
             android:name=".ui.forum.ForumLoginEmailActivity"
-            android:label="@string/login" />
+            android:label="@string/forum_menu_button" />
         <activity
             android:name=".ui.forum.ForumLoginPasswordActivity"
-            android:label="@string/login" />
+            android:label="@string/forum_menu_button" />
         <activity
             android:name=".ui.forum.ForumForgottenPasswordActivity"
             android:label="Olvidé mi contraseña" />
         <activity
             android:name=".ui.forum.ForumRegisterUserActivity"
-            android:label="@string/registro" />
+            android:label="@string/forum_register" />
         <activity
             android:name=".ui.forum.ForumRegisterEmailActivity"
-            android:label="@string/registro" />
+            android:label="@string/forum_register" />
         <activity
             android:name=".ui.forum.ForumRegisterPasswordActivity"
-            android:label="@string/registro" />
+            android:label="@string/forum_register" />
         <activity
             android:name=".ui.forum.ForumRegisterCodeActivity"
-            android:label="@string/registro" />
+            android:label="@string/forum_register" />
         <activity
             android:name=".ui.forum.ForumActivity"
-            android:label="@string/foro" />
+            android:label="@string/home_forum" />
         <activity
             android:name=".ui.more.FestivityInfoActivity"
             android:label="Sobre la fiesta" />
         <activity
             android:name=".ui.news.NewsActivity"
-            android:label="@string/novedades" />
+            android:label="@string/home_news" />
         <activity
             android:name=".ui.more.settings.SettingsActivity"
             android:label="Ajustes" />
@@ -91,22 +91,22 @@
             android:label="Contactar" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizMenuActivity"
-            android:label="@string/alubiaquiz" />
+            android:label="@string/alubiaquiz_title" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizEasyActivity"
-            android:label="@string/alubiaquiz" />
+            android:label="@string/alubiaquiz_title" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizMediumActivity"
-            android:label="@string/alubiaquiz" />
+            android:label="@string/alubiaquiz_title" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizDifficultActivity"
-            android:label="@string/alubiaquiz" />
+            android:label="@string/alubiaquiz_title" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizSolutionActivity"
-            android:label="@string/solucion" />
+            android:label="@string/alubiaquiz_solution" />
         <activity
             android:name=".ui.album.SimpleImageActivity"
-            android:label="@string/ac_name_image_list" />
+            android:label="@string/album_image_list_title" />
         <activity
             android:name=".ui.album.ComplexImageActivity"
             android:label="Álbum" />

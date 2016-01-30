@@ -1,10 +1,12 @@
 package huitca1212.alubia13.ui.more.settings;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,8 @@ import huitca1212.alubia13.model.Setting;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
+import huitca1212.alubia13.utils.Dialogs;
+import huitca1212.alubia13.utils.Notifications;
 
 public class SettingsActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
@@ -37,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 					new Setting("Actualizar", "Obtén la versión más actualizada"),
 					new Setting("Versión", "3.5"),
 			};
+	public static Activity settingsActivity;
 	@Bind(R.id.progressbar_view) LinearLayout progressBar;
 	@Bind(R.id.list_options) ListView listOptions;
 
@@ -45,6 +50,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		ButterKnife.bind(this);
+		settingsActivity = this;
 
 		SettingsAdapter adaptador = new SettingsAdapter(this, data);
 
@@ -52,52 +58,17 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		listOptions.setOnItemClickListener(this);
 	}
 
-	public Dialog settingsLogoutDialog(Context eso) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-		builder.setTitle(R.string.cerrarSesion);
-		builder.setMessage(R.string.cerrarSesionConf);
-		builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+
+	public Dialog settingsDeleteAccountDialog(Context ctx) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		builder.setTitle(R.string.settings_delete_title);
+		builder.setMessage(R.string.settings_delete_areyousure);
+		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}
 		});
-		builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-						.edit()
-						.putString("username", "")
-						.commit();
-				getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-						.edit()
-						.putBoolean("notregister", true)
-						.commit();
-				try {
-					MoreActivity.moreActivity.finish();
-				} catch (NullPointerException e) {
-					e.printStackTrace();
-				}
-				try {
-					ForumActivity.forumActivity.finish();
-				} catch (NullPointerException e) {
-					e.printStackTrace();
-				}
-				finish();
-			}
-		});
-		return builder.create();
-	}
-
-
-	public Dialog settingsDeleteAccountDialog(Context eso) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-		builder.setTitle(R.string.delete_account);
-		builder.setMessage(R.string.delete_account_confirmation);
-		builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
-		builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				String usuario = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
 				try {
@@ -105,7 +76,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 					DeleteAccountAsyncTask enviar = new DeleteAccountAsyncTask(SettingsActivity.this, progressBar, mURL);
 					enviar.execute(mURL);
 				} catch (Exception e) {
-					Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 					dialog.cancel();
 				}
 				try {
@@ -131,9 +102,9 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				// Log out
 				boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
 				if (notregister) {
-					Toast.makeText(getApplicationContext(), R.string.sesionCerrada, Toast.LENGTH_SHORT).show();
+					Notifications.showToast(settingsActivity, getString(R.string.settings_error_logout));
 				} else {
-					settingsLogoutDialog(SettingsActivity.this).show();
+					Dialogs.showSettingsLogoutDialog(settingsActivity);
 				}
 				break;
 			case 1:
@@ -145,7 +116,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				// Delete account
 				notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
 				if (notregister) {
-					Toast.makeText(getApplicationContext(), R.string.sesionCerrada, Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
 				} else {
 					settingsDeleteAccountDialog(SettingsActivity.this).show();
 				}
@@ -157,13 +128,16 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				break;
 			case 4:
 				// Share app
-				final Intent intent_share = new Intent(android.content.Intent.ACTION_SEND);
-				intent_share.setType("text/plain");
-				intent_share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-				intent_share.putExtra(Intent.EXTRA_SUBJECT, "¡Descarga Alubia '16!");
-				intent_share.putExtra(Intent.EXTRA_TEXT,
-						"La aplicación de la fiesta de la Alubia en Laguna de Negrillos. Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13");
-				startActivity(Intent.createChooser(intent_share, "Compartir mediante"));
+				final Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+				shareIntent.setType("text/plain");
+				if ( Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+					shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+				} else{
+					shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+				}
+				shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_title));
+				shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_content));
+				startActivity(Intent.createChooser(shareIntent, "Compartir mediante"));
 				break;
 			case 5:
 				try {

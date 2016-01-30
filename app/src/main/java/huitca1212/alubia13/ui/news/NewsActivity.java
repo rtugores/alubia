@@ -50,7 +50,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onClick(View v) {
-		Dialogs.newsContactDialog(this).show();
+		Dialogs.showNewsContactDialog(this);
 	}
 
 	public void accessWebService() {
@@ -78,9 +78,9 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 					drawNewsList();
 				} else if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
 					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
-						Snackbar.make(coordinatorLayout, getString(R.string.internet_news_advise), Snackbar.LENGTH_LONG).show();
+						Snackbar.make(coordinatorLayout, getString(R.string.news_internet_advise), Snackbar.LENGTH_LONG).show();
 					} else {
-						Toast.makeText(NewsActivity.this, R.string.internet_news_advise, Toast.LENGTH_LONG).show();
+						Toast.makeText(NewsActivity.this, R.string.news_internet_advise, Toast.LENGTH_LONG).show();
 					}
 				}
 			}

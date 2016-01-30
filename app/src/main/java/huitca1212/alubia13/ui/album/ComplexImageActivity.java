@@ -22,7 +22,6 @@ import com.google.android.gms.analytics.Tracker;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -97,9 +96,9 @@ public class ComplexImageActivity extends AppCompatActivity {
 		public CharSequence getPageTitle(int position) {
 			switch (position) {
 				case 0:
-					return getString(R.string.penyas);
+					return getString(R.string.home_groups);
 				case 1:
-					return getString(R.string.ac_name_image_pager_alubia15);
+					return getString(R.string.album_image_pager_2);
 				default:
 					return null;
 			}

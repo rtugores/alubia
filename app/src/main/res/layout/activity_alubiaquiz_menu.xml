@@ -16,7 +16,7 @@
         android:layout_marginTop="40dp"
         android:layout_weight="1"
         android:background="@drawable/d_normal_button_green"
-        android:text="@string/eleccion1"
+        android:text="@string/alubiaquiz_easy_level_title"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -29,7 +29,7 @@
         android:layout_marginRight="10dp"
         android:layout_weight="1"
         android:background="@drawable/d_normal_button_green"
-        android:text="@string/eleccion2"
+        android:text="@string/alubiaquiz_medium_level_title"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
         android:layout_marginRight="10dp"
         android:layout_weight="1"
         android:background="@drawable/d_normal_button_green"
-        android:text="@string/eleccion3"
+        android:text="@string/alubiaquiz_hard_level_title"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 

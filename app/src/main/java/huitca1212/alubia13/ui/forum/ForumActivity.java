@@ -13,22 +13,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.AllListenerBusiness;
-import huitca1212.alubia13.business.AllListenerResultBusiness;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
+import huitca1212.alubia13.business.ResultListenerBussiness;
+import huitca1212.alubia13.business.ServerListenerBusiness;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.model.CommentsWrapper;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
@@ -44,13 +43,14 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	public CommentsWrapper data = new CommentsWrapper();
 	public ForumAdapter adapter;
 	public LinearLayoutManager mLayoutManager;
-	@Bind(R.id.progressbar_view) LinearLayout progressbarView;
-	@Bind(R.id.comment_bar) LinearLayout commentBar;
-	@Bind(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
+	public ResultListenerBussiness resultListener;
+	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
+	@Bind(R.id.comment_bar) ViewGroup commentBar;
 	@Bind(R.id.recycler_view) RecyclerView recyclerView;
+	@Bind(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
 	@Bind(R.id.comment) EditText commentBox;
-	@Bind(R.id.update_button) Button updateButton;
-	@Bind(R.id.send_button) Button sendButton;
+	@Bind(R.id.update_button) View updateButton;
+	@Bind(R.id.send_button) View sendButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +79,8 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		}
 
 		accessWebService();
+		setResultReportListener();
 
-		commentBox.setOnClickListener(this);
 		updateButton.setOnClickListener(this);
 		sendButton.setOnClickListener(this);
 	}
@@ -88,15 +88,31 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.comment) {
-			//smoothScrollToPosition(adapter.getItemCount() - 1)
-			//recyclerView.setStackFromBottom(true);
-		} else if (id == R.id.update_button) {
+		if (id == R.id.update_button) {
 			updateButtonAction();
 
 		} else if (id == R.id.send_button) {
 			onSendClick();
 		}
+	}
+
+	private void setResultReportListener(){
+		resultListener = new ResultListenerBussiness() {
+			@Override
+			public void onResult(String result) {
+				switch (result) {
+					case DefaultAsyncTask.ASYNC_TASK_OK:
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.settings_reported_ok));
+						break;
+					case DefaultAsyncTask.ASYNC_TASK_ERROR:
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.settings_error_comment_deleted));
+						break;
+					case "-2":
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_internet_error));
+						break;
+				}
+			}
+		};
 	}
 
 	private void updateButtonAction() {
@@ -119,7 +135,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			public void onFailure(String result) {
 				progressbarView.setVisibility(View.GONE);
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
-					Notifications.showSnackBar(ForumActivity.this, coordinatorLayout, getString(R.string.internet_news_advise));
+					Notifications.showSnackBar(coordinatorLayout, getString(R.string.news_internet_advise));
 				}
 				progressbarView.setVisibility(View.GONE);
 			}
@@ -131,15 +147,8 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		if (!isRightComment(comment)) {
 			return;
 		}
-
-		String usuario = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
-		try {
-			String mURL = "http://rjapps.x10host.com/anhadir_comentario.php?usuario=" + URLEncoder.encode(usuario, "UTF-8") +
-					"&comentario=" + URLEncoder.encode(comment, "UTF-8").replace(" ", "%20");
-			sendCommentAndRefresh(mURL);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String user = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
+		sendCommentAndRefresh(user, comment);
 	}
 
 	private void setAnalytics() {
@@ -183,7 +192,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			public void onFailure(String result) {
 				progressbarView.setVisibility(View.GONE);
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
-					Notifications.showSnackBar(ForumActivity.this, coordinatorLayout, "H: Conéctate a Internet para tener los comentarios actualizados");
+					Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_conection));
 				}
 				progressbarView.setVisibility(View.GONE);
 			}
@@ -208,17 +217,17 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			return false;
 		}
 		if (Checkers.hasStringBadWords(comment)) {
-			Notifications.showToast(ForumActivity.this, getString(R.string.no_bad_words));
+			Notifications.showToast(ForumActivity.this, getString(R.string.forum_error_bad_words));
 			return false;
 		}
 		return true;
 	}
 
-	private void sendCommentAndRefresh(String mURL) {
+	private void sendCommentAndRefresh(String user, String comment) {
 		progressbarView.setVisibility(View.VISIBLE);
 		sendButton.setEnabled(false);
 		commentBox.setEnabled(false);
-		ForumBusiness.sendCommentToBackend(mURL, new AllListenerResultBusiness<Comment>() {
+		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerBusiness<Comment>() {
 			@Override
 			public void onServerSuccess(Comment comment) {
 				addItemForumList(comment);
@@ -235,11 +244,11 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 				commentBox.setEnabled(true);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR:
-						Notifications.showSnackBar(ForumActivity.this, coordinatorLayout, "H: debes tener Internet");
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_conection));
 						break;
 					case DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR:
 						commentBox.setText("");
-						Notifications.showSnackBar(ForumActivity.this, coordinatorLayout, getString(R.string.user_bloqued));
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_user_blocked));
 						break;
 				}
 			}
@@ -247,7 +256,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void drawForumList(ArrayList<Comment> comments) {
-		adapter = new ForumAdapter(comments, ForumActivity.this, invited);
+		adapter = new ForumAdapter(comments, ForumActivity.this, invited, resultListener);
 		recyclerView.setAdapter(adapter);
 
 		DatabaseFunctions.setDatabaseComments(comments);
@@ -255,7 +264,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void updateForumList(ArrayList<Comment> comments, boolean fromButton) {
 		if (adapter == null) {
-			adapter = new ForumAdapter(comments, ForumActivity.this, invited);
+			adapter = new ForumAdapter(comments, ForumActivity.this, invited, resultListener);
 			recyclerView.setAdapter(adapter);
 		} else if (adapter.update(comments)) {
 			DatabaseFunctions.setDatabaseComments(comments);

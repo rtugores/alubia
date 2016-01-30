@@ -79,7 +79,7 @@ public class DeleteAccountAsyncTask extends AsyncTask<String, Void, String> {
 	protected void onPostExecute(String result) {
 		String resultado = "-1";
 		if (error) {
-			Toast.makeText(contexto, R.string.internet_error, Toast.LENGTH_LONG).show();
+			Toast.makeText(contexto, R.string.common_internet_error, Toast.LENGTH_LONG).show();
 			return;
 		}
 		try {
@@ -92,15 +92,15 @@ public class DeleteAccountAsyncTask extends AsyncTask<String, Void, String> {
 		if (resultado.equals("-1")) {
 			error = true;
 		} else if (resultado.equals("-2")) {
-			Toast.makeText(contexto, R.string.cuentaYaEliminada, Toast.LENGTH_LONG).show();
+			Toast.makeText(contexto, R.string.settings_error_delete, Toast.LENGTH_LONG).show();
 			layout.setVisibility(View.GONE);
 			return;
 		}
 		if (error) {
-			Toast.makeText(contexto, R.string.internet_error, Toast.LENGTH_LONG).show();
+			Toast.makeText(contexto, R.string.common_internet_error, Toast.LENGTH_LONG).show();
 			layout.setVisibility(View.GONE);
 		} else {
-			Toast.makeText(contexto, R.string.cuentaEliminada, Toast.LENGTH_SHORT).show();
+			Toast.makeText(contexto, R.string.settings_delete_ok, Toast.LENGTH_SHORT).show();
 			contexto.getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
 					.edit()
 					.putString("username", "")

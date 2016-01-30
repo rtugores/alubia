@@ -70,7 +70,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		email = email_edit.getText().toString().trim();
 		if (!email.matches(emailPattern)) {
-			Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 		} else {
 			accessWebService();
 		}
@@ -105,10 +105,10 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 				progressbarView.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.different_email, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.forum_error_different_email, Toast.LENGTH_LONG).show();
 						return;
 					default:
 						Intent intent = new Intent(ForumLoginEmailActivity.this, ForumLoginPasswordActivity.class);

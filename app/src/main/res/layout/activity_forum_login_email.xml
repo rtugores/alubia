@@ -30,7 +30,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="30dip"
                     android:gravity="center"
-                    android:text="@string/introduceEmail"
+                    android:text="@string/forum_insert_email"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:hint="@string/email"
+                    android:hint="@string/news_email"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress" />
 
@@ -55,7 +55,7 @@
                     android:layout_marginTop="30dip"
                     android:background="@drawable/d_normal_button_gray"
                     android:enabled="false"
-                    android:text="@string/continuar"
+                    android:text="@string/forum_continue"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="@string/pprivacidad1"
+                    android:text="@string/forum_privacy_1"
                     android:textSize="18sp" />
 
                 <TextView
@@ -78,7 +78,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="@string/pprivacidad2"
+                    android:text="@string/forum_privacy_2"
                     android:textColor="#2E64FE"
                     android:textSize="18sp"
                     android:textStyle="bold" />

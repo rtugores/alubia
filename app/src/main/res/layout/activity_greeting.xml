@@ -17,7 +17,7 @@
         android:layout_marginTop="10dip"
         android:layout_weight="1"
         android:scrollbars="vertical"
-        android:text="@string/saludo_contenido"
+        android:text="@string/schedule_greeting_content"
         android:textSize="15sp" />
 
     <com.google.ads.AdView

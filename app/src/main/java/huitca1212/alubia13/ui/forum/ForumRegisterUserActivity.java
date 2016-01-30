@@ -86,11 +86,11 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 
 		userString = registerUserEditText.getText().toString().trim();
 		if (userString.length() < 3) {
-			Toast.makeText(getApplicationContext(), R.string.usuarioError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_user, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		if (Checkers.hasStringBadWords(userString)) {
-			Toast.makeText(getApplicationContext(), R.string.no_bad_words, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_words, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		try {
@@ -99,7 +99,7 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 			SendTask enviar = new SendTask();
 			enviar.execute(mURL);
 		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -194,12 +194,12 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 			if (resultado.equals("-1")) {
 				error = true;
 			} else if (resultado.equals("-2")) {
-				Toast.makeText(getApplicationContext(), R.string.usuarioEnUso, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.forum_error_user_repeated, Toast.LENGTH_LONG).show();
 				progressBar.setVisibility(View.GONE);
 				return;
 			}
 			if (error) {
-				Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 			} else {
 
 				Intent intent = new Intent(ForumRegisterUserActivity.this, ForumRegisterEmailActivity.class);

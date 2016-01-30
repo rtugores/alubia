@@ -17,7 +17,7 @@
         android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:scrollbars="vertical"
-        android:text="@string/carrera_contenido"
+        android:text="@string/schedule_race_content"
         android:textSize="16sp" />
 
     <com.google.ads.AdView

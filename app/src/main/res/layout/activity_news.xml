@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/d_normal_button_blue"
-            android:text="@string/enviaEvento"
+            android:text="@string/news_event_text_button"
             android:textColor="@android:color/white"
             android:layout_marginTop="7dp"
             android:textStyle="bold" />

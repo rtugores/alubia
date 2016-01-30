@@ -121,7 +121,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		email = email_edit.getText().toString().trim();
 		if (!email.matches(emailPattern)) {
-			Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		try {
@@ -132,7 +132,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 			enviar.execute(mURL);
 		} catch (Exception e) {
 			e.printStackTrace();
-			Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -196,12 +196,12 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 			if (resultado.equals("-1")) {
 				error = true;
 			} else if (resultado.equals("1")) { // [IMPORTANTE] SIGNIFICA ERROR POR EL SCRIPT PHP QUE REUTILIZAMOS DEL LOGIN  (comprobar_email.php)
-				Toast.makeText(getApplicationContext(), R.string.emailEnUso, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email_repeat, Toast.LENGTH_LONG).show();
 				progressBar.setVisibility(View.GONE);
 				return;
 			}
 			if (error) {
-				Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 			} else {
 				// Enviamos el email a la nueva actividad (ForoRegistroContrasenya)
 				Intent intent = new Intent(ForumRegisterEmailActivity.this, ForumRegisterPasswordActivity.class);

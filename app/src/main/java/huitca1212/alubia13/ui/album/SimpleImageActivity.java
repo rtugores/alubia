@@ -46,7 +46,7 @@ public class SimpleImageActivity extends FragmentActivity {
 					fr = new ImagePagerPenyasFragment();
 					fr.setArguments(getIntent().getExtras());
 				}
-				titleRes = R.string.ac_name_image_pager_penyas;
+				titleRes = R.string.album_image_pager_1;
 				break;
 			case ImagePagerAlubia15Fragment.INDEX:
 				tag = ImagePagerAlubia15Fragment.class.getSimpleName();
@@ -55,7 +55,7 @@ public class SimpleImageActivity extends FragmentActivity {
 					fr = new ImagePagerAlubia15Fragment();
 					fr.setArguments(getIntent().getExtras());
 				}
-				titleRes = R.string.ac_name_image_pager_alubia15;
+				titleRes = R.string.album_image_pager_2;
 				break;
 		}
 

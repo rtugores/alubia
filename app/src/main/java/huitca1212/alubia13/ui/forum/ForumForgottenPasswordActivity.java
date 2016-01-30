@@ -59,7 +59,7 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		final String email = forgottenEmail.getText().toString().trim();
 		if (!email.matches(emailPattern)) {
-			Toast.makeText(this, R.string.emailError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
@@ -91,14 +91,14 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 				progressBar.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.different_email, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.forum_error_different_email, Toast.LENGTH_LONG).show();
 						break;
 					default:
 						finish();
-						Toast.makeText(getApplicationContext(), R.string.forgotten_ok, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.forum_forgot_action_success, Toast.LENGTH_LONG).show();
 						break;
 				}
 			}

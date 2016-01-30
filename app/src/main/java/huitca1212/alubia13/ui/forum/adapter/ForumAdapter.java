@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.business.DefaultAsyncTask;
+import huitca1212.alubia13.business.ResultListenerBussiness;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.utils.Dialogs;
 
@@ -35,11 +37,13 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	private ArrayList<Comment> comments;
 	private View.OnClickListener listener;
 	private String userLogged, invited;
+	private ResultListenerBussiness resultListener;
 
-	public ForumAdapter(ArrayList<Comment> comments, Context ctx, String invited) {
+	public ForumAdapter(ArrayList<Comment> comments, Context ctx, String invited, ResultListenerBussiness resultListener) {
 		this.comments = comments;
 		this.ctx = ctx;
 		this.invited = invited;
+		this.resultListener = resultListener;
 		userLogged = ctx.getSharedPreferences("PREFERENCE", 0).getString("username", "username");
 	}
 
@@ -113,7 +117,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		forumViewHolder.reportButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Dialogs.forumReportCommentDialog(ctx, forumViewHolder.id.getText().toString()).show();
+				Dialogs.showForumReportCommentDialog(ctx, forumViewHolder.id.getText().toString(), resultListener);
 			}
 		});
 		setCommentType(forumViewHolder, position);
@@ -129,11 +133,11 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		int itemType = forumViewHolder.getItemViewType();
 		boolean isUser = comments.get(position).getUser().equals(userLogged);
 		if (invited != null && invited.equals("OK")) {
-			RecyclerView.LayoutParams outsideParams = (RecyclerView.LayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
+			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
 			outsideParams.setMargins(0, 0, 0, 0);
 			forumViewHolder.reportButton.setVisibility(View.GONE);
 		} else if (isUser) {
-			RecyclerView.LayoutParams outsideParams = (RecyclerView.LayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
+			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
 			outsideParams.setMargins(convertDptoPixel(50), 0, 0, 0);
 			forumViewHolder.forumOutsideLayout.setLayoutParams(outsideParams);
 			LinearLayout.LayoutParams insideParams = (LinearLayout.LayoutParams)forumViewHolder.forumInsideLayout.getLayoutParams();
@@ -170,7 +174,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 			forumViewHolder.group.setText("");
 		}
 		if (itemType == TYPE_BAN || itemType == TYPE_BAN_REPEATED) {
-			forumViewHolder.comment.setText(R.string.bloqueado);
+			forumViewHolder.comment.setText(R.string.forum_error_comment_blocked);
 			forumViewHolder.reportButton.setVisibility(View.GONE);
 			forumViewHolder.comment.setTextColor(0xFFFF0000);
 		}

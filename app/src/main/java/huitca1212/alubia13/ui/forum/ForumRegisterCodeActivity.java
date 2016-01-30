@@ -105,7 +105,7 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 
 		String code = codeEditText.getText().toString().trim();
 		if (code.length() != 10 && code.length() != 0) {
-			Toast.makeText(getApplicationContext(), R.string.codigoError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_code, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		// Convertimos para que nos entienda el servidor
@@ -127,7 +127,7 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 			enviar.execute(mURL);
 		} catch (Exception e) {
 			e.printStackTrace();
-			Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -189,24 +189,24 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 			int resultado_int = Integer.parseInt(resultado);
 			switch (resultado_int) {
 				case -1:
-					Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 					progressBar.setVisibility(View.GONE);
 					return;
 				case -2:
-					Toast.makeText(getApplicationContext(), R.string.usuarioRepetido, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.forum_error_end_user_repeated, Toast.LENGTH_LONG).show();
 					progressBar.setVisibility(View.GONE);
 					return;
 				case -3:
-					Toast.makeText(getApplicationContext(), R.string.emailRepetido, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.forum_error_end_email_repeated, Toast.LENGTH_LONG).show();
 					progressBar.setVisibility(View.GONE);
 					return;
 				case -4:
-					Toast.makeText(getApplicationContext(), R.string.codigoDistinto, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.forum_error_different_code, Toast.LENGTH_LONG).show();
 					progressBar.setVisibility(View.GONE);
 					return;
 			}
 			if (error) {
-				Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 				progressBar.setVisibility(View.GONE);
 			} else {
 				// Almacenamos el nombre de usuario en el teléfono

@@ -54,13 +54,7 @@ public class DatabaseFunctions {
 	public static void setDatabaseLastComment(final Comment data) {
 		try {
 			final RuntimeExceptionDao<Comment, Integer> commentsDao = getDbHelper().getCommentsDao();
-			commentsDao.callBatchTasks(new Callable<Void>() {
-				@Override
-				public Void call() throws Exception {
-					commentsDao.create(data);
-					return null;
-				}
-			});
+			commentsDao.create(data);
 		} catch (SQLException e) {
 			//NOOP
 		}
