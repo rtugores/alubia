@@ -1,74 +1,86 @@
 package huitca1212.alubia13.utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
-import java.net.URLEncoder;
-
-import huitca1212.alubia13.AlubiaApplication;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.SendReportAsyncTask;
+import huitca1212.alubia13.business.DefaultAsyncTask;
+import huitca1212.alubia13.business.ForumBusiness;
+import huitca1212.alubia13.business.ResultListenerBussiness;
+import huitca1212.alubia13.business.ServerListenerBusiness;
+import huitca1212.alubia13.ui.forum.ForumActivity;
+import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.ui.more.alubiaQuiz.AlubiaQuizSolutionActivity;
+import huitca1212.alubia13.ui.more.settings.SettingsActivity;
 
 public class Dialogs {
 
-	public static Dialog newsContactDialog(final Context ctx) {
+	public static void showNewsContactDialog(final Context ctx) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		builder.setTitle(R.string.evento);
-		builder.setMessage(R.string.eventoTexto);
-		builder.setNegativeButton(R.string.whatsApp, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Intent callIntent = new Intent(Intent.ACTION_DIAL);
-				callIntent.setData(Uri.parse("tel:664732632"));
-				ctx.startActivity(callIntent);
-			}
-		});
-		builder.setPositiveButton(R.string.email, new DialogInterface.OnClickListener() {
+		builder.setTitle(R.string.news_event_title);
+		builder.setMessage(R.string.news_event_content);
+		builder.setPositiveButton(R.string.news_email, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				Intent i = new Intent(Intent.ACTION_SEND);
 				i.setType("message/rfc822").putExtra(Intent.EXTRA_EMAIL, "huitca1212@gmail.com");
 				ctx.startActivity(Intent.createChooser(i, "Enviar mediante"));
 			}
 		});
-		return builder.create();
-	}
-
-	public static Dialog forumReportCommentDialog(final Context ctx, final String id) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		builder.setTitle("H: Reportar comentario");
-		builder.setMessage("H: Estás seguro de que quieres denunciar este comentario?");
-		builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+		builder.setNegativeButton(R.string.news_whatsapp, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
+				Intent callIntent = new Intent(Intent.ACTION_DIAL);
+				callIntent.setData(Uri.parse("tel:664732632"));
+				ctx.startActivity(callIntent);
 			}
 		});
-		builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				try {
-					String mURL = "http://rjapps.x10host.com/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
-					SendReportAsyncTask enviar = new SendReportAsyncTask(AlubiaApplication.getInstance(), mURL);
-					enviar.execute(mURL);
-				} catch (Exception e) {
-					Toast.makeText(ctx, R.string.internet_error, Toast.LENGTH_LONG).show();
-				}
-			}
-		});
-		return builder.create();
+		builder.show();
 	}
 
-	public static Dialog alubiaQuizRightAnswerDialog(int questionNumber, final int answer, final Context ctx) {
+	public static void showForumReportCommentDialog(final Context ctx, final String id, final ResultListenerBussiness listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		builder.setTitle(R.string.enhorabuena);
-		builder.setMessage(R.string.hasAcertado);
+		builder.setTitle(R.string.forum_report_comment_title);
+		builder.setMessage(R.string.forum_report_comment_content);
+		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				ForumBusiness.sendReportToBackend(id, new ServerListenerBusiness<String>() {
+					@Override
+					public void onServerSuccess(String result) {
+						listener.onResult(DefaultAsyncTask.ASYNC_TASK_OK);
+					}
+
+					@Override
+					public void onFailure(String result) {
+						switch (result) {
+							case "-2":
+								listener.onResult("-2");
+								break;
+							case DefaultAsyncTask.ASYNC_TASK_ERROR:
+								listener.onResult(DefaultAsyncTask.ASYNC_TASK_ERROR);
+								break;
+						}
+					}
+				});
+			}
+		});
+		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		builder.show();
+	}
+
+	public static void showAlubiaQuizRightAnswerDialog(int questionNumber, final int answer, final Context ctx) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		builder.setTitle(R.string.alubiaquiz_congrats);
+		builder.setMessage(R.string.alubiaquiz_you_are_correct);
 		if (questionNumber == 10) {
-			builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+			builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					Intent intent = new Intent(ctx, AlubiaQuizSolutionActivity.class);
 					String respuesta_s = Integer.toString(answer);
@@ -81,12 +93,46 @@ public class Dialogs {
 				}
 			});
 		} else {
-			builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+			builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
+					dialog.dismiss();
 				}
 			});
 		}
-		return builder.create();
+		builder.show();
 	}
+
+	public static void showSettingsLogoutDialog(final Context ctx) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		builder.setTitle(R.string.settings_logout);
+		builder.setMessage(R.string.settings_logout_areyousure);
+		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
+		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				ctx.getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putString("username", "").commit();
+				ctx.getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putBoolean("notregister", true).commit();
+				try {
+					MoreActivity.moreActivity.finish();
+				} catch (NullPointerException e) {
+					//NOOP
+				}
+				try {
+					ForumActivity.forumActivity.finish();
+				} catch (NullPointerException e) {
+					//NOOP
+				}
+				try {
+					SettingsActivity.settingsActivity.finish();
+				} catch (NullPointerException e) {
+					//NOOP
+				}
+			}
+		});
+		builder.show();
+	}
+
 }

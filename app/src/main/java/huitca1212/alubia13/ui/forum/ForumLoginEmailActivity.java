@@ -37,7 +37,7 @@ import okhttp3.Response;
 public class ForumLoginEmailActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, TextWatcher {
 
 	private String jsonResult, email;
-	public static Activity foroLoginEmailActivity;
+	public static Activity forumLoginEmailActivity;
 	@Bind(R.id.progressbar_view_login) LinearLayout progressbarView;
 	@Bind(R.id.email) EditText emailBox;
 	@Bind(R.id.register_button) Button sendLogin;
@@ -49,7 +49,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		setContentView(R.layout.activity_forum_login_email);
 		ButterKnife.bind(this);
 
-		foroLoginEmailActivity = this;
+		forumLoginEmailActivity = this;
 		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
 		emailBox.addTextChangedListener(this);
 		emailBox.setOnEditorActionListener(this);
@@ -70,7 +70,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		email = email_edit.getText().toString().trim();
 		if (!email.matches(emailPattern)) {
-			Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 		} else {
 			accessWebService();
 		}
@@ -105,10 +105,10 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 				progressbarView.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.different_email, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.forum_error_different_email, Toast.LENGTH_LONG).show();
 						return;
 					default:
 						Intent intent = new Intent(ForumLoginEmailActivity.this, ForumLoginPasswordActivity.class);
@@ -159,5 +159,10 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 			sendLogin.setEnabled(false);
 			sendLogin.setBackgroundResource(R.drawable.d_normal_button_gray);
 		}
+	}
+
+	public void onDestroy(){
+		forumLoginEmailActivity = null;
+		super.onDestroy();
 	}
 }

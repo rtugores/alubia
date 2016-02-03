@@ -1,6 +1,5 @@
 package huitca1212.alubia13.ui.more.alubiaQuiz;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -33,137 +32,137 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_alubiaquiz);
 		ButterKnife.bind(this);
 
-		quizWelcome.setText(R.string.alubiaquiz1);
-		firstQuestion.setText(R.string.q1_f);
-		firstOption.setText(R.string.r11_f);
-		secondOption.setText(R.string.r12_f);
-		thirdOption.setText(R.string.r13_f);
+		quizWelcome.setText(R.string.alubiaquiz_easy_level_subtitle);
+		firstQuestion.setText(R.string.alubiaquiz_q1_f);
+		firstOption.setText(R.string.alubiaquiz_r11_f);
+		secondOption.setText(R.string.alubiaquiz_r12_f);
+		thirdOption.setText(R.string.alubiaquiz_r13_f);
 
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 
 				if (secondOption.isChecked()) {
 					respuesta += 1;
-					Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+					Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 				} else {
-					crearDialogoHasFallado1(1, 0).show();
+					showAlubiaQuizWrongAnswerDialog(1, 0);
 				}
 				firstOption.setChecked(true);
-				firstQuestion.setText(R.string.q2_f);
-				firstOption.setText(R.string.r21_f);
-				secondOption.setText(R.string.r22_f);
-				thirdOption.setText(R.string.r23_f);
+				firstQuestion.setText(R.string.alubiaquiz_q2_f);
+				firstOption.setText(R.string.alubiaquiz_r21_f);
+				secondOption.setText(R.string.alubiaquiz_r22_f);
+				thirdOption.setText(R.string.alubiaquiz_r23_f);
 				nextButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						if (firstOption.isChecked()) {
 							respuesta += 1;
-							Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+							Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 						} else {
-							crearDialogoHasFallado1(2, 0).show();
+							showAlubiaQuizWrongAnswerDialog(2, 0);
 						}
 						firstOption.setChecked(true);
-						firstQuestion.setText(R.string.q3_f);
-						firstOption.setText(R.string.r31_f);
-						secondOption.setText(R.string.r32_f);
-						thirdOption.setText(R.string.r33_f);
+						firstQuestion.setText(R.string.alubiaquiz_q3_f);
+						firstOption.setText(R.string.alubiaquiz_r31_f);
+						secondOption.setText(R.string.alubiaquiz_r32_f);
+						thirdOption.setText(R.string.alubiaquiz_r33_f);
 						nextButton.setOnClickListener(new View.OnClickListener() {
 							public void onClick(View v) {
 								if (secondOption.isChecked()) {
 									respuesta += 1;
-									Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+									Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 								} else {
-									crearDialogoHasFallado1(3, 0).show();
+									showAlubiaQuizWrongAnswerDialog(3, 0);
 								}
 								firstOption.setChecked(true);
-								firstQuestion.setText(R.string.q4_f);
-								firstOption.setText(R.string.r41_f);
-								secondOption.setText(R.string.r42_f);
-								thirdOption.setText(R.string.r43_f);
+								firstQuestion.setText(R.string.alubiaquiz_q4_f);
+								firstOption.setText(R.string.alubiaquiz_r41_f);
+								secondOption.setText(R.string.alubiaquiz_r42_f);
+								thirdOption.setText(R.string.alubiaquiz_r43_f);
 								nextButton.setOnClickListener(new View.OnClickListener() {
 									public void onClick(View v) {
 										if (secondOption.isChecked()) {
 											respuesta += 1;
-											Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+											Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 										} else {
-											crearDialogoHasFallado1(4, 0).show();
+											showAlubiaQuizWrongAnswerDialog(4, 0);
 										}
 										firstOption.setChecked(true);
-										firstQuestion.setText(R.string.q5_f);
-										firstOption.setText(R.string.r51_f);
-										secondOption.setText(R.string.r52_f);
-										thirdOption.setText(R.string.r53_f);
+										firstQuestion.setText(R.string.alubiaquiz_q5_f);
+										firstOption.setText(R.string.alubiaquiz_r51_f);
+										secondOption.setText(R.string.alubiaquiz_r52_f);
+										thirdOption.setText(R.string.alubiaquiz_r53_f);
 										nextButton.setOnClickListener(new View.OnClickListener() {
 											public void onClick(View v) {
 												if (thirdOption.isChecked()) {
 													respuesta += 1;
-													Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+													Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 												} else {
-													crearDialogoHasFallado1(5, 0).show();
+													showAlubiaQuizWrongAnswerDialog(5, 0);
 												}
 												firstOption.setChecked(true);
-												firstQuestion.setText(R.string.q6_f);
-												firstOption.setText(R.string.r61_f);
-												secondOption.setText(R.string.r62_f);
-												thirdOption.setText(R.string.r63_f);
+												firstQuestion.setText(R.string.alubiaquiz_q6_f);
+												firstOption.setText(R.string.alubiaquiz_r61_f);
+												secondOption.setText(R.string.alubiaquiz_r62_f);
+												thirdOption.setText(R.string.alubiaquiz_r63_f);
 												nextButton.setOnClickListener(new View.OnClickListener() {
 													public void onClick(View v) {
 														if (firstOption.isChecked()) {
 															respuesta += 1;
-															Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+															Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 														} else {
-															crearDialogoHasFallado1(6, 0).show();
+															showAlubiaQuizWrongAnswerDialog(6, 0);
 														}
 														firstOption.setChecked(true);
-														firstQuestion.setText(R.string.q7_f);
-														firstOption.setText(R.string.r71_f);
-														secondOption.setText(R.string.r72_f);
-														thirdOption.setText(R.string.r73_f);
+														firstQuestion.setText(R.string.alubiaquiz_q7_f);
+														firstOption.setText(R.string.alubiaquiz_r71_f);
+														secondOption.setText(R.string.alubiaquiz_r72_f);
+														thirdOption.setText(R.string.alubiaquiz_r73_f);
 														nextButton.setOnClickListener(new View.OnClickListener() {
 															public void onClick(View v) {
 																if (secondOption.isChecked()) {
 																	respuesta += 1;
-																	Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+																	Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 																} else {
-																	crearDialogoHasFallado1(7, 0).show();
+																	showAlubiaQuizWrongAnswerDialog(7, 0);
 																}
 																firstOption.setChecked(true);
-																firstQuestion.setText(R.string.q8_f);
-																firstOption.setText(R.string.r81_f);
-																secondOption.setText(R.string.r82_f);
-																thirdOption.setText(R.string.r83_f);
+																firstQuestion.setText(R.string.alubiaquiz_q8_f);
+																firstOption.setText(R.string.alubiaquiz_r81_f);
+																secondOption.setText(R.string.alubiaquiz_r82_f);
+																thirdOption.setText(R.string.alubiaquiz_r83_f);
 																nextButton.setOnClickListener(new View.OnClickListener() {
 																	public void onClick(View v) {
 																		if (thirdOption.isChecked()) {
 																			respuesta += 1;
-																			Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+																			Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 																		} else {
-																			crearDialogoHasFallado1(8, 0).show();
+																			showAlubiaQuizWrongAnswerDialog(8, 0);
 																		}
 																		firstOption.setChecked(true);
-																		firstQuestion.setText(R.string.q9_f);
-																		firstOption.setText(R.string.r91_f);
-																		secondOption.setText(R.string.r92_f);
-																		thirdOption.setText(R.string.r93_f);
+																		firstQuestion.setText(R.string.alubiaquiz_q9_f);
+																		firstOption.setText(R.string.alubiaquiz_r91_f);
+																		secondOption.setText(R.string.alubiaquiz_r92_f);
+																		thirdOption.setText(R.string.alubiaquiz_r93_f);
 																		nextButton.setOnClickListener(new View.OnClickListener() {
 																			public void onClick(View v) {
 																				if (thirdOption.isChecked()) {
 																					respuesta += 1;
-																					Dialogs.alubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this).show();
+																					Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 																				} else {
-																					crearDialogoHasFallado1(9, 0).show();
+																					showAlubiaQuizWrongAnswerDialog(9, 0);
 																				}
 																				firstOption.setChecked(true);
-																				firstQuestion.setText(R.string.q10_f);
-																				firstOption.setText(R.string.r101_f);
-																				secondOption.setText(R.string.r102_f);
-																				thirdOption.setText(R.string.r103_f);
+																				firstQuestion.setText(R.string.alubiaquiz_q10_f);
+																				firstOption.setText(R.string.alubiaquiz_r101_f);
+																				secondOption.setText(R.string.alubiaquiz_r102_f);
+																				thirdOption.setText(R.string.alubiaquiz_r103_f);
 																				nextButton.setOnClickListener(new View.OnClickListener() {
 																					public void onClick(View v) {
 																						if (firstOption.isChecked()) {
 																							respuesta += 1;
-																							Dialogs.alubiaQuizRightAnswerDialog(10, respuesta, AlubiaQuizEasyActivity.this).show();
+																							Dialogs.showAlubiaQuizRightAnswerDialog(10, respuesta, AlubiaQuizEasyActivity.this);
 																						} else {
-																							crearDialogoHasFallado1(10, respuesta).show();
+																							showAlubiaQuizWrongAnswerDialog(10, respuesta);
 																						}
 																					}
 																				});
@@ -187,40 +186,40 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 		});
 	}
 
-	private Dialog crearDialogoHasFallado1(int numeroPregunta, final int respuesta) {
+	private void showAlubiaQuizWrongAnswerDialog(int numeroPregunta, final int respuesta) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(AlubiaQuizEasyActivity.this);
-		builder.setTitle(R.string.malaSuerte);
+		builder.setTitle(R.string.alubiaquiz_you_are_failed);
 		switch (numeroPregunta) {
 			case 1:
-				builder.setMessage(R.string.s1_f);
+				builder.setMessage(R.string.alubiaquiz_s1_f);
 				break;
 			case 2:
-				builder.setMessage(R.string.s2_f);
+				builder.setMessage(R.string.alubiaquiz_s2_f);
 				break;
 			case 3:
-				builder.setMessage(R.string.s3_f);
+				builder.setMessage(R.string.alubiaquiz_s3_f);
 				break;
 			case 4:
-				builder.setMessage(R.string.s4_f);
+				builder.setMessage(R.string.alubiaquiz_s4_f);
 				break;
 			case 5:
-				builder.setMessage(R.string.s5_f);
+				builder.setMessage(R.string.alubiaquiz_s5_f);
 				break;
 			case 6:
-				builder.setMessage(R.string.s6_f);
+				builder.setMessage(R.string.alubiaquiz_s6_f);
 				break;
 			case 7:
-				builder.setMessage(R.string.s7_f);
+				builder.setMessage(R.string.alubiaquiz_s7_f);
 				break;
 			case 8:
-				builder.setMessage(R.string.s8_f);
+				builder.setMessage(R.string.alubiaquiz_s8_f);
 				break;
 			case 9:
-				builder.setMessage(R.string.s9_f);
+				builder.setMessage(R.string.alubiaquiz_s9_f);
 				break;
 			case 10:
-				builder.setMessage(R.string.s10_f);
-				builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
+				builder.setMessage(R.string.alubiaquiz_s10_f);
+				builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						Intent intent = new Intent(AlubiaQuizEasyActivity.this, AlubiaQuizSolutionActivity.class);
 						String respuesta_s = Integer.toString(respuesta);
@@ -234,12 +233,12 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 				break;
 		}
 		if (numeroPregunta != 10) {
-			builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
+			builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.cancel();
 				}
 			});
 		}
-		return builder.create();
+		builder.create().show();
 	}
 }

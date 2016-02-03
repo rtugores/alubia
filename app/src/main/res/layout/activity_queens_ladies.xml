@@ -18,7 +18,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:scrollbars="vertical"
-        android:text="@string/reinas_damas_contenido"
+        android:text="@string/schedule_queens_ladies_content"
         android:textSize="16sp" />
 
     <com.google.ads.AdView

@@ -84,7 +84,7 @@ public class SundayActivity extends AppCompatActivity {
 						"con la \"Supermartxé\".");
 				break;
 		}
-		builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
+		builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}

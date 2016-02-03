@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				Intent intent = new Intent(MainActivity.this, ComplexImageActivity.class);
 				startActivity(intent);
 			} else {
-				Toast.makeText(this, getString(R.string.api_error), Toast.LENGTH_LONG).show();
+				Toast.makeText(this, getString(R.string.album_api_error), Toast.LENGTH_LONG).show();
 			}
 		} else if (id == R.id.forum_button) {
 			boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);

@@ -30,7 +30,7 @@ public class SaturdayActivity extends AppCompatActivity {
 		day = getIntent().getStringExtra("day");
 		if (day.equals("saturday")) {
 			datos = new Schedule[]{
-					new Schedule(getString(R.string.saturday_ac1_hour) + " " + getString(R.string.saturday_ac1_title), getString(R.string.saturday_ac1_subtitle)),
+					new Schedule(getString(R.string.schedule_saturday_ac1_hour) + " " + getString(R.string.schedule_saturday_ac1_title), getString(R.string.schedule_saturday_ac1_subtitle)),
 					new Schedule("12:00 Concentración de peñas", "Plaza de san Juan Bautista"),
 					new Schedule("13:00 Santa misa", "Iglesia de san Juan Bautista"),
 					new Schedule("13:00-14:00 Exposición de dibujo y pintura", "Casa de la cultura"),
@@ -59,7 +59,7 @@ public class SaturdayActivity extends AppCompatActivity {
 			switch (id) {
 				case 0:
 					builder.setTitle("Partido de fútbol");
-					builder.setMessage(getString(R.string.saturday_ac1_explanation));
+					builder.setMessage(getString(R.string.schedule_saturday_ac1_explanation));
 					break;
 				case 1:
 					builder.setTitle("Concentración de peñas");
@@ -104,7 +104,7 @@ public class SaturdayActivity extends AppCompatActivity {
 					break;
 			}
 		}
-		builder.setPositiveButton(R.string.aceptar, new OnClickListener() {
+		builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}

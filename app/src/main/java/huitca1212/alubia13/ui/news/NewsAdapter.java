@@ -15,11 +15,7 @@ import huitca1212.alubia13.model.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
-	ArrayList<News> news;
-
-	NewsAdapter(ArrayList<News> news) {
-		this.news = news;
-	}
+	ArrayList<News> news = new ArrayList<>();
 
 	public static class NewsViewHolder extends RecyclerView.ViewHolder {
 		@Bind(R.id.user_news_textview) TextView date;

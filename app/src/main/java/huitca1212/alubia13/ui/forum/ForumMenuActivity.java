@@ -14,7 +14,7 @@ import huitca1212.alubia13.R;
 
 public class ForumMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
-	public static Activity foro_inicial;
+	public static Activity forumMenuActivity;
 
 	@Bind(R.id.register) Button register;
 	@Bind(R.id.login) Button login;
@@ -24,7 +24,7 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forum_menu);
-		foro_inicial = this;
+		forumMenuActivity = this;
 		ButterKnife.bind(this);
 
 		register.setOnClickListener(this);
@@ -45,5 +45,10 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 			intent.putExtra(ForumActivity.INVITED_USER, "OK");
 		}
 		startActivity(intent);
+	}
+
+	public void onDestroy(){
+		forumMenuActivity = null;
+		super.onDestroy();
 	}
 }

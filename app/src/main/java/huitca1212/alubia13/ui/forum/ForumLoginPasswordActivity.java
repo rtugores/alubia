@@ -70,7 +70,7 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 
 		password = passwordEditText.getText().toString().trim();
 		if (password.length() < 5) {
-			Toast.makeText(getApplicationContext(), R.string.contrasenyaError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_passwd, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
@@ -102,28 +102,25 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 				progressBar.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.contrasenyaDistinta, Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), R.string.forum_error_different_passwd, Toast.LENGTH_LONG).show();
 						break;
 					default:
-						getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-								.edit().putString("username", result).commit();
-						getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-								.edit().putBoolean("notregister", false).commit();
+						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", result).commit();
+						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", false).commit();
 
-						// Abrimos nueva actividad y cerramos la anterior y esta
 						Intent intent = new Intent(ForumLoginPasswordActivity.this, ForumActivity.class);
 						intent.putExtra(ForumActivity.INVITED_USER, "NOK");
 						startActivity(intent);
 						try {
-							ForumMenuActivity.foro_inicial.finish();
+							ForumMenuActivity.forumMenuActivity.finish();
 						} catch (NullPointerException e) {
 							e.printStackTrace();
 						}
 						try {
-							ForumLoginEmailActivity.foroLoginEmailActivity.finish();
+							ForumLoginEmailActivity.forumLoginEmailActivity.finish();
 						} catch (NullPointerException e) {
 							e.printStackTrace();
 						}

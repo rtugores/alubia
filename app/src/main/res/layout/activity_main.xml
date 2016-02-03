@@ -3,79 +3,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    android:gravity="center"
     android:orientation="vertical"
+    android:padding="10dp"
     android:weightSum="5">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_marginTop="6dp"
         android:gravity="center"
-        android:text="@string/bienvenida"
+        android:text="@string/home_title"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="@string/bienvenida_sub" />
+        android:text="@string/home_subtitle" />
 
     <Button
         android:id="@+id/schedule_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/programa" />
+        android:text="@string/home_schedule" />
 
     <Button
         android:id="@+id/complex_image_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/album" />
+        android:text="@string/album_title" />
 
     <Button
         android:id="@+id/forum_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/foro" />
+        android:text="@string/home_forum" />
 
     <Button
         android:id="@+id/news_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/novedades" />
+        android:text="@string/home_news" />
 
     <Button
         android:id="@+id/more_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
         android:layout_weight="1"
         android:background="@drawable/d_alubia_button"
-        android:text="@string/masinfo" />
+        android:text="@string/home_more" />
 
 </LinearLayout>

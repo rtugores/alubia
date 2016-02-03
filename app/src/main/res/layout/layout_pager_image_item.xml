@@ -10,8 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/image_main" />
+        android:adjustViewBounds="true" />
 
     <ProgressBar
         android:id="@+id/loading"

@@ -95,7 +95,7 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity {
 		// Comprobamos si la contraseña está escrita correctamente
 		String contrasenya = contrasenya_edit.getText().toString().trim();
 		if (contrasenya.length() < 5) {
-			Toast.makeText(getApplicationContext(), R.string.contrasenyaError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_passwd, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		// Enviamos los datos recogidos a la nueva actividad (ForoRegistroCodigo)
@@ -105,5 +105,10 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity {
 		intent.putExtra("contrasenya", contrasenya);
 		// Abrimos nueva actividad
 		startActivity(intent);
+	}
+
+	public void onDestroy(){
+		forumRegisterPasswordActivity = null;
+		super.onDestroy();
 	}
 }

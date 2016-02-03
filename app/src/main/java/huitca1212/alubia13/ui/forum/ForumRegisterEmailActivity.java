@@ -73,7 +73,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 		politica_edit.setMovementMethod(LinkMovementMethod.getInstance());
 
 		final Button boton = (Button)findViewById(R.id.register_button);
-		// Manejador para cambios en el botón (estética)
+
 		email_edit.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence str, int start, int count, int after) {
@@ -95,7 +95,6 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 			}
 		});
 
-		// Tomamos el nombre de usuario de la pantalla anterior
 		if (savedInstanceState == null) {
 			Bundle extras = getIntent().getExtras();
 			usuario = extras.getString("usuario");
@@ -103,7 +102,6 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 			usuario = (String)savedInstanceState.getSerializable("usuario");
 		}
 
-		// Al hacer click en el botón de enviar el email
 		boton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				action_foro_registro_email();
@@ -112,16 +110,16 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 	}
 
 	private void action_foro_registro_email() {
-		// Escondemos teclado
+
 		final EditText email_edit = (EditText)findViewById(R.id.email);
 		InputMethodManager imm = (InputMethodManager)getSystemService(
 				Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
-		// Comprobamos si el email está escrito correctamente
+
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		email = email_edit.getText().toString().trim();
 		if (!email.matches(emailPattern)) {
-			Toast.makeText(getApplicationContext(), R.string.emailError, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		try {
@@ -132,13 +130,10 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 			enviar.execute(mURL);
 		} catch (Exception e) {
 			e.printStackTrace();
-			Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 		}
 	}
 
-	//====================================================================================================================
-	//Tarea para enviar email
-	//====================================================================================================================
 	private class SendEmailTask extends AsyncTask<String, Void, String> {
 		HttpClient httpclient = new DefaultHttpClient();
 
@@ -196,21 +191,24 @@ public class ForumRegisterEmailActivity extends AppCompatActivity {
 			if (resultado.equals("-1")) {
 				error = true;
 			} else if (resultado.equals("1")) { // [IMPORTANTE] SIGNIFICA ERROR POR EL SCRIPT PHP QUE REUTILIZAMOS DEL LOGIN  (comprobar_email.php)
-				Toast.makeText(getApplicationContext(), R.string.emailEnUso, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email_repeat, Toast.LENGTH_LONG).show();
 				progressBar.setVisibility(View.GONE);
 				return;
 			}
 			if (error) {
-				Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 			} else {
-				// Enviamos el email a la nueva actividad (ForoRegistroContrasenya)
 				Intent intent = new Intent(ForumRegisterEmailActivity.this, ForumRegisterPasswordActivity.class);
 				intent.putExtra("usuario", usuario);
 				intent.putExtra("email", email);
-				// Abrimos nueva actividad
 				startActivity(intent);
 			}
 			progressBar.setVisibility(View.GONE);
 		}
+	}
+
+	public void onDestroy(){
+		forumRegisterEmailActivity = null;
+		super.onDestroy();
 	}
 }

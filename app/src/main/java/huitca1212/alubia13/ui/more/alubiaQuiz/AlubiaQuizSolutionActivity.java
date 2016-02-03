@@ -37,11 +37,11 @@ public class AlubiaQuizSolutionActivity extends AppCompatActivity implements Vie
 		MediaPlayer mpRes;
 
 		if (resultInteger <= NUM_QUESTIONS_FOR_ACCEPTANCE) {
-			solutionTextView.setText(R.string.pocasRespuestas);
+			solutionTextView.setText(R.string.alubiaquiz_few_successes);
 			mpRes = MediaPlayer.create(getApplicationContext(), R.raw.abucheo);
 			mpRes.start();
 		} else {
-			solutionTextView.setText(R.string.muchasRespuestas);
+			solutionTextView.setText(R.string.alubiaquiz_many_successes);
 			mpRes = MediaPlayer.create(getApplicationContext(), R.raw.aplausos);
 			mpRes.start();
 		}

@@ -1,10 +1,12 @@
 package huitca1212.alubia13.ui.more.settings;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +26,24 @@ import huitca1212.alubia13.model.Setting;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
+import huitca1212.alubia13.utils.Dialogs;
+import huitca1212.alubia13.utils.Notifications;
 
 public class SettingsActivity extends AppCompatActivity implements ListView.OnItemClickListener {
+
+	private enum SettingsItem {
+		logOut(0), forgotPasswd(1), deleteAccount(2), privacyPolicy(3), shareApp(4), updateApp(5);
+
+		private int value;
+
+		SettingsItem(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return value;
+		}
+	}
 
 	private Setting[] data =
 			new Setting[]{
@@ -37,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 					new Setting("Actualizar", "Obtén la versión más actualizada"),
 					new Setting("Versión", "3.5"),
 			};
+	public static Activity settingsActivity;
 	@Bind(R.id.progressbar_view) LinearLayout progressBar;
 	@Bind(R.id.list_options) ListView listOptions;
 
@@ -45,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		ButterKnife.bind(this);
+		settingsActivity = this;
 
 		SettingsAdapter adaptador = new SettingsAdapter(this, data);
 
@@ -52,52 +72,17 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		listOptions.setOnItemClickListener(this);
 	}
 
-	public Dialog settingsLogoutDialog(Context eso) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-		builder.setTitle(R.string.cerrarSesion);
-		builder.setMessage(R.string.cerrarSesionConf);
-		builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+
+	public Dialog settingsDeleteAccountDialog(Context ctx) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		builder.setTitle(R.string.settings_delete_title);
+		builder.setMessage(R.string.settings_delete_areyousure);
+		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}
 		});
-		builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-						.edit()
-						.putString("username", "")
-						.commit();
-				getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-						.edit()
-						.putBoolean("notregister", true)
-						.commit();
-				try {
-					MoreActivity.moreActivity.finish();
-				} catch (NullPointerException e) {
-					e.printStackTrace();
-				}
-				try {
-					ForumActivity.forumActivity.finish();
-				} catch (NullPointerException e) {
-					e.printStackTrace();
-				}
-				finish();
-			}
-		});
-		return builder.create();
-	}
-
-
-	public Dialog settingsDeleteAccountDialog(Context eso) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(eso);
-		builder.setTitle(R.string.delete_account);
-		builder.setMessage(R.string.delete_account_confirmation);
-		builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
-		builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				String usuario = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
 				try {
@@ -105,18 +90,18 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 					DeleteAccountAsyncTask enviar = new DeleteAccountAsyncTask(SettingsActivity.this, progressBar, mURL);
 					enviar.execute(mURL);
 				} catch (Exception e) {
-					Toast.makeText(getApplicationContext(), R.string.internet_error, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
 					dialog.cancel();
 				}
 				try {
 					MoreActivity.moreActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 				try {
 					ForumActivity.forumActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 				finish();
 			}
@@ -126,52 +111,72 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		switch (position) {
-			case 0:
-				// Log out
-				boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-				if (notregister) {
-					Toast.makeText(getApplicationContext(), R.string.sesionCerrada, Toast.LENGTH_SHORT).show();
-				} else {
-					settingsLogoutDialog(SettingsActivity.this).show();
-				}
-				break;
-			case 1:
-				// Forgot password
-				Intent intent = new Intent(SettingsActivity.this, ForumForgottenPasswordActivity.class);
-				startActivity(intent);
-				break;
-			case 2:
-				// Delete account
-				notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-				if (notregister) {
-					Toast.makeText(getApplicationContext(), R.string.sesionCerrada, Toast.LENGTH_SHORT).show();
-				} else {
-					settingsDeleteAccountDialog(SettingsActivity.this).show();
-				}
-				break;
-			case 3:
-				// Review the privacy policy
-				Uri uri = Uri.parse("http://rjapps.x10host.com/responsabilidad.html");
-				startActivity(new Intent(Intent.ACTION_VIEW, uri));
-				break;
-			case 4:
-				// Share app
-				final Intent intent_share = new Intent(android.content.Intent.ACTION_SEND);
-				intent_share.setType("text/plain");
-				intent_share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-				intent_share.putExtra(Intent.EXTRA_SUBJECT, "¡Descarga Alubia '16!");
-				intent_share.putExtra(Intent.EXTRA_TEXT,
-						"La aplicación de la fiesta de la Alubia en Laguna de Negrillos. Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13");
-				startActivity(Intent.createChooser(intent_share, "Compartir mediante"));
-				break;
-			case 5:
-				try {
-					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
-				} catch (android.content.ActivityNotFoundException anfe) {
-					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
-				}
-				break;
+		if (position == SettingsItem.logOut.getValue()) {
+			onLogOut();
+		} else if (position == SettingsItem.forgotPasswd.getValue()) {
+			onForgotPasswd();
+		} else if (position == SettingsItem.deleteAccount.getValue()) {
+			onDeleteAccount();
+		} else if (position == SettingsItem.privacyPolicy.getValue()) {
+			onPrivacyPolicy();
+		} else if (position == SettingsItem.shareApp.getValue()) {
+			onShareApp();
+		} else if (position == SettingsItem.updateApp.getValue()) {
+			onUpdateApp();
 		}
+	}
+
+	private void onLogOut() {
+		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (notregister) {
+			Notifications.showToast(settingsActivity, getString(R.string.settings_error_logout));
+		} else {
+			Dialogs.showSettingsLogoutDialog(settingsActivity);
+		}
+	}
+
+	private void onForgotPasswd() {
+		Intent intent = new Intent(SettingsActivity.this, ForumForgottenPasswordActivity.class);
+		startActivity(intent);
+	}
+
+	private void onDeleteAccount() {
+		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (notregister) {
+			Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
+		} else {
+			settingsDeleteAccountDialog(SettingsActivity.this).show();
+		}
+	}
+
+	private void onPrivacyPolicy() {
+		Uri uri = Uri.parse("http://rjapps.x10host.com/responsabilidad.html");
+		startActivity(new Intent(Intent.ACTION_VIEW, uri));
+	}
+
+	private void onShareApp() {
+		final Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+			shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		} else {
+			shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+		}
+		shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_title));
+		shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_content));
+		startActivity(Intent.createChooser(shareIntent, "Compartir mediante"));
+	}
+
+	private void onUpdateApp() {
+		try {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+		} catch (android.content.ActivityNotFoundException anfe) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+		}
+	}
+
+	public void onDestroy() {
+		settingsActivity = null;
+		super.onDestroy();
 	}
 }
