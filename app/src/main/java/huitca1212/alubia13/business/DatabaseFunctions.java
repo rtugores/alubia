@@ -3,6 +3,8 @@ package huitca1212.alubia13.business;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
+import android.util.Log;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -29,7 +31,7 @@ public class DatabaseFunctions {
 				}
 			});
 		} catch (SQLException e) {
-			//NOOP
+			Log.e("DatabaseFunctions", "Error in setDatabaseNewsValues");
 		}
 	}
 
@@ -47,7 +49,7 @@ public class DatabaseFunctions {
 				}
 			});
 		} catch (SQLException e) {
-			//NOOP
+			Log.e("DatabaseFunctions", "Error in setDatabaseComments");
 		}
 	}
 
@@ -56,7 +58,7 @@ public class DatabaseFunctions {
 			final RuntimeExceptionDao<Comment, Integer> commentsDao = getDbHelper().getCommentsDao();
 			commentsDao.create(data);
 		} catch (SQLException e) {
-			//NOOP
+			Log.e("DatabaseFunctions", "Error in setDatabaseLastComment");
 		}
 	}
 

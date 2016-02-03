@@ -37,7 +37,7 @@ import okhttp3.Response;
 public class ForumLoginEmailActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, TextWatcher {
 
 	private String jsonResult, email;
-	public static Activity foroLoginEmailActivity;
+	public static Activity forumLoginEmailActivity;
 	@Bind(R.id.progressbar_view_login) LinearLayout progressbarView;
 	@Bind(R.id.email) EditText emailBox;
 	@Bind(R.id.register_button) Button sendLogin;
@@ -49,7 +49,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		setContentView(R.layout.activity_forum_login_email);
 		ButterKnife.bind(this);
 
-		foroLoginEmailActivity = this;
+		forumLoginEmailActivity = this;
 		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
 		emailBox.addTextChangedListener(this);
 		emailBox.setOnEditorActionListener(this);
@@ -159,5 +159,10 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 			sendLogin.setEnabled(false);
 			sendLogin.setBackgroundResource(R.drawable.d_normal_button_gray);
 		}
+	}
+
+	public void onDestroy(){
+		forumLoginEmailActivity = null;
+		super.onDestroy();
 	}
 }

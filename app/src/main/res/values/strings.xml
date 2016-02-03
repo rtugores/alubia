@@ -4,6 +4,7 @@
     <!-- Common-->
     <string name="common_app_name">Alubia \'16</string>
     <string name="common_internet_error">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
+    <string name="common_no_internet">No hay conexión a Internet</string>
     <string name="common_accept">Aceptar</string>
     <string name="common_cancel">Cancelar</string>
 
@@ -232,7 +233,7 @@
     <string name="alubiaquiz_s10_d">Mal. La peña "Ya estamos todos" proviene de la peña "Ketache".</string>
 
     <!-- About the festivity -->
-    <string name="festivity_info_see_map">Ver en mapa</string>
+    <string name="festivity_info_see_map">Ver mapa</string>
  	<string name="festivity_info_text"><b>INFORMACIÓN</b>
 \n\nLa fiesta comienza el penúltimo viernes de agosto y es la fiesta más grande del pueblo. Nace en 1977 recordando la alubia, el entonces producto típico por excelencia de la zona. Se celebra en fechas de vacaciones para facilitar la participación de los hijos y simpatizantes del pueblo, los cuales viven memorables aventuras. 
 \n\nSe alternan actividades culturales y deportivas. La juventud se moviliza organizando sus peñas. Hay peñas de niños, de mayores, de jóvenes, que se implican en la fiesta dándole colorido, y la mayoría con sus "chiringuitos". Algunos años hay suelta de vaquillas, para gente atrevida; otros descenso del reguero, para gente con imaginación; otros carreras profesionales o de aficionados para facilitar la participación.
@@ -282,7 +283,6 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_report_comment_title">Denunciar comentario</string>
     <string name="forum_report_comment_content">¿Estás seguro de que deseas denunciar este comentario?</string>
 
-    <string name="forum_error_conection">Conéctate a Internet para obtener los comentarios actualizados!</string>
     <string name="forum_error_comment_blocked">El comentario ha sido bloqueado por infringir las normas del foro.</string>
     <string name="forum_error_bad_words">No está permitido escribir palabrotas</string>
     <string name="forum_error_user_blocked">Has sido bloqueado por incumplir las normas del foro</string>
@@ -322,7 +322,6 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="contact_my_name">Rodrigo J. Tugores Blanco</string>
 
     <!-- News -->
-    <string name="news_internet_advise">Conéctate a Internet para obtener las novedades actualizadas!</string>
     <string name="news_email">Email</string>
     <string name="news_whatsapp">WhatsApp</string>
     <string name="news_event_title">Evento</string>

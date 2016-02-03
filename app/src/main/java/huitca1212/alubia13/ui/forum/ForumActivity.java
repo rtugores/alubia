@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -29,9 +28,9 @@ import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.ResultListenerBussiness;
 import huitca1212.alubia13.business.ServerListenerBusiness;
 import huitca1212.alubia13.model.Comment;
-import huitca1212.alubia13.model.CommentsWrapper;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
+import huitca1212.alubia13.utils.Animations;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -40,7 +39,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	public static final String INVITED_USER = "invitado";
 	public static Activity forumActivity;
 	private String invited;
-	public CommentsWrapper data = new CommentsWrapper();
 	public ForumAdapter adapter;
 	public LinearLayoutManager mLayoutManager;
 	public ResultListenerBussiness resultListener;
@@ -59,44 +57,44 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		ButterKnife.bind(this);
 
 		forumActivity = this;
+
 		setAnalytics();
-
-		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-		mLayoutManager.setStackFromEnd(true);
-		recyclerView.setLayoutManager(mLayoutManager);
-
-		// Is an invited user?
-		if (savedInstanceState == null) {
-			Bundle extras = getIntent().getExtras();
-			invited = extras.getString(INVITED_USER);
-		} else {
-			invited = (String)savedInstanceState.getSerializable(INVITED_USER);
-		}
-		if (invited != null && invited.equals("OK")) {
-			commentBar.setVisibility(View.GONE);
-		}
-
-		accessWebService();
+		setDefaultAdapter();
 		setResultReportListener();
+		hideCommentBarIfInvited();
+
+		retrieveForumContent();
 
 		updateButton.setOnClickListener(this);
 		sendButton.setOnClickListener(this);
 	}
 
-	@Override
-	public void onClick(View v) {
-		int id = v.getId();
-		if (id == R.id.update_button) {
-			updateButtonAction();
+	private void setAnalytics() {
+		GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+		analytics.setLocalDispatchPeriod(1800);
+		Tracker tracker = analytics.newTracker("UA-42496077-1");
+		tracker.enableExceptionReporting(true);
+		tracker.enableAdvertisingIdCollection(true);
+		tracker.enableAutoActivityTracking(true);
+	}
 
-		} else if (id == R.id.send_button) {
-			onSendClick();
+	private void setDefaultAdapter() {
+		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		mLayoutManager.setStackFromEnd(true);
+		recyclerView.setLayoutManager(mLayoutManager);
+		adapter = new ForumAdapter(ForumActivity.this, invited, resultListener);
+		recyclerView.setAdapter(adapter);
+	}
+
+	private void hideCommentBarIfInvited() {
+		Bundle extras = getIntent().getExtras();
+		invited = extras.getString(INVITED_USER);
+		if (invited != null && invited.equals("OK")) {
+			commentBar.setVisibility(View.GONE);
 		}
 	}
 
-	private void setResultReportListener(){
+	private void setResultReportListener() {
 		resultListener = new ResultListenerBussiness() {
 			@Override
 			public void onResult(String result) {
@@ -115,49 +113,136 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		};
 	}
 
-	private void updateButtonAction() {
+	private void retrieveForumContent() {
 		progressbarView.setVisibility(View.VISIBLE);
-		ForumBusiness.getBackendForumContent(new AllListenerBusiness<Comment>() {
+		ForumBusiness.getForumContent(new AllListenerBusiness<Comment>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
-
+				if (list.size() > 0) {
+					updateForumList(list, false, false);
+				}
+				Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
 			}
 
 			@Override
 			public void onServerSuccess(ArrayList<Comment> list) {
 				if (list.size() > 0) {
-					updateForumList(list, true);
+					updateForumList(list, false, true);
 				}
-				progressbarView.setVisibility(View.GONE);
+			}
+
+			@Override
+			public void onFailure(String result) {
+				Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
+					Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
+				}
+			}
+		});
+	}
+
+	@Override
+	public void onClick(View v) {
+		int id = v.getId();
+		if (id == R.id.update_button) {
+			onUpdateButtonPressed();
+		} else if (id == R.id.send_button) {
+			onSendButtonPressed();
+		}
+	}
+
+	private void onUpdateButtonPressed() {
+		progressbarView.setVisibility(View.VISIBLE);
+		ForumBusiness.getBackendForumContent(new AllListenerBusiness<Comment>() {
+			@Override
+			public void onDatabaseSuccess(ArrayList<Comment> list) {
+			}
+
+			@Override
+			public void onServerSuccess(ArrayList<Comment> list) {
+				if (list.size() > 0) {
+					updateForumList(list, true, true);
+				}
+				Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
 			}
 
 			@Override
 			public void onFailure(String result) {
 				progressbarView.setVisibility(View.GONE);
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
-					Notifications.showSnackBar(coordinatorLayout, getString(R.string.news_internet_advise));
+					Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
 				}
-				progressbarView.setVisibility(View.GONE);
 			}
 		});
 	}
 
-	private void onSendClick() {
+	private void onSendButtonPressed() {
 		String comment = commentBox.getText().toString().trim();
-		if (!isRightComment(comment)) {
-			return;
+		if (Checkers.isRightComment(this, comment, commentBox)) {
+			String user = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
+			sendCommentAndRefresh(user, comment);
 		}
-		String user = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
-		sendCommentAndRefresh(user, comment);
 	}
 
-	private void setAnalytics() {
-		GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-		analytics.setLocalDispatchPeriod(1800);
-		Tracker tracker = analytics.newTracker("UA-42496077-1");
-		tracker.enableExceptionReporting(true);
-		tracker.enableAdvertisingIdCollection(true);
-		tracker.enableAutoActivityTracking(true);
+	private void sendCommentAndRefresh(String user, String comment) {
+		blockScreenSending();
+		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerBusiness<Comment>() {
+			@Override
+			public void onServerSuccess(Comment comment) {
+				if (comment != null) {
+					addItemForumList(comment);
+					commentBox.setText("");
+					unblockScreenSending();
+				}
+			}
+
+			@Override
+			public void onFailure(String result) {
+				unblockScreenSending();
+				switch (result) {
+					case DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR:
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
+						break;
+					case DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR:
+						commentBox.setText("");
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_user_blocked));
+						break;
+				}
+			}
+		});
+	}
+
+	private void blockScreenSending() {
+		progressbarView.setVisibility(View.VISIBLE);
+		updateButton.setEnabled(false);
+		sendButton.setEnabled(false);
+		commentBox.setEnabled(false);
+	}
+
+	private void unblockScreenSending() {
+		Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+		updateButton.setEnabled(true);
+		sendButton.setEnabled(true);
+		commentBox.setEnabled(true);
+	}
+
+	private void updateForumList(ArrayList<Comment> comments, boolean fromButton, boolean fromServerSuccess) {
+		if (adapter.update(comments) && fromServerSuccess) {
+			DatabaseFunctions.setDatabaseComments(comments);
+		}
+		if (fromButton) {
+			recyclerView.setAdapter(adapter);
+		}
+	}
+
+	private void addItemForumList(Comment comment) {
+		adapter.add(comment);
+
+		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		mLayoutManager.setStackFromEnd(true);
+		recyclerView.setLayoutManager(mLayoutManager);
+
+		DatabaseFunctions.setDatabaseLastComment(comment);
 	}
 
 	@Override
@@ -169,36 +254,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		return true;
 	}
 
-	private void accessWebService() {
-		progressbarView.setVisibility(View.VISIBLE);
-		ForumBusiness.getForumContent(new AllListenerBusiness<Comment>() {
-			@Override
-			public void onDatabaseSuccess(ArrayList<Comment> list) {
-				if (list.size() > 0) {
-					drawForumList(list);
-				}
-				progressbarView.setVisibility(View.GONE);
-			}
-
-			@Override
-			public void onServerSuccess(ArrayList<Comment> list) {
-				if (list.size() > 0) {
-					updateForumList(list, false);
-				}
-				progressbarView.setVisibility(View.GONE);
-			}
-
-			@Override
-			public void onFailure(String result) {
-				progressbarView.setVisibility(View.GONE);
-				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
-					Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_conection));
-				}
-				progressbarView.setVisibility(View.GONE);
-			}
-		});
-	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -206,80 +261,12 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 				Intent intent = new Intent(ForumActivity.this, SettingsActivity.class);
 				startActivity(intent);
 				return true;
-			default:
-				return super.onOptionsItemSelected(item);
 		}
+		return false;
 	}
-
-	private boolean isRightComment(String comment) {
-		if (comment.matches("")) {
-			commentBox.setText("");
-			return false;
-		}
-		if (Checkers.hasStringBadWords(comment)) {
-			Notifications.showToast(ForumActivity.this, getString(R.string.forum_error_bad_words));
-			return false;
-		}
-		return true;
-	}
-
-	private void sendCommentAndRefresh(String user, String comment) {
-		progressbarView.setVisibility(View.VISIBLE);
-		sendButton.setEnabled(false);
-		commentBox.setEnabled(false);
-		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerBusiness<Comment>() {
-			@Override
-			public void onServerSuccess(Comment comment) {
-				addItemForumList(comment);
-				commentBox.setText("");
-				progressbarView.setVisibility(View.GONE);
-				sendButton.setEnabled(true);
-				commentBox.setEnabled(true);
-			}
-
-			@Override
-			public void onFailure(String result) {
-				progressbarView.setVisibility(View.GONE);
-				sendButton.setEnabled(true);
-				commentBox.setEnabled(true);
-				switch (result) {
-					case DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR:
-						Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_conection));
-						break;
-					case DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR:
-						commentBox.setText("");
-						Notifications.showSnackBar(coordinatorLayout, getString(R.string.forum_error_user_blocked));
-						break;
-				}
-			}
-		});
-	}
-
-	private void drawForumList(ArrayList<Comment> comments) {
-		adapter = new ForumAdapter(comments, ForumActivity.this, invited, resultListener);
-		recyclerView.setAdapter(adapter);
-
-		DatabaseFunctions.setDatabaseComments(comments);
-	}
-
-	private void updateForumList(ArrayList<Comment> comments, boolean fromButton) {
-		if (adapter == null) {
-			adapter = new ForumAdapter(comments, ForumActivity.this, invited, resultListener);
-			recyclerView.setAdapter(adapter);
-		} else if (adapter.update(comments)) {
-			DatabaseFunctions.setDatabaseComments(comments);
-		}
-		if (fromButton) {
-			recyclerView.setAdapter(adapter);
-		}
-	}
-
-	private void addItemForumList(Comment comment) {
-		adapter.add(comment);
-		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-		mLayoutManager.setStackFromEnd(true);
-		recyclerView.setLayoutManager(mLayoutManager);
-
-		DatabaseFunctions.setDatabaseLastComment(comment);
+	@Override
+	public void onDestroy(){
+		forumActivity = null;
+		super.onDestroy();
 	}
 }

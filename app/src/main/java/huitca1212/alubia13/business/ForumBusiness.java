@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -129,9 +128,7 @@ public class ForumBusiness {
 					Gson gson = gsonBuilder.create();
 					data = gson.fromJson(jsonResult, CommentWrapper.class);
 					return data.getResult();
-				} catch (UnsupportedEncodingException e) {
-					return DefaultAsyncTask.ASYNC_TASK_ERROR;
-				} catch (IOException e) {
+				} catch (Exception e) {
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -141,8 +138,10 @@ public class ForumBusiness {
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR);
+						break;
 					case "-2":
 						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR);
+						break;
 					default:
 						listener.onServerSuccess(data.getComment());
 						break;
@@ -164,7 +163,7 @@ public class ForumBusiness {
 				OkHttpClient client = new OkHttpClient();
 
 				try {
-					String mUrl= "http://rjapps.x10host.com/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
+					String mUrl = "http://rjapps.x10host.com/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
 
 					Request request = new Request.Builder()
 							.url(mUrl)
@@ -176,7 +175,7 @@ public class ForumBusiness {
 					Gson gson = gsonBuilder.create();
 					data = gson.fromJson(jsonResult, CommentWrapper.class);
 					return data.getResult();
-				} catch (Exception e){
+				} catch (Exception e) {
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -186,8 +185,7 @@ public class ForumBusiness {
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR);
-					case "-2":
-						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_USER_NOT_PERMITED_ERROR);
+						break;
 					default:
 						listener.onServerSuccess(null);
 						break;

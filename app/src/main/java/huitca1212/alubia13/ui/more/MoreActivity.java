@@ -50,4 +50,9 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 		}
 		startActivity(intent);
 	}
+
+	public void onDestroy(){
+		moreActivity = null;
+		super.onDestroy();
+	}
 }

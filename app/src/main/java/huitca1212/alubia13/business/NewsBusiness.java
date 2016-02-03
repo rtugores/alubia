@@ -23,6 +23,8 @@ public class NewsBusiness {
 
 	public static void getDatabaseNewsContent(final AllListenerBusiness<News> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+			ArrayList<News> list;
+
 			@Override
 			public void onStart() {
 			}
@@ -35,21 +37,26 @@ public class NewsBusiness {
 				} catch (SQLException e) {
 					return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
 				}
-				ArrayList<News> list = new ArrayList<>();
+				list = new ArrayList<>();
 				try {
 					if (simpleDao != null) {
 						list = (ArrayList<News>)simpleDao.queryBuilder().orderBy("id", false).query();
+						return DefaultAsyncTask.ASYNC_TASK_OK;
+					} else {
+						return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
 					}
 				} catch (SQLException e) {
 					return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
 				}
-				listener.onDatabaseSuccess(list);
-				return DefaultAsyncTask.ASYNC_TASK_OK;
 			}
 
 			@Override
 			public void onFinish(String result) {
-				listener.onFailure(result);
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
+					listener.onDatabaseSuccess(list);
+				} else {
+					listener.onFailure(result);
+				}
 				getBackendNewsContent(listener);
 			}
 		}).execute();
@@ -58,6 +65,8 @@ public class NewsBusiness {
 
 	public static void getBackendNewsContent(final AllListenerBusiness<News> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+			NewsWrapper data;
+
 			@Override
 			public void onStart() {
 			}
@@ -75,17 +84,20 @@ public class NewsBusiness {
 					String jsonResult = response.body().string();
 					GsonBuilder gsonBuilder = new GsonBuilder();
 					Gson gson = gsonBuilder.create();
-					NewsWrapper data = gson.fromJson(jsonResult, NewsWrapper.class);
-					listener.onServerSuccess(data.getNews());
+					data = gson.fromJson(jsonResult, NewsWrapper.class);
+					return DefaultAsyncTask.ASYNC_TASK_OK;
 				} catch (IOException e) {
 					return DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR;
 				}
-				return DefaultAsyncTask.ASYNC_TASK_OK;
 			}
 
 			@Override
 			public void onFinish(String result) {
-				listener.onFailure(result);
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
+					listener.onServerSuccess(data.getNews());
+				} else {
+					listener.onFailure(result);
+				}
 			}
 		}).execute();
 	}

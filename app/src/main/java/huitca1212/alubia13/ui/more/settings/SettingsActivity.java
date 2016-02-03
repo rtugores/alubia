@@ -31,6 +31,20 @@ import huitca1212.alubia13.utils.Notifications;
 
 public class SettingsActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
+	private enum SettingsItem {
+		logOut(0), forgotPasswd(1), deleteAccount(2), privacyPolicy(3), shareApp(4), updateApp(5);
+
+		private int value;
+
+		SettingsItem(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return value;
+		}
+	}
+
 	private Setting[] data =
 			new Setting[]{
 					new Setting("Cerrar sesión", "Cierra tu sesión en el foro"),
@@ -82,12 +96,12 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				try {
 					MoreActivity.moreActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 				try {
 					ForumActivity.forumActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 				finish();
 			}
@@ -97,55 +111,72 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		switch (position) {
-			case 0:
-				// Log out
-				boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-				if (notregister) {
-					Notifications.showToast(settingsActivity, getString(R.string.settings_error_logout));
-				} else {
-					Dialogs.showSettingsLogoutDialog(settingsActivity);
-				}
-				break;
-			case 1:
-				// Forgot password
-				Intent intent = new Intent(SettingsActivity.this, ForumForgottenPasswordActivity.class);
-				startActivity(intent);
-				break;
-			case 2:
-				// Delete account
-				notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-				if (notregister) {
-					Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
-				} else {
-					settingsDeleteAccountDialog(SettingsActivity.this).show();
-				}
-				break;
-			case 3:
-				// Review the privacy policy
-				Uri uri = Uri.parse("http://rjapps.x10host.com/responsabilidad.html");
-				startActivity(new Intent(Intent.ACTION_VIEW, uri));
-				break;
-			case 4:
-				// Share app
-				final Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-				shareIntent.setType("text/plain");
-				if ( Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-					shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-				} else{
-					shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-				}
-				shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_title));
-				shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_content));
-				startActivity(Intent.createChooser(shareIntent, "Compartir mediante"));
-				break;
-			case 5:
-				try {
-					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
-				} catch (android.content.ActivityNotFoundException anfe) {
-					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
-				}
-				break;
+		if (position == SettingsItem.logOut.getValue()) {
+			onLogOut();
+		} else if (position == SettingsItem.forgotPasswd.getValue()) {
+			onForgotPasswd();
+		} else if (position == SettingsItem.deleteAccount.getValue()) {
+			onDeleteAccount();
+		} else if (position == SettingsItem.privacyPolicy.getValue()) {
+			onPrivacyPolicy();
+		} else if (position == SettingsItem.shareApp.getValue()) {
+			onShareApp();
+		} else if (position == SettingsItem.updateApp.getValue()) {
+			onUpdateApp();
 		}
+	}
+
+	private void onLogOut() {
+		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (notregister) {
+			Notifications.showToast(settingsActivity, getString(R.string.settings_error_logout));
+		} else {
+			Dialogs.showSettingsLogoutDialog(settingsActivity);
+		}
+	}
+
+	private void onForgotPasswd() {
+		Intent intent = new Intent(SettingsActivity.this, ForumForgottenPasswordActivity.class);
+		startActivity(intent);
+	}
+
+	private void onDeleteAccount() {
+		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (notregister) {
+			Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
+		} else {
+			settingsDeleteAccountDialog(SettingsActivity.this).show();
+		}
+	}
+
+	private void onPrivacyPolicy() {
+		Uri uri = Uri.parse("http://rjapps.x10host.com/responsabilidad.html");
+		startActivity(new Intent(Intent.ACTION_VIEW, uri));
+	}
+
+	private void onShareApp() {
+		final Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+			shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+		} else {
+			shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+		}
+		shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_title));
+		shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_content));
+		startActivity(Intent.createChooser(shareIntent, "Compartir mediante"));
+	}
+
+	private void onUpdateApp() {
+		try {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+		} catch (android.content.ActivityNotFoundException anfe) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+		}
+	}
+
+	public void onDestroy() {
+		settingsActivity = null;
+		super.onDestroy();
 	}
 }

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class DeleteAccountAsyncTask extends AsyncTask<String, Void, String> {
 			jsonResult = inputStreamToString(
 					response.getEntity().getContent()).toString();
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e("DeleteAccountAsyncTask", "Error in doInBackground");
 			error = true;
 		}
 		return null;
@@ -63,7 +64,7 @@ public class DeleteAccountAsyncTask extends AsyncTask<String, Void, String> {
 				answer.append(rLine);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e("DeleteAccountAsyncTask", "Error in inputStreamToString");
 			error = true;
 		}
 		return answer;

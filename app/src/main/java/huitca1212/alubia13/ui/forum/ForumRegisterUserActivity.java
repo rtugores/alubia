@@ -210,4 +210,8 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 			progressBar.setVisibility(View.GONE);
 		}
 	}
+	public void onDestroy(){
+		forumRegisterUserActivity = null;
+		super.onDestroy();
+	}
 }

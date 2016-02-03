@@ -224,7 +224,7 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 				intent.putExtra(ForumActivity.INVITED_USER, "NOK");
 				startActivity(intent);
 				try {
-					ForumMenuActivity.foro_inicial.finish();
+					ForumMenuActivity.forumMenuActivity.finish();
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}

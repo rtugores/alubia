@@ -106,4 +106,9 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity {
 		// Abrimos nueva actividad
 		startActivity(intent);
 	}
+
+	public void onDestroy(){
+		forumRegisterPasswordActivity = null;
+		super.onDestroy();
+	}
 }

@@ -39,6 +39,7 @@ import android.widget.Toast;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.Constants;
+import huitca1212.alubia13.utils.Notifications;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -103,26 +104,15 @@ public class ImagePagerAlubia15Fragment extends BaseFragment {
 
 				@Override
 				public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-					String message = null;
 					switch (failReason.getType()) {
 						case IO_ERROR:
-							message = "Input/Output error";
-							break;
 						case DECODING_ERROR:
-							message = "Image can't be decoded";
-							break;
 						case NETWORK_DENIED:
-							message = "Downloads are denied";
-							break;
 						case OUT_OF_MEMORY:
-							message = "Out Of Memory error";
-							break;
 						case UNKNOWN:
-							message = "Unknown error";
+							Notifications.showToast(view.getContext(), view.getContext().getString(R.string.common_internet_error));
 							break;
 					}
-					Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
-
 					spinner.setVisibility(View.GONE);
 				}
 

@@ -34,13 +34,12 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	private static final int TYPE_NORMAL_REPEATED = 7;
 
 	private Context ctx;
-	private ArrayList<Comment> comments;
+	private ArrayList<Comment> comments = new ArrayList<>();
 	private View.OnClickListener listener;
 	private String userLogged, invited;
 	private ResultListenerBussiness resultListener;
 
-	public ForumAdapter(ArrayList<Comment> comments, Context ctx, String invited, ResultListenerBussiness resultListener) {
-		this.comments = comments;
+	public ForumAdapter(Context ctx, String invited, ResultListenerBussiness resultListener) {
 		this.ctx = ctx;
 		this.invited = invited;
 		this.resultListener = resultListener;
@@ -201,7 +200,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	}
 
 	public boolean update(ArrayList<Comment> comments) {
-		if (this.comments.get(this.comments.size() - 1).getId() <= comments.get(comments.size() - 1).getId()) {
+		if (this.comments.size() == 0 || this.comments.get(this.comments.size() - 1).getId() <= comments.get(comments.size() - 1).getId()) {
 			this.comments = comments;
 			notifyDataSetChanged();
 			return true;

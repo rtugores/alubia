@@ -108,22 +108,19 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 						Toast.makeText(getApplicationContext(), R.string.forum_error_different_passwd, Toast.LENGTH_LONG).show();
 						break;
 					default:
-						getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-								.edit().putString("username", result).commit();
-						getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-								.edit().putBoolean("notregister", false).commit();
+						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", result).commit();
+						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", false).commit();
 
-						// Abrimos nueva actividad y cerramos la anterior y esta
 						Intent intent = new Intent(ForumLoginPasswordActivity.this, ForumActivity.class);
 						intent.putExtra(ForumActivity.INVITED_USER, "NOK");
 						startActivity(intent);
 						try {
-							ForumMenuActivity.foro_inicial.finish();
+							ForumMenuActivity.forumMenuActivity.finish();
 						} catch (NullPointerException e) {
 							e.printStackTrace();
 						}
 						try {
-							ForumLoginEmailActivity.foroLoginEmailActivity.finish();
+							ForumLoginEmailActivity.forumLoginEmailActivity.finish();
 						} catch (NullPointerException e) {
 							e.printStackTrace();
 						}

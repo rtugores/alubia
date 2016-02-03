@@ -38,7 +38,7 @@ public class Dialogs {
 				ctx.startActivity(callIntent);
 			}
 		});
-		builder.create().show();
+		builder.show();
 	}
 
 	public static void showForumReportCommentDialog(final Context ctx, final String id, final ResultListenerBussiness listener) {
@@ -72,7 +72,7 @@ public class Dialogs {
 				dialog.dismiss();
 			}
 		});
-		builder.create().show();
+		builder.show();
 	}
 
 	public static void showAlubiaQuizRightAnswerDialog(int questionNumber, final int answer, final Context ctx) {
@@ -99,7 +99,7 @@ public class Dialogs {
 				}
 			});
 		}
-		builder.create().show();
+		builder.show();
 	}
 
 	public static void showSettingsLogoutDialog(final Context ctx) {
@@ -118,21 +118,21 @@ public class Dialogs {
 				try {
 					MoreActivity.moreActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 				try {
 					ForumActivity.forumActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 				try {
 					SettingsActivity.settingsActivity.finish();
 				} catch (NullPointerException e) {
-					e.printStackTrace();
+					//NOOP
 				}
 			}
 		});
-		builder.create().show();
+		builder.show();
 	}
 
 }
