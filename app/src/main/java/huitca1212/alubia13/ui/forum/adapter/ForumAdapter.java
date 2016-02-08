@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ResultListenerBussiness;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.utils.Dialogs;

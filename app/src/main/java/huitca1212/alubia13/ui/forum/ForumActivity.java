@@ -59,8 +59,8 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		forumActivity = this;
 
 		setAnalytics();
-		setDefaultAdapter();
 		setResultReportListener();
+		setDefaultAdapter();
 		hideCommentBarIfInvited();
 
 		retrieveForumContent();
@@ -114,14 +114,14 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void retrieveForumContent() {
-		progressbarView.setVisibility(View.VISIBLE);
+		blockScreenForEvent();
 		ForumBusiness.getForumContent(new AllListenerBusiness<Comment>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
 				if (list.size() > 0) {
 					updateForumList(list, false, false);
 				}
-				Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+				unblockScreenForEvent();
 			}
 
 			@Override
@@ -152,7 +152,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void onUpdateButtonPressed() {
-		progressbarView.setVisibility(View.VISIBLE);
+		blockScreenForEvent();
 		ForumBusiness.getBackendForumContent(new AllListenerBusiness<Comment>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
@@ -163,7 +163,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 				if (list.size() > 0) {
 					updateForumList(list, true, true);
 				}
-				Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+				unblockScreenForEvent();
 			}
 
 			@Override
@@ -185,20 +185,20 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void sendCommentAndRefresh(String user, String comment) {
-		blockScreenSending();
+		blockScreenForEvent();
 		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerBusiness<Comment>() {
 			@Override
 			public void onServerSuccess(Comment comment) {
 				if (comment != null) {
 					addItemForumList(comment);
 					commentBox.setText("");
-					unblockScreenSending();
+					unblockScreenForEvent();
 				}
 			}
 
 			@Override
 			public void onFailure(String result) {
-				unblockScreenSending();
+				unblockScreenForEvent();
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR:
 						Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
@@ -212,14 +212,14 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		});
 	}
 
-	private void blockScreenSending() {
+	private void blockScreenForEvent() {
 		progressbarView.setVisibility(View.VISIBLE);
 		updateButton.setEnabled(false);
 		sendButton.setEnabled(false);
 		commentBox.setEnabled(false);
 	}
 
-	private void unblockScreenSending() {
+	private void unblockScreenForEvent() {
 		Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
 		updateButton.setEnabled(true);
 		sendButton.setEnabled(true);
