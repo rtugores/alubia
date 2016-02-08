@@ -103,7 +103,7 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendCommentToBackend(final String user, final String comment, final ServerListenerBusiness<Comment> listener) {
+	public static void sendCommentToBackend(final String user, final String comment, final ServerListenerInterface<Comment> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			CommentWrapper data;
 
@@ -151,7 +151,7 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendReportToBackend(final String id, final ResultListenerBussiness listener) {
+	public static void sendReportToBackend(final String id, final ResultListenerInterface listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			Result result;
 
@@ -188,7 +188,7 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void deleteForumAccount(final String user, final ServerListenerBusiness<String> listener) {
+	public static void deleteForumAccount(final String user, final ServerListenerInterface<String> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			Result result;
 

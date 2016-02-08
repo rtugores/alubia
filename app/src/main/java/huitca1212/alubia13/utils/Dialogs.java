@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
-import huitca1212.alubia13.business.ResultListenerBussiness;
-import huitca1212.alubia13.business.ServerListenerBusiness;
+import huitca1212.alubia13.business.ResultListenerInterface;
+import huitca1212.alubia13.business.ServerListenerInterface;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.ui.more.alubiaQuiz.AlubiaQuizSolutionActivity;
@@ -41,7 +40,7 @@ public class Dialogs {
 		builder.show();
 	}
 
-	public static void showForumReportCommentDialog(final Context ctx, final String id, final ResultListenerBussiness listener) {
+	public static void showForumReportCommentDialog(final Context ctx, final String id, final ResultListenerInterface listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 		builder.setTitle(R.string.forum_report_comment_title);
 		builder.setMessage(R.string.forum_report_comment_content);
@@ -119,7 +118,7 @@ public class Dialogs {
 	}
 
 
-	public static void showSettingsDeleteAccountDialog(final Context ctx, final ServerListenerBusiness<String> listener) {
+	public static void showSettingsDeleteAccountDialog(final Context ctx, final ServerListenerInterface<String> listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 		builder.setTitle(R.string.settings_delete_title);
 		builder.setMessage(R.string.settings_delete_areyousure);

@@ -25,8 +25,8 @@ import huitca1212.alubia13.business.AllListenerBusiness;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
-import huitca1212.alubia13.business.ResultListenerBussiness;
-import huitca1212.alubia13.business.ServerListenerBusiness;
+import huitca1212.alubia13.business.ResultListenerInterface;
+import huitca1212.alubia13.business.ServerListenerInterface;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
@@ -41,7 +41,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	private String invited;
 	public ForumAdapter adapter;
 	public LinearLayoutManager mLayoutManager;
-	public ResultListenerBussiness resultListener;
+	public ResultListenerInterface resultListener;
 	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
 	@Bind(R.id.comment_bar) ViewGroup commentBar;
 	@Bind(R.id.recycler_view) RecyclerView recyclerView;
@@ -95,7 +95,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void setResultReportListener() {
-		resultListener = new ResultListenerBussiness() {
+		resultListener = new ResultListenerInterface() {
 			@Override
 			public void onResult(String result) {
 				switch (result) {
@@ -186,7 +186,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void sendCommentAndRefresh(String user, String comment) {
 		blockScreenForEvent();
-		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerBusiness<Comment>() {
+		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerInterface<Comment>() {
 			@Override
 			public void onServerSuccess(Comment comment) {
 				if (comment != null) {

@@ -280,7 +280,7 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_insert_user">Introduce tu nombre para mostrar</string>
     <string name="forum_user_example">Ej.: Rodri Tugores</string>
     <string name="forum_write_message">Escribir mensaje</string>
-    <string name="forum_forgot_action_success">Genial! En breve recibirás un correo electrónico con tu contraseña!</string>
+    <string name="forum_forgot_email_success">Genial! En breve recibirás un correo electrónico con tu contraseña!</string>
     <string name="forum_report_comment_title">Denunciar comentario</string>
     <string name="forum_report_comment_content">¿Estás seguro de que deseas denunciar este comentario?</string>
 
