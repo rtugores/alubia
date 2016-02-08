@@ -17,11 +17,11 @@ import okhttp3.Response;
 
 public class NewsBusiness {
 
-	public static void getNewsContent(AllListenerBusiness<News> listener) {
+	public static void getNewsContent(AllListenerInterface<News> listener) {
 		getDatabaseNewsContent(listener);
 	}
 
-	public static void getDatabaseNewsContent(final AllListenerBusiness<News> listener) {
+	public static void getDatabaseNewsContent(final AllListenerInterface<News> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			ArrayList<News> list;
 
@@ -63,7 +63,7 @@ public class NewsBusiness {
 
 	}
 
-	public static void getBackendNewsContent(final AllListenerBusiness<News> listener) {
+	public static void getBackendNewsContent(final AllListenerInterface<News> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			NewsWrapper data;
 

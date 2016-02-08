@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AllListenerBusiness;
+import huitca1212.alubia13.business.AllListenerInterface;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.NewsBusiness;
@@ -64,7 +64,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 	public void accessWebService() {
 		data = new NewsWrapper();
 		progressbarView.setVisibility(View.VISIBLE);
-		NewsBusiness.getNewsContent(new AllListenerBusiness<News>() {
+		NewsBusiness.getNewsContent(new AllListenerInterface<News>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<News> list) {
 				if (list.size() > 0) {

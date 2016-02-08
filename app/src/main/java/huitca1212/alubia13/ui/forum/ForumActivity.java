@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AllListenerBusiness;
+import huitca1212.alubia13.business.AllListenerInterface;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
@@ -115,7 +115,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void retrieveForumContent() {
 		blockScreenForEvent();
-		ForumBusiness.getForumContent(new AllListenerBusiness<Comment>() {
+		ForumBusiness.getForumContent(new AllListenerInterface<Comment>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
 				if (list.size() > 0) {
@@ -153,7 +153,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void onUpdateButtonPressed() {
 		blockScreenForEvent();
-		ForumBusiness.getBackendForumContent(new AllListenerBusiness<Comment>() {
+		ForumBusiness.getBackendForumContent(new AllListenerInterface<Comment>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
 			}

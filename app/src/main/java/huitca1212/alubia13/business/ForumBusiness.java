@@ -20,11 +20,11 @@ import okhttp3.Response;
 
 public class ForumBusiness {
 
-	public static void getForumContent(AllListenerBusiness<Comment> listener) {
+	public static void getForumContent(AllListenerInterface<Comment> listener) {
 		getDatabaseForumContent(listener);
 	}
 
-	public static void getDatabaseForumContent(final AllListenerBusiness<Comment> listener) {
+	public static void getDatabaseForumContent(final AllListenerInterface<Comment> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			ArrayList<Comment> list;
 
@@ -64,7 +64,7 @@ public class ForumBusiness {
 
 	}
 
-	public static void getBackendForumContent(final AllListenerBusiness<Comment> listener) {
+	public static void getBackendForumContent(final AllListenerInterface<Comment> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			CommentsWrapper data;
 

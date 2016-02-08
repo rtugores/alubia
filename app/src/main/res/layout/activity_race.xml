@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+<LinearLayout xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
@@ -11,14 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dip"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
-        android:layout_marginTop="20dip"
         android:layout_weight="1"
-        android:scrollbars="vertical"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="20dp"
         android:text="@string/schedule_race_content"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <com.google.ads.AdView
         android:layout_width="wrap_content"
@@ -26,5 +23,4 @@
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9645153779384738/4669268804"
         ads:loadAdOnCreate="true" />
-
 </LinearLayout>
