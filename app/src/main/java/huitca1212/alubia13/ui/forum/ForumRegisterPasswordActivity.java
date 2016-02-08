@@ -20,6 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.utils.Checkers;
+import huitca1212.alubia13.utils.Notifications;
 
 public class ForumRegisterPasswordActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
@@ -37,13 +38,13 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity implements 
 		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
 		forumRegisterPasswordActivity = this;
 
-		passwdEditText.setOnEditorActionListener(this);
-		passwdEditText.addTextChangedListener(this);
-		registerButton.setOnClickListener(this);
-
 		Bundle extras = getIntent().getExtras();
 		user = extras.getString("usuario");
 		email = extras.getString("email");
+
+		passwdEditText.setOnEditorActionListener(this);
+		passwdEditText.addTextChangedListener(this);
+		registerButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity implements 
 					.putExtra("contrasenya", passwd);
 			startActivity(intent);
 		} else {
-			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_passwd, Toast.LENGTH_SHORT).show();
+			Notifications.showToast(ForumRegisterPasswordActivity.this, getString(R.string.forum_error_bad_passwd, Toast.LENGTH_SHORT));
 		}
 	}
 

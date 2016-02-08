@@ -11,7 +11,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class ForumLoginRegisterBusiness {
-	public static void checkEmailLoginForum(final String email, final ServerListenerInterface<String> listener) {
+
+	public static void checkEmailForum(final String email, final boolean fromLogin, final ServerListenerInterface<String> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			Result result;
 
@@ -43,10 +44,19 @@ public class ForumLoginRegisterBusiness {
 
 			@Override
 			public void onFinish(String result) {
-				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
-					listener.onServerSuccess(result);
+				if (fromLogin) {
+					if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
+						listener.onServerSuccess(result);
+					} else {
+						listener.onFailure(result);
+					}
 				} else {
-					listener.onFailure(result);
+					if (result.equals("-2")) {
+						listener.onServerSuccess(result);
+					} else {
+						// Receive a 1 is an error when registering, cause we are reusing login_email code in server
+						listener.onFailure(result);
+					}
 				}
 			}
 		}).execute();

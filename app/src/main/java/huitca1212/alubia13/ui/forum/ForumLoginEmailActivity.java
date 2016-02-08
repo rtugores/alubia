@@ -68,7 +68,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 
 	private void accessWebService() {
 		progressbarView.setVisibility(View.VISIBLE);
-		ForumLoginRegisterBusiness.checkEmailLoginForum(email, new ServerListenerInterface<String>() {
+		ForumLoginRegisterBusiness.checkEmailForum(email, true, new ServerListenerInterface<String>() {
 			@Override
 			public void onServerSuccess(String result) {
 				progressbarView.setVisibility(View.GONE);
