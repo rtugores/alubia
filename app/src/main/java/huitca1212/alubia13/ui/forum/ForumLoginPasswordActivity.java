@@ -1,8 +1,5 @@
 package huitca1212.alubia13.ui.forum;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,27 +15,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
-import java.net.URLEncoder;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AsyncTaskListenerInterface;
 import huitca1212.alubia13.business.DefaultAsyncTask;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
+import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.utils.Checkers;
+import huitca1212.alubia13.utils.Notifications;
 
 public class ForumLoginPasswordActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
-	private String jsonResult, email, password;
-	@Bind(R.id.progressbar_view_registro) LinearLayout progressBar;
+	private String email, password;
+	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
 	@Bind(R.id.password_edit_text) EditText passwordEditText;
 	@Bind(R.id.register_button) Button registerButton;
-	@Bind(R.id.olvide_contrasenya) Button forgottenPassword;
+	@Bind(R.id.forget_password_button) Button forgottenPassword;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,86 +48,66 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 		forgottenPassword.setOnClickListener(this);
 		registerButton.setOnClickListener(this);
 
-		// Get the email from the last screen
-		if (savedInstanceState == null) {
-			email = getIntent().getExtras().getString("email");
-		} else {
-			email = (String)savedInstanceState.getSerializable("email");
-		}
+		email = getIntent().getExtras().getString("email");
 	}
 
-	private void actionForumLoginPassword() {
-		// Hide keyboard
+	private void checkPassword() {
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
 
 		password = passwordEditText.getText().toString().trim();
-		if (password.length() < 5) {
-			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_passwd, Toast.LENGTH_SHORT).show();
-			return;
+		if (Checkers.isRightPassword(password)) {
+			accessWebService();
+		} else {
+			Notifications.showToast(ForumLoginPasswordActivity.this, getString(R.string.forum_error_bad_passwd));
 		}
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
-			@Override
-			public void onStart() {
-				progressBar.setVisibility(View.VISIBLE);
-			}
+	}
 
+	private void accessWebService() {
+
+		progressbarView.setVisibility(View.VISIBLE);
+		ForumLoginRegisterBusiness.checkPasswordLoginForum(email, password, new ServerListenerInterface<String>() {
 			@Override
-			public String onBackground() throws IOException {
-				OkHttpClient client = new OkHttpClient();
-				String url = "http://rjapps.x10host.com/comprobar_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8") +
-						"&contrasenya=" + URLEncoder.encode(password, "UTF-8").replace(" ", "%20");
-				Request request = new Request.Builder()
-						.url(url)
-						.build();
+			public void onServerSuccess(String result) {
+				progressbarView.setVisibility(View.GONE);
+				getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", result).commit();
+				getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", false).commit();
+
+				Intent intent = new Intent(ForumLoginPasswordActivity.this, ForumActivity.class);
+				intent.putExtra(ForumActivity.INVITED_USER, "NOK");
+				startActivity(intent);
 				try {
-					Response response = client.newCall(request).execute();
-					jsonResult = response.body().string();
-					JSONObject jsonResponse = new JSONObject(jsonResult);
-					return jsonResponse.optString("resultado");
-				} catch (IOException | JSONException | NullPointerException e) {
-					return DefaultAsyncTask.ASYNC_TASK_ERROR;
+					ForumMenuActivity.forumMenuActivity.finish();
+				} catch (NullPointerException e) {
+					//NOOP
 				}
+				try {
+					ForumLoginEmailActivity.forumLoginEmailActivity.finish();
+				} catch (NullPointerException e) {
+					//NOOP
+				}
+				finish();
 			}
 
 			@Override
-			public void onFinish(String result) {
-				progressBar.setVisibility(View.GONE);
+			public void onFailure(String result) {
+				progressbarView.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
+						Notifications.showToast(ForumLoginPasswordActivity.this, getString(R.string.common_internet_error));
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.forum_error_different_passwd, Toast.LENGTH_LONG).show();
-						break;
-					default:
-						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", result).commit();
-						getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", false).commit();
-
-						Intent intent = new Intent(ForumLoginPasswordActivity.this, ForumActivity.class);
-						intent.putExtra(ForumActivity.INVITED_USER, "NOK");
-						startActivity(intent);
-						try {
-							ForumMenuActivity.forumMenuActivity.finish();
-						} catch (NullPointerException e) {
-							e.printStackTrace();
-						}
-						try {
-							ForumLoginEmailActivity.forumLoginEmailActivity.finish();
-						} catch (NullPointerException e) {
-							e.printStackTrace();
-						}
-						finish();
+						Notifications.showToast(ForumLoginPasswordActivity.this, getString(R.string.forum_error_different_passwd));
 						break;
 				}
 			}
-		}).execute();
+		});
 	}
 
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		if (actionId == EditorInfo.IME_ACTION_DONE) {
-			actionForumLoginPassword();
+			checkPassword();
 			return true;
 		}
 		return false;
@@ -164,11 +137,11 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.olvide_contrasenya) {
+		if (id == R.id.forget_password_button) {
 			Intent intent = new Intent(ForumLoginPasswordActivity.this, ForumForgottenPasswordActivity.class);
 			startActivity(intent);
 		} else if (id == R.id.register_button) {
-			actionForumLoginPassword();
+			checkPassword();
 		}
 	}
 

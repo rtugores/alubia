@@ -54,9 +54,8 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		sendLogin.setOnClickListener(this);
 	}
 
-	private void actionForumLoginEmail() {
-		InputMethodManager imm = (InputMethodManager)getSystemService(
-				Context.INPUT_METHOD_SERVICE);
+	private void checkEmail() {
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(emailBox.getWindowToken(), 0);
 
 		email = emailBox.getText().toString().trim();
@@ -97,7 +96,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.register_button) {
-			actionForumLoginEmail();
+			checkEmail();
 		}
 	}
 
@@ -106,7 +105,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		int id = v.getId();
 		if (id == R.id.email) {
 			if (actionId == EditorInfo.IME_ACTION_NEXT) {
-				actionForumLoginEmail();
+				checkEmail();
 				return true;
 			}
 		}

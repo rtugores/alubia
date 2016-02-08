@@ -289,7 +289,7 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_error_user_blocked">Has sido bloqueado por incumplir las normas del foro</string>
     <string name="forum_error_bad_user">El usuario ha de tener al menos 3 caracteres</string>
     <string name="forum_error_user_repeated">Este nombre de usuario ya existe. Prueba con otro</string>
-    <string name="forum_error_bad_passwd">La contraseña ha de tener al menos 5 caracteres</string>
+    <string name="forum_error_bad_passwd">La contraseña ha de tener al menos 5 caracteres y no debe contener espacios</string>
     <string name="forum_error_different_passwd">La contraseña que introdujiste no coincide con la de la cuenta</string>
     <string name="forum_error_bad_email">El email tiene un formato incorrecto. Asegúrate de que esté bien escrito</string>
     <string name="forum_error_different_email">No podemos encontrar este email. Asegúrate de que esté bien escrito</string>

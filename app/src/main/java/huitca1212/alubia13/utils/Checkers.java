@@ -34,4 +34,8 @@ public class Checkers {
 		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 		return email.matches(emailPattern);
 	}
+
+	public static boolean isRightPassword(String password){
+		return !(password.length() < 5 || password.contains(" "));
+	}
 }
