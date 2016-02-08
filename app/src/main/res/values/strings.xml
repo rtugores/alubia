@@ -271,6 +271,7 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_recover_passwd">Recuperar contraseña</string>
     <string name="forum_recover_passwd_question">¿Ya has recuperado la contraseña?</string>
     <string name="forum_back_to_login">Vuelve atrás para iniciar sesión</string>
+    <string name="forum_email">Email</string>
     <string name="forum_insert_code">Introduce el código de tu peña (opcional)</string>
     <string name="forum_code_example">Ej.: BS8TF1R39K</string>
     <string name="forum_code_unknown_question">¿Todavía no conoces el código de tu peña?</string>
