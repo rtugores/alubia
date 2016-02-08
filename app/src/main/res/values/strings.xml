@@ -284,7 +284,7 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_report_comment_title">Denunciar comentario</string>
     <string name="forum_report_comment_content">¿Estás seguro de que deseas denunciar este comentario?</string>
 
-    <string name="forum_error_comment_blocked">El comentario ha sido bloqueado por infringir las normas del foro.</string>
+    <string name="forum_error_comment_blocked">El comentario ha sido bloqueado por infringir las normas del foro</string>
     <string name="forum_error_bad_words">No está permitido escribir palabrotas</string>
     <string name="forum_error_user_blocked">Has sido bloqueado por incumplir las normas del foro</string>
     <string name="forum_error_bad_user">El usuario ha de tener al menos 3 caracteres</string>
