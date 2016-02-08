@@ -135,4 +135,45 @@ public class ForumLoginRegisterBusiness {
 			}
 		}).execute();
 	}
+
+	public static void checkUserRegisterForum(final String user, final ServerListenerInterface<String> listener) {
+		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+			Result result;
+
+			@Override
+			public void onStart() {
+			}
+
+			@Override
+			public String onBackground() {
+				OkHttpClient client = new OkHttpClient();
+
+				try {
+					String mUrl = "http://rjapps.x10host.com/comprobar_usuario.php?usuario=" + URLEncoder.encode(user, "UTF-8").replace(" ", "%20");
+
+					Request request = new Request.Builder()
+							.url(mUrl)
+							.build();
+
+					Response response = client.newCall(request).execute();
+					String jsonResult = response.body().string();
+					GsonBuilder gsonBuilder = new GsonBuilder();
+					Gson gson = gsonBuilder.create();
+					result = gson.fromJson(jsonResult, Result.class);
+					return result.getResult();
+				} catch (Exception e) {
+					return DefaultAsyncTask.ASYNC_TASK_ERROR;
+				}
+			}
+
+			@Override
+			public void onFinish(String result) {
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
+					listener.onServerSuccess(result);
+				} else {
+					listener.onFailure(result);
+				}
+			}
+		}).execute();
+	}
 }
