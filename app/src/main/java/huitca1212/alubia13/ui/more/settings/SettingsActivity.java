@@ -1,27 +1,20 @@
 package huitca1212.alubia13.ui.more.settings;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.net.URLEncoder;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.DeleteAccountAsyncTask;
+import huitca1212.alubia13.business.ServerListenerInterface;
 import huitca1212.alubia13.model.Setting;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
@@ -56,7 +49,6 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 					new Setting("Versión", "3.5"),
 			};
 	public static Activity settingsActivity;
-	@Bind(R.id.progressbar_view) LinearLayout progressBar;
 	@Bind(R.id.list_options) ListView listOptions;
 
 	@Override
@@ -70,43 +62,6 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 
 		listOptions.setAdapter(adaptador);
 		listOptions.setOnItemClickListener(this);
-	}
-
-
-	public Dialog settingsDeleteAccountDialog(Context ctx) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		builder.setTitle(R.string.settings_delete_title);
-		builder.setMessage(R.string.settings_delete_areyousure);
-		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
-		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				String usuario = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
-				try {
-					String mURL = "http://rjapps.x10host.com/borrar_cuenta.php?usuario=" + URLEncoder.encode(usuario, "UTF-8");
-					DeleteAccountAsyncTask enviar = new DeleteAccountAsyncTask(SettingsActivity.this, progressBar, mURL);
-					enviar.execute(mURL);
-				} catch (Exception e) {
-					Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
-					dialog.cancel();
-				}
-				try {
-					MoreActivity.moreActivity.finish();
-				} catch (NullPointerException e) {
-					//NOOP
-				}
-				try {
-					ForumActivity.forumActivity.finish();
-				} catch (NullPointerException e) {
-					//NOOP
-				}
-				finish();
-			}
-		});
-		return builder.create();
 	}
 
 	@Override
@@ -145,7 +100,40 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		if (notregister) {
 			Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
 		} else {
-			settingsDeleteAccountDialog(SettingsActivity.this).show();
+			Dialogs.showSettingsDeleteAccountDialog(SettingsActivity.this, new ServerListenerInterface<String>() {
+				@Override
+				public void onServerSuccess(String object) {
+					Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
+					getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+							.edit()
+							.putString("username", "")
+							.commit();
+					getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+							.edit()
+							.putBoolean("notregister", true)
+							.commit();
+					try {
+						MoreActivity.moreActivity.finish();
+					} catch (NullPointerException e) {
+						//NOOP
+					}
+					try {
+						ForumActivity.forumActivity.finish();
+					} catch (NullPointerException e) {
+						//NOOP
+					}
+					finish();
+				}
+
+				@Override
+				public void onFailure(String result) {
+					if (result.equals("-1")) {
+						Notifications.showToast(SettingsActivity.this, getString(R.string.common_internet_error));
+					} else if (result.equals("-2")) {
+						Notifications.showToast(SettingsActivity.this, getString(R.string.settings_error_delete));
+					}
+				}
+			});
 		}
 	}
 

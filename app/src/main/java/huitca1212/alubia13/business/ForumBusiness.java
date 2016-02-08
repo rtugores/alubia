@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.model.CommentWrapper;
 import huitca1212.alubia13.model.CommentsWrapper;
+import huitca1212.alubia13.model.Result;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -102,7 +103,7 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendCommentToBackend(final String user, final String comment, final ServerListenerBusiness<Comment> listener) {
+	public static void sendCommentToBackend(final String user, final String comment, final ServerListenerInterface<Comment> listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
 			CommentWrapper data;
 
@@ -150,9 +151,9 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendReportToBackend(final String id, final ServerListenerBusiness<String> listener) {
+	public static void sendReportToBackend(final String id, final ResultListenerInterface listener) {
 		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
-			CommentWrapper data;
+			Result result;
 
 			@Override
 			public void onStart() {
@@ -173,8 +174,8 @@ public class ForumBusiness {
 					String jsonResult = response.body().string();
 					GsonBuilder gsonBuilder = new GsonBuilder();
 					Gson gson = gsonBuilder.create();
-					data = gson.fromJson(jsonResult, CommentWrapper.class);
-					return data.getResult();
+					result = gson.fromJson(jsonResult, Result.class);
+					return result.getResult();
 				} catch (Exception e) {
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
@@ -182,13 +183,47 @@ public class ForumBusiness {
 
 			@Override
 			public void onFinish(String result) {
-				switch (result) {
-					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						listener.onFailure(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR);
-						break;
-					default:
-						listener.onServerSuccess(null);
-						break;
+				listener.onResult(result);
+			}
+		}).execute();
+	}
+
+	public static void deleteForumAccount(final String user, final ServerListenerInterface<String> listener) {
+		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+			Result result;
+
+			@Override
+			public void onStart() {
+			}
+
+			@Override
+			public String onBackground() {
+				OkHttpClient client = new OkHttpClient();
+
+				try {
+					String mUrl = "http://rjapps.x10host.com/borrar_cuenta.php?usuario=" + URLEncoder.encode(user, "UTF-8");
+
+					Request request = new Request.Builder()
+							.url(mUrl)
+							.build();
+
+					Response response = client.newCall(request).execute();
+					String jsonResult = response.body().string();
+					GsonBuilder gsonBuilder = new GsonBuilder();
+					Gson gson = gsonBuilder.create();
+					result = gson.fromJson(jsonResult, Result.class);
+					return result.getResult();
+				} catch (Exception e) {
+					return DefaultAsyncTask.ASYNC_TASK_ERROR;
+				}
+			}
+
+			@Override
+			public void onFinish(String result) {
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
+					listener.onServerSuccess(result);
+				} else {
+					listener.onFailure(result);
 				}
 			}
 		}).execute();

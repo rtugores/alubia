@@ -1,8 +1,5 @@
 package huitca1212.alubia13.ui.forum;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,23 +15,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AsyncTaskListenerInterface;
 import huitca1212.alubia13.business.DefaultAsyncTask;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
+import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.utils.Checkers;
+import huitca1212.alubia13.utils.Notifications;
 
 public class ForumForgottenPasswordActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
-	private String jsonResult;
-	@Bind(R.id.progressbar_view) LinearLayout progressBar;
-	@Bind(R.id.forgotten_email) EditText forgottenEmail;
+	private String email;
+	@Bind(R.id.progressbar_view) LinearLayout progressbarView;
+	@Bind(R.id.forgotten_email) EditText emailBox;
 	@Bind(R.id.forgotten_button) Button forgottenAction;
 
 	@Override
@@ -45,64 +39,47 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 
 		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
 
-		forgottenEmail.setOnEditorActionListener(this);
-		forgottenEmail.addTextChangedListener(this);
+		emailBox.setOnEditorActionListener(this);
+		emailBox.addTextChangedListener(this);
 
 		forgottenAction.setOnClickListener(this);
 	}
 
 	private void recoverPassword() {
-
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(forgottenEmail.getWindowToken(), 0);
+		imm.hideSoftInputFromWindow(emailBox.getWindowToken(), 0);
 
-		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-		final String email = forgottenEmail.getText().toString().trim();
-		if (!email.matches(emailPattern)) {
-			Toast.makeText(this, R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
-			return;
+		email = emailBox.getText().toString().trim();
+		if (Checkers.isRightEmail(email)) {
+			accessWebService();
+		} else {
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 		}
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	}
+
+	private void accessWebService() {
+		progressbarView.setVisibility(View.VISIBLE);
+		ForumLoginRegisterBusiness.retriveForgottenPasswd(email, new ServerListenerInterface<String>() {
 			@Override
-			public void onStart() {
-				progressBar.setVisibility(View.VISIBLE);
+			public void onServerSuccess(String result) {
+				progressbarView.setVisibility(View.GONE);
+				Notifications.showToast(ForumForgottenPasswordActivity.this, getString(R.string.forum_forgot_email_success));
+				finish();
 			}
 
 			@Override
-			public String onBackground() throws IOException {
-				OkHttpClient client = new OkHttpClient();
-				String url = "http://rjapps.x10host.com/olvide_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8");
-
-				Request request = new Request.Builder()
-						.url(url)
-						.build();
-				try {
-					Response response = client.newCall(request).execute();
-					jsonResult = response.body().string();
-					JSONObject jsonResponse = new JSONObject(jsonResult);
-					return jsonResponse.optString("resultado");
-				} catch (IOException | JSONException | NullPointerException e) {
-					return DefaultAsyncTask.ASYNC_TASK_ERROR;
-				}
-			}
-
-			@Override
-			public void onFinish(String result) {
-				progressBar.setVisibility(View.GONE);
+			public void onFailure(String result) {
+				progressbarView.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
+						Notifications.showToast(ForumForgottenPasswordActivity.this, getString(R.string.common_internet_error));
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.forum_error_different_email, Toast.LENGTH_LONG).show();
-						break;
-					default:
-						finish();
-						Toast.makeText(getApplicationContext(), R.string.forum_forgot_action_success, Toast.LENGTH_LONG).show();
+						Notifications.showToast(ForumForgottenPasswordActivity.this, getString(R.string.forum_error_different_email));
 						break;
 				}
 			}
-		}).execute();
+		});
 	}
 
 	@Override

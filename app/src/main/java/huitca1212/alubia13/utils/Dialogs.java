@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
-import huitca1212.alubia13.business.ResultListenerBussiness;
-import huitca1212.alubia13.business.ServerListenerBusiness;
+import huitca1212.alubia13.business.ResultListenerInterface;
+import huitca1212.alubia13.business.ServerListenerInterface;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.ui.more.alubiaQuiz.AlubiaQuizSolutionActivity;
@@ -41,30 +40,13 @@ public class Dialogs {
 		builder.show();
 	}
 
-	public static void showForumReportCommentDialog(final Context ctx, final String id, final ResultListenerBussiness listener) {
+	public static void showForumReportCommentDialog(final Context ctx, final String id, final ResultListenerInterface listener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 		builder.setTitle(R.string.forum_report_comment_title);
 		builder.setMessage(R.string.forum_report_comment_content);
 		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				ForumBusiness.sendReportToBackend(id, new ServerListenerBusiness<String>() {
-					@Override
-					public void onServerSuccess(String result) {
-						listener.onResult(DefaultAsyncTask.ASYNC_TASK_OK);
-					}
-
-					@Override
-					public void onFailure(String result) {
-						switch (result) {
-							case "-2":
-								listener.onResult("-2");
-								break;
-							case DefaultAsyncTask.ASYNC_TASK_ERROR:
-								listener.onResult(DefaultAsyncTask.ASYNC_TASK_ERROR);
-								break;
-						}
-					}
-				});
+				ForumBusiness.sendReportToBackend(id, listener);
 			}
 		});
 		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
@@ -106,11 +88,6 @@ public class Dialogs {
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 		builder.setTitle(R.string.settings_logout);
 		builder.setMessage(R.string.settings_logout_areyousure);
-		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
 		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				ctx.getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putString("username", "").commit();
@@ -130,6 +107,30 @@ public class Dialogs {
 				} catch (NullPointerException e) {
 					//NOOP
 				}
+			}
+		});
+		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		builder.show();
+	}
+
+
+	public static void showSettingsDeleteAccountDialog(final Context ctx, final ServerListenerInterface<String> listener) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		builder.setTitle(R.string.settings_delete_title);
+		builder.setMessage(R.string.settings_delete_areyousure);
+		builder.setNegativeButton(R.string.common_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
+		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				String user = ctx.getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).getString("username", "");
+				ForumBusiness.deleteForumAccount(user, listener);
 			}
 		});
 		builder.show();

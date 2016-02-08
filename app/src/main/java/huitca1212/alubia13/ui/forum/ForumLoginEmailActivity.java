@@ -1,8 +1,5 @@
 package huitca1212.alubia13.ui.forum;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,21 +19,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AsyncTaskListenerInterface;
 import huitca1212.alubia13.business.DefaultAsyncTask;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
+import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.utils.Checkers;
+import huitca1212.alubia13.utils.Notifications;
 
 public class ForumLoginEmailActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, TextWatcher {
 
-	private String jsonResult, email;
+	private String email;
 	public static Activity forumLoginEmailActivity;
 	@Bind(R.id.progressbar_view_login) LinearLayout progressbarView;
 	@Bind(R.id.email) EditText emailBox;
@@ -60,71 +54,49 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		sendLogin.setOnClickListener(this);
 	}
 
-	private void action_foro_login_email() {
+	private void checkEmail() {
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(emailBox.getWindowToken(), 0);
 
-		final EditText email_edit = (EditText)findViewById(R.id.email);
-		InputMethodManager imm = (InputMethodManager)getSystemService(
-				Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(email_edit.getWindowToken(), 0);
-
-		String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-		email = email_edit.getText().toString().trim();
-		if (!email.matches(emailPattern)) {
-			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
-		} else {
+		email = emailBox.getText().toString().trim();
+		if (Checkers.isRightEmail(email)) {
 			accessWebService();
+		} else {
+			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
 		}
 	}
 
 	private void accessWebService() {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+		progressbarView.setVisibility(View.VISIBLE);
+		ForumLoginRegisterBusiness.checkEmailForum(email, true, new ServerListenerInterface<String>() {
 			@Override
-			public void onStart() {
-				progressbarView.setVisibility(View.VISIBLE);
+			public void onServerSuccess(String result) {
+				progressbarView.setVisibility(View.GONE);
+				Intent intent = new Intent(ForumLoginEmailActivity.this, ForumLoginPasswordActivity.class);
+				intent.putExtra("email", email);
+				startActivity(intent);
 			}
 
 			@Override
-			public String onBackground() throws IOException {
-				OkHttpClient client = new OkHttpClient();
-				String url = "http://rjapps.x10host.com/comprobar_email.php?email=" + URLEncoder.encode(email, "UTF-8");
-				Request request = new Request.Builder()
-						.url(url)
-						.build();
-				try {
-					Response response = client.newCall(request).execute();
-					jsonResult = response.body().string();
-					JSONObject jsonResponse = new JSONObject(jsonResult);
-					return jsonResponse.optString("resultado");
-				} catch (IOException | JSONException | NullPointerException e) {
-					return DefaultAsyncTask.ASYNC_TASK_ERROR;
-				}
-			}
-
-			@Override
-			public void onFinish(String result) {
+			public void onFailure(String result) {
 				progressbarView.setVisibility(View.GONE);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Toast.makeText(getApplicationContext(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
+						Notifications.showToast(ForumLoginEmailActivity.this, getString(R.string.common_internet_error));
 						break;
 					case "-2":
-						Toast.makeText(getApplicationContext(), R.string.forum_error_different_email, Toast.LENGTH_LONG).show();
-						return;
-					default:
-						Intent intent = new Intent(ForumLoginEmailActivity.this, ForumLoginPasswordActivity.class);
-						intent.putExtra("email", email);
-						startActivity(intent);
+						Notifications.showToast(ForumLoginEmailActivity.this, getString(R.string.forum_error_different_email));
 						break;
 				}
 			}
-		}).execute();
+		});
 	}
 
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.register_button) {
-			action_foro_login_email();
+			checkEmail();
 		}
 	}
 
@@ -133,7 +105,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		int id = v.getId();
 		if (id == R.id.email) {
 			if (actionId == EditorInfo.IME_ACTION_NEXT) {
-				action_foro_login_email();
+				checkEmail();
 				return true;
 			}
 		}
@@ -161,7 +133,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		}
 	}
 
-	public void onDestroy(){
+	public void onDestroy() {
 		forumLoginEmailActivity = null;
 		super.onDestroy();
 	}
