@@ -7,6 +7,7 @@
     <string name="common_no_internet">No hay conexión a Internet</string>
     <string name="common_accept">Aceptar</string>
     <string name="common_cancel">Cancelar</string>
+    <string name="common_banner_ad_unit_id">ca-app-pub-9645153779384738/4669268804</string>
 
     <!-- Album -->
     <string name="album_image_pager_1">Peñas</string>

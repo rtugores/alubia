@@ -1,5 +1,9 @@
 package huitca1212.alubia13.ui.more.alubiaQuiz;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -25,12 +29,22 @@ public class AlubiaQuizDifficultActivity extends AppCompatActivity {
 	@Bind(R.id.first_option) RadioButton firstOption;
 	@Bind(R.id.second_option) RadioButton secondOption;
 	@Bind(R.id.third_option) RadioButton thirdOption;
+	@Bind(R.id.ad_view) AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alubiaquiz);
 		ButterKnife.bind(this);
+
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				adView.setVisibility(View.VISIBLE);
+			}
+		});
 
 		quizWelcome.setText(R.string.alubiaquiz_hard_level_subtitle);
 		firstQuestion.setText(R.string.alubiaquiz_q1_d);

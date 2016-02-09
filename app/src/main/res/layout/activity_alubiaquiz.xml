@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+<LinearLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFE4B0"
@@ -75,11 +75,11 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
-    <com.google.ads.AdView
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-9645153779384738/4669268804"
-        ads:loadAdOnCreate="true" />
-
+        ads:adUnitId="@string/common_banner_ad_unit_id" />
 </LinearLayout>

@@ -1,5 +1,9 @@
 package huitca1212.alubia13.ui.more.alubiaQuiz;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -18,19 +22,29 @@ import huitca1212.alubia13.utils.Dialogs;
 
 public class AlubiaQuizEasyActivity extends AppCompatActivity {
 
-	private int respuesta;
+	private int answer;
 	@Bind(R.id.next_button) Button nextButton;
 	@Bind(R.id.quiz_welcome) TextView quizWelcome;
 	@Bind(R.id.first_question) TextView firstQuestion;
 	@Bind(R.id.first_option) RadioButton firstOption;
 	@Bind(R.id.second_option) RadioButton secondOption;
 	@Bind(R.id.third_option) RadioButton thirdOption;
+	@Bind(R.id.ad_view) AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alubiaquiz);
 		ButterKnife.bind(this);
+
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				adView.setVisibility(View.VISIBLE);
+			}
+		});
 
 		quizWelcome.setText(R.string.alubiaquiz_easy_level_subtitle);
 		firstQuestion.setText(R.string.alubiaquiz_q1_f);
@@ -42,7 +56,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 			public void onClick(View v) {
 
 				if (secondOption.isChecked()) {
-					respuesta += 1;
+					answer += 1;
 					Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 				} else {
 					showAlubiaQuizWrongAnswerDialog(1, 0);
@@ -55,7 +69,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 				nextButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						if (firstOption.isChecked()) {
-							respuesta += 1;
+							answer += 1;
 							Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 						} else {
 							showAlubiaQuizWrongAnswerDialog(2, 0);
@@ -68,7 +82,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 						nextButton.setOnClickListener(new View.OnClickListener() {
 							public void onClick(View v) {
 								if (secondOption.isChecked()) {
-									respuesta += 1;
+									answer += 1;
 									Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 								} else {
 									showAlubiaQuizWrongAnswerDialog(3, 0);
@@ -81,7 +95,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 								nextButton.setOnClickListener(new View.OnClickListener() {
 									public void onClick(View v) {
 										if (secondOption.isChecked()) {
-											respuesta += 1;
+											answer += 1;
 											Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 										} else {
 											showAlubiaQuizWrongAnswerDialog(4, 0);
@@ -94,7 +108,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 										nextButton.setOnClickListener(new View.OnClickListener() {
 											public void onClick(View v) {
 												if (thirdOption.isChecked()) {
-													respuesta += 1;
+													answer += 1;
 													Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 												} else {
 													showAlubiaQuizWrongAnswerDialog(5, 0);
@@ -107,7 +121,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 												nextButton.setOnClickListener(new View.OnClickListener() {
 													public void onClick(View v) {
 														if (firstOption.isChecked()) {
-															respuesta += 1;
+															answer += 1;
 															Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 														} else {
 															showAlubiaQuizWrongAnswerDialog(6, 0);
@@ -120,7 +134,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 														nextButton.setOnClickListener(new View.OnClickListener() {
 															public void onClick(View v) {
 																if (secondOption.isChecked()) {
-																	respuesta += 1;
+																	answer += 1;
 																	Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 																} else {
 																	showAlubiaQuizWrongAnswerDialog(7, 0);
@@ -133,7 +147,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 																nextButton.setOnClickListener(new View.OnClickListener() {
 																	public void onClick(View v) {
 																		if (thirdOption.isChecked()) {
-																			respuesta += 1;
+																			answer += 1;
 																			Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 																		} else {
 																			showAlubiaQuizWrongAnswerDialog(8, 0);
@@ -146,7 +160,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 																		nextButton.setOnClickListener(new View.OnClickListener() {
 																			public void onClick(View v) {
 																				if (thirdOption.isChecked()) {
-																					respuesta += 1;
+																					answer += 1;
 																					Dialogs.showAlubiaQuizRightAnswerDialog(0, 0, AlubiaQuizEasyActivity.this);
 																				} else {
 																					showAlubiaQuizWrongAnswerDialog(9, 0);
@@ -159,10 +173,10 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 																				nextButton.setOnClickListener(new View.OnClickListener() {
 																					public void onClick(View v) {
 																						if (firstOption.isChecked()) {
-																							respuesta += 1;
-																							Dialogs.showAlubiaQuizRightAnswerDialog(10, respuesta, AlubiaQuizEasyActivity.this);
+																							answer += 1;
+																							Dialogs.showAlubiaQuizRightAnswerDialog(10, answer, AlubiaQuizEasyActivity.this);
 																						} else {
-																							showAlubiaQuizWrongAnswerDialog(10, respuesta);
+																							showAlubiaQuizWrongAnswerDialog(10, answer);
 																						}
 																					}
 																				});

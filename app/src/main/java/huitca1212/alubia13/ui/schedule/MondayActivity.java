@@ -1,5 +1,9 @@
 package huitca1212.alubia13.ui.schedule;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -11,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.Schedule;
 import huitca1212.alubia13.ui.schedule.adapters.DayAdapter;
@@ -26,16 +32,26 @@ public class MondayActivity extends AppCompatActivity {
 					new Schedule("20:30 Entrega de premios del concurso de pintura", "Casa de la cultura"),
 					new Schedule("21:00 Bollo preñao", "Explanada de la casa de la cultura"),
 					new Schedule("22:30 Verbena", "Explanada de la casa de la cultura")};
+	@Bind(R.id.ad_view) AdView adView;
+	@Bind(R.id.list_options) ListView lstOpciones;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_day);
+		ButterKnife.bind(this);
+
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				adView.setVisibility(View.VISIBLE);
+			}
+		});
 
 		DayAdapter adaptadorDias = new DayAdapter(this, datos);
-		ListView lstOpciones = (ListView)findViewById(R.id.list_options);
 		lstOpciones.setAdapter(adaptadorDias);
-
 		lstOpciones.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> a, View v, int position, long id) {

@@ -1,5 +1,9 @@
 package huitca1212.alubia13.ui.schedule;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -11,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.Schedule;
 import huitca1212.alubia13.ui.schedule.adapters.DayAdapter;
@@ -19,13 +25,23 @@ public class SaturdayActivity extends AppCompatActivity {
 
 	Schedule[] datos;
 	String day;
+	@Bind(R.id.ad_view) AdView adView;
+	@Bind(R.id.list_options) ListView lstOpciones;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_day);
+		ButterKnife.bind(this);
 
-		ListView lstOpciones = (ListView)findViewById(R.id.list_options);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				adView.setVisibility(View.VISIBLE);
+			}
+		});
 
 		day = getIntent().getStringExtra("day");
 		if (day.equals("saturday")) {
