@@ -60,8 +60,8 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 		setAnalytics();
 		setResultReportListener();
-		setDefaultAdapter();
 		hideCommentBarIfInvited();
+		setDefaultAdapter();
 
 		retrieveForumContent();
 

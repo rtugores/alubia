@@ -131,8 +131,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		int itemType = forumViewHolder.getItemViewType();
 		boolean isUser = comments.get(position).getUser().equals(userLogged);
 		if (invited != null && invited.equals("OK")) {
-			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
-			outsideParams.setMargins(0, 0, 0, 0);
 			forumViewHolder.reportButton.setVisibility(View.GONE);
 		} else if (isUser) {
 			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();

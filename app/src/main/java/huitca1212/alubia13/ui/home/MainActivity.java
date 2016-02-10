@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
 			if (notregister) {
 				Intent intent = new Intent(MainActivity.this, ForumMenuActivity.class);
+				intent.putExtra(ForumActivity.INVITED_USER, "OK");
 				startActivity(intent);
 			} else {
 				Intent intent = new Intent(MainActivity.this, ForumActivity.class);
