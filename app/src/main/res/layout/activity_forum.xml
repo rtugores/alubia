@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -38,12 +39,19 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <EditText
+            <Button
+                android:id="@+id/emojicons_button"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:drawable/ic_menu_more" />
+
+            <com.rockerhieu.emojicon.EmojiconEditText
                 android:id="@+id/comment"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="5dip"
                 android:layout_marginRight="5dip"
                 android:layout_weight="1"
                 android:hint="@string/forum_write_message"
@@ -55,7 +63,8 @@
                 android:minLines="1"
                 android:scrollbars="vertical"
                 android:textColorHint="#d3d3d3"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                emojicon:emojiconSize="28sp" />
 
             <Button
                 android:id="@+id/send_button"
@@ -63,6 +72,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@android:drawable/ic_menu_send" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emojicons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:visibility="gone">
+
+            <fragment
+                android:id="@+id/emojicons"
+                class="com.rockerhieu.emojicon.EmojiconsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </LinearLayout>
