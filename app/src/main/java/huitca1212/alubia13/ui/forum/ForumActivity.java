@@ -18,6 +18,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -66,6 +67,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		ButterKnife.bind(this);
 
 		forumActivity = this;
+		getWindow().setBackgroundDrawableResource(R.drawable.forum_background);
 
 		setAnalytics();
 		setResultReportListener();
@@ -77,6 +79,16 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		updateButton.setOnClickListener(this);
 		sendButton.setOnClickListener(this);
 		emojiconsButton.setOnClickListener(this);
+
+		commentBox.requestFocus();
+		commentBox.setOnTouchListener(new View.OnTouchListener() {
+			public boolean onTouch(View view, MotionEvent motionEvent) {
+				if (emojiconsViewGroup.getVisibility() == View.VISIBLE) {
+					emojiconsViewGroup.setVisibility(View.GONE);
+				}
+				return false;
+			}
+		});
 	}
 
 	private void setAnalytics() {
@@ -164,15 +176,24 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void onEmojiconsPressed() {
-		View view = this.getCurrentFocus();
-		if (view != null) {
-			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-		}
 		if (emojiconsViewGroup.getVisibility() == View.VISIBLE) {
 			emojiconsViewGroup.setVisibility(View.GONE);
 		} else {
+			View view = this.getCurrentFocus();
+			if (view != null) {
+				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+			}
 			emojiconsViewGroup.setVisibility(View.VISIBLE);
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (emojiconsViewGroup.getVisibility() == View.VISIBLE) {
+			emojiconsViewGroup.setVisibility(View.GONE);
+		} else {
+			super.onBackPressed();
 		}
 	}
 

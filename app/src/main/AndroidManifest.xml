@@ -76,6 +76,7 @@
             android:label="@string/forum_register" />
         <activity
             android:name=".ui.forum.ForumActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
             android:label="@string/home_forum" />
         <activity
             android:name=".ui.more.FestivityInfoActivity"
@@ -110,8 +111,5 @@
         <activity
             android:name=".ui.album.ComplexImageActivity"
             android:label="Álbum" />
-        <activity
-            android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     </application>
 </manifest>

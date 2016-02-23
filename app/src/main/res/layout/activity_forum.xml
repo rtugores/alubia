@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/forum_background"
         android:orientation="vertical">
 
         <android.support.design.widget.CoordinatorLayout
@@ -78,6 +77,7 @@
             android:id="@+id/emojicons_layout"
             android:layout_width="match_parent"
             android:layout_height="220dp"
+            android:layout_gravity="bottom"
             android:visibility="gone">
 
             <fragment
