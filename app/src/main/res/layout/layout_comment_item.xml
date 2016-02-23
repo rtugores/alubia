@@ -2,7 +2,6 @@
 <LinearLayout
     android:id="@+id/forum_outside_comment_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginEnd="50dp"
@@ -44,7 +43,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <com.rockerhieu.emojicon.EmojiconTextView
+            <TextView
                 android:id="@+id/comment_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,8 +52,7 @@
                 android:layout_marginRight="10dp"
                 android:textIsSelectable="true"
                 android:textSize="15sp"
-                android:textStyle="normal"
-                emojicon:emojiconAlignment="baseline" />
+                android:textStyle="normal" />
         </LinearLayout>
 
         <LinearLayout

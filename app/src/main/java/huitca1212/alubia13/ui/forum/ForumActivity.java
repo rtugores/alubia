@@ -3,13 +3,7 @@ package huitca1212.alubia13.ui.forum;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
-import com.rockerhieu.emojicon.EmojiconEditText;
-import com.rockerhieu.emojicon.EmojiconGridFragment;
-import com.rockerhieu.emojicon.EmojiconsFragment;
-import com.rockerhieu.emojicon.emoji.Emojicon;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -18,10 +12,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -41,8 +34,7 @@ import huitca1212.alubia13.utils.Animations;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
-public class ForumActivity extends AppCompatActivity implements View.OnClickListener, EmojiconsFragment.OnEmojiconBackspaceClickedListener,
-		EmojiconGridFragment.OnEmojiconClickedListener {
+public class ForumActivity extends AppCompatActivity implements View.OnClickListener {
 
 	public static final String INVITED_USER = "invitado";
 	public static Activity forumActivity;
@@ -52,11 +44,9 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	public ResultListenerInterface resultListener;
 	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
 	@Bind(R.id.comment_bar) ViewGroup commentBar;
-	@Bind(R.id.emojicons_layout) ViewGroup emojiconsViewGroup;
 	@Bind(R.id.recycler_view) RecyclerView recyclerView;
 	@Bind(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
-	@Bind(R.id.comment) EmojiconEditText commentBox;
-	@Bind(R.id.emojicons_button) View emojiconsButton;
+	@Bind(R.id.comment) EditText commentBox;
 	@Bind(R.id.update_button) View updateButton;
 	@Bind(R.id.send_button) View sendButton;
 
@@ -67,6 +57,8 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		ButterKnife.bind(this);
 
 		forumActivity = this;
+		
+		commentBox.requestFocus();
 		getWindow().setBackgroundDrawableResource(R.drawable.forum_background);
 
 		setAnalytics();
@@ -78,17 +70,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 		updateButton.setOnClickListener(this);
 		sendButton.setOnClickListener(this);
-		emojiconsButton.setOnClickListener(this);
-
-		commentBox.requestFocus();
-		commentBox.setOnTouchListener(new View.OnTouchListener() {
-			public boolean onTouch(View view, MotionEvent motionEvent) {
-				if (emojiconsViewGroup.getVisibility() == View.VISIBLE) {
-					emojiconsViewGroup.setVisibility(View.GONE);
-				}
-				return false;
-			}
-		});
 	}
 
 	private void setAnalytics() {
@@ -170,30 +151,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			onUpdateButtonPressed();
 		} else if (id == R.id.send_button) {
 			onSendButtonPressed();
-		} else if (id == R.id.emojicons_button) {
-			onEmojiconsPressed();
-		}
-	}
-
-	private void onEmojiconsPressed() {
-		if (emojiconsViewGroup.getVisibility() == View.VISIBLE) {
-			emojiconsViewGroup.setVisibility(View.GONE);
-		} else {
-			View view = this.getCurrentFocus();
-			if (view != null) {
-				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-			}
-			emojiconsViewGroup.setVisibility(View.VISIBLE);
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		if (emojiconsViewGroup.getVisibility() == View.VISIBLE) {
-			emojiconsViewGroup.setVisibility(View.GONE);
-		} else {
-			super.onBackPressed();
 		}
 	}
 
@@ -315,15 +272,5 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	public void onDestroy() {
 		forumActivity = null;
 		super.onDestroy();
-	}
-
-	@Override
-	public void onEmojiconClicked(Emojicon emojicon) {
-		EmojiconsFragment.input(commentBox, emojicon);
-	}
-
-	@Override
-	public void onEmojiconBackspaceClicked(View v) {
-		EmojiconsFragment.backspace(commentBox);
 	}
 }
