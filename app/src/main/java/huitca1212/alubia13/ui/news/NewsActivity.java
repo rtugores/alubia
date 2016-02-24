@@ -71,11 +71,11 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 					data.setNews(list);
 					drawNewsList(false);
 				}
-				Animations.crossfadeViews(progressbarView, recyclerView, NewsActivity.this);
 			}
 
 			@Override
 			public void onServerSuccess(ArrayList<News> list) {
+				progressbarView.setVisibility(View.GONE);
 				if (list.size() > 0) {
 					data.setNews(list);
 					drawNewsList(true);

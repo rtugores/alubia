@@ -30,7 +30,6 @@ import huitca1212.alubia13.business.ServerListenerInterface;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
-import huitca1212.alubia13.utils.Animations;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -57,7 +56,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		ButterKnife.bind(this);
 
 		forumActivity = this;
-		
+
 		commentBox.requestFocus();
 		getWindow().setBackgroundDrawableResource(R.drawable.forum_background);
 
@@ -124,11 +123,11 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 				if (list.size() > 0) {
 					updateForumList(list, false, false);
 				}
-				unblockScreenForEvent();
 			}
 
 			@Override
 			public void onServerSuccess(ArrayList<Comment> list) {
+				unblockScreenForEvent();
 				if (list.size() > 0) {
 					updateForumList(list, false, true);
 				}
@@ -136,7 +135,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 			@Override
 			public void onFailure(String result) {
-				Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+				unblockScreenForEvent();
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
 					Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
 				}
@@ -163,15 +162,15 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 			@Override
 			public void onServerSuccess(ArrayList<Comment> list) {
+				unblockScreenForEvent();
 				if (list.size() > 0) {
 					updateForumList(list, true, true);
 				}
-				unblockScreenForEvent();
 			}
 
 			@Override
 			public void onFailure(String result) {
-				progressbarView.setVisibility(View.GONE);
+				unblockScreenForEvent();
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
 					Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
 				}
@@ -192,10 +191,10 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerInterface<Comment>() {
 			@Override
 			public void onServerSuccess(Comment comment) {
+				unblockScreenForEvent();
 				if (comment != null) {
 					addItemForumList(comment);
 					commentBox.setText("");
-					unblockScreenForEvent();
 				}
 			}
 
@@ -223,7 +222,8 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void unblockScreenForEvent() {
-		Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+		//Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
+		progressbarView.setVisibility(View.GONE);
 		updateButton.setEnabled(true);
 		sendButton.setEnabled(true);
 		commentBox.setEnabled(true);
