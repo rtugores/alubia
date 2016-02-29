@@ -121,6 +121,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
 				if (list.size() > 0) {
+					unblockScreenForEvent();
 					updateForumList(list, false, false);
 				}
 			}
