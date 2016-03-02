@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.ResultListenerInterface;
+import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.utils.Dialogs;
 
@@ -36,9 +36,9 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	private ArrayList<Comment> comments = new ArrayList<>();
 	private View.OnClickListener listener;
 	private String userLogged, invited;
-	private ResultListenerInterface resultListener;
+	private ResultBusinessListener resultListener;
 
-	public ForumAdapter(Context ctx, String invited, ResultListenerInterface resultListener) {
+	public ForumAdapter(Context ctx, String invited, ResultBusinessListener resultListener) {
 		this.ctx = ctx;
 		this.invited = invited;
 		this.resultListener = resultListener;

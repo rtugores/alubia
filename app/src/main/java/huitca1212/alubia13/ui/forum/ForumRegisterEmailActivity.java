@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
-import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -70,7 +70,12 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 
 	private void accessWebService() {
 		progressbarView.setVisibility(View.VISIBLE);
-		ForumLoginRegisterBusiness.checkEmailForum(email, false, new ServerListenerInterface<String>() {
+		ForumLoginRegisterBusiness.checkEmailForum(email, false, new AllBusinessListener<String>() {
+			@Override
+			public void onDatabaseSuccess(String object) {
+
+			}
+
 			@Override
 			public void onServerSuccess(String result) {
 				progressbarView.setVisibility(View.GONE);

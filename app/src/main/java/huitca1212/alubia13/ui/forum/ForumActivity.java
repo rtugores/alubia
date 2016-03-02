@@ -21,12 +21,11 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AllListenerInterface;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
-import huitca1212.alubia13.business.ResultListenerInterface;
-import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
@@ -40,7 +39,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	private String invited;
 	public ForumAdapter adapter;
 	public LinearLayoutManager mLayoutManager;
-	public ResultListenerInterface resultListener;
+	public ResultBusinessListener resultListener;
 	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
 	@Bind(R.id.comment_bar) ViewGroup commentBar;
 	@Bind(R.id.recycler_view) RecyclerView recyclerView;
@@ -97,7 +96,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void setResultReportListener() {
-		resultListener = new ResultListenerInterface() {
+		resultListener = new ResultBusinessListener() {
 			@Override
 			public void onResult(String result) {
 				switch (result) {
@@ -117,7 +116,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void retrieveForumContent() {
 		blockScreenForEvent();
-		ForumBusiness.getForumContent(new AllListenerInterface<Comment>() {
+		ForumBusiness.getForumContent(new AllBusinessListener<ArrayList<Comment>>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
 				if (list.size() > 0) {
@@ -156,7 +155,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void onUpdateButtonPressed() {
 		blockScreenForEvent();
-		ForumBusiness.getBackendForumContent(new AllListenerInterface<Comment>() {
+		ForumBusiness.getBackendForumContent(new AllBusinessListener<ArrayList<Comment>>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<Comment> list) {
 			}
@@ -189,7 +188,12 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void sendCommentAndRefresh(String user, String comment) {
 		blockScreenForEvent();
-		ForumBusiness.sendCommentToBackend(user, comment, new ServerListenerInterface<Comment>() {
+		ForumBusiness.sendCommentToBackend(user, comment, new AllBusinessListener<Comment>() {
+			@Override
+			public void onDatabaseSuccess(Comment object) {
+
+			}
+
 			@Override
 			public void onServerSuccess(Comment comment) {
 				unblockScreenForEvent();

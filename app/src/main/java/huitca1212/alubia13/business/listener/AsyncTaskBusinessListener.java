@@ -1,8 +1,8 @@
-package huitca1212.alubia13.business;
+package huitca1212.alubia13.business.listener;
 
 import java.io.IOException;
 
-public interface AsyncTaskListenerInterface {
+public interface AsyncTaskBusinessListener {
 	void onStart();
 
 	String onBackground() throws IOException;

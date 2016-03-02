@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
-import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -82,7 +82,12 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 
 	private void accessWebService() {
 		progressbarView.setVisibility(View.VISIBLE);
-		ForumLoginRegisterBusiness.checkUserRegisterForum(user, new ServerListenerInterface<String>() {
+		ForumLoginRegisterBusiness.checkUserRegisterForum(user, new AllBusinessListener<String>() {
+			@Override
+			public void onDatabaseSuccess(String object) {
+
+			}
+
 			@Override
 			public void onServerSuccess(String result) {
 				progressbarView.setVisibility(View.GONE);

@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 
 import java.io.IOException;
 
+import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
+
 public class DefaultAsyncTask extends AsyncTask<String, Void, String> {
 	public static final String ASYNC_TASK_OK = "1";
 	public static final String ASYNC_TASK_ERROR = "-1";
@@ -11,9 +13,9 @@ public class DefaultAsyncTask extends AsyncTask<String, Void, String> {
 	public static final String ASYNC_TASK_SERVER_ERROR = "-3";
 	public static final String ASYNC_TASK_USER_NOT_PERMITED_ERROR = "-4";
 
-	private AsyncTaskListenerInterface listener;
+	private AsyncTaskBusinessListener listener;
 
-	public DefaultAsyncTask(AsyncTaskListenerInterface listener) {
+	public DefaultAsyncTask(AsyncTaskBusinessListener listener) {
 		this.listener = listener;
 	}
 

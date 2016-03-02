@@ -1,31 +1,31 @@
 package huitca1212.alubia13.business;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import java.io.IOException;
+import android.util.Log;
+
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
+import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.model.CommentWrapper;
 import huitca1212.alubia13.model.CommentsWrapper;
 import huitca1212.alubia13.model.Result;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import huitca1212.alubia13.service.AlubiaService;
 
 public class ForumBusiness {
 
-	public static void getForumContent(AllListenerInterface<Comment> listener) {
+	public static void getForumContent(AllBusinessListener<ArrayList<Comment>> listener) {
 		getDatabaseForumContent(listener);
 	}
 
-	public static void getDatabaseForumContent(final AllListenerInterface<Comment> listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void getDatabaseForumContent(final AllBusinessListener<ArrayList<Comment>> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			ArrayList<Comment> list;
 
 			@Override
@@ -64,8 +64,8 @@ public class ForumBusiness {
 
 	}
 
-	public static void getBackendForumContent(final AllListenerInterface<Comment> listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void getBackendForumContent(final AllBusinessListener<ArrayList<Comment>> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			CommentsWrapper data;
 
 			@Override
@@ -74,22 +74,12 @@ public class ForumBusiness {
 
 			@Override
 			public String onBackground() {
-				OkHttpClient client = new OkHttpClient();
-				String url = "http://rjapps.x10host.com/descargar_comentarios.php";
-
-				Request request = new Request.Builder()
-						.url(url)
-						.build();
-				try {
-					Response response = client.newCall(request).execute();
-					String jsonResult = response.body().string();
-					GsonBuilder gsonBuilder = new GsonBuilder();
-					Gson gson = gsonBuilder.create();
-					data = gson.fromJson(jsonResult, CommentsWrapper.class);
-					return data.getResult();
-				} catch (IOException e) {
+				String url = "/descargar_comentarios.php";
+				data = AlubiaService.getDataFromRequest(url, CommentsWrapper.class);
+				if (data == null) {
 					return DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR;
 				}
+				return data.getResult();
 			}
 
 			@Override
@@ -103,8 +93,8 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendCommentToBackend(final String user, final String comment, final ServerListenerInterface<Comment> listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void sendCommentToBackend(final String user, final String comment, final AllBusinessListener<Comment> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			CommentWrapper data;
 
 			@Override
@@ -113,23 +103,16 @@ public class ForumBusiness {
 
 			@Override
 			public String onBackground() {
-				OkHttpClient client = new OkHttpClient();
-
 				try {
-					String mUrl = "http://rjapps.x10host.com/anhadir_comentario.php?usuario=" + URLEncoder.encode(user, "UTF-8") +
+					String url = "/anhadir_comentario.php?usuario=" + URLEncoder.encode(user, "UTF-8") +
 							"&comentario=" + URLEncoder.encode(comment, "UTF-8").replace(" ", "%20");
-
-					Request request = new Request.Builder()
-							.url(mUrl)
-							.build();
-
-					Response response = client.newCall(request).execute();
-					String jsonResult = response.body().string();
-					GsonBuilder gsonBuilder = new GsonBuilder();
-					Gson gson = gsonBuilder.create();
-					data = gson.fromJson(jsonResult, CommentWrapper.class);
+					data = AlubiaService.getDataFromRequest(url, CommentWrapper.class);
+					if (data == null) {
+						return DefaultAsyncTask.ASYNC_TASK_ERROR;
+					}
 					return data.getResult();
-				} catch (Exception e) {
+				} catch (UnsupportedEncodingException e) {
+					Log.e("ForumBusiness", "sendCommentToBackend() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -151,8 +134,8 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void sendReportToBackend(final String id, final ResultListenerInterface listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void sendReportToBackend(final String id, final ResultBusinessListener listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			Result result;
 
 			@Override
@@ -161,22 +144,15 @@ public class ForumBusiness {
 
 			@Override
 			public String onBackground() {
-				OkHttpClient client = new OkHttpClient();
-
 				try {
-					String mUrl = "http://rjapps.x10host.com/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
-
-					Request request = new Request.Builder()
-							.url(mUrl)
-							.build();
-
-					Response response = client.newCall(request).execute();
-					String jsonResult = response.body().string();
-					GsonBuilder gsonBuilder = new GsonBuilder();
-					Gson gson = gsonBuilder.create();
-					result = gson.fromJson(jsonResult, Result.class);
+					String url = "/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
+					result = AlubiaService.getDataFromRequest(url, Result.class);
+					if (result == null) {
+						return DefaultAsyncTask.ASYNC_TASK_ERROR;
+					}
 					return result.getResult();
-				} catch (Exception e) {
+				} catch (UnsupportedEncodingException e) {
+					Log.e("ForumBusiness", "sendReportToBackend() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -188,32 +164,26 @@ public class ForumBusiness {
 		}).execute();
 	}
 
-	public static void deleteForumAccount(final String user, final ServerListenerInterface<String> listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void deleteForumAccount(final String user, final AllBusinessListener<String> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			Result result;
 
 			@Override
 			public void onStart() {
+
 			}
 
 			@Override
 			public String onBackground() {
-				OkHttpClient client = new OkHttpClient();
-
 				try {
-					String mUrl = "http://rjapps.x10host.com/borrar_cuenta.php?usuario=" + URLEncoder.encode(user, "UTF-8");
-
-					Request request = new Request.Builder()
-							.url(mUrl)
-							.build();
-
-					Response response = client.newCall(request).execute();
-					String jsonResult = response.body().string();
-					GsonBuilder gsonBuilder = new GsonBuilder();
-					Gson gson = gsonBuilder.create();
-					result = gson.fromJson(jsonResult, Result.class);
+					String url = "/borrar_cuenta.php?usuario=" + URLEncoder.encode(user, "UTF-8");
+					result = AlubiaService.getDataFromRequest(url, Result.class);
+					if (result == null) {
+						return DefaultAsyncTask.ASYNC_TASK_ERROR;
+					}
 					return result.getResult();
-				} catch (Exception e) {
+				} catch (UnsupportedEncodingException e) {
+					Log.e("ForumBusiness", "deleteForumAccount() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}

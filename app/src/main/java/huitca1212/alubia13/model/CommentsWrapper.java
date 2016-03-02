@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import huitca1212.alubia13.service.AlubiaService;
+
 public class CommentsWrapper {
 	@SerializedName("resultado") private String result;
 	@SerializedName("foro") private ArrayList<Comment> comments;
@@ -16,7 +18,7 @@ public class CommentsWrapper {
 		return comments;
 	}
 
-	public void setComments(ArrayList<Comment> comments){
+	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
 

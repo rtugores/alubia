@@ -1,28 +1,24 @@
 package huitca1212.alubia13.business;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
 import huitca1212.alubia13.model.News;
 import huitca1212.alubia13.model.NewsWrapper;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import huitca1212.alubia13.service.AlubiaService;
 
 public class NewsBusiness {
 
-	public static void getNewsContent(AllListenerInterface<News> listener) {
+	public static void getNewsContent(AllBusinessListener<ArrayList<News>> listener) {
 		getDatabaseNewsContent(listener);
 	}
 
-	public static void getDatabaseNewsContent(final AllListenerInterface<News> listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void getDatabaseNewsContent(final AllBusinessListener<ArrayList<News>> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			ArrayList<News> list;
 
 			@Override
@@ -63,8 +59,8 @@ public class NewsBusiness {
 
 	}
 
-	public static void getBackendNewsContent(final AllListenerInterface<News> listener) {
-		new DefaultAsyncTask(new AsyncTaskListenerInterface() {
+	public static void getBackendNewsContent(final AllBusinessListener<ArrayList<News>> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			NewsWrapper data;
 
 			@Override
@@ -73,22 +69,12 @@ public class NewsBusiness {
 
 			@Override
 			public String onBackground() {
-				OkHttpClient client = new OkHttpClient();
-				String url = "http://rjapps.x10host.com/descargar_novedades.php";
-
-				Request request = new Request.Builder()
-						.url(url)
-						.build();
-				try {
-					Response response = client.newCall(request).execute();
-					String jsonResult = response.body().string();
-					GsonBuilder gsonBuilder = new GsonBuilder();
-					Gson gson = gsonBuilder.create();
-					data = gson.fromJson(jsonResult, NewsWrapper.class);
-					return DefaultAsyncTask.ASYNC_TASK_OK;
-				} catch (IOException e) {
+				String url = "/descargar_novedades.php";
+				data = AlubiaService.getDataFromRequest(url, NewsWrapper.class);
+				if (data == null) {
 					return DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR;
 				}
+				return DefaultAsyncTask.ASYNC_TASK_OK;
 			}
 
 			@Override

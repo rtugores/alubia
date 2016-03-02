@@ -18,13 +18,12 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.AllListenerInterface;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.NewsBusiness;
 import huitca1212.alubia13.model.News;
 import huitca1212.alubia13.model.NewsWrapper;
-import huitca1212.alubia13.utils.Animations;
 import huitca1212.alubia13.utils.Dialogs;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,10 +63,11 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 	public void accessWebService() {
 		data = new NewsWrapper();
 		progressbarView.setVisibility(View.VISIBLE);
-		NewsBusiness.getNewsContent(new AllListenerInterface<News>() {
+		NewsBusiness.getNewsContent(new AllBusinessListener<ArrayList<News>>() {
 			@Override
 			public void onDatabaseSuccess(ArrayList<News> list) {
 				if (list.size() > 0) {
+					progressbarView.setVisibility(View.GONE);
 					data.setNews(list);
 					drawNewsList(false);
 				}

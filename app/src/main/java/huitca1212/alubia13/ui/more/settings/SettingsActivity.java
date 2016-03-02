@@ -14,7 +14,7 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.ServerListenerInterface;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.Setting;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
@@ -100,7 +100,12 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		if (notregister) {
 			Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
 		} else {
-			Dialogs.showSettingsDeleteAccountDialog(SettingsActivity.this, new ServerListenerInterface<String>() {
+			Dialogs.showSettingsDeleteAccountDialog(SettingsActivity.this, new AllBusinessListener<String>() {
+				@Override
+				public void onDatabaseSuccess(String object) {
+
+				}
+
 				@Override
 				public void onServerSuccess(String object) {
 					Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));

@@ -12,6 +12,6 @@ public class Notifications {
 	}
 
 	public static void showToast(Context ctx, String text) {
-		Toast.makeText(ctx, text, Toast.LENGTH_LONG).show();
+		Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show();
 	}
 }
