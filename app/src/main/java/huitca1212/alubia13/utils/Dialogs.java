@@ -25,16 +25,15 @@ public class Dialogs {
 		builder.setMessage(R.string.news_event_content);
 		builder.setPositiveButton(R.string.news_email, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				Intent i = new Intent(Intent.ACTION_SEND);
-				i.setType("message/rfc822").putExtra(Intent.EXTRA_EMAIL, "huitca1212@gmail.com");
+				Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "huitca1212@gmail.com"));
 				ctx.startActivity(Intent.createChooser(i, "Enviar mediante"));
 			}
 		});
 		builder.setNegativeButton(R.string.news_whatsapp, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				Intent callIntent = new Intent(Intent.ACTION_DIAL);
-				callIntent.setData(Uri.parse("tel:664732632"));
-				ctx.startActivity(callIntent);
+				Intent i = new Intent(Intent.ACTION_DIAL);
+				i.setData(Uri.parse("tel:" + "664732632"));
+				ctx.startActivity(i);
 			}
 		});
 		builder.show();

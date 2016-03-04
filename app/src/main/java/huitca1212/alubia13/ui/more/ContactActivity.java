@@ -29,14 +29,12 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.contactar_whatsapp) {
-			Intent intent = new Intent(Intent.ACTION_DIAL);
-			intent.setData(Uri.parse("tel:664732632"));
-			startActivity(intent);
+			Intent i = new Intent(Intent.ACTION_DIAL);
+			i.setData(Uri.parse("tel:" + "664732632"));
+			startActivity(i);
 		} else if (id == R.id.contactar_email) {
-			Intent intent = new Intent(Intent.ACTION_SEND);
-			intent.setType("message/rfc822")
-					.putExtra(Intent.EXTRA_EMAIL, "huitca1212@gmail.com");
-			startActivity(Intent.createChooser(intent, "Enviar mediante"));
+			Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "huitca1212@gmail.com"));
+			startActivity(Intent.createChooser(i, "Enviar mediante"));
 		}
 	}
 }

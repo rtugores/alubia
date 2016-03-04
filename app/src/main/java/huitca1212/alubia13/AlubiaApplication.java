@@ -22,13 +22,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
-import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
-import android.os.StrictMode;
-
-import huitca1212.alubia13.ui.album.Constants;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -37,15 +32,8 @@ public class AlubiaApplication extends Application {
 
 	private static Context instance;
 
-	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
-	@SuppressWarnings("unused")
 	@Override
 	public void onCreate() {
-		if (Constants.Config.DEVELOPER_MODE && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
-			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
-		}
-
 		super.onCreate();
 		instance = this;
 		initImageLoader(getApplicationContext());
