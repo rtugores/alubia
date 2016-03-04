@@ -112,7 +112,7 @@ public class ForumBusiness {
 					}
 					return data.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumBusiness", "sendCommentToBackend() drops an error while encoding");
+					Log.e(ForumBusiness.class.getName(), "sendCommentToBackend() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -152,7 +152,7 @@ public class ForumBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumBusiness", "sendReportToBackend() drops an error while encoding");
+					Log.e(ForumBusiness.class.getName(), "sendReportToBackend() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -183,7 +183,7 @@ public class ForumBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumBusiness", "deleteForumAccount() drops an error while encoding");
+					Log.e(ForumBusiness.class.getName(), "deleteForumAccount() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}

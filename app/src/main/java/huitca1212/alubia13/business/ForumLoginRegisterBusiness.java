@@ -29,7 +29,7 @@ public class ForumLoginRegisterBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumLoginRegisterBus", "checkEmailForum() drops an error while encoding");
+					Log.e(ForumLoginRegisterBusiness.class.getName(), "checkEmailForum() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -72,7 +72,7 @@ public class ForumLoginRegisterBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumLoginRegisterBus", "checkPasswordLoginForum() drops an error while encoding");
+					Log.e(ForumLoginRegisterBusiness.class.getName(), "checkPasswordLoginForum() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -106,7 +106,7 @@ public class ForumLoginRegisterBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumLoginRegisterBus", "retriveForgottenPasswd() drops an error while encoding");
+					Log.e(ForumLoginRegisterBusiness.class.getName(), "retriveForgottenPasswd() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -140,7 +140,7 @@ public class ForumLoginRegisterBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumLoginRegisterBus", "checkUserRegisterForum() drops an error while encoding");
+					Log.e(ForumLoginRegisterBusiness.class.getName(), "checkUserRegisterForum() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
@@ -176,7 +176,7 @@ public class ForumLoginRegisterBusiness {
 					}
 					return result.getResult();
 				} catch (UnsupportedEncodingException e) {
-					Log.e("ForumLoginRegisterBus", "performRegistrationForum() drops an error while encoding");
+					Log.e(ForumLoginRegisterBusiness.class.getName(), "performRegistrationForum() drops an error while encoding");
 					return DefaultAsyncTask.ASYNC_TASK_ERROR;
 				}
 			}
