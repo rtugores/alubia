@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,6 +18,7 @@ import huitca1212.alubia13.ui.forum.ForumMenuActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.ui.news.NewsActivity;
 import huitca1212.alubia13.ui.schedule.ScheduleActivity;
+import huitca1212.alubia13.utils.Notifications;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				Intent intent = new Intent(MainActivity.this, ComplexImageActivity.class);
 				startActivity(intent);
 			} else {
-				Toast.makeText(this, getString(R.string.album_api_error), Toast.LENGTH_LONG).show();
+				Notifications.showToast(this, getString(R.string.album_api_error));
 			}
 		} else if (id == R.id.forum_button) {
 			boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
@@ -73,12 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			Intent intent = new Intent(MainActivity.this, MoreActivity.class);
 			startActivity(intent);
 		}
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		scheduleButton.setOnClickListener(this);
 	}
 
 	@Override
