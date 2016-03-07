@@ -63,6 +63,9 @@
             android:name=".ui.forum.ForumForgottenPasswordActivity"
             android:label="Olvidé mi contraseña" />
         <activity
+            android:name=".ui.forum.ForumPrivacyActivity"
+            android:label="@string/home_forum" />
+        <activity
             android:name=".ui.forum.ForumRegisterUserActivity"
             android:label="@string/forum_register" />
         <activity

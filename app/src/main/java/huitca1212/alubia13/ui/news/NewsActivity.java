@@ -24,6 +24,7 @@ import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.NewsBusiness;
 import huitca1212.alubia13.model.News;
 import huitca1212.alubia13.model.NewsWrapper;
+import huitca1212.alubia13.ui.news.adapter.NewsAdapter;
 import huitca1212.alubia13.utils.Dialogs;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener {

@@ -18,6 +18,7 @@ import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.Setting;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
+import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
@@ -143,8 +144,8 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 	}
 
 	private void onPrivacyPolicy() {
-		Uri uri = Uri.parse("http://rjapps.x10host.com/responsabilidad.html");
-		startActivity(new Intent(Intent.ACTION_VIEW, uri));
+		Intent intent = new Intent(SettingsActivity.this, ForumPrivacyActivity.class);
+		startActivity(intent);
 	}
 
 	private void onShareApp() {

@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -52,9 +50,9 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 		registerUserEditText.setOnEditorActionListener(this);
 		registerUserEditText.addTextChangedListener(this);
 
-		politicText.setText(Html.fromHtml("<a href=\"http://rjapps.x10host.com/responsabilidad.html\">política de privacidad</a>"));
-		politicText.setMovementMethod(LinkMovementMethod.getInstance());
+		politicText.setText(R.string.forum_privacy_2);
 
+		politicText.setOnClickListener(this);
 		registerUserButton.setOnClickListener(this);
 	}
 
@@ -63,6 +61,9 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 		int id = v.getId();
 		if (id == R.id.register_button) {
 			registerUser();
+		} else if (id == R.id.politica2_text) {
+			Intent intent = new Intent(ForumRegisterUserActivity.this, ForumPrivacyActivity.class);
+			startActivity(intent);
 		}
 	}
 

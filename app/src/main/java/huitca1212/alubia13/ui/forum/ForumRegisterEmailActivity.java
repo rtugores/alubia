@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -45,8 +43,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
 		forumRegisterEmailActivity = this;
 
-		policyText.setText(Html.fromHtml("<a href=http://rjapps.x10host.com/responsabilidad.html>política de privacidad</a>"));
-		policyText.setMovementMethod(LinkMovementMethod.getInstance());
+		policyText.setText(R.string.forum_privacy_2);
 
 		Bundle extras = getIntent().getExtras();
 		user = extras.getString("usuario");
@@ -54,6 +51,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 		emailEditText.addTextChangedListener(this);
 		emailEditText.setOnEditorActionListener(this);
 		registerButton.setOnClickListener(this);
+		policyText.setOnClickListener(this);
 	}
 
 	private void checkEmail() {
@@ -105,6 +103,9 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 		int id = v.getId();
 		if (id == R.id.register_button) {
 			checkEmail();
+		} else if (id == R.id.politica2_text) {
+			Intent intent = new Intent(ForumRegisterEmailActivity.this, ForumPrivacyActivity.class);
+			startActivity(intent);
 		}
 	}
 
