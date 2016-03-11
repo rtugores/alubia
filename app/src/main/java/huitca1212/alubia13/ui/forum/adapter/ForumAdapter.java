@@ -140,6 +140,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 			insideParams.gravity = Gravity.END;
 			forumViewHolder.forumInsideLayout.setLayoutParams(insideParams);
 			forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_white);
+			forumViewHolder.reportButton.setVisibility(View.GONE);
 		}
 		if (itemType == TYPE_VIP || itemType == TYPE_VIP_REPEATED) {
 			if (isUser) {
@@ -205,8 +206,9 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		return false;
 	}
 
-	public void add(Comment comment) {
-		this.comments.add(comment);
-		notifyDataSetChanged();
+	public void add(Comment comment, RecyclerView recyclerView) {
+		comments.add(comment);
+		recyclerView.scrollToPosition(comments.size() - 1);
+		notifyItemInserted(comments.size() - 1);
 	}
 }

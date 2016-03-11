@@ -244,12 +244,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void addItemForumList(Comment comment) {
-		adapter.add(comment);
-
-		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-		mLayoutManager.setStackFromEnd(true);
-		recyclerView.setLayoutManager(mLayoutManager);
-
+		adapter.add(comment, recyclerView);
 		DatabaseFunctions.setDatabaseLastComment(comment);
 	}
 
