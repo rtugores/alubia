@@ -77,14 +77,14 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 	private void performRegistation() {
 		String mobileId;
 
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(codeEditText.getWindowToken(), 0);
-
 		String code = codeEditText.getText().toString().trim();
 		if (code.length() != 10 && code.length() != 0) {
-			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_code, Toast.LENGTH_SHORT).show();
+			codeEditText.setError(getString(R.string.forum_error_bad_code));
 			return;
 		}
+
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(codeEditText.getWindowToken(), 0);
 		// Put code zero if lenght = 0 in order to understand with the server
 		if (code.length() == 0) {
 			code = "0";

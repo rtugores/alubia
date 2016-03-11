@@ -52,14 +52,14 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 	}
 
 	private void checkPassword() {
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
 
 		password = passwordEditText.getText().toString().trim();
 		if (Checkers.isRightPassword(password)) {
+			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
 			accessWebService();
 		} else {
-			Notifications.showToast(ForumLoginPasswordActivity.this, getString(R.string.forum_error_bad_passwd));
+			passwordEditText.setError(getString(R.string.forum_error_bad_passwd));
 		}
 	}
 

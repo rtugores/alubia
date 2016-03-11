@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,7 +52,7 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 		if (Checkers.isRightEmail(email)) {
 			accessWebService();
 		} else {
-			Toast.makeText(getApplicationContext(), R.string.forum_error_bad_email, Toast.LENGTH_SHORT).show();
+			emailBox.setError(getString(R.string.forum_error_bad_email));
 		}
 	}
 

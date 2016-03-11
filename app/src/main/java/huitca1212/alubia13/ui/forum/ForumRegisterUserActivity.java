@@ -68,15 +68,14 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 	}
 
 	private void registerUser() {
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(registerUserEditText.getWindowToken(), 0);
-
 		user = registerUserEditText.getText().toString().trim();
 		if (user.length() < 3) {
-			Notifications.showToast(ForumRegisterUserActivity.this, getString(R.string.forum_error_bad_user));
+			registerUserEditText.setError(getString(R.string.forum_error_bad_user));
 		} else if (Checkers.hasStringBadWords(user)) {
-			Notifications.showToast(ForumRegisterUserActivity.this, getString(R.string.forum_error_bad_words));
+			registerUserEditText.setError(getString(R.string.forum_error_bad_words));
 		} else {
+			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(registerUserEditText.getWindowToken(), 0);
 			accessWebService();
 		}
 	}

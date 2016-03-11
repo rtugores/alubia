@@ -55,13 +55,12 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	}
 
 	private void checkEmail() {
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
-
 		email = emailEditText.getText().toString().trim();
 		if (!Checkers.isRightEmail(email)) {
-			Notifications.showToast(ForumRegisterEmailActivity.this, getString(R.string.forum_error_bad_email));
+			emailEditText.setError(getString(R.string.forum_error_bad_email));
 		} else {
+			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
 			accessWebService();
 		}
 	}

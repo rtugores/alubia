@@ -14,13 +14,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.utils.Checkers;
-import huitca1212.alubia13.utils.Notifications;
 
 public class ForumRegisterPasswordActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
@@ -56,18 +54,17 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity implements 
 	}
 
 	protected void checkPassword() {
-		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(passwdEditText.getWindowToken(), 0);
-
 		String passwd = passwdEditText.getText().toString().trim();
 		if (Checkers.isRightPassword(passwd)) {
+			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(passwdEditText.getWindowToken(), 0);
 			Intent intent = new Intent(ForumRegisterPasswordActivity.this, ForumRegisterCodeActivity.class);
 			intent.putExtra("usuario", user)
 					.putExtra("email", email)
 					.putExtra("contrasenya", passwd);
 			startActivity(intent);
 		} else {
-			Notifications.showToast(ForumRegisterPasswordActivity.this, getString(R.string.forum_error_bad_passwd, Toast.LENGTH_SHORT));
+			passwdEditText.setError(getString(R.string.forum_error_bad_passwd));
 		}
 	}
 
