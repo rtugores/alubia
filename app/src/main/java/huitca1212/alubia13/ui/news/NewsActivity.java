@@ -3,6 +3,8 @@ package huitca1212.alubia13.ui.news;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -18,13 +20,14 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.NewsBusiness;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.News;
 import huitca1212.alubia13.model.NewsWrapper;
 import huitca1212.alubia13.ui.news.adapter.NewsAdapter;
+import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,7 +55,25 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onClick(View v) {
-		Dialogs.showNewsContactDialog(this);
+		DialogParams params = new DialogParams();
+		params.setTitle(getString(R.string.news_event_title));
+		params.setMessage(getString(R.string.news_event_content));
+		params.setPositiveButton(getString(R.string.news_email));
+		params.setNegativeButton(getString(R.string.news_whatsapp));
+		Dialogs.showGenericDialog(this, params, new Dialogs.DialogListener() {
+			@Override
+			public void onPositive() {
+				Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "huitca1212@gmail.com"));
+				startActivity(Intent.createChooser(i, "Enviar mediante"));
+			}
+
+			@Override
+			public void onNegative() {
+				Intent i = new Intent(Intent.ACTION_DIAL);
+				i.setData(Uri.parse("tel:" + "664732632"));
+				startActivity(i);
+			}
+		});
 	}
 
 	private void setDefaultAdapter() {

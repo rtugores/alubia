@@ -14,12 +14,14 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.Setting;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
 import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
+import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -87,7 +89,37 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		if (notregister) {
 			Notifications.showToast(settingsActivity, getString(R.string.settings_error_logout));
 		} else {
-			Dialogs.showSettingsLogoutDialog(settingsActivity);
+			DialogParams params = new DialogParams();
+			params.setTitle(getString(R.string.settings_logout));
+			params.setMessage(getString(R.string.settings_logout_areyousure));
+			params.setPositiveButton(getString(R.string.common_accept));
+			params.setNegativeButton(getString(R.string.common_cancel));
+			Dialogs.showGenericDialog(this, params, new Dialogs.DialogListener() {
+				@Override
+				public void onPositive() {
+					getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putString("username", "").commit();
+					getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putBoolean("notregister", true).commit();
+					try {
+						MoreActivity.moreActivity.finish();
+					} catch (NullPointerException e) {
+						//NOOP
+					}
+					try {
+						ForumActivity.forumActivity.finish();
+					} catch (NullPointerException e) {
+						//NOOP
+					}
+					try {
+						SettingsActivity.settingsActivity.finish();
+					} catch (NullPointerException e) {
+						//NOOP
+					}
+				}
+
+				@Override
+				public void onNegative() {
+				}
+			});
 		}
 	}
 
@@ -101,43 +133,58 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		if (notregister) {
 			Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
 		} else {
-			Dialogs.showSettingsDeleteAccountDialog(SettingsActivity.this, new AllBusinessListener<String>() {
+			DialogParams params = new DialogParams();
+			params.setTitle(getString(R.string.settings_delete_title));
+			params.setMessage(getString(R.string.settings_delete_areyousure));
+			params.setPositiveButton(getString(R.string.common_accept));
+			params.setNegativeButton(getString(R.string.common_cancel));
+			Dialogs.showGenericDialog(this, params, new Dialogs.DialogListener() {
 				@Override
-				public void onDatabaseSuccess(String object) {
+				public void onPositive() {
+					String user = getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).getString("username", "");
+					ForumBusiness.deleteForumAccount(user, new AllBusinessListener<String>() {
+						@Override
+						public void onDatabaseSuccess(String object) {
 
+						}
+
+						@Override
+						public void onServerSuccess(String object) {
+							Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
+							getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+									.edit()
+									.putString("username", "")
+									.commit();
+							getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+									.edit()
+									.putBoolean("notregister", true)
+									.commit();
+							try {
+								MoreActivity.moreActivity.finish();
+							} catch (NullPointerException e) {
+								//NOOP
+							}
+							try {
+								ForumActivity.forumActivity.finish();
+							} catch (NullPointerException e) {
+								//NOOP
+							}
+							finish();
+						}
+
+						@Override
+						public void onFailure(String result) {
+							if (result.equals("-1")) {
+								Notifications.showToast(SettingsActivity.this, getString(R.string.common_internet_error));
+							} else if (result.equals("-2")) {
+								Notifications.showToast(SettingsActivity.this, getString(R.string.settings_error_delete));
+							}
+						}
+					});
 				}
 
 				@Override
-				public void onServerSuccess(String object) {
-					Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
-					getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-							.edit()
-							.putString("username", "")
-							.commit();
-					getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-							.edit()
-							.putBoolean("notregister", true)
-							.commit();
-					try {
-						MoreActivity.moreActivity.finish();
-					} catch (NullPointerException e) {
-						//NOOP
-					}
-					try {
-						ForumActivity.forumActivity.finish();
-					} catch (NullPointerException e) {
-						//NOOP
-					}
-					finish();
-				}
-
-				@Override
-				public void onFailure(String result) {
-					if (result.equals("-1")) {
-						Notifications.showToast(SettingsActivity.this, getString(R.string.common_internet_error));
-					} else if (result.equals("-2")) {
-						Notifications.showToast(SettingsActivity.this, getString(R.string.settings_error_delete));
-					}
+				public void onNegative() {
 				}
 			});
 		}

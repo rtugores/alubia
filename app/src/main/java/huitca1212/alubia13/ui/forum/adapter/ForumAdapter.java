@@ -18,8 +18,10 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
+import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 
 public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHolder> implements View.OnClickListener {
@@ -115,7 +117,21 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		forumViewHolder.reportButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Dialogs.showForumReportCommentDialog(ctx, forumViewHolder.id.getText().toString(), resultListener);
+				DialogParams params = new DialogParams();
+				params.setTitle(ctx.getString(R.string.forum_report_comment_title));
+				params.setMessage(ctx.getString(R.string.forum_report_comment_content));
+				params.setPositiveButton(ctx.getString(R.string.common_accept));
+				params.setNegativeButton(ctx.getString(R.string.common_cancel));
+				Dialogs.showGenericDialog(ctx, params, new Dialogs.DialogListener() {
+					@Override
+					public void onPositive() {
+						ForumBusiness.sendReportToBackend(forumViewHolder.id.getText().toString(), resultListener);
+					}
+
+					@Override
+					public void onNegative() {
+					}
+				});
 			}
 		});
 		setCommentType(forumViewHolder, position);
