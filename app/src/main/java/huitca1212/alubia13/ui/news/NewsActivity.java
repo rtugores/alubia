@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +28,7 @@ import huitca1212.alubia13.model.NewsWrapper;
 import huitca1212.alubia13.ui.news.adapter.NewsAdapter;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
+import huitca1212.alubia13.utils.Notifications;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener {
 	public static GoogleAnalytics analytics;
@@ -108,7 +108,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 			public void onFailure(String result) {
 				progressbarView.setVisibility(View.GONE);
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
-					Snackbar.make(coordinatorLayout, getString(R.string.common_no_internet), Snackbar.LENGTH_LONG).show();
+					Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_no_internet));
 				}
 			}
 		});

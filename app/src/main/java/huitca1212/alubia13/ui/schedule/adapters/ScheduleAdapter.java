@@ -26,10 +26,10 @@ public class ScheduleAdapter extends ArrayAdapter<Schedule> {
 		View item = inflater.inflate(R.layout.layout_schedule_item, null);
 
 		TextView lblTitulo = (TextView)item.findViewById(R.id.LblTituloPrograma);
-		lblTitulo.setText(datos[position].getTitulo());
+		lblTitulo.setText(datos[position].getTitle());
 
 		TextView lblSubtitulo = (TextView)item.findViewById(R.id.LblSubtituloPrograma);
-		lblSubtitulo.setText(datos[position].getSubtitulo());
+		lblSubtitulo.setText(datos[position].getSubtitle());
 
 		return (item);
 	}

@@ -29,23 +29,23 @@ public class DayAdapter extends ArrayAdapter<Schedule> {
         View item = inflater.inflate(R.layout.layout_day_item, null);
         TextView lblTitulo = (TextView) item.findViewById(R.id.LblTitulo);
 
-        if (datos[position].getTitulo().contains("-")) {
-            if (Character.isDigit(datos[position].getTitulo().charAt(14))) {
-                hora = datos[position].getTitulo().substring(0, 25);
-                titulo = datos[position].getTitulo().substring(25);
+        if (datos[position].getTitle().contains("-")) {
+            if (Character.isDigit(datos[position].getTitle().charAt(14))) {
+                hora = datos[position].getTitle().substring(0, 25);
+                titulo = datos[position].getTitle().substring(25);
             } else {
-                hora = datos[position].getTitulo().substring(0, 11);
-                titulo = datos[position].getTitulo().substring(11);
+                hora = datos[position].getTitle().substring(0, 11);
+                titulo = datos[position].getTitle().substring(11);
             }
         } else {
-            hora = datos[position].getTitulo().substring(0, 5);
-            titulo = datos[position].getTitulo().substring(5);
+            hora = datos[position].getTitle().substring(0, 5);
+            titulo = datos[position].getTitle().substring(5);
         }
 
         lblTitulo.setText(Html.fromHtml("<font color='#B40431'>" + hora + "</font>" + titulo));
 
         TextView lblSubtitulo = (TextView) item.findViewById(R.id.LblSubTitulo);
-        lblSubtitulo.setText(datos[position].getSubtitulo());
+        lblSubtitulo.setText(datos[position].getSubtitle());
 
         return (item);
     }

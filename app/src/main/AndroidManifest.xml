@@ -17,7 +17,9 @@
             android:name="com.google.android.gms.analytics.globalConfigResource"
             android:resource="@xml/global_tracker" />
 
-        <activity android:name=".ui.home.MainActivity">
+        <activity
+            android:name=".ui.home.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,94 +27,93 @@
         </activity>
         <activity
             android:name=".ui.schedule.ScheduleActivity"
-            android:label="@string/home_schedule" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.FridayActivity"
-            android:label="@string/schedule_friday" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.SaturdayActivity"
-            android:label="@string/schedule_saturday" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.SundayActivity"
-            android:label="@string/schedule_sunday" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.MondayActivity"
-            android:label="@string/schedule_monday" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.GreetingActivity"
-            android:label="@string/schedule_greeting_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.QueensLadiesActivity"
-            android:label="@string/schedule_queens_ladies_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.schedule.RaceActivity"
-            android:label="@string/schedule_race_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.MoreActivity"
-            android:label="@string/home_more" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumMenuActivity"
-            android:label="@string/home_forum" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumLoginEmailActivity"
-            android:label="@string/forum_menu_button" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumLoginPasswordActivity"
-            android:label="@string/forum_menu_button" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumForgottenPasswordActivity"
-            android:label="Olvidé mi contraseña" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumPrivacyActivity"
-            android:label="@string/home_forum" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumRegisterUserActivity"
-            android:label="@string/forum_register" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumRegisterEmailActivity"
-            android:label="@string/forum_register" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumRegisterPasswordActivity"
-            android:label="@string/forum_register" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumRegisterCodeActivity"
-            android:label="@string/forum_register" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
-            android:label="@string/home_forum" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity
             android:name=".ui.more.FestivityInfoActivity"
-            android:label="Sobre la fiesta" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.news.NewsActivity"
-            android:label="@string/home_news" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.settings.SettingsActivity"
-            android:label="Ajustes" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.ContactActivity"
-            android:label="Contactar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizMenuActivity"
-            android:label="@string/alubiaquiz_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizEasyActivity"
-            android:label="@string/alubiaquiz_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizMediumActivity"
-            android:label="@string/alubiaquiz_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizDifficultActivity"
-            android:label="@string/alubiaquiz_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.alubiaQuiz.AlubiaQuizSolutionActivity"
-            android:label="@string/alubiaquiz_solution" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.album.SimpleImageActivity"
-            android:label="@string/album_image_list_title" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.album.ComplexImageActivity"
-            android:label="Álbum" />
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

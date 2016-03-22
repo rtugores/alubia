@@ -2,19 +2,19 @@ package huitca1212.alubia13.model;
 
 public class Schedule {
 
-	private String titulo;
-	private String subtitulo;
+	private String title;
+	private String subtitle;
 
-	public Schedule(String titulo, String subtitulo) {
-		this.titulo = titulo;
-		this.subtitulo = subtitulo;
+	public Schedule(String title, String subtitle) {
+		this.title = title;
+		this.subtitle = subtitle;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 
-	public String getSubtitulo() {
-		return subtitulo;
+	public String getSubtitle() {
+		return subtitle;
 	}
 }
