@@ -308,14 +308,26 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
 
     <!-- Settings -->
     <string name="settings_logout">Cerrar sesión</string>
+    <string name="settings_forgot_passwd">Olvidé mi contraseña</string>
     <string name="settings_logout_areyousure">¿Estás seguro de que quieres cerrar la sesión en el foro?</string>
     <string name="settings_error_logout">No hay ninguna sesión abierta</string>
     <string name="settings_delete_title">Borrar cuenta</string>
+    <string name="settings_share">Compartir</string>
+    <string name="settings_update">Actualizar</string>
+    <string name="settings_version">Versión</string>
+    <string name="settings_privacy_policy">Política de privacidad</string>
+    <string name="settings_logout_sub">Cierra tu sesión en el foro</string>
+    <string name="settings_forgot_passwd_sub">Recupera tu contraseña en tu correo</string>
+    <string name="settings_delete_title_sub">Elimina tu cuenta en el foro</string>
+    <string name="settings_privacy_policy_sub">Échale un vistazo a la política de privacidad</string>
+    <string name="settings_share_sub">Comparte la aplicación con tus amigos</string>
+    <string name="settings_update_sub">Obtén la versión más actualizada</string>
     <string name="settings_delete_areyousure">¿Estás seguro de que quieres borrar tu cuenta del foro?</string>
     <string name="settings_error_delete">No podemos encontrar tu cuenta. Probablemente ya haya sido eliminada</string>
     <string name="settings_delete_ok">Tu cuenta ha sido eliminada con éxito</string>
     <string name="settings_error_comment_deleted">No podemos encontrar este comentario. Probablemente ya haya sido eliminado</string>
     <string name="settings_reported_ok">Comentario denunciado correctamente. Será revisado por el administrador</string>
+    <string name="settings_share_chooser">Compartir mediante</string>
     <string name="settings_share_title">¡Descarga Alubia \'16!</string>
     <string name="settings_share_content">"La aplicación de la fiesta de la Alubia en Laguna de Negrillos.
         Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13"</string>

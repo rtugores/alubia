@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import huitca1212.alubia13.BuildConfig;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
@@ -41,16 +42,6 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		}
 	}
 
-	private Setting[] data =
-			new Setting[]{
-					new Setting("Cerrar sesión", "Cierra tu sesión en el foro"),
-					new Setting("Olvidé mi contraseña", "Recupera tu contraseña en tu correo"),
-					new Setting("Borrar cuenta", "Elimina tu cuenta en el foro"),
-					new Setting("Política de privacidad", "Échale un vistazo a la política de privacidad"),
-					new Setting("Compartir", "Comparte la aplicación con tus amigos"),
-					new Setting("Actualizar", "Obtén la versión más actualizada"),
-					new Setting("Versión", "3.5"),
-			};
 	public static Activity settingsActivity;
 	@Bind(R.id.list_options) ListView listOptions;
 
@@ -61,7 +52,15 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		ButterKnife.bind(this);
 		settingsActivity = this;
 
-		SettingsAdapter adaptador = new SettingsAdapter(this, data);
+		SettingsAdapter adaptador = new SettingsAdapter(this, new Setting[]{
+				new Setting(getString(R.string.settings_logout), getString(R.string.settings_logout_sub)),
+				new Setting(getString(R.string.settings_forgot_passwd), getString(R.string.settings_forgot_passwd_sub)),
+				new Setting(getString(R.string.settings_delete_title), getString(R.string.settings_delete_title_sub)),
+				new Setting(getString(R.string.settings_privacy_policy), getString(R.string.settings_privacy_policy_sub)),
+				new Setting(getString(R.string.settings_share), getString(R.string.settings_share_sub)),
+				new Setting(getString(R.string.settings_update), getString(R.string.settings_update_sub)),
+				new Setting(getString(R.string.settings_version), BuildConfig.VERSION_NAME),
+		});
 
 		listOptions.setAdapter(adaptador);
 		listOptions.setOnItemClickListener(this);
@@ -151,14 +150,8 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 						@Override
 						public void onServerSuccess(String object) {
 							Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
-							getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-									.edit()
-									.putString("username", "")
-									.commit();
-							getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-									.edit()
-									.putBoolean("notregister", true)
-									.commit();
+							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", "").commit();
+							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", true).commit();
 							try {
 								MoreActivity.moreActivity.finish();
 							} catch (NullPointerException e) {
@@ -205,7 +198,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		}
 		shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_title));
 		shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_content));
-		startActivity(Intent.createChooser(shareIntent, "Compartir mediante"));
+		startActivity(Intent.createChooser(shareIntent, getString(R.string.settings_share_chooser)));
 	}
 
 	private void onUpdateApp() {
