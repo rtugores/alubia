@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.Schedule;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleAdapter;
@@ -18,27 +21,16 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 
 	public static GoogleAnalytics analytics;
 	public static Tracker tracker;
-	private Schedule[] datos =
-			new Schedule[]{
-					new Schedule("Saludo del alcalde", ""),
-					new Schedule("Reinas y Damas Alubia 2015", ""),
-					new Schedule("Viernes", "21 de agosto"),
-					new Schedule("Sábado", "22 de agosto"),
-					new Schedule("Domingo", "23 de agosto"),
-					new Schedule("Lunes", "24 de agosto"),
-					new Schedule("XIV Carrera de la Alubia", "")};
+	@Bind(R.id.schedule_list) ViewGroup scheduleList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
+		ButterKnife.bind(this);
 
 		setAnalytics();
-
-		ScheduleAdapter adaptador = new ScheduleAdapter(this, datos);
-		ListView lstOpciones = (ListView)findViewById(R.id.list_options);
-		lstOpciones.setAdapter(adaptador);
-		lstOpciones.setOnItemClickListener(this);
+		setList();
 	}
 
 	private void setAnalytics() {
@@ -50,9 +42,22 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 		tracker.enableAutoActivityTracking(true);
 	}
 
+	private void setList() {
+		ScheduleAdapter adaptador = new ScheduleAdapter(this, new Schedule[]{
+				new Schedule(getString(R.string.schedule_greeting)),
+				new Schedule(getString(R.string.schedule_queens_ladies)),
+				new Schedule(getString(R.string.schedule_friday), getString(R.string.schedule_friday_calendar)),
+				new Schedule(getString(R.string.schedule_saturday), getString(R.string.schedule_saturday_calendar)),
+				new Schedule(getString(R.string.schedule_sunday), getString(R.string.schedule_sunday_calendar)),
+				new Schedule(getString(R.string.schedule_monday), getString(R.string.schedule_monday_calendar)),
+				new Schedule(getString(R.string.schedule_race)),
+		});
+		((ListView)scheduleList).setAdapter(adaptador);
+		((ListView)scheduleList).setOnItemClickListener(this);
+	}
+
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 		switch (position) {
 			case 0:
 				Intent intent0 = new Intent(ScheduleActivity.this, GreetingActivity.class);
@@ -84,6 +89,5 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 				startActivity(intent7);
 				break;
 		}
-
 	}
 }

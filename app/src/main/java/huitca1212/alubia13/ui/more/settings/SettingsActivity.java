@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 	}
 
 	public static Activity settingsActivity;
-	@Bind(R.id.list_options) ListView listOptions;
+	@Bind(R.id.schedule_list) ListView listOptions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

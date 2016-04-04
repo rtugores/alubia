@@ -33,7 +33,7 @@ public class MondayActivity extends AppCompatActivity {
 					new Schedule("21:00 Bollo preñao", "Explanada de la casa de la cultura"),
 					new Schedule("22:30 Verbena", "Explanada de la casa de la cultura")};
 	@Bind(R.id.ad_view) AdView adView;
-	@Bind(R.id.list_options) ListView lstOpciones;
+	@Bind(R.id.schedule_list) ListView lstOpciones;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

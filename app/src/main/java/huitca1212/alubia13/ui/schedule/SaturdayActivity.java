@@ -26,7 +26,7 @@ public class SaturdayActivity extends AppCompatActivity {
 	Schedule[] datos;
 	String day;
 	@Bind(R.id.ad_view) AdView adView;
-	@Bind(R.id.list_options) ListView lstOpciones;
+	@Bind(R.id.schedule_list) ListView lstOpciones;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

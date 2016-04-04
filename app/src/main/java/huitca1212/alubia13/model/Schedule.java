@@ -5,6 +5,11 @@ public class Schedule {
 	private String title;
 	private String subtitle;
 
+	public Schedule(String title) {
+		this.title = title;
+		this.subtitle = "";
+	}
+
 	public Schedule(String title, String subtitle) {
 		this.title = title;
 		this.subtitle = subtitle;

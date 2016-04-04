@@ -13,40 +13,45 @@ import huitca1212.alubia13.model.Schedule;
 
 public class DayAdapter extends ArrayAdapter<Schedule> {
 
-    private Activity context;
-    private Schedule[] datos;
+	private Activity context;
+	private Schedule[] data;
 
-    public DayAdapter(Activity context, Schedule[] datos) {
-        super(context, R.layout.layout_day_item, datos);
-        this.context = context;
-        this.datos = datos;
-    }
+	public DayAdapter(Activity context, Schedule[] data) {
+		super(context, R.layout.layout_day_item, data);
+		this.context = context;
+		this.data = data;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        String hora, titulo;
-        LayoutInflater inflater = context.getLayoutInflater();
+	public View getView(int position, View convertView, ViewGroup parent) {
 
-        View item = inflater.inflate(R.layout.layout_day_item, null);
-        TextView lblTitulo = (TextView) item.findViewById(R.id.LblTitulo);
+		LayoutInflater inflater = context.getLayoutInflater();
+		View item;
+		if (convertView == null) {
+			item = inflater.inflate(R.layout.layout_day_item, parent, false);
+		} else {
+			item = convertView;
+		}
+		TextView lblTitulo = (TextView)item.findViewById(R.id.LblTitulo);
+		TextView lblSubtitulo = (TextView)item.findViewById(R.id.LblSubTitulo);
 
-        if (datos[position].getTitle().contains("-")) {
-            if (Character.isDigit(datos[position].getTitle().charAt(14))) {
-                hora = datos[position].getTitle().substring(0, 25);
-                titulo = datos[position].getTitle().substring(25);
-            } else {
-                hora = datos[position].getTitle().substring(0, 11);
-                titulo = datos[position].getTitle().substring(11);
-            }
-        } else {
-            hora = datos[position].getTitle().substring(0, 5);
-            titulo = datos[position].getTitle().substring(5);
-        }
+		String time;
+		String title;
+		if (data[position].getTitle().contains("-")) {
+			if (Character.isDigit(data[position].getTitle().charAt(14))) {
+				time = data[position].getTitle().substring(0, 25);
+				title = data[position].getTitle().substring(25);
+			} else {
+				time = data[position].getTitle().substring(0, 11);
+				title = data[position].getTitle().substring(11);
+			}
+		} else {
+			time = data[position].getTitle().substring(0, 5);
+			title = data[position].getTitle().substring(5);
+		}
 
-        lblTitulo.setText(Html.fromHtml("<font color='#B40431'>" + hora + "</font>" + titulo));
+		lblTitulo.setText(Html.fromHtml("<font color='#B40431'>" + time + "</font>" + title));
+		lblSubtitulo.setText(data[position].getSubtitle());
 
-        TextView lblSubtitulo = (TextView) item.findViewById(R.id.LblSubTitulo);
-        lblSubtitulo.setText(datos[position].getSubtitle());
-
-        return (item);
-    }
+		return item;
+	}
 }

@@ -32,7 +32,7 @@ public class FridayActivity extends AppCompatActivity {
 					new Schedule("00:00 VI Alubia Rock", "Plaza de toros"),
 					new Schedule("00:30 Verbena", "Explanada de la casa de la cultura")};
 	@Bind(R.id.ad_view) AdView adView;
-	@Bind(R.id.list_options) ListView lstOpciones;
+	@Bind(R.id.schedule_list) ListView lstOpciones;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
