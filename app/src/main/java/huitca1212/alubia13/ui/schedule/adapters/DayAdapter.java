@@ -23,7 +23,6 @@ public class DayAdapter extends ArrayAdapter<Schedule> {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-
 		LayoutInflater inflater = context.getLayoutInflater();
 		View item;
 		if (convertView == null) {
@@ -31,8 +30,8 @@ public class DayAdapter extends ArrayAdapter<Schedule> {
 		} else {
 			item = convertView;
 		}
-		TextView lblTitulo = (TextView)item.findViewById(R.id.LblTitulo);
-		TextView lblSubtitulo = (TextView)item.findViewById(R.id.LblSubTitulo);
+		TextView lblTitle = (TextView)item.findViewById(R.id.LblTitulo);
+		TextView lblSubtitle = (TextView)item.findViewById(R.id.LblSubTitulo);
 
 		String time;
 		String title;
@@ -49,8 +48,8 @@ public class DayAdapter extends ArrayAdapter<Schedule> {
 			title = data[position].getTitle().substring(5);
 		}
 
-		lblTitulo.setText(Html.fromHtml("<font color='#B40431'>" + time + "</font>" + title));
-		lblSubtitulo.setText(data[position].getSubtitle());
+		lblTitle.setText(Html.fromHtml("<font color='#B40431'>" + time + "</font>" + title));
+		lblSubtitle.setText(data[position].getSubtitle());
 
 		return item;
 	}

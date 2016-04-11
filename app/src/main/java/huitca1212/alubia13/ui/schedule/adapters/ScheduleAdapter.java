@@ -12,24 +12,29 @@ import huitca1212.alubia13.model.Schedule;
 
 public class ScheduleAdapter extends ArrayAdapter<Schedule> {
 
-	Activity context;
-	Schedule[] datos;
+	private Activity context;
+	private Schedule[] data;
 
-	public ScheduleAdapter(Activity context, Schedule[] datos) {
-		super(context, R.layout.layout_schedule_item, datos);
+	public ScheduleAdapter(Activity context, Schedule[] data) {
+		super(context, R.layout.layout_schedule_item, data);
 		this.context = context;
-		this.datos = datos;
+		this.data = data;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = context.getLayoutInflater();
-		View item = inflater.inflate(R.layout.layout_schedule_item, null);
+		View item;
+		if (convertView == null) {
+			item = inflater.inflate(R.layout.layout_schedule_item, parent, false);
+		} else {
+			item = convertView;
+		}
 
-		TextView lblTitulo = (TextView)item.findViewById(R.id.LblTituloPrograma);
-		lblTitulo.setText(datos[position].getTitle());
+		TextView lblTitle = (TextView)item.findViewById(R.id.LblTituloPrograma);
+		TextView lblSubtitle = (TextView)item.findViewById(R.id.LblSubtituloPrograma);
 
-		TextView lblSubtitulo = (TextView)item.findViewById(R.id.LblSubtituloPrograma);
-		lblSubtitulo.setText(datos[position].getSubtitle());
+		lblTitle.setText(data[position].getTitle());
+		lblSubtitle.setText(data[position].getSubtitle());
 
 		return (item);
 	}
