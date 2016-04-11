@@ -26,3 +26,4 @@ local.properties
 # Other
 .idea/
 key/key
+app/app.iml
