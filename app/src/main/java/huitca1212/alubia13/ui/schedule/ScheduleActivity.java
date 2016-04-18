@@ -1,7 +1,5 @@
 package huitca1212.alubia13.ui.schedule;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +14,10 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.Schedule;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleAdapter;
+import huitca1212.alubia13.utils.Analytics;
 
 public class ScheduleActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
-	public static GoogleAnalytics analytics;
-	public static Tracker tracker;
 	@Bind(R.id.schedule_list) ViewGroup scheduleList;
 
 	@Override
@@ -29,17 +26,8 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 		setContentView(R.layout.activity_schedule);
 		ButterKnife.bind(this);
 
-		setAnalytics();
+		Analytics.setAnalytics(this);
 		setList();
-	}
-
-	private void setAnalytics() {
-		analytics = GoogleAnalytics.getInstance(this);
-		analytics.setLocalDispatchPeriod(1800);
-		tracker = analytics.newTracker("UA-42496077-1");
-		tracker.enableExceptionReporting(true);
-		tracker.enableAdvertisingIdCollection(true);
-		tracker.enableAutoActivityTracking(true);
 	}
 
 	private void setList() {

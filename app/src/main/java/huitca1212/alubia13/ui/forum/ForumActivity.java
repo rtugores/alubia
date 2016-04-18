@@ -1,8 +1,5 @@
 package huitca1212.alubia13.ui.forum;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +26,7 @@ import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
+import huitca1212.alubia13.utils.Analytics;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -59,7 +57,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		commentBox.requestFocus();
 		getWindow().setBackgroundDrawableResource(R.drawable.forum_background);
 
-		setAnalytics();
+		Analytics.setAnalytics(this);
 		setResultReportListener();
 		hideCommentBarIfInvited();
 		setDefaultAdapter();
@@ -68,15 +66,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 		updateButton.setOnClickListener(this);
 		sendButton.setOnClickListener(this);
-	}
-
-	private void setAnalytics() {
-		GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-		analytics.setLocalDispatchPeriod(1800);
-		Tracker tracker = analytics.newTracker("UA-42496077-1");
-		tracker.enableExceptionReporting(true);
-		tracker.enableAdvertisingIdCollection(true);
-		tracker.enableAutoActivityTracking(true);
 	}
 
 	private void setDefaultAdapter() {

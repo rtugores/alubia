@@ -1,8 +1,5 @@
 package huitca1212.alubia13.ui.news;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,13 +23,12 @@ import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.News;
 import huitca1212.alubia13.model.NewsWrapper;
 import huitca1212.alubia13.ui.news.adapter.NewsAdapter;
+import huitca1212.alubia13.utils.Analytics;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
 
 public class NewsActivity extends AppCompatActivity implements View.OnClickListener {
-	public static GoogleAnalytics analytics;
-	public static Tracker tracker;
 	private NewsWrapper data;
 	private NewsAdapter adapter;
 	@Bind(R.id.progressbar_view) LinearLayout progressbarView;
@@ -49,7 +45,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 		sendNews.setOnClickListener(this);
 
 		setDefaultAdapter();
-		setAnalytics();
+		Analytics.setAnalytics(this);
 		accessWebService();
 	}
 
@@ -112,15 +108,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 				}
 			}
 		});
-	}
-
-	public void setAnalytics() {
-		analytics = GoogleAnalytics.getInstance(this);
-		analytics.setLocalDispatchPeriod(1800);
-		tracker = analytics.newTracker("UA-42496077-1");
-		tracker.enableExceptionReporting(true);
-		tracker.enableAdvertisingIdCollection(true);
-		tracker.enableAutoActivityTracking(true);
 	}
 
 	public void drawNewsList(boolean saveInDb) {
