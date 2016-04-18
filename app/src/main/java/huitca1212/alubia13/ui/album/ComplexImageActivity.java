@@ -17,9 +17,6 @@
  */
 package huitca1212.alubia13.ui.album;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,14 +27,13 @@ import android.support.v7.app.AppCompatActivity;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.fragment.ImageGridFragment;
 import huitca1212.alubia13.ui.album.fragment.ImageListFragment;
+import huitca1212.alubia13.utils.Analytics;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class ComplexImageActivity extends AppCompatActivity {
 
-	public static GoogleAnalytics analytics;
-	public static Tracker tracker;
 	private static final String STATE_POSITION = "STATE_POSITION";
 	private ViewPager pager;
 
@@ -45,16 +41,11 @@ public class ComplexImageActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_complex);
-		analytics = GoogleAnalytics.getInstance(this);
-		analytics.setLocalDispatchPeriod(1800);
-		tracker = analytics.newTracker("UA-42496077-1"); // Replace with actual tracker/property Id
-		tracker.enableExceptionReporting(true);
-		tracker.enableAdvertisingIdCollection(true);
-		tracker.enableAutoActivityTracking(true);
+		Analytics.setAnalytics(this);
 
 		int pagerPosition = savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
 
-		pager = (ViewPager) findViewById(R.id.pager);
+		pager = (ViewPager)findViewById(R.id.pager);
 		pager.setAdapter(new ImagePagerAdapter(getSupportFragmentManager()));
 		pager.setCurrentItem(pagerPosition);
 	}

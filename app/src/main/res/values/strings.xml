@@ -3,13 +3,15 @@
 
     <!-- Common-->
     <string name="common_app_name">Alubia \'16</string>
-    <string name="common_internet_error">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo!</string>
+    <string name="common_internet_error">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo.</string>
     <string name="common_no_internet">No hay conexión a Internet</string>
     <string name="common_accept">Aceptar</string>
     <string name="common_cancel">Cancelar</string>
     <string name="common_banner_ad_unit_id">ca-app-pub-9645153779384738/4669268804</string>
 
     <!-- Album -->
+    <string name="album_write_access_permissions_title">Permisos de escritura</string>
+    <string name="album_write_access_permissions_description">Se necesitan permisos de escritura para poder ver fotos de peñas y de la fiesta.</string>
     <string name="album_image_pager_1">Peñas</string>
     <string name="album_image_pager_2">Alubia \'15</string>
     <string name="album_image_list_title">Image List</string>

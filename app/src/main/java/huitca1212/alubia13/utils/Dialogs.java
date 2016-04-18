@@ -25,13 +25,17 @@ public class Dialogs {
 		builder.setPositiveButton(params.getPositiveButton(), new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
-				listener.onPositive();
+				if (listener != null) {
+					listener.onPositive();
+				}
 			}
 		});
 		builder.setNegativeButton(params.getNegativeButton(), new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
-				listener.onNegative();
+				if (listener != null) {
+					listener.onNegative();
+				}
 			}
 		});
 		builder.show();
