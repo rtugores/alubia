@@ -23,7 +23,7 @@ import huitca1212.alubia13.ui.schedule.adapters.DayAdapter;
 
 public class FridayActivity extends AppCompatActivity {
 
-	private Schedule[] datos =
+	private Schedule[] data =
 			new Schedule[]{
 					new Schedule("19:30 Fútbol sala infantil", "Frontón municipal"),
 					new Schedule("23:00 Pregón de fiestas", "Plaza del castillo"),
@@ -49,7 +49,7 @@ public class FridayActivity extends AppCompatActivity {
 			}
 		});
 
-		DayAdapter adaptadorDias = new DayAdapter(this, datos);
+		DayAdapter adaptadorDias = new DayAdapter(this, data);
 		lstOpciones.setAdapter(adaptadorDias);
 
 		lstOpciones.setOnItemClickListener(new OnItemClickListener() {

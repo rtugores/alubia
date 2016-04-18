@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/reinas_damas_contenido"
+        android:id="@+id/queens_ladies_content"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_gravity="center"
@@ -22,6 +22,7 @@
         android:id="@+id/ad_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:visibility="gone"
         ads:adSize="BANNER"
         ads:adUnitId="@string/common_banner_ad_unit_id" />
