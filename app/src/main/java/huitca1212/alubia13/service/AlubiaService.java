@@ -14,7 +14,7 @@ import okhttp3.Response;
 
 public class AlubiaService {
 
-	private static String BASE_URL = "http://rjapps.x10host.com";
+	private static final String BASE_URL = "http://rjapps.x10host.com";
 
 	public static <T> T getDataFromRequest(String url, Class<T> classofT) {
 		String jsonResult;
