@@ -2,6 +2,10 @@
 <manifest package="huitca1212.alubia13"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -12,9 +16,6 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/common_app_name"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.gms.analytics.globalConfigResource"
-            android:resource="@xml/global_tracker" />
 
         <activity
             android:name=".ui.home.MainActivity"
@@ -50,6 +51,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.MoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.more.MapInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumMenuActivity"
@@ -114,5 +118,15 @@
         <activity
             android:name=".ui.album.ComplexImageActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.gms.analytics.globalConfigResource"
+            android:resource="@xml/global_tracker" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
     </application>
 </manifest>

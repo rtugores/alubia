@@ -2,6 +2,7 @@
 <resources>
 
     <!-- Common-->
+    <string name="google_maps_api_key">AIzaSyASc_MCxc3jeRB3_h4b8trbHiAAOYoJK0o</string>
     <string name="common_app_name">Alubia \'16</string>
     <string name="common_internet_error">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo.</string>
     <string name="common_no_internet">No hay conexión a Internet</string>
