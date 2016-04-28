@@ -40,7 +40,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 		setContentView(R.layout.activity_forum_register_email);
 		ButterKnife.bind(this);
 
-		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 		forumRegisterEmailActivity = this;
 
 		policyText.setText(R.string.forum_privacy_2);
@@ -121,10 +121,10 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			registerButton.setEnabled(true);
-			registerButton.setBackgroundResource(R.drawable.d_normal_button_blue);
+			registerButton.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
 			registerButton.setEnabled(false);
-			registerButton.setBackgroundResource(R.drawable.d_normal_button_gray);
+			registerButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
 	}
 

@@ -44,7 +44,7 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 
 		forumRegisterUserActivity = this;
 
-		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		registerUserEditText.setOnEditorActionListener(this);
@@ -135,10 +135,10 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			registerUserButton.setEnabled(true);
-			registerUserButton.setBackgroundResource(R.drawable.d_normal_button_blue);
+			registerUserButton.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
 			registerUserButton.setEnabled(false);
-			registerUserButton.setBackgroundResource(R.drawable.d_normal_button_gray);
+			registerUserButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
 	}
 

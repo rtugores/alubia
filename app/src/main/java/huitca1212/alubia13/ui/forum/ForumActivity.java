@@ -55,7 +55,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		forumActivity = this;
 
 		commentBox.requestFocus();
-		getWindow().setBackgroundDrawableResource(R.drawable.forum_background);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_forum);
 
 		Analytics.setAnalytics(this);
 		setResultReportListener();

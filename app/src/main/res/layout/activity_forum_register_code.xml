@@ -52,7 +52,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="30dip"
-                android:background="@drawable/d_normal_button_blue"
+                android:background="@drawable/d_button_blue"
                 android:text="@string/forum_continue"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
@@ -62,7 +62,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/home_forum"
-                android:src="@drawable/codigo" />
+                android:src="@drawable/code" />
 
             <TextView
                 android:layout_width="300dp"
@@ -85,7 +85,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/d_normal_button_blue"
+                android:background="@drawable/d_button_blue"
                 android:text="@string/forum_ask_to_admin"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />

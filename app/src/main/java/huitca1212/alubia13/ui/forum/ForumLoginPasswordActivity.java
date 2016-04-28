@@ -39,7 +39,7 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 		setContentView(R.layout.activity_forum_login_password);
 		ButterKnife.bind(this);
 
-		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		passwordEditText.setOnEditorActionListener(this);
@@ -132,10 +132,10 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			registerButton.setEnabled(true);
-			registerButton.setBackgroundResource(R.drawable.d_normal_button_blue);
+			registerButton.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
 			registerButton.setEnabled(false);
-			registerButton.setBackgroundResource(R.drawable.d_normal_button_gray);
+			registerButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
 	}
 

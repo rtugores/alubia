@@ -30,7 +30,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_weight="1"
-        android:background="@drawable/d_alubia_button"
+        android:background="@drawable/d_button_alubia"
         android:text="@string/home_schedule" />
 
     <Button
@@ -39,7 +39,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_weight="1"
-        android:background="@drawable/d_alubia_button"
+        android:background="@drawable/d_button_alubia"
         android:text="@string/album_title" />
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_weight="1"
-        android:background="@drawable/d_alubia_button"
+        android:background="@drawable/d_button_alubia"
         android:text="@string/home_forum" />
 
     <Button
@@ -57,7 +57,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="10dip"
         android:layout_weight="1"
-        android:background="@drawable/d_alubia_button"
+        android:background="@drawable/d_button_alubia"
         android:text="@string/home_news" />
 
     <Button
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/d_alubia_button"
+        android:background="@drawable/d_button_alubia"
         android:text="@string/home_more" />
 
 </LinearLayout>

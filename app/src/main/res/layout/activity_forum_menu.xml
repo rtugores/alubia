@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_image"
+    android:background="@drawable/background_default"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
@@ -24,7 +24,7 @@
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/d_normal_button_green"
+        android:background="@drawable/d_button_green"
         android:text="@string/forum_menu_button"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
@@ -45,7 +45,7 @@
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/d_normal_button_blue"
+        android:background="@drawable/d_button_blue"
         android:text="@string/forum_register_me"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
@@ -65,7 +65,7 @@
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/d_normal_button_yellow"
+        android:background="@drawable/d_button_yellow"
         android:text="@string/forum_enter_as_invited"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />

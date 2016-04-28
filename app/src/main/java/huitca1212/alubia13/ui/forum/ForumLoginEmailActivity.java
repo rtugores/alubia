@@ -41,7 +41,7 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		ButterKnife.bind(this);
 
 		forumLoginEmailActivity = this;
-		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 		emailBox.addTextChangedListener(this);
 		emailBox.setOnEditorActionListener(this);
 
@@ -130,10 +130,10 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			sendLogin.setEnabled(true);
-			sendLogin.setBackgroundResource(R.drawable.d_normal_button_blue);
+			sendLogin.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
 			sendLogin.setEnabled(false);
-			sendLogin.setBackgroundResource(R.drawable.d_normal_button_gray);
+			sendLogin.setBackgroundResource(R.drawable.d_button_gray);
 		}
 	}
 

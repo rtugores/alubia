@@ -36,7 +36,7 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 		setContentView(R.layout.activity_forum_forgotten_password);
 		ButterKnife.bind(this);
 
-		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 
 		emailBox.setOnEditorActionListener(this);
 		emailBox.addTextChangedListener(this);
@@ -118,10 +118,10 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			forgottenAction.setEnabled(true);
-			forgottenAction.setBackgroundResource(R.drawable.d_normal_button_blue);
+			forgottenAction.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
 			forgottenAction.setEnabled(false);
-			forgottenAction.setBackgroundResource(R.drawable.d_normal_button_gray);
+			forgottenAction.setBackgroundResource(R.drawable.d_button_gray);
 		}
 	}
 }

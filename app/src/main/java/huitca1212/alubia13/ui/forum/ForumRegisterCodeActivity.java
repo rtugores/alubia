@@ -38,7 +38,7 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 		setContentView(R.layout.activity_forum_register_code);
 		ButterKnife.bind(this);
 
-		getWindow().setBackgroundDrawableResource(R.drawable.background_image);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		Bundle extras = getIntent().getExtras();
