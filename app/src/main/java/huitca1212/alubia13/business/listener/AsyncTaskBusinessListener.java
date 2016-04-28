@@ -2,10 +2,14 @@ package huitca1212.alubia13.business.listener;
 
 import java.io.IOException;
 
-public interface AsyncTaskBusinessListener {
-	void onStart();
+public abstract class AsyncTaskBusinessListener {
+	public void onStart() {
+	}
 
-	String onBackground() throws IOException;
+	public String onBackground() throws IOException {
+		return null;
+	}
 
-	void onFinish(String result);
+	public void onFinish(String result) {
+	}
 }

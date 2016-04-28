@@ -22,10 +22,6 @@ public class NewsBusiness {
 			ArrayList<News> list;
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				RuntimeExceptionDao<News, Integer> simpleDao;
 				try {
@@ -62,10 +58,6 @@ public class NewsBusiness {
 	public static void getBackendNewsContent(final AllBusinessListener<ArrayList<News>> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			NewsWrapper data;
-
-			@Override
-			public void onStart() {
-			}
 
 			@Override
 			public String onBackground() {

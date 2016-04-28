@@ -16,10 +16,6 @@ public class ForumLoginRegisterBusiness {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				try {
 					String url = "/comprobar_email.php?email=" + URLEncoder.encode(email, "UTF-8");
@@ -58,10 +54,6 @@ public class ForumLoginRegisterBusiness {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				try {
 					String url = "/comprobar_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8") +
@@ -90,10 +82,6 @@ public class ForumLoginRegisterBusiness {
 
 	public static void retriveForgottenPasswd(final String email, final AllBusinessListener<String> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
-
-			@Override
-			public void onStart() {
-			}
 
 			@Override
 			public String onBackground() {
@@ -126,10 +114,6 @@ public class ForumLoginRegisterBusiness {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				try {
 					String url = "/comprobar_usuario.php?usuario=" + URLEncoder.encode(user, "UTF-8").replace(" ", "%20");
@@ -159,10 +143,6 @@ public class ForumLoginRegisterBusiness {
 	public static void performRegistrationForum(final String user, final String password, final String email, final String code, final String mobileId,
 			final AllBusinessListener<String> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
-
-			@Override
-			public void onStart() {
-			}
 
 			@Override
 			public String onBackground() {

@@ -29,10 +29,6 @@ public class ForumBusiness {
 			ArrayList<Comment> list;
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				RuntimeExceptionDao<Comment, Integer> simpleDao;
 				try {
@@ -69,10 +65,6 @@ public class ForumBusiness {
 			CommentsWrapper data;
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				String url = "/descargar_comentarios.php";
 				data = AlubiaService.getDataFromRequest(url, CommentsWrapper.class);
@@ -96,10 +88,6 @@ public class ForumBusiness {
 	public static void sendCommentToBackend(final String user, final String comment, final AllBusinessListener<Comment> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			CommentWrapper data;
-
-			@Override
-			public void onStart() {
-			}
 
 			@Override
 			public String onBackground() {
@@ -139,10 +127,6 @@ public class ForumBusiness {
 			Result result;
 
 			@Override
-			public void onStart() {
-			}
-
-			@Override
 			public String onBackground() {
 				try {
 					String url = "/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
@@ -167,11 +151,6 @@ public class ForumBusiness {
 	public static void deleteForumAccount(final String user, final AllBusinessListener<String> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			Result result;
-
-			@Override
-			public void onStart() {
-
-			}
 
 			@Override
 			public String onBackground() {
