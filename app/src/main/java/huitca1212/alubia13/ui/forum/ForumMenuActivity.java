@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.forum;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,11 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 	@Bind(R.id.register) Button register;
 	@Bind(R.id.login) Button login;
 	@Bind(R.id.invited) Button invited;
+
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, ForumMenuActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

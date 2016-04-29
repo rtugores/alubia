@@ -94,15 +94,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	private void onForumClicked() {
-		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-		if (notregister) {
-			Intent intent = new Intent(MainActivity.this, ForumMenuActivity.class);
-			intent.putExtra(ForumActivity.INVITED_USER, "OK");
-			startActivity(intent);
+		boolean isNotLoggedIn = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (isNotLoggedIn) {
+			ForumMenuActivity.startActivity(MainActivity.this);
 		} else {
-			Intent intent = new Intent(MainActivity.this, ForumActivity.class);
-			intent.putExtra(ForumActivity.INVITED_USER, "NOK");
-			startActivity(intent);
+			ForumActivity.startActivity(MainActivity.this, "NOK");
 		}
 	}
 
@@ -133,8 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-			@NonNull int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		if (requestCode == PERMISSION_REQUEST_WRITE_ACCESS) {
 			// Request for write access permissions
 			if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
