@@ -38,8 +38,7 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.register) {
-			Intent intent = new Intent(ForumMenuActivity.this, ForumRegisterUserActivity.class);
-			startActivity(intent);
+			ForumRegisterUserActivity.startActivity(ForumMenuActivity.this);
 		} else if (id == R.id.login) {
 			ForumLoginEmailActivity.startActivityForResult(ForumMenuActivity.this);
 		} else if (id == R.id.invited) {

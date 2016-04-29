@@ -34,6 +34,11 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	@Bind(R.id.politica2_text) TextView policyText;
 	@Bind(R.id.register_button) Button registerButton;
 
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, ForumRegisterEmailActivity.class);
+		ctx.startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

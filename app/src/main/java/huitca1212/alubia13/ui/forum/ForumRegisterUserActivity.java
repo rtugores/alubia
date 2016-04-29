@@ -35,6 +35,10 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 	@Bind(R.id.register_button) Button registerUserButton;
 	@Bind(R.id.politica2_text) TextView politicText;
 
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, ForumRegisterUserActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +66,7 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 		if (id == R.id.register_button) {
 			registerUser();
 		} else if (id == R.id.politica2_text) {
-			Intent intent = new Intent(ForumRegisterUserActivity.this, ForumPrivacyActivity.class);
-			startActivity(intent);
+			ForumPrivacyActivity.startActivity(ForumRegisterUserActivity.this);
 		}
 	}
 
@@ -83,10 +86,6 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 	private void accessWebService() {
 		progressbarView.setVisibility(View.VISIBLE);
 		ForumLoginRegisterBusiness.checkUserRegisterForum(user, new AllBusinessListener<String>() {
-			@Override
-			public void onDatabaseSuccess(String object) {
-
-			}
 
 			@Override
 			public void onServerSuccess(String result) {
