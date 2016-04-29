@@ -28,11 +28,16 @@ import huitca1212.alubia13.utils.Notifications;
 public class ForumLoginEmailActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, TextWatcher {
 
 	private String email;
-	public static Activity forumLoginEmailActivity;
+	public static final int FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE = 111;
 	@Bind(R.id.progressbar_view_login) LinearLayout progressbarView;
 	@Bind(R.id.email) EditText emailBox;
 	@Bind(R.id.register_button) Button sendLogin;
 	@Bind(R.id.politica2_text) TextView politicText;
+
+	public static void startActivityForResult(Activity activity) {
+		Intent intent = new Intent(activity, ForumLoginEmailActivity.class);
+		activity.startActivityForResult(intent, FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,6 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		setContentView(R.layout.activity_forum_login_email);
 		ButterKnife.bind(this);
 
-		forumLoginEmailActivity = this;
 		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 		emailBox.addTextChangedListener(this);
 		emailBox.setOnEditorActionListener(this);
@@ -65,17 +69,15 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 	private void accessWebService() {
 		progressbarView.setVisibility(View.VISIBLE);
 		ForumLoginRegisterBusiness.checkEmailForum(email, true, new AllBusinessListener<String>() {
-			@Override
-			public void onDatabaseSuccess(String object) {
-
-			}
 
 			@Override
 			public void onServerSuccess(String result) {
 				progressbarView.setVisibility(View.GONE);
-				Intent intent = new Intent(ForumLoginEmailActivity.this, ForumLoginPasswordActivity.class);
+
+				Intent intent = new Intent();
 				intent.putExtra("email", email);
-				startActivity(intent);
+				setResult(RESULT_OK, intent);
+				finish();
 			}
 
 			@Override
@@ -137,8 +139,4 @@ public class ForumLoginEmailActivity extends AppCompatActivity implements View.O
 		}
 	}
 
-	public void onDestroy() {
-		forumLoginEmailActivity = null;
-		super.onDestroy();
-	}
 }

@@ -108,11 +108,6 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 				getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", user).commit();
 				getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", false).commit();
 				try {
-					ForumMenuActivity.forumMenuActivity.finish();
-				} catch (NullPointerException e) {
-					//NOOP
-				}
-				try {
 					ForumRegisterUserActivity.forumRegisterUserActivity.finish();
 				} catch (NullPointerException e) {
 					//NOOP

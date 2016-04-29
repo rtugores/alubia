@@ -1,6 +1,7 @@
 package huitca1212.alubia13.ui.forum;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -46,6 +47,17 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	@Bind(R.id.update_button) View updateButton;
 	@Bind(R.id.send_button) View sendButton;
 
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, ForumActivity.class);
+		ctx.startActivity(intent);
+	}
+
+	public static void startActivity(Context ctx, String invited) {
+		Intent intent = new Intent(ctx, ForumActivity.class);
+		intent.putExtra(INVITED_USER, invited);
+		ctx.startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,9 +90,11 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
 	private void hideCommentBarIfInvited() {
 		Bundle extras = getIntent().getExtras();
-		invited = extras.getString(INVITED_USER);
-		if (invited != null && invited.equals("OK")) {
-			commentBar.setVisibility(View.GONE);
+		if (extras != null) {
+			invited = extras.getString(INVITED_USER);
+			if (invited != null && invited.equals("OK")) {
+				commentBar.setVisibility(View.GONE);
+			}
 		}
 	}
 

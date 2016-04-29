@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.forum;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,10 +29,17 @@ import huitca1212.alubia13.utils.Notifications;
 public class ForumLoginPasswordActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
 	private String email, password;
+	public static final int FORUM_LOGIN_PASSWORD_ACTIVITY_REQUEST_CODE = 112;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
 	@Bind(R.id.password_edit_text) EditText passwordEditText;
 	@Bind(R.id.register_button) Button registerButton;
 	@Bind(R.id.forget_password_button) Button forgottenPassword;
+
+	public static void startActivityForResult(Activity activity, String email) {
+		Intent intent = new Intent(activity, ForumLoginPasswordActivity.class);
+		intent.putExtra("email", email);
+		activity.startActivityForResult(intent, FORUM_LOGIN_PASSWORD_ACTIVITY_REQUEST_CODE);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,12 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 		registerButton.setOnClickListener(this);
 
 		email = getIntent().getExtras().getString("email");
+	}
+
+	@Override
+	public void onBackPressed() {
+		setResult(RESULT_CANCELED);
+		finish();
 	}
 
 	private void checkPassword() {
@@ -78,19 +92,8 @@ public class ForumLoginPasswordActivity extends AppCompatActivity implements Vie
 				getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", result).commit();
 				getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", false).commit();
 
-				Intent intent = new Intent(ForumLoginPasswordActivity.this, ForumActivity.class);
-				intent.putExtra(ForumActivity.INVITED_USER, "NOK");
-				startActivity(intent);
-				try {
-					ForumMenuActivity.forumMenuActivity.finish();
-				} catch (NullPointerException e) {
-					//NOOP
-				}
-				try {
-					ForumLoginEmailActivity.forumLoginEmailActivity.finish();
-				} catch (NullPointerException e) {
-					//NOOP
-				}
+				Intent intent = new Intent();
+				setResult(RESULT_OK, intent);
 				finish();
 			}
 
