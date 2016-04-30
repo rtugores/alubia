@@ -32,7 +32,7 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 	private String user;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
 	@Bind(R.id.usuario) EditText registerUserEditText;
-	@Bind(R.id.register_button) Button registerUserButton;
+	@Bind(R.id.continue_login_button) Button registerUserButton;
 	@Bind(R.id.politica2_text) TextView politicText;
 
 	public static void startActivity(Context ctx) {
@@ -63,7 +63,7 @@ public class ForumRegisterUserActivity extends AppCompatActivity implements View
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.register_button) {
+		if (id == R.id.continue_login_button) {
 			registerUser();
 		} else if (id == R.id.politica2_text) {
 			ForumPrivacyActivity.startActivity(ForumRegisterUserActivity.this);

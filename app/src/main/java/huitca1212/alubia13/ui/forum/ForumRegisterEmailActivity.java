@@ -32,7 +32,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
 	@Bind(R.id.email) EditText emailEditText;
 	@Bind(R.id.politica2_text) TextView policyText;
-	@Bind(R.id.register_button) Button registerButton;
+	@Bind(R.id.continue_login_button) Button registerButton;
 
 	public static void startActivity(Context ctx) {
 		Intent intent = new Intent(ctx, ForumRegisterEmailActivity.class);
@@ -105,7 +105,7 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.register_button) {
+		if (id == R.id.continue_login_button) {
 			checkEmail();
 		} else if (id == R.id.politica2_text) {
 			Intent intent = new Intent(ForumRegisterEmailActivity.this, ForumPrivacyActivity.class);

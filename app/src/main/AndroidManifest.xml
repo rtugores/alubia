@@ -59,10 +59,7 @@
             android:name=".ui.forum.ForumMenuActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.forum.ForumLoginEmailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.forum.ForumLoginPasswordActivity"
+            android:name=".ui.forum.ForumLoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumForgottenPasswordActivity"

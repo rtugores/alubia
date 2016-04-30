@@ -28,7 +28,7 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 
 	private String user, email, password;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
-	@Bind(R.id.register_button) Button registerButton;
+	@Bind(R.id.continue_login_button) Button registerButton;
 	@Bind(R.id.contact_button) Button contactButton;
 	@Bind(R.id.code_edit_text) EditText codeEditText;
 
@@ -54,7 +54,7 @@ public class ForumRegisterCodeActivity extends AppCompatActivity implements View
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.register_button) {
+		if (id == R.id.continue_login_button) {
 			performRegistation();
 		} else if (id == R.id.contact_button) {
 			Intent intent = new Intent(ForumRegisterCodeActivity.this, ContactActivity.class);

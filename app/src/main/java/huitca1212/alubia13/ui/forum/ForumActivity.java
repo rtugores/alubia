@@ -1,6 +1,5 @@
 package huitca1212.alubia13.ui.forum;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
+import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
 import huitca1212.alubia13.utils.Analytics;
 import huitca1212.alubia13.utils.Checkers;
@@ -34,7 +34,6 @@ import huitca1212.alubia13.utils.Notifications;
 public class ForumActivity extends AppCompatActivity implements View.OnClickListener {
 
 	public static final String INVITED_USER = "invitado";
-	public static Activity forumActivity;
 	private String invited;
 	public ForumAdapter adapter;
 	public LinearLayoutManager mLayoutManager;
@@ -63,8 +62,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forum);
 		ButterKnife.bind(this);
-
-		forumActivity = this;
 
 		commentBox.requestFocus();
 		getWindow().setBackgroundDrawableResource(R.drawable.background_forum);
@@ -264,16 +261,19 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.settings_menu:
-				Intent intent = new Intent(ForumActivity.this, SettingsActivity.class);
-				startActivity(intent);
+				SettingsActivity.startActivityForResult(ForumActivity.this);
 				return true;
 		}
 		return false;
 	}
 
 	@Override
-	public void onDestroy() {
-		forumActivity = null;
-		super.onDestroy();
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (SettingsActivity.SETTINGS_ACTIVITY_REQUEST_CODE == requestCode) {
+			if (RESULT_OK == resultCode) {
+				finish();
+			}
+		}
 	}
+
 }

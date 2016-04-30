@@ -25,7 +25,7 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity implements 
 	public static Activity forumRegisterPasswordActivity;
 	private String email, user;
 	@Bind(R.id.password_edit_text) EditText passwdEditText;
-	@Bind(R.id.register_button) Button registerButton;
+	@Bind(R.id.continue_login_button) Button registerButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity implements 
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.register_button) {
+		if (id == R.id.continue_login_button) {
 			checkPassword();
 		}
 	}

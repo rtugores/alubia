@@ -40,7 +40,7 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 		if (id == R.id.register) {
 			ForumRegisterUserActivity.startActivity(ForumMenuActivity.this);
 		} else if (id == R.id.login) {
-			ForumLoginEmailActivity.startActivityForResult(ForumMenuActivity.this);
+			ForumLoginActivity.startActivityForResult(ForumMenuActivity.this);
 		} else if (id == R.id.invited) {
 			ForumActivity.startActivity(ForumMenuActivity.this, "OK");
 		}
@@ -48,21 +48,10 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (ForumLoginEmailActivity.FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE == requestCode) {
-			if (RESULT_OK == resultCode) {
-				if (data != null) {
-					String email = (String)data.getSerializableExtra("email");
-					if (email != null) {
-						ForumLoginPasswordActivity.startActivityForResult(ForumMenuActivity.this, email);
-					}
-				}
-			}
-		} else if (ForumLoginPasswordActivity.FORUM_LOGIN_PASSWORD_ACTIVITY_REQUEST_CODE == requestCode) {
+		if (ForumLoginActivity.FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE == requestCode) {
 			if (RESULT_OK == resultCode) {
 				ForumActivity.startActivity(ForumMenuActivity.this);
 				finish();
-			} else if (RESULT_CANCELED == resultCode) {
-				ForumLoginEmailActivity.startActivityForResult(ForumMenuActivity.this);
 			}
 		}
 	}

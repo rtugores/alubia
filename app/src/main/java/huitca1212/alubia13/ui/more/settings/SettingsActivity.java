@@ -18,10 +18,8 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.Setting;
-import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
 import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
-import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
@@ -42,15 +40,19 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		}
 	}
 
-	public static Activity settingsActivity;
+	public static final int SETTINGS_ACTIVITY_REQUEST_CODE = 333;
 	@Bind(R.id.schedule_list) ListView listOptions;
+
+	public static void startActivityForResult(Activity activity) {
+		Intent intent = new Intent(activity, SettingsActivity.class);
+		activity.startActivityForResult(intent, SETTINGS_ACTIVITY_REQUEST_CODE);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		ButterKnife.bind(this);
-		settingsActivity = this;
 
 		SettingsAdapter adaptador = new SettingsAdapter(this, new Setting[]{
 				new Setting(getString(R.string.settings_logout), getString(R.string.settings_logout_sub)),
@@ -86,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 	private void onLogOut() {
 		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
 		if (notregister) {
-			Notifications.showToast(settingsActivity, getString(R.string.settings_error_logout));
+			Notifications.showToast(this, getString(R.string.settings_error_logout));
 		} else {
 			DialogParams params = new DialogParams();
 			params.setTitle(getString(R.string.settings_logout));
@@ -96,23 +98,12 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 			Dialogs.showGenericDialog(this, params, new Dialogs.DialogListener() {
 				@Override
 				public void onPositive() {
-					getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putString("username", "").commit();
-					getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit().putBoolean("notregister", true).commit();
-					try {
-						MoreActivity.moreActivity.finish();
-					} catch (NullPointerException e) {
-						//NOOP
-					}
-					try {
-						ForumActivity.forumActivity.finish();
-					} catch (NullPointerException e) {
-						//NOOP
-					}
-					try {
-						SettingsActivity.settingsActivity.finish();
-					} catch (NullPointerException e) {
-						//NOOP
-					}
+					getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit()
+							.putString("username", "").commit();
+					getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).edit()
+							.putBoolean("notregister", true).commit();
+					setResult(RESULT_OK);
+					finish();
 				}
 
 				@Override
@@ -150,18 +141,11 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 						@Override
 						public void onServerSuccess(String object) {
 							Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
-							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putString("username", "").commit();
-							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("notregister", true).commit();
-							try {
-								MoreActivity.moreActivity.finish();
-							} catch (NullPointerException e) {
-								//NOOP
-							}
-							try {
-								ForumActivity.forumActivity.finish();
-							} catch (NullPointerException e) {
-								//NOOP
-							}
+							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+									.putString("username", "").commit();
+							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+									.putBoolean("notregister", true).commit();
+							setResult(RESULT_OK);
 							finish();
 						}
 
@@ -207,10 +191,5 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		} catch (android.content.ActivityNotFoundException anfe) {
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
 		}
-	}
-
-	public void onDestroy() {
-		settingsActivity = null;
-		super.onDestroy();
 	}
 }
