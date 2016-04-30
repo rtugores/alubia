@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/email_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -45,7 +45,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/continue_login_button"
+                android:id="@+id/perform_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dip"

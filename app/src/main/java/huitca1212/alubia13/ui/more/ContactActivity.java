@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.more;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,11 @@ import huitca1212.alubia13.R;
 public class ContactActivity extends AppCompatActivity implements View.OnClickListener {
 	@Bind(R.id.contactar_whatsapp) Button whatsappButton;
 	@Bind(R.id.contactar_email) Button emailButton;
+
+	public static void startActivity(Activity activity) {
+		Intent intent = new Intent(activity, ContactActivity.class);
+		activity.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

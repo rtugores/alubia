@@ -1,14 +1,14 @@
-package huitca1212.alubia13.ui.forum;
+package huitca1212.alubia13.ui.forum.register;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,49 +20,42 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.utils.Checkers;
 
-public class ForumRegisterPasswordActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
+public class ForumRegisterPasswordFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
-	public static Activity forumRegisterPasswordActivity;
-	private String email, user;
 	@Bind(R.id.password_edit_text) EditText passwdEditText;
-	@Bind(R.id.continue_login_button) Button registerButton;
+	@Bind(R.id.perform_register) Button registerButton;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_forum_register_password);
-		ButterKnife.bind(this);
-
-		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
-		forumRegisterPasswordActivity = this;
-
-		Bundle extras = getIntent().getExtras();
-		user = extras.getString("usuario");
-		email = extras.getString("email");
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_forum_register_password, container, false);
+		ButterKnife.bind(this, view);
 
 		passwdEditText.setOnEditorActionListener(this);
 		passwdEditText.addTextChangedListener(this);
 		registerButton.setOnClickListener(this);
+
+		return view;
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.continue_login_button) {
+		if (id == R.id.perform_register) {
 			checkPassword();
 		}
 	}
 
 	protected void checkPassword() {
-		String passwd = passwdEditText.getText().toString().trim();
-		if (Checkers.isRightPassword(passwd)) {
-			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		String password = passwdEditText.getText().toString().trim();
+		if (Checkers.isRightPassword(password)) {
+			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(passwdEditText.getWindowToken(), 0);
-			Intent intent = new Intent(ForumRegisterPasswordActivity.this, ForumRegisterCodeActivity.class);
-			intent.putExtra("usuario", user)
-					.putExtra("email", email)
-					.putExtra("contrasenya", passwd);
-			startActivity(intent);
+			((ForumRegisterActivity)getActivity()).openRegisterCodeFragment(password);
 		} else {
 			passwdEditText.setError(getString(R.string.forum_error_bad_passwd));
 		}
@@ -94,10 +87,5 @@ public class ForumRegisterPasswordActivity extends AppCompatActivity implements 
 
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-	}
-
-	public void onDestroy() {
-		forumRegisterPasswordActivity = null;
-		super.onDestroy();
 	}
 }

@@ -67,7 +67,7 @@
             android:name=".ui.forum.ForumMenuActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.forum.ForumLoginActivity"
+            android:name=".ui.forum.login.ForumLoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumForgottenPasswordActivity"
@@ -76,16 +76,7 @@
             android:name=".ui.forum.ForumPrivacyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.forum.ForumRegisterUserActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.forum.ForumRegisterEmailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.forum.ForumRegisterPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.forum.ForumRegisterCodeActivity"
+            android:name=".ui.forum.register.ForumRegisterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.forum.ForumActivity"

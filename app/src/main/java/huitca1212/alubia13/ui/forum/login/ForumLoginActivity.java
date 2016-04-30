@@ -1,4 +1,4 @@
-package huitca1212.alubia13.ui.forum;
+package huitca1212.alubia13.ui.forum.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,23 +9,23 @@ import huitca1212.alubia13.R;
 
 public class ForumLoginActivity extends AppCompatActivity {
 
-	public static final int FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE = 111;
+	public static final int FORUM_LOGIN_ACTIVITY_REQUEST_CODE = 111;
 	private String email;
 
 	public static void startActivityForResult(Activity activity) {
 		Intent intent = new Intent(activity, ForumLoginActivity.class);
-		activity.startActivityForResult(intent, FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE);
+		activity.startActivityForResult(intent, FORUM_LOGIN_ACTIVITY_REQUEST_CODE);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_forum_login);
+		setContentView(R.layout.activity_forum_login_register);
 		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 
-		ForumLoginEmailFragment forumloginEmailFragment = new ForumLoginEmailFragment();
+		ForumLoginEmailFragment forumLoginEmailFragment = new ForumLoginEmailFragment();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.forum_login_fragment_container, forumloginEmailFragment).commit();
+				.replace(R.id.forum_login_fragment_container, forumLoginEmailFragment).commit();
 	}
 
 	public void openLoginPasswordFragment(String email) {
@@ -41,7 +41,7 @@ public class ForumLoginActivity extends AppCompatActivity {
 		return email;
 	}
 
-	public void finishLogin(){
+	public void finishLogin() {
 		setResult(RESULT_OK);
 		finish();
 	}

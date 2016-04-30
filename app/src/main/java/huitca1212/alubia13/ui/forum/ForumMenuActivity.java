@@ -10,6 +10,8 @@ import android.widget.Button;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.ui.forum.login.ForumLoginActivity;
+import huitca1212.alubia13.ui.forum.register.ForumRegisterActivity;
 
 
 public class ForumMenuActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,7 +40,7 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.register) {
-			ForumRegisterUserActivity.startActivity(ForumMenuActivity.this);
+			ForumRegisterActivity.startActivityForResult(ForumMenuActivity.this);
 		} else if (id == R.id.login) {
 			ForumLoginActivity.startActivityForResult(ForumMenuActivity.this);
 		} else if (id == R.id.invited) {
@@ -48,7 +50,8 @@ public class ForumMenuActivity extends AppCompatActivity implements View.OnClick
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (ForumLoginActivity.FORUM_LOGIN_EMAIL_ACTIVITY_REQUEST_CODE == requestCode) {
+		if (ForumLoginActivity.FORUM_LOGIN_ACTIVITY_REQUEST_CODE == requestCode
+				|| ForumRegisterActivity.FORUM_REGISTER_USER_ACTIVITY_REQUEST_CODE == requestCode) {
 			if (RESULT_OK == resultCode) {
 				ForumActivity.startActivity(ForumMenuActivity.this);
 				finish();

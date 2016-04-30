@@ -73,11 +73,11 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		if (position == SettingsItem.logOut.getValue()) {
 			onLogOut();
 		} else if (position == SettingsItem.forgotPasswd.getValue()) {
-			onForgotPasswd();
+			ForumForgottenPasswordActivity.startActivity(SettingsActivity.this);
 		} else if (position == SettingsItem.deleteAccount.getValue()) {
 			onDeleteAccount();
 		} else if (position == SettingsItem.privacyPolicy.getValue()) {
-			onPrivacyPolicy();
+			ForumPrivacyActivity.startActivity(SettingsActivity.this);
 		} else if (position == SettingsItem.shareApp.getValue()) {
 			onShareApp();
 		} else if (position == SettingsItem.updateApp.getValue()) {
@@ -86,9 +86,9 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 	}
 
 	private void onLogOut() {
-		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-		if (notregister) {
-			Notifications.showToast(this, getString(R.string.settings_error_logout));
+		boolean notRegister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (notRegister) {
+			Notifications.showToast(SettingsActivity.this, getString(R.string.settings_error_logout));
 		} else {
 			DialogParams params = new DialogParams();
 			params.setTitle(getString(R.string.settings_logout));
@@ -113,15 +113,10 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		}
 	}
 
-	private void onForgotPasswd() {
-		Intent intent = new Intent(SettingsActivity.this, ForumForgottenPasswordActivity.class);
-		startActivity(intent);
-	}
-
 	private void onDeleteAccount() {
-		boolean notregister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
-		if (notregister) {
-			Toast.makeText(getApplicationContext(), R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
+		boolean notRegister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
+		if (notRegister) {
+			Toast.makeText(SettingsActivity.this, R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
 		} else {
 			DialogParams params = new DialogParams();
 			params.setTitle(getString(R.string.settings_delete_title));
@@ -133,11 +128,6 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				public void onPositive() {
 					String user = getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).getString("username", "");
 					ForumBusiness.deleteForumAccount(user, new AllBusinessListener<String>() {
-						@Override
-						public void onDatabaseSuccess(String object) {
-
-						}
-
 						@Override
 						public void onServerSuccess(String object) {
 							Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
@@ -165,11 +155,6 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				}
 			});
 		}
-	}
-
-	private void onPrivacyPolicy() {
-		Intent intent = new Intent(SettingsActivity.this, ForumPrivacyActivity.class);
-		startActivity(intent);
 	}
 
 	private void onShareApp() {

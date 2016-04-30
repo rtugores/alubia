@@ -1,6 +1,8 @@
 package huitca1212.alubia13.ui.forum;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -27,8 +29,13 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 
 	private String email;
 	@Bind(R.id.progressbar_view) LinearLayout progressbarView;
-	@Bind(R.id.forgotten_email) EditText emailBox;
-	@Bind(R.id.forgotten_button) Button forgottenAction;
+	@Bind(R.id.forgotten_email_editText) EditText forgottenEmailEditText;
+	@Bind(R.id.recover_password_button) Button recoverPasswordButton;
+
+	public static void startActivity(Activity activity) {
+		Intent intent = new Intent(activity, ForumForgottenPasswordActivity.class);
+		activity.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,42 +45,37 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 
 		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 
-		emailBox.setOnEditorActionListener(this);
-		emailBox.addTextChangedListener(this);
+		forgottenEmailEditText.setOnEditorActionListener(this);
+		forgottenEmailEditText.addTextChangedListener(this);
 
-		forgottenAction.setOnClickListener(this);
+		recoverPasswordButton.setOnClickListener(this);
 	}
 
 	private void recoverPassword() {
 		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(emailBox.getWindowToken(), 0);
+		imm.hideSoftInputFromWindow(forgottenEmailEditText.getWindowToken(), 0);
 
-		email = emailBox.getText().toString().trim();
+		email = forgottenEmailEditText.getText().toString().trim();
 		if (Checkers.isRightEmail(email)) {
 			accessWebService();
 		} else {
-			emailBox.setError(getString(R.string.forum_error_bad_email));
+			forgottenEmailEditText.setError(getString(R.string.forum_error_bad_email));
 		}
 	}
 
 	private void accessWebService() {
-		progressbarView.setVisibility(View.VISIBLE);
+		blockScreen();
 		ForumLoginRegisterBusiness.retriveForgottenPasswd(email, new AllBusinessListener<String>() {
 			@Override
-			public void onDatabaseSuccess(String object) {
-
-			}
-
-			@Override
 			public void onServerSuccess(String result) {
-				progressbarView.setVisibility(View.GONE);
+				unblockScreen();
 				Notifications.showToast(ForumForgottenPasswordActivity.this, getString(R.string.forum_forgot_email_success));
 				finish();
 			}
 
 			@Override
 			public void onFailure(String result) {
-				progressbarView.setVisibility(View.GONE);
+				unblockScreen();
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						Notifications.showToast(ForumForgottenPasswordActivity.this, getString(R.string.common_internet_error));
@@ -89,7 +91,7 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 		int id = v.getId();
-		if (id == R.id.forgotten_email) {
+		if (id == R.id.forgotten_email_editText) {
 			if (actionId == EditorInfo.IME_ACTION_DONE) {
 				recoverPassword();
 				return true;
@@ -101,7 +103,7 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.forgotten_button) {
+		if (id == R.id.recover_password_button) {
 			recoverPassword();
 		}
 	}
@@ -117,11 +119,23 @@ public class ForumForgottenPasswordActivity extends AppCompatActivity implements
 	@Override
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
-			forgottenAction.setEnabled(true);
-			forgottenAction.setBackgroundResource(R.drawable.d_button_blue);
+			recoverPasswordButton.setEnabled(true);
+			recoverPasswordButton.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
-			forgottenAction.setEnabled(false);
-			forgottenAction.setBackgroundResource(R.drawable.d_button_gray);
+			recoverPasswordButton.setEnabled(false);
+			recoverPasswordButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
+	}
+
+	private void blockScreen() {
+		recoverPasswordButton.setEnabled(false);
+		forgottenEmailEditText.setEnabled(false);
+		progressbarView.setVisibility(View.VISIBLE);
+	}
+
+	private void unblockScreen() {
+		recoverPasswordButton.setEnabled(true);
+		forgottenEmailEditText.setEnabled(true);
+		progressbarView.setVisibility(View.GONE);
 	}
 }

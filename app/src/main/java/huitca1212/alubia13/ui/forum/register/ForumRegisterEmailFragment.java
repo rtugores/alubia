@@ -1,14 +1,14 @@
-package huitca1212.alubia13.ui.forum;
+package huitca1212.alubia13.ui.forum.register;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,41 +22,34 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
-public class ForumRegisterEmailActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
+public class ForumRegisterEmailFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
 
-	public static Activity forumRegisterEmailActivity;
-	private String user, email;
+	private String email;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
-	@Bind(R.id.email) EditText emailEditText;
+	@Bind(R.id.email_edit_text) EditText emailEditText;
 	@Bind(R.id.politica2_text) TextView policyText;
-	@Bind(R.id.continue_login_button) Button registerButton;
+	@Bind(R.id.perform_register) Button continueRegisterButton;
 
-	public static void startActivity(Context ctx) {
-		Intent intent = new Intent(ctx, ForumRegisterEmailActivity.class);
-		ctx.startActivity(intent);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_forum_register_email);
-		ButterKnife.bind(this);
-
-		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
-		forumRegisterEmailActivity = this;
-
-		policyText.setText(R.string.forum_privacy_2);
-
-		Bundle extras = getIntent().getExtras();
-		user = extras.getString("usuario");
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_forum_register_email, container, false);
+		ButterKnife.bind(this, view);
 
 		emailEditText.addTextChangedListener(this);
 		emailEditText.setOnEditorActionListener(this);
-		registerButton.setOnClickListener(this);
+		continueRegisterButton.setOnClickListener(this);
 		policyText.setOnClickListener(this);
+
+		return view;
 	}
 
 	private void checkEmail() {
@@ -64,38 +57,30 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 		if (!Checkers.isRightEmail(email)) {
 			emailEditText.setError(getString(R.string.forum_error_bad_email));
 		} else {
-			InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
 			accessWebService();
 		}
 	}
 
 	private void accessWebService() {
-		progressbarView.setVisibility(View.VISIBLE);
+		blockScreen();
 		ForumLoginRegisterBusiness.checkEmailForum(email, false, new AllBusinessListener<String>() {
 			@Override
-			public void onDatabaseSuccess(String object) {
-
-			}
-
-			@Override
 			public void onServerSuccess(String result) {
-				progressbarView.setVisibility(View.GONE);
-				Intent intent = new Intent(ForumRegisterEmailActivity.this, ForumRegisterPasswordActivity.class)
-						.putExtra("usuario", user)
-						.putExtra("email", email);
-				startActivity(intent);
+				unblockScreen();
+				((ForumRegisterActivity)getActivity()).openRegisterPasswordFragment(email);
 			}
 
 			@Override
 			public void onFailure(String result) {
-				progressbarView.setVisibility(View.GONE);
+				unblockScreen();
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Notifications.showToast(ForumRegisterEmailActivity.this, getString(R.string.common_internet_error));
+						Notifications.showToast(getActivity(), getString(R.string.common_internet_error));
 						break;
 					case "1":
-						Notifications.showToast(ForumRegisterEmailActivity.this, getString(R.string.forum_error_bad_email_repeat));
+						Notifications.showToast(getActivity(), getString(R.string.forum_error_bad_email_repeat));
 						break;
 				}
 			}
@@ -105,11 +90,10 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		if (id == R.id.continue_login_button) {
+		if (id == R.id.perform_register) {
 			checkEmail();
 		} else if (id == R.id.politica2_text) {
-			Intent intent = new Intent(ForumRegisterEmailActivity.this, ForumPrivacyActivity.class);
-			startActivity(intent);
+			ForumPrivacyActivity.startActivity(getActivity());
 		}
 	}
 
@@ -125,11 +109,11 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	@Override
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
-			registerButton.setEnabled(true);
-			registerButton.setBackgroundResource(R.drawable.d_button_blue);
+			continueRegisterButton.setEnabled(true);
+			continueRegisterButton.setBackgroundResource(R.drawable.d_button_blue);
 		} else {
-			registerButton.setEnabled(false);
-			registerButton.setBackgroundResource(R.drawable.d_button_gray);
+			continueRegisterButton.setEnabled(false);
+			continueRegisterButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
 	}
 
@@ -141,8 +125,15 @@ public class ForumRegisterEmailActivity extends AppCompatActivity implements Vie
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
 
-	public void onDestroy() {
-		forumRegisterEmailActivity = null;
-		super.onDestroy();
+	private void blockScreen() {
+		continueRegisterButton.setEnabled(false);
+		emailEditText.setEnabled(false);
+		progressbarView.setVisibility(View.VISIBLE);
+	}
+
+	private void unblockScreen() {
+		continueRegisterButton.setEnabled(true);
+		emailEditText.setEnabled(true);
+		progressbarView.setVisibility(View.GONE);
 	}
 }

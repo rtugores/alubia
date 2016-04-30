@@ -1,4 +1,4 @@
-package huitca1212.alubia13.ui.forum;
+package huitca1212.alubia13.ui.forum.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -32,7 +33,7 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 	private String email, password;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
 	@Bind(R.id.password_edit_text) EditText passwordEditText;
-	@Bind(R.id.continue_login_button) Button sendLoginButton;
+	@Bind(R.id.perform_register) Button sendLoginButton;
 	@Bind(R.id.forget_password_button) Button forgottenPassword;
 
 	@Override
@@ -132,7 +133,7 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 		if (id == R.id.forget_password_button) {
 			Intent intent = new Intent(getActivity(), ForumForgottenPasswordActivity.class);
 			startActivity(intent);
-		} else if (id == R.id.continue_login_button) {
+		} else if (id == R.id.perform_register) {
 			checkPassword();
 		}
 	}
