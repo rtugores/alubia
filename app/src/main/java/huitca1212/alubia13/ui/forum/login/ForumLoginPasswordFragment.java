@@ -3,16 +3,12 @@ package huitca1212.alubia13.ui.forum.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,11 +20,12 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumBaseFragment;
 import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
-public class ForumLoginPasswordFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
+public class ForumLoginPasswordFragment extends ForumBaseFragment implements View.OnClickListener, TextView.OnEditorActionListener {
 
 	private String email, password;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
@@ -46,8 +43,7 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 		View view = inflater.inflate(R.layout.fragment_forum_login_password, container, false);
 		ButterKnife.bind(this, view);
 
-		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
+		passwordEditText.requestFocus();
 		passwordEditText.setOnEditorActionListener(this);
 		passwordEditText.addTextChangedListener(this);
 		forgottenPassword.setOnClickListener(this);
@@ -60,8 +56,6 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 	private void checkPassword() {
 		password = passwordEditText.getText().toString().trim();
 		if (Checkers.isRightPassword(password)) {
-			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
 			accessWebService();
 		} else {
 			passwordEditText.setError(getString(R.string.forum_error_bad_passwd));
@@ -69,11 +63,11 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 	}
 
 	private void accessWebService() {
-		blockScreen();
+		blockScreen(sendLoginButton, passwordEditText, progressbarView);
 		ForumLoginRegisterBusiness.checkPasswordLoginForum(email, password, new AllBusinessListener<String>() {
 			@Override
 			public void onServerSuccess(String result) {
-				unblockScreen();
+				unblockScreen(sendLoginButton, passwordEditText, progressbarView);
 				// Save login
 				getActivity().getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
 						.putString("username", result).commit();
@@ -84,7 +78,7 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 
 			@Override
 			public void onFailure(String result) {
-				unblockScreen();
+				unblockScreen(sendLoginButton, passwordEditText, progressbarView);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						Notifications.showToast(getActivity(), getString(R.string.common_internet_error));
@@ -104,16 +98,6 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-	}
-
-	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-
 	}
 
 	@Override
@@ -138,17 +122,15 @@ public class ForumLoginPasswordFragment extends Fragment implements View.OnClick
 		}
 	}
 
-	private void blockScreen() {
-		sendLoginButton.setEnabled(false);
-		passwordEditText.setEnabled(false);
+	@Override
+	protected void blockScreen(Button continueButton, EditText boxEditText, LinearLayout progressbarView) {
+		super.blockScreen(continueButton, boxEditText, progressbarView);
 		forgottenPassword.setEnabled(false);
-		progressbarView.setVisibility(View.VISIBLE);
 	}
 
-	private void unblockScreen() {
-		sendLoginButton.setEnabled(true);
-		passwordEditText.setEnabled(true);
+	@Override
+	protected void unblockScreen(Button continueButton, EditText boxEditText, LinearLayout progressbarView) {
+		super.unblockScreen(continueButton, boxEditText, progressbarView);
 		forgottenPassword.setEnabled(true);
-		progressbarView.setVisibility(View.GONE);
 	}
 }

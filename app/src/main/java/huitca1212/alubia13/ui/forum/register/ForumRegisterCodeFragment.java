@@ -3,14 +3,12 @@ package huitca1212.alubia13.ui.forum.register;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,9 +21,10 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumBaseFragment;
 import huitca1212.alubia13.ui.more.ContactActivity;
 
-public class ForumRegisterCodeFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener {
+public class ForumRegisterCodeFragment extends ForumBaseFragment implements View.OnClickListener, TextView.OnEditorActionListener {
 
 	private String user, email, password;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
@@ -43,8 +42,8 @@ public class ForumRegisterCodeFragment extends Fragment implements View.OnClickL
 		View view = inflater.inflate(R.layout.fragment_forum_register_code, container, false);
 		ButterKnife.bind(this, view);
 
+		codeEditText.requestFocus();
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
 		Bundle args = this.getArguments();
 		user = args.getString("user");
 		email = args.getString("email");
@@ -80,15 +79,11 @@ public class ForumRegisterCodeFragment extends Fragment implements View.OnClickL
 
 	private void performRegistation() {
 		String mobileId;
-
 		String code = codeEditText.getText().toString().trim();
 		if (code.length() != 10 && code.length() != 0) {
 			codeEditText.setError(getString(R.string.forum_error_bad_code));
 			return;
 		}
-
-		InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(codeEditText.getWindowToken(), 0);
 		// Put code zero if lenght = 0 in order to understand with the server
 		if (code.length() == 0) {
 			code = "0";
@@ -99,11 +94,11 @@ public class ForumRegisterCodeFragment extends Fragment implements View.OnClickL
 			mobileId = "0";
 		}
 
-		blockScreen();
+		blockScreen(performRegisterButton, codeEditText, progressbarView);
 		ForumLoginRegisterBusiness.performRegistrationForum(user, password, email, code, mobileId, new AllBusinessListener<String>() {
 			@Override
 			public void onServerSuccess(String result) {
-				unblockScreen();
+				unblockScreen(performRegisterButton, codeEditText, progressbarView);
 				getActivity().getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
 						.putString("username", user).commit();
 				getActivity().getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
@@ -113,7 +108,7 @@ public class ForumRegisterCodeFragment extends Fragment implements View.OnClickL
 
 			@Override
 			public void onFailure(String result) {
-				unblockScreen();
+				unblockScreen(performRegisterButton, codeEditText, progressbarView);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						Toast.makeText(getActivity(), R.string.common_internet_error, Toast.LENGTH_LONG).show();
@@ -131,17 +126,15 @@ public class ForumRegisterCodeFragment extends Fragment implements View.OnClickL
 		});
 	}
 
-	private void blockScreen() {
-		performRegisterButton.setEnabled(false);
-		codeEditText.setEnabled(false);
+	@Override
+	protected void blockScreen(Button continueButton, EditText boxEditText, LinearLayout progressbarView) {
+		super.blockScreen(continueButton, boxEditText, progressbarView);
 		contactButton.setEnabled(false);
-		progressbarView.setVisibility(View.VISIBLE);
 	}
 
-	private void unblockScreen() {
-		performRegisterButton.setEnabled(true);
-		codeEditText.setEnabled(true);
+	@Override
+	protected void unblockScreen(Button continueButton, EditText boxEditText, LinearLayout progressbarView) {
+		super.unblockScreen(continueButton, boxEditText, progressbarView);
 		contactButton.setEnabled(true);
-		progressbarView.setVisibility(View.GONE);
 	}
 }

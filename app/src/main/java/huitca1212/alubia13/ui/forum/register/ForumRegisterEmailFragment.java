@@ -2,9 +2,7 @@ package huitca1212.alubia13.ui.forum.register;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +20,12 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumBaseFragment;
 import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
-public class ForumRegisterEmailFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
+public class ForumRegisterEmailFragment extends ForumBaseFragment implements View.OnClickListener, TextView.OnEditorActionListener {
 
 	private String email;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
@@ -44,6 +43,9 @@ public class ForumRegisterEmailFragment extends Fragment implements View.OnClick
 		View view = inflater.inflate(R.layout.fragment_forum_register_email, container, false);
 		ButterKnife.bind(this, view);
 
+		emailEditText.requestFocus();
+		InputMethodManager imgr = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+		imgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 		emailEditText.addTextChangedListener(this);
 		emailEditText.setOnEditorActionListener(this);
 		continueRegisterButton.setOnClickListener(this);
@@ -57,24 +59,22 @@ public class ForumRegisterEmailFragment extends Fragment implements View.OnClick
 		if (!Checkers.isRightEmail(email)) {
 			emailEditText.setError(getString(R.string.forum_error_bad_email));
 		} else {
-			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
 			accessWebService();
 		}
 	}
 
 	private void accessWebService() {
-		blockScreen();
+		blockScreen(continueRegisterButton, emailEditText, progressbarView);
 		ForumLoginRegisterBusiness.checkEmailForum(email, false, new AllBusinessListener<String>() {
 			@Override
 			public void onServerSuccess(String result) {
-				unblockScreen();
+				unblockScreen(continueRegisterButton, emailEditText, progressbarView);
 				((ForumRegisterActivity)getActivity()).openRegisterPasswordFragment(email);
 			}
 
 			@Override
 			public void onFailure(String result) {
-				unblockScreen();
+				unblockScreen(continueRegisterButton, emailEditText, progressbarView);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						Notifications.showToast(getActivity(), getString(R.string.common_internet_error));
@@ -115,25 +115,5 @@ public class ForumRegisterEmailFragment extends Fragment implements View.OnClick
 			continueRegisterButton.setEnabled(false);
 			continueRegisterButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
-	}
-
-	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	}
-
-	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-	}
-
-	private void blockScreen() {
-		continueRegisterButton.setEnabled(false);
-		emailEditText.setEnabled(false);
-		progressbarView.setVisibility(View.VISIBLE);
-	}
-
-	private void unblockScreen() {
-		continueRegisterButton.setEnabled(true);
-		emailEditText.setEnabled(true);
-		progressbarView.setVisibility(View.GONE);
 	}
 }

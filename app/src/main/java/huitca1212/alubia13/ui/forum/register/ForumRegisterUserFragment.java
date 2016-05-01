@@ -1,17 +1,13 @@
 package huitca1212.alubia13.ui.forum.register;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,11 +19,12 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumBaseFragment;
 import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
-public class ForumRegisterUserFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
+public class ForumRegisterUserFragment extends ForumBaseFragment implements View.OnClickListener, TextView.OnEditorActionListener {
 
 	private String user;
 	@Bind(R.id.progressbar_view_registro) LinearLayout progressbarView;
@@ -71,24 +68,22 @@ public class ForumRegisterUserFragment extends Fragment implements View.OnClickL
 		} else if (Checkers.hasStringBadWords(user)) {
 			userEditText.setError(getString(R.string.forum_error_bad_words));
 		} else {
-			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(userEditText.getWindowToken(), 0);
 			accessWebService();
 		}
 	}
 
 	private void accessWebService() {
-		blockScreen();
+		blockScreen(continueRegisterButton, userEditText, progressbarView);
 		ForumLoginRegisterBusiness.checkUserRegisterForum(user, new AllBusinessListener<String>() {
 			@Override
 			public void onServerSuccess(String result) {
-				unblockScreen();
+				unblockScreen(continueRegisterButton, userEditText, progressbarView);
 				((ForumRegisterActivity)getActivity()).openRegisterEmailFragment(user);
 			}
 
 			@Override
 			public void onFailure(String result) {
-				unblockScreen();
+				unblockScreen(continueRegisterButton, userEditText, progressbarView);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						Notifications.showToast(getActivity(), getString(R.string.common_internet_error));
@@ -114,14 +109,6 @@ public class ForumRegisterUserFragment extends Fragment implements View.OnClickL
 	}
 
 	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	}
-
-	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-	}
-
-	@Override
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			continueRegisterButton.setEnabled(true);
@@ -130,17 +117,5 @@ public class ForumRegisterUserFragment extends Fragment implements View.OnClickL
 			continueRegisterButton.setEnabled(false);
 			continueRegisterButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
-	}
-
-	private void blockScreen() {
-		continueRegisterButton.setEnabled(false);
-		userEditText.setEnabled(false);
-		progressbarView.setVisibility(View.VISIBLE);
-	}
-
-	private void unblockScreen() {
-		continueRegisterButton.setEnabled(true);
-		userEditText.setEnabled(true);
-		progressbarView.setVisibility(View.GONE);
 	}
 }

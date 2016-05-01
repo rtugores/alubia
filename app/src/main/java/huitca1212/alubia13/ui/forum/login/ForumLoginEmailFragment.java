@@ -1,16 +1,12 @@
 package huitca1212.alubia13.ui.forum.login;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,11 +18,12 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumLoginRegisterBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.ui.forum.ForumBaseFragment;
 import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
-public class ForumLoginEmailFragment extends Fragment implements View.OnClickListener, EditText.OnEditorActionListener, TextWatcher {
+public class ForumLoginEmailFragment extends ForumBaseFragment implements View.OnClickListener, EditText.OnEditorActionListener {
 
 	private String email;
 	@Bind(R.id.progressbar_view_login) LinearLayout progressbarView;
@@ -56,8 +53,6 @@ public class ForumLoginEmailFragment extends Fragment implements View.OnClickLis
 	private void checkEmail() {
 		email = emailEditText.getText().toString().trim();
 		if (Checkers.isRightEmail(email)) {
-			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
 			accessWebService();
 		} else {
 			emailEditText.setError(getString(R.string.forum_error_bad_email));
@@ -65,18 +60,18 @@ public class ForumLoginEmailFragment extends Fragment implements View.OnClickLis
 	}
 
 	private void accessWebService() {
-		blockScreen();
+		blockScreen(continueLoginButton, emailEditText, progressbarView);
 		ForumLoginRegisterBusiness.checkEmailForum(email, true, new AllBusinessListener<String>() {
 			@Override
 			public void onServerSuccess(String result) {
-				unblockScreen();
+				unblockScreen(continueLoginButton, emailEditText, progressbarView);
 				// Continue login
 				((ForumLoginActivity)getActivity()).openLoginPasswordFragment(email);
 			}
 
 			@Override
 			public void onFailure(String result) {
-				unblockScreen();
+				unblockScreen(continueLoginButton, emailEditText, progressbarView);
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
 						Notifications.showToast(getActivity(), getString(R.string.common_internet_error));
@@ -112,16 +107,6 @@ public class ForumLoginEmailFragment extends Fragment implements View.OnClickLis
 	}
 
 	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-	}
-
-	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-	}
-
-	@Override
 	public void afterTextChanged(Editable s) {
 		if (s.toString().trim().length() > 0) {
 			continueLoginButton.setEnabled(true);
@@ -130,17 +115,5 @@ public class ForumLoginEmailFragment extends Fragment implements View.OnClickLis
 			continueLoginButton.setEnabled(false);
 			continueLoginButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
-	}
-
-	private void blockScreen() {
-		continueLoginButton.setEnabled(false);
-		emailEditText.setEnabled(false);
-		progressbarView.setVisibility(View.VISIBLE);
-	}
-
-	private void unblockScreen() {
-		continueLoginButton.setEnabled(true);
-		emailEditText.setEnabled(true);
-		progressbarView.setVisibility(View.GONE);
 	}
 }

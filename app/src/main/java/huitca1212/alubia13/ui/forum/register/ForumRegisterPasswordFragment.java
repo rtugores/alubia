@@ -2,9 +2,7 @@ package huitca1212.alubia13.ui.forum.register;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,28 +16,32 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.ui.forum.ForumBaseFragment;
 import huitca1212.alubia13.utils.Checkers;
 
-public class ForumRegisterPasswordFragment extends Fragment implements View.OnClickListener, TextView.OnEditorActionListener, TextWatcher {
+public class ForumRegisterPasswordFragment extends ForumBaseFragment implements View.OnClickListener, TextView.OnEditorActionListener {
 
-	@Bind(R.id.password_edit_text) EditText passwdEditText;
+	@Bind(R.id.password_edit_text) EditText passwordEditText;
 	@Bind(R.id.perform_register) Button registerButton;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_forum_register_password, container, false);
 		ButterKnife.bind(this, view);
 
-		passwdEditText.setOnEditorActionListener(this);
-		passwdEditText.addTextChangedListener(this);
+		passwordEditText.requestFocus();
+		InputMethodManager imgr = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+		imgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+		passwordEditText.setOnEditorActionListener(this);
+		passwordEditText.addTextChangedListener(this);
 		registerButton.setOnClickListener(this);
 
 		return view;
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 	}
 
 	@Override
@@ -51,13 +53,13 @@ public class ForumRegisterPasswordFragment extends Fragment implements View.OnCl
 	}
 
 	protected void checkPassword() {
-		String password = passwdEditText.getText().toString().trim();
+		String password = passwordEditText.getText().toString().trim();
 		if (Checkers.isRightPassword(password)) {
 			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(passwdEditText.getWindowToken(), 0);
+			imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
 			((ForumRegisterActivity)getActivity()).openRegisterCodeFragment(password);
 		} else {
-			passwdEditText.setError(getString(R.string.forum_error_bad_passwd));
+			passwordEditText.setError(getString(R.string.forum_error_bad_passwd));
 		}
 	}
 
@@ -79,13 +81,5 @@ public class ForumRegisterPasswordFragment extends Fragment implements View.OnCl
 			registerButton.setEnabled(false);
 			registerButton.setBackgroundResource(R.drawable.d_button_gray);
 		}
-	}
-
-	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	}
-
-	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
 }
