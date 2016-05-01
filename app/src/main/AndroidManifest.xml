@@ -37,25 +37,10 @@
             android:name=".ui.schedule.ScheduleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.schedule.FridayActivity"
+            android:name=".ui.schedule.ScheduleDayActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.schedule.SaturdayActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.schedule.SundayActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.schedule.MondayActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.schedule.GreetingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.schedule.QueensLadiesActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.schedule.RaceActivity"
+            android:name=".ui.schedule.ScheduleInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.more.MoreActivity"

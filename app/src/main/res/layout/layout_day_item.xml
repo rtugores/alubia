@@ -2,9 +2,9 @@
 <LinearLayout android:id="@+id/forum_outside_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -23,31 +23,23 @@
             android:layout_marginTop="6dip"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/day_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="1dip"
-                android:layout_marginTop="1dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/LblTitulo"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.40"
-                    android:textIsSelectable="false"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                tools:text="00:00 Some event to show" />
 
             <TextView
-                android:id="@+id/LblSubTitulo"
+                android:id="@+id/day_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dip"
                 android:textColor="#3A6EA5"
                 android:textIsSelectable="false"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:text="Place the event is shown" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -13,9 +13,21 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.schedule.ScheduleDay;
 
-public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> {
+public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> implements View.OnClickListener {
 
-	ArrayList<ScheduleDay> days = new ArrayList<>();
+	public ArrayList<ScheduleDay> days = new ArrayList<>();
+	private View.OnClickListener listener;
+
+	@Override
+	public void onClick(View v) {
+		if (listener != null) {
+			listener.onClick(v);
+		}
+	}
+
+	public void setOnClickListener(View.OnClickListener listener) {
+		this.listener = listener;
+	}
 
 	public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
 		@Bind(R.id.schedule_title) TextView title;
@@ -31,6 +43,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 	public ScheduleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View itemView = LayoutInflater.from(parent.getContext())
 				.inflate(R.layout.layout_schedule_item, parent, false);
+		itemView.setOnClickListener(this);
 		return new ScheduleViewHolder(itemView);
 	}
 

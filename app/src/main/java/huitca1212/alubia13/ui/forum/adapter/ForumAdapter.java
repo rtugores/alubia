@@ -24,7 +24,7 @@ import huitca1212.alubia13.model.forum.Comment;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 
-public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHolder> implements View.OnClickListener {
+public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHolder> {
 
 	private static final int TYPE_VIP = 1;
 	private static final int TYPE_VIP_REPEATED = 2;
@@ -36,7 +36,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
 	private Context ctx;
 	private ArrayList<Comment> comments = new ArrayList<>();
-	private View.OnClickListener listener;
 	private String userLogged, invited;
 	private ResultBusinessListener resultListener;
 	private int marginPadding;
@@ -46,7 +45,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		this.invited = invited;
 		this.resultListener = resultListener;
 		userLogged = ctx.getSharedPreferences("PREFERENCE", 0).getString("username", "username");
-		marginPadding = convertDptoPixel(50);
+		marginPadding = convertDpToPixel(50);
 	}
 
 	public static class ForumViewHolder extends RecyclerView.ViewHolder {
@@ -112,7 +111,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		forumViewHolder.group.setText(comments.get(position).getGroup());
 		forumViewHolder.date.setText(comments.get(position).getDate());
 
-		forumViewHolder.itemView.setLongClickable(true);
 		forumViewHolder.reportButton.setClickable(true);
 		forumViewHolder.reportButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -199,24 +197,13 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		}
 	}
 
-	@Override
-	public void onClick(View v) {
-		if (listener != null) {
-			listener.onClick(v);
-		}
-	}
-
-	private int convertDptoPixel(int dpMeasure) {
+	private int convertDpToPixel(int dpMeasure) {
 		Resources r = ctx.getResources();
 		return (int)TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP,
 				dpMeasure,
 				r.getDisplayMetrics()
 		);
-	}
-
-	public void setOnClickListener(View.OnClickListener listener) {
-		this.listener = listener;
 	}
 
 	public boolean update(ArrayList<Comment> comments) {

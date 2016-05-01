@@ -2,7 +2,9 @@ package huitca1212.alubia13.model.schedule;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ScheduleEvent {
+import java.io.Serializable;
+
+public class ScheduleEvent implements Serializable {
 	@SerializedName("name") private String name;
 	@SerializedName("place") private String place;
 	@SerializedName("details") private ScheduleEventDetails scheduleEventDetails;

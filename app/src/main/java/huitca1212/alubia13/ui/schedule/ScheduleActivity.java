@@ -1,14 +1,10 @@
 package huitca1212.alubia13.ui.schedule;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +18,7 @@ import huitca1212.alubia13.model.schedule.ScheduleWrapper;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleAdapter;
 import huitca1212.alubia13.utils.Analytics;
 
-public class ScheduleActivity extends AppCompatActivity implements ListView.OnItemClickListener {
+public class ScheduleActivity extends AppCompatActivity {
 
 	protected ScheduleWrapper scheduleWrapper;
 	private LinearLayoutManager mLayoutManager;
@@ -51,10 +47,23 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 	private void getSchedule() {
 		ScheduleBusiness.getBackendScheduleContent(new AllBusinessListener<ScheduleWrapper>() {
 			@Override
-			public void onServerSuccess(ScheduleWrapper scheduleWrapper) {
+			public void onServerSuccess(final ScheduleWrapper scheduleWrapper) {
 				ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
 				scheduleTitle.setText(scheduleWrapper.getTitle());
 				adapter.updateList(scheduleWrapper.getScheduleDays());
+				adapter.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						int positionSelected = recyclerView.getChildAdapterPosition(v);
+						if (scheduleWrapper.getScheduleDays().get(positionSelected).getDay() == null) {
+							ScheduleInfoActivity.startActivity(ScheduleActivity.this,
+									scheduleWrapper.getScheduleDays().get(positionSelected).getDescription());
+						} else {
+							ScheduleDayActivity.startActivity(ScheduleActivity.this,
+									scheduleWrapper.getScheduleDays().get(positionSelected));
+						}
+					}
+				});
 			}
 
 			@Override
@@ -64,40 +73,5 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 				}
 			}
 		});
-	}
-
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		switch (position) {
-			case 0:
-				Intent intent0 = new Intent(ScheduleActivity.this, GreetingActivity.class);
-				startActivity(intent0);
-				break;
-			case 1:
-				Intent intent1 = new Intent(ScheduleActivity.this, QueensLadiesActivity.class);
-				startActivity(intent1);
-				break;
-			case 2:
-				Intent intent3 = new Intent(ScheduleActivity.this, FridayActivity.class);
-				startActivity(intent3);
-				break;
-			case 3:
-				Intent intent4 = new Intent(ScheduleActivity.this, SaturdayActivity.class);
-				intent4.putExtra("day", "saturday");
-				startActivity(intent4);
-				break;
-			case 4:
-				Intent intent5 = new Intent(ScheduleActivity.this, SundayActivity.class);
-				startActivity(intent5);
-				break;
-			case 5:
-				Intent intent6 = new Intent(ScheduleActivity.this, MondayActivity.class);
-				startActivity(intent6);
-				break;
-			case 6:
-				Intent intent7 = new Intent(ScheduleActivity.this, RaceActivity.class);
-				startActivity(intent7);
-				break;
-		}
 	}
 }

@@ -6,12 +6,10 @@
     android:background="@drawable/background_default"
     android:orientation="vertical">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/schedule_list"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:divider="@null" />
+        android:layout_height="wrap_content" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/ad_view"
