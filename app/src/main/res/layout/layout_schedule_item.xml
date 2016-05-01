@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dip"
-    android:layout_marginTop="10dip"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/schedule_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginStart="10dip"
-        android:layout_marginTop="12dip"
-        android:layout_weight="0.40"
-        android:textColor="#3A6EA5"
-        android:textIsSelectable="false"
-        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="14dp">
 
-    <TextView
-        android:id="@+id/schedule_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dip"
-        android:layout_marginEnd="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="12dip"
-        android:textIsSelectable="false"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/schedule_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="#3A6EA5"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/schedule_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            tools:text="Day" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D0D0D0" />
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.Bind;
@@ -27,6 +28,7 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 	private LinearLayoutManager mLayoutManager;
 	private ScheduleAdapter adapter;
 	@Bind(R.id.schedule_list) RecyclerView recyclerView;
+	@Bind(R.id.schedule_title) TextView scheduleTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,6 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 
 	private void setDefaultAdapter() {
 		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-		mLayoutManager.setStackFromEnd(true);
 		recyclerView.setLayoutManager(mLayoutManager);
 		adapter = new ScheduleAdapter();
 		recyclerView.setAdapter(adapter);
@@ -52,6 +53,7 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 			@Override
 			public void onServerSuccess(ScheduleWrapper scheduleWrapper) {
 				ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
+				scheduleTitle.setText(scheduleWrapper.getTitle());
 				adapter.updateList(scheduleWrapper.getScheduleDays());
 			}
 
