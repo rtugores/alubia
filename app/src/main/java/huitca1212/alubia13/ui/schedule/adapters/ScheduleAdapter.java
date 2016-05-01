@@ -1,41 +1,52 @@
 package huitca1212.alubia13.ui.schedule.adapters;
 
-import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.model.Schedule;
+import huitca1212.alubia13.model.schedule.ScheduleDay;
 
-public class ScheduleAdapter extends ArrayAdapter<Schedule> {
+public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> {
 
-	private Activity context;
-	private Schedule[] data;
+	ArrayList<ScheduleDay> days = new ArrayList<>();
 
-	public ScheduleAdapter(Activity context, Schedule[] data) {
-		super(context, R.layout.layout_schedule_item, data);
-		this.context = context;
-		this.data = data;
+	public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
+		@Bind(R.id.schedule_title) TextView title;
+		@Bind(R.id.schedule_day) TextView day;
+
+		public ScheduleViewHolder(View itemView) {
+			super(itemView);
+			ButterKnife.bind(this, itemView);
+		}
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = context.getLayoutInflater();
-		View item;
-		if (convertView == null) {
-			item = inflater.inflate(R.layout.layout_schedule_item, parent, false);
-		} else {
-			item = convertView;
-		}
+	@Override
+	public ScheduleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		View itemView = LayoutInflater.from(parent.getContext())
+				.inflate(R.layout.layout_schedule_item, parent, false);
+		return new ScheduleViewHolder(itemView);
+	}
 
-		TextView lblTitle = (TextView)item.findViewById(R.id.LblTituloPrograma);
-		TextView lblSubtitle = (TextView)item.findViewById(R.id.LblSubtituloPrograma);
+	@Override
+	public void onBindViewHolder(ScheduleViewHolder scheduleViewHolder, int position) {
+		scheduleViewHolder.title.setText(days.get(position).getTitle());
+		scheduleViewHolder.day.setText(days.get(position).getDay());
+	}
 
-		lblTitle.setText(data[position].getTitle());
-		lblSubtitle.setText(data[position].getSubtitle());
+	@Override
+	public int getItemCount() {
+		return days.size();
+	}
 
-		return (item);
+	public void updateList(ArrayList<ScheduleDay> days) {
+		this.days = days;
+		notifyDataSetChanged();
 	}
 }

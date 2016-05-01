@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
-import huitca1212.alubia13.model.Comment;
+import huitca1212.alubia13.model.forum.Comment;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 

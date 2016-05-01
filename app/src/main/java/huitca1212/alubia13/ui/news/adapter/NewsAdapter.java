@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.model.News;
+import huitca1212.alubia13.model.news.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 

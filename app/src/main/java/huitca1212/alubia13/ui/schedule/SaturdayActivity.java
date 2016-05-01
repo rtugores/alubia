@@ -18,7 +18,7 @@ import android.widget.ListView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.model.Schedule;
+import huitca1212.alubia13.model.schedule.Schedule;
 import huitca1212.alubia13.ui.schedule.adapters.DayAdapter;
 
 public class SaturdayActivity extends AppCompatActivity {

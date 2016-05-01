@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
-import huitca1212.alubia13.model.News;
-import huitca1212.alubia13.model.NewsWrapper;
+import huitca1212.alubia13.model.news.News;
+import huitca1212.alubia13.model.news.NewsWrapper;
 import huitca1212.alubia13.service.AlubiaService;
 
 public class NewsBusiness {

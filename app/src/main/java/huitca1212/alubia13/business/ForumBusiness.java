@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
-import huitca1212.alubia13.model.Comment;
-import huitca1212.alubia13.model.CommentWrapper;
-import huitca1212.alubia13.model.CommentsWrapper;
-import huitca1212.alubia13.model.Result;
+import huitca1212.alubia13.model.forum.Comment;
+import huitca1212.alubia13.model.forum.CommentWrapper;
+import huitca1212.alubia13.model.forum.CommentsWrapper;
+import huitca1212.alubia13.model.common.Result;
 import huitca1212.alubia13.service.AlubiaService;
 
 public class ForumBusiness {

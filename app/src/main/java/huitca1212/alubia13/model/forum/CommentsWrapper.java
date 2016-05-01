@@ -1,10 +1,8 @@
-package huitca1212.alubia13.model;
+package huitca1212.alubia13.model.forum;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-
-import huitca1212.alubia13.service.AlubiaService;
 
 public class CommentsWrapper {
 	@SerializedName("resultado") private String result;

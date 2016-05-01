@@ -1,4 +1,4 @@
-package huitca1212.alubia13.model;
+package huitca1212.alubia13.model.forum;
 
 import com.google.gson.annotations.SerializedName;
 

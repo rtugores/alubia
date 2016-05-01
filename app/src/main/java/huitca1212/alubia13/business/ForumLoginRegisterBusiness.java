@@ -7,7 +7,7 @@ import java.net.URLEncoder;
 
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
-import huitca1212.alubia13.model.Result;
+import huitca1212.alubia13.model.common.Result;
 import huitca1212.alubia13.service.AlubiaService;
 
 public class ForumLoginRegisterBusiness {

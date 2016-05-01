@@ -4,21 +4,29 @@ package huitca1212.alubia13.ui.schedule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.model.Schedule;
+import huitca1212.alubia13.business.DefaultAsyncTask;
+import huitca1212.alubia13.business.ScheduleBusiness;
+import huitca1212.alubia13.business.listener.AllBusinessListener;
+import huitca1212.alubia13.model.schedule.ScheduleWrapper;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleAdapter;
 import huitca1212.alubia13.utils.Analytics;
 
 public class ScheduleActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
-	@Bind(R.id.schedule_list) ViewGroup scheduleList;
+	protected ScheduleWrapper scheduleWrapper;
+	private LinearLayoutManager mLayoutManager;
+	private ScheduleAdapter adapter;
+	@Bind(R.id.schedule_list) RecyclerView recyclerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +35,33 @@ public class ScheduleActivity extends AppCompatActivity implements ListView.OnIt
 		ButterKnife.bind(this);
 
 		Analytics.setAnalytics(this);
-		setList();
+		setDefaultAdapter();
+		getSchedule();
 	}
 
-	private void setList() {
-		ScheduleAdapter adaptador = new ScheduleAdapter(this, new Schedule[]{
-				new Schedule(getString(R.string.schedule_greeting)),
-				new Schedule(getString(R.string.schedule_queens_ladies)),
-				new Schedule(getString(R.string.schedule_friday), getString(R.string.schedule_friday_calendar)),
-				new Schedule(getString(R.string.schedule_saturday), getString(R.string.schedule_saturday_calendar)),
-				new Schedule(getString(R.string.schedule_sunday), getString(R.string.schedule_sunday_calendar)),
-				new Schedule(getString(R.string.schedule_monday), getString(R.string.schedule_monday_calendar)),
-				new Schedule(getString(R.string.schedule_race)),
+	private void setDefaultAdapter() {
+		mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		mLayoutManager.setStackFromEnd(true);
+		recyclerView.setLayoutManager(mLayoutManager);
+		adapter = new ScheduleAdapter();
+		recyclerView.setAdapter(adapter);
+	}
+
+	private void getSchedule() {
+		ScheduleBusiness.getBackendScheduleContent(new AllBusinessListener<ScheduleWrapper>() {
+			@Override
+			public void onServerSuccess(ScheduleWrapper scheduleWrapper) {
+				ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
+				adapter.updateList(scheduleWrapper.getScheduleDays());
+			}
+
+			@Override
+			public void onFailure(String result) {
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
+					Toast.makeText(ScheduleActivity.this, "Error", Toast.LENGTH_SHORT).show();
+				}
+			}
 		});
-		((ListView)scheduleList).setAdapter(adaptador);
-		((ListView)scheduleList).setOnItemClickListener(this);
 	}
 
 	@Override

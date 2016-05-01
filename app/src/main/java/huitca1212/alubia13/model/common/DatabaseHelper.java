@@ -1,4 +1,4 @@
-package huitca1212.alubia13.model;
+package huitca1212.alubia13.model.common;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.sql.SQLException;
+
+import huitca1212.alubia13.model.forum.Comment;
+import huitca1212.alubia13.model.news.News;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 

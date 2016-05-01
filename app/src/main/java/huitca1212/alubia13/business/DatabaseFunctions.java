@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 import huitca1212.alubia13.AlubiaApplication;
-import huitca1212.alubia13.model.Comment;
-import huitca1212.alubia13.model.DatabaseHelper;
-import huitca1212.alubia13.model.News;
+import huitca1212.alubia13.model.common.DatabaseHelper;
+import huitca1212.alubia13.model.forum.Comment;
+import huitca1212.alubia13.model.news.News;
 
 public class DatabaseFunctions {
 	private static DatabaseHelper databaseCommentsHelper = null;

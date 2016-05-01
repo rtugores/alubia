@@ -23,7 +23,7 @@ import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
-import huitca1212.alubia13.model.Comment;
+import huitca1212.alubia13.model.forum.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
 import huitca1212.alubia13.utils.Analytics;

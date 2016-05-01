@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.model.Schedule;
+import huitca1212.alubia13.model.schedule.Schedule;
 
 public class DayAdapter extends ArrayAdapter<Schedule> {
 
