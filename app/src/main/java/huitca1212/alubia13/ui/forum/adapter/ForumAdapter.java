@@ -39,12 +39,14 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	private View.OnClickListener listener;
 	private String userLogged, invited;
 	private ResultBusinessListener resultListener;
+	private int marginPadding;
 
 	public ForumAdapter(Context ctx, String invited, ResultBusinessListener resultListener) {
 		this.ctx = ctx;
 		this.invited = invited;
 		this.resultListener = resultListener;
 		userLogged = ctx.getSharedPreferences("PREFERENCE", 0).getString("username", "username");
+		marginPadding = convertDptoPixel(50);
 	}
 
 	public static class ForumViewHolder extends RecyclerView.ViewHolder {
@@ -66,8 +68,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
 	@Override
 	public ForumAdapter.ForumViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		View itemView = LayoutInflater.from(parent.getContext())
-				.inflate(R.layout.layout_comment_item, parent, false);
+		View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_comment_item, parent, false);
 		return new ForumViewHolder(itemView);
 	}
 
@@ -105,7 +106,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
 	@Override
 	public void onBindViewHolder(final ForumViewHolder forumViewHolder, int position) {
-
 		forumViewHolder.id.setText(Integer.toString(comments.get(position).getId()));
 		forumViewHolder.user.setText(comments.get(position).getUser());
 		forumViewHolder.comment.setText(comments.get(position).getComment());
@@ -143,20 +143,28 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	}
 
 	private void setCommentType(ForumViewHolder forumViewHolder, int position) {
-		int sizePadding = convertDptoPixel(5);
 		int itemType = forumViewHolder.getItemViewType();
 		boolean isUser = comments.get(position).getUser().equals(userLogged);
 		if (invited != null && invited.equals("OK")) {
 			forumViewHolder.reportButton.setVisibility(View.GONE);
 		} else if (isUser) {
 			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
-			outsideParams.setMargins(convertDptoPixel(50), 0, 0, 0);
+			outsideParams.setMargins(marginPadding, 0, 0, 0);
 			forumViewHolder.forumOutsideLayout.setLayoutParams(outsideParams);
 			LinearLayout.LayoutParams insideParams = (LinearLayout.LayoutParams)forumViewHolder.forumInsideLayout.getLayoutParams();
 			insideParams.gravity = Gravity.END;
 			forumViewHolder.forumInsideLayout.setLayoutParams(insideParams);
 			forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_white);
 			forumViewHolder.reportButton.setVisibility(View.GONE);
+		} else {
+			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
+			outsideParams.setMargins(0, 0, marginPadding, 0);
+			forumViewHolder.forumOutsideLayout.setLayoutParams(outsideParams);
+			LinearLayout.LayoutParams insideParams = (LinearLayout.LayoutParams)forumViewHolder.forumInsideLayout.getLayoutParams();
+			insideParams.gravity = Gravity.START;
+			forumViewHolder.forumInsideLayout.setLayoutParams(insideParams);
+			forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_left_white);
+			forumViewHolder.reportButton.setVisibility(View.VISIBLE);
 		}
 		if (itemType == TYPE_VIP || itemType == TYPE_VIP_REPEATED) {
 			if (isUser) {
@@ -167,7 +175,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 			if (itemType == TYPE_VIP) {
 				forumViewHolder.user.setTextColor(0xFFDF013A);
 			}
-			forumViewHolder.forumInsideLayout.setPadding(sizePadding, sizePadding, sizePadding, sizePadding);
 		} else if (itemType == TYPE_ADMIN || itemType == TYPE_ADMIN_REPEATED) {
 			if (isUser) {
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_blue);
@@ -179,7 +186,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 			if (itemType == TYPE_ADMIN) {
 				forumViewHolder.user.setGravity(Gravity.CENTER);
 			}
-			forumViewHolder.forumInsideLayout.setPadding(sizePadding, sizePadding, sizePadding, sizePadding);
 		}
 		if (itemType == TYPE_VIP_REPEATED || itemType == TYPE_ADMIN_REPEATED || itemType == TYPE_BAN_REPEATED || itemType == TYPE_NORMAL_REPEATED) {
 			forumViewHolder.divider.setVisibility(View.GONE);

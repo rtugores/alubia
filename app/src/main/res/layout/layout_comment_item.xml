@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/forum_outside_comment_layout"
+<LinearLayout android:id="@+id/forum_outside_comment_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="50dp"
     android:layout_marginRight="50dp"
     android:orientation="vertical">
 
@@ -14,7 +13,6 @@
         android:layout_height="6dp" />
 
     <View
-        android:id="@+id/divider_short_view"
         android:layout_width="match_parent"
         android:layout_height="2dp" />
 
@@ -23,13 +21,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/comment_left_white"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/forum_insideiu_comment_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:orientation="vertical">
 
             <TextView
@@ -41,7 +38,8 @@
                 android:textColor="#3A6EA5"
                 android:textIsSelectable="true"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="User Number 1" />
 
             <TextView
                 android:id="@+id/comment_textview"
@@ -52,12 +50,14 @@
                 android:layout_marginRight="10dp"
                 android:textIsSelectable="true"
                 android:textSize="15sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies, leo at pellentesque commodo, ipsum sem feugiat est, aliquam tempor ligula felis a lectus." />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
@@ -76,30 +76,27 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:gravity="end|center_vertical"
+                android:gravity="end"
                 android:textIsSelectable="true"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:text="Group Number 1" />
 
             <TextView
                 android:id="@+id/date_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:gravity="center_vertical"
                 android:textColor="@android:color/darker_gray"
                 android:textIsSelectable="true"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                tools:text="1 de jan., 12:00" />
         </LinearLayout>
-
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/id_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" />
-
 </LinearLayout>
 

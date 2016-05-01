@@ -25,7 +25,6 @@ import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
-import huitca1212.alubia13.ui.more.MoreActivity;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
 import huitca1212.alubia13.utils.Analytics;
 import huitca1212.alubia13.utils.Checkers;
@@ -157,10 +156,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		blockScreenForEvent();
 		ForumBusiness.getBackendForumContent(new AllBusinessListener<ArrayList<Comment>>() {
 			@Override
-			public void onDatabaseSuccess(ArrayList<Comment> list) {
-			}
-
-			@Override
 			public void onServerSuccess(ArrayList<Comment> list) {
 				unblockScreenForEvent();
 				if (list.size() > 0) {
@@ -189,11 +184,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	private void sendCommentAndRefresh(String user, String comment) {
 		blockScreenForEvent();
 		ForumBusiness.sendCommentToBackend(user, comment, new AllBusinessListener<Comment>() {
-			@Override
-			public void onDatabaseSuccess(Comment object) {
-
-			}
-
 			@Override
 			public void onServerSuccess(Comment comment) {
 				unblockScreenForEvent();
@@ -275,5 +265,4 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			}
 		}
 	}
-
 }
