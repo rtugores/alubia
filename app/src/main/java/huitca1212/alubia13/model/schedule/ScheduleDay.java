@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ScheduleDay implements Serializable {
-
+	private static final long serialVersionUID = 875034706902629931L;
 	@SerializedName("title") private String title;
 	@SerializedName("day") private String day;
 	@SerializedName("description") private String description;

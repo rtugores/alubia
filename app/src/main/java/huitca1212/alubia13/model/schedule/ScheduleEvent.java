@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class ScheduleEvent implements Serializable {
+	private static final long serialVersionUID = -139948390714806666L;
 	@SerializedName("name") private String name;
 	@SerializedName("place") private String place;
 	@SerializedName("details") private ScheduleEventDetails scheduleEventDetails;
