@@ -7,6 +7,10 @@ import com.google.gson.JsonSyntaxException;
 import android.util.Log;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -25,18 +29,38 @@ public class AlubiaService {
 				.build();
 		try {
 			Response response = client.newCall(request).execute();
-			jsonResult = response.body().string();
+			//jsonResult = response.body().string();
+			InputStream in = response.body().byteStream();
+			String body = slurp(in, 1024);
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			Gson gson = gsonBuilder.create();
-			T data = gson.fromJson(jsonResult, classofT);
-			return data;
+			return gson.fromJson(body, classofT);
 		} catch (IOException e) {
-			Log.e(AlubiaService.class.getName(), "Exception in service: " + e.getMessage());
+			Log.e(AlubiaService.class.getName(), "Exception in service: " + e.getMessage(), e);
 			return null;
 		} catch (JsonSyntaxException e) {
-			Log.e(AlubiaService.class.getName(), "Exception while parsing: " + e.getMessage());
+			Log.e(AlubiaService.class.getName(), "Exception while parsing: " + e.getMessage(), e);
 			return null;
 		}
+	}
+
+	public static String slurp(final InputStream is, final int bufferSize) throws IOException {
+		final char[] buffer = new char[bufferSize];
+		final StringBuilder out = new StringBuilder();
+		Reader in;
+		try {
+			in = new InputStreamReader(is, "UTF-8");
+			for (;;) {
+				int rsz = in.read(buffer, 0, buffer.length);
+				if (rsz < 0)
+					break;
+				out.append(buffer, 0, rsz);
+			}
+		}
+		catch (UnsupportedEncodingException ex) {
+            return null;
+		}
+		return out.toString();
 	}
 
 }

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ScheduleDay implements Serializable {
+
 	@SerializedName("title") private String title;
 	@SerializedName("day") private String day;
 	@SerializedName("description") private String description;

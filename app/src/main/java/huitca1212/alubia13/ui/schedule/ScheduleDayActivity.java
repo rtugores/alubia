@@ -49,14 +49,14 @@ public class ScheduleDayActivity extends AppCompatActivity {
 			adapter.updateList(scheduleDay.getEvents());
 		}
 
-		AdRequest adRequest = new AdRequest.Builder().build();
+		/*AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 		adView.setAdListener(new AdListener() {
 			@Override
 			public void onAdLoaded() {
 				adView.setVisibility(View.VISIBLE);
 			}
-		});
+		});*/
 
 	}
 
