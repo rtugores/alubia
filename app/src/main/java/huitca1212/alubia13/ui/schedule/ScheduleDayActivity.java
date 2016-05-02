@@ -39,7 +39,7 @@ public class ScheduleDayActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_day);
+		setContentView(R.layout.activity_schedule_day);
 		ButterKnife.bind(this);
 
 		setDefaultAdapter();

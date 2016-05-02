@@ -35,7 +35,6 @@
                     android:textIsSelectable="false"
                     android:layout_marginRight="6dp"
                     android:textSize="20sp"
-                    android:textStyle="bold"
                     android:textColor="#B40431"
                     tools:text="00:00" />
 

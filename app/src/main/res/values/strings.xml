@@ -20,46 +20,7 @@
     <string name="album_api_error">Necesitas un móvil con una versión de Android superior a la 2.3.7 para ver el álbum</string>
 
     <!-- Schedule -->
-    XIV Carrera de la Alubia
-    <string name="schedule_title">Programa de fiestas \'15</string>
-    <string name="schedule_friday">Viernes</string>
-    <string name="schedule_friday_calendar">21 de agosto</string>
-    <string name="schedule_saturday">Sábado</string>
-    <string name="schedule_saturday_calendar">22 de agosto</string>
-    <string name="schedule_sunday">Domingo</string>
-    <string name="schedule_sunday_calendar">23 de agosto</string>
-    <string name="schedule_monday">Lunes</string>
-    <string name="schedule_monday_calendar">24 de agosto</string>
-    <string name="schedule_greeting">Saludo del alcalde</string>
-    <string name="schedule_greeting_content">Llega de nuevo la Fiesta de la Alubia, fiesta de la juventud, que vuelve a ser motivo de alegría y disfrute. Momento para olvidar la rutina cotidiana pero, también, la ocasión para demostrar que sabemos divertirnos, respetando lo que nos rodea y a la gente con la que convivimos.
-\n\nOs invito a que dejéis a un lado vuestras preocupaciones durante estos días y a que salgáis a la calle a vivir el bullicio y la alegría que van a inundar nuestro pueblo.
-\n\nEl pregonero de este año será D. Alberto Rodríguez Santos, nuestro párroco, al que agradecemos su colaboración al igual que a las Reinas y Damas Juveniles e Infantiles que, con su belleza y simpatía, nos harán sentirnos orgullosos de las nuevas generaciones lagunesas.
-\n\nQuiero manifestar también nuestro agradecimiento a las Peñas y sus fantásticos peñistas porque sin vosotros nada de esto habría sido posible. Asimismo a los trabajadores municipales por su dedicación con el fin de que todo esté en orden.
-\nUn recuerdo muy especial a quienes, en años anteriores, compartieron y disfrutaron de nuestra fiesta y ya no están entre nosotros. Estamos plenamente convencidos de que allá donde se encuentren, se sentirán felices viendo cómo seguimos alimentando la tradición.
-\n\nEn nombre de la Corporación Municipal os deseamos que paséis unas felices fiestas.
-\nUn abrazo muy fuerte de vuestro amigo y, a la vez, vuestro alcalde.
-\n\n<b>El alcalde del Ayuntamiento de Laguna de Negrillos</b></string>
-    <string name="schedule_queens_ladies">Reinas y Damas Alubia 2015</string>
-    <string name="schedule_queens_ladies_content"><b>Reina y Damas juveniles.</b>
-\n\nReina: Noelia Murciego Casado
-\nDama: Laura Morán Lozano
-\nDama: Raquel Ugidos López
-\n\n\n<b>Reina y Damas infantiles.</b>
-\n\nReina: Kiara Martínez Blanco
-\nDama: María Caramazana García
-\nDama: Belén Santo Tomás Merino</string>
-    <string name="schedule_race">XIV Carrera de la Alubia</string>
-    <string name="schedule_race_content"><b>SÁBADO 29 DE AGOSTO</b>
-\n\n<b>Inscripciones:</b>
-\n\n<b>18:30 h. -</b> Apertura de inscripciones para la XIV Carrera Popular “Alubia 2015”.
-\n<b>Lugar:</b> Plaza del castillo.
-\n\n<b>Horario:</b>
-\n\n<b>19:00 h. -</b> Comienzo de la XIV Carrera Popular “Alubia 2015”.
-\n<b>Salida:</b> Plaza del castillo.</string>
-    <string name="schedule_saturday_ac1_hour">11:30</string>
-    <string name="schedule_saturday_ac1_title">Partido de fútbol</string>
-    <string name="schedule_saturday_ac1_subtitle">Campo de fútbol municipal</string>
-    <string name="schedule_saturday_ac1_explanation">Enfrentamiento del Juristas de León contra el Candas en el campo de fútbol municipal.</string>
+    <!-- Retrieved from the Internet: schedule_alubia.json -->
 
     <!-- Main Activity -->
     <string name="home_title">Fiesta de la Alubia 2016</string>
