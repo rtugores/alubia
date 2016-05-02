@@ -30,6 +30,7 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 	}
 
 	public static class DayViewHolder extends RecyclerView.ViewHolder {
+		@Bind(R.id.hour_title) TextView hour;
 		@Bind(R.id.day_title) TextView event;
 		@Bind(R.id.day_subtitle) TextView place;
 
@@ -49,6 +50,7 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 
 	@Override
 	public void onBindViewHolder(DayViewHolder dayViewHolder, int position) {
+		dayViewHolder.hour.setText(events.get(position).getHour());
 		dayViewHolder.event.setText(events.get(position).getName());
 		dayViewHolder.place.setText(events.get(position).getPlace());
 	}

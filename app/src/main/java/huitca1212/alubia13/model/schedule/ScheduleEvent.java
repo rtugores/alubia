@@ -6,9 +6,18 @@ import java.io.Serializable;
 
 public class ScheduleEvent implements Serializable {
 	private static final long serialVersionUID = -139948390714806666L;
+	@SerializedName("hour") private String hour;
 	@SerializedName("name") private String name;
 	@SerializedName("place") private String place;
 	@SerializedName("details") private ScheduleEventDetails scheduleEventDetails;
+
+	public String getHour() {
+		return hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
 
 	public String getName() {
 		return name;
