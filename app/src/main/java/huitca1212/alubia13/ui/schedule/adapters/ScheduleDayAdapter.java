@@ -1,6 +1,7 @@
 package huitca1212.alubia13.ui.schedule.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,6 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 	}
 
 	public static class DayViewHolder extends RecyclerView.ViewHolder {
-		@Bind(R.id.hour_title) TextView hour;
 		@Bind(R.id.day_title) TextView event;
 		@Bind(R.id.day_subtitle) TextView place;
 
@@ -50,8 +50,7 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 
 	@Override
 	public void onBindViewHolder(DayViewHolder dayViewHolder, int position) {
-		dayViewHolder.hour.setText(events.get(position).getHour());
-		dayViewHolder.event.setText(events.get(position).getName());
+		dayViewHolder.event.setText(Html.fromHtml("<font color='#B40431'>" + events.get(position).getHour() + "</font> " + events.get(position).getName()));
 		dayViewHolder.place.setText(events.get(position).getPlace());
 	}
 
