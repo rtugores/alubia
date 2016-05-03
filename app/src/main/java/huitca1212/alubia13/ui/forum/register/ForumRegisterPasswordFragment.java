@@ -22,6 +22,7 @@ import huitca1212.alubia13.utils.Checkers;
 public class ForumRegisterPasswordFragment extends ForumBaseFragment implements View.OnClickListener, TextView.OnEditorActionListener {
 
 	@Bind(R.id.password_edit_text) EditText passwordEditText;
+	@Bind(R.id.password_confirm_edit_text) EditText passwordConfirmEditText;
 	@Bind(R.id.perform_register) Button registerButton;
 
 	@Override
@@ -37,7 +38,7 @@ public class ForumRegisterPasswordFragment extends ForumBaseFragment implements 
 		passwordEditText.requestFocus();
 		InputMethodManager imgr = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		imgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-		passwordEditText.setOnEditorActionListener(this);
+		passwordConfirmEditText.setOnEditorActionListener(this);
 		passwordEditText.addTextChangedListener(this);
 		registerButton.setOnClickListener(this);
 
@@ -54,10 +55,15 @@ public class ForumRegisterPasswordFragment extends ForumBaseFragment implements 
 
 	protected void checkPassword() {
 		String password = passwordEditText.getText().toString().trim();
+		String passwordConfirm = passwordConfirmEditText.getText().toString().trim();
 		if (Checkers.isRightPassword(password)) {
-			InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
-			((ForumRegisterActivity)getActivity()).openRegisterCodeFragment(password);
+			if (password.equals(passwordConfirm)) {
+				InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(passwordEditText.getWindowToken(), 0);
+				((ForumRegisterActivity)getActivity()).openRegisterCodeFragment(password);
+			} else {
+				passwordConfirmEditText.setError(getString(R.string.forum_error_bad_confirm_passwd));
+			}
 		} else {
 			passwordEditText.setError(getString(R.string.forum_error_bad_passwd));
 		}
@@ -65,7 +71,7 @@ public class ForumRegisterPasswordFragment extends ForumBaseFragment implements 
 
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		if (actionId == EditorInfo.IME_ACTION_NEXT) {
+		if (actionId == EditorInfo.IME_ACTION_SEND) {
 			checkPassword();
 			return true;
 		}

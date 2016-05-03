@@ -23,9 +23,11 @@ public class ForumRegisterActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_forum_login_register);
 		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 
-		ForumRegisterUserFragment forumRegisterUserFragment = new ForumRegisterUserFragment();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.forum_login_fragment_container, forumRegisterUserFragment).commit();
+		if(savedInstanceState == null) {
+			ForumRegisterUserFragment forumRegisterUserFragment = new ForumRegisterUserFragment();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.forum_login_fragment_container, forumRegisterUserFragment).commit();
+		}
 	}
 
 	public void openRegisterEmailFragment(String user) {

@@ -232,6 +232,7 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_enter_as_invited">Entrar como invitado</string>
     <string name="forum_insert_passwd">Introduce tu contraseña</string>
     <string name="forum_passwd">Contraseña</string>
+    <string name="forum_passwd_confirm">Confirma tu contraseña</string>
     <string name="forum_continue">Continuar</string>
     <string name="forum_forgot_passwd">¿Olvidaste tu contraseña?</string>
     <string name="forum_send_passwd">Envíamela a mi correo</string>
@@ -260,7 +261,8 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="forum_error_user_blocked">Has sido bloqueado por incumplir las normas del foro</string>
     <string name="forum_error_bad_user">El usuario ha de tener al menos 3 caracteres</string>
     <string name="forum_error_user_repeated">Este nombre de usuario ya existe. Prueba con otro</string>
-    <string name="forum_error_bad_passwd">La contraseña ha de tener al menos 5 caracteres y no debe contener espacios</string>
+    <string name="forum_error_bad_passwd">La contraseña debe tener al menos 5 caracteres y no debe contener espacios</string>
+    <string name="forum_error_bad_confirm_passwd">Las contraseñas no coinciden</string>
     <string name="forum_error_different_passwd">La contraseña que introdujiste no coincide con la de la cuenta</string>
     <string name="forum_error_bad_email">El email tiene un formato incorrecto. Asegúrate de que esté bien escrito</string>
     <string name="forum_error_different_email">No podemos encontrar este email. Asegúrate de que esté bien escrito</string>

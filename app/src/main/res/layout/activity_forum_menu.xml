@@ -33,7 +33,6 @@
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/home_forum"
         android:src="@drawable/separator" />
 
     <Button
@@ -54,7 +53,6 @@
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/home_forum"
         android:src="@drawable/separator" />
 
     <Button
@@ -69,5 +67,4 @@
         android:text="@string/forum_enter_as_invited"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
-
 </LinearLayout>

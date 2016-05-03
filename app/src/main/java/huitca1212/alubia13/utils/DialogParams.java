@@ -3,7 +3,7 @@ package huitca1212.alubia13.utils;
 public class DialogParams {
 	private String title, message, positiveButton, negativeButton;
 
-	public DialogParams(){
+	public DialogParams() {
 
 	}
 
