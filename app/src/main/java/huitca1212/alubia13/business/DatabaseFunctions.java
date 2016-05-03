@@ -35,6 +35,24 @@ public class DatabaseFunctions {
 		}
 	}
 
+	public static void setDatabaseScheduleWrapper(final ArrayList<News> data) {
+		try {
+			final RuntimeExceptionDao<News, Integer> newsDao = getDbHelper().getNewsDao();
+			newsDao.callBatchTasks(new Callable<Void>() {
+				@Override
+				public Void call() throws Exception {
+					newsDao.deleteBuilder().delete();
+					for (News aData : data) {
+						newsDao.create(aData);
+					}
+					return null;
+				}
+			});
+		} catch (SQLException e) {
+			Log.e("DatabaseFunctions", "Error in setDatabaseNewsValues");
+		}
+	}
+
 	public static void setDatabaseComments(final ArrayList<Comment> data) {
 		try {
 			final RuntimeExceptionDao<Comment, Integer> commentsDao = getDbHelper().getCommentsDao();

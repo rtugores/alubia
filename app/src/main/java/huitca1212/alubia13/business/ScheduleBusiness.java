@@ -1,11 +1,56 @@
 package huitca1212.alubia13.business;
 
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+
+import java.sql.SQLException;
+
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
 import huitca1212.alubia13.model.schedule.ScheduleWrapper;
 import huitca1212.alubia13.service.AlubiaService;
 
 public class ScheduleBusiness {
+
+	public static void getScheduleContent(AllBusinessListener<ScheduleWrapper> listener) {
+		getDatabaseScheduleContent(listener);
+	}
+
+	public static void getDatabaseScheduleContent(final AllBusinessListener<ScheduleWrapper> listener) {
+		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
+			ScheduleWrapper list;
+
+			@Override
+			public String onBackground() {
+				RuntimeExceptionDao<ScheduleWrapper, Integer> simpleDao;
+				try {
+					simpleDao = DatabaseFunctions.getDbHelper().getScheduleWrapperDao();
+				} catch (SQLException e) {
+					return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
+				}
+				list = new ScheduleWrapper();
+				try {
+					if (simpleDao != null) {
+						list = (ScheduleWrapper)simpleDao.queryBuilder().orderBy("id", false).query();
+						return DefaultAsyncTask.ASYNC_TASK_OK;
+					} else {
+						return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
+					}
+				} catch (SQLException e) {
+					return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
+				}
+			}
+
+			@Override
+			public void onFinish(String result) {
+				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
+					listener.onDatabaseSuccess(list);
+				} else {
+					listener.onFailure(result);
+				}
+				getBackendScheduleContent(listener);
+			}
+		}).execute();
+	}
 
 	public static void getBackendScheduleContent(final AllBusinessListener<ScheduleWrapper> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {

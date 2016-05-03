@@ -45,7 +45,29 @@ public class ScheduleActivity extends AppCompatActivity {
 	}
 
 	private void getSchedule() {
-		ScheduleBusiness.getBackendScheduleContent(new AllBusinessListener<ScheduleWrapper>() {
+		ScheduleBusiness.getScheduleContent(new AllBusinessListener<ScheduleWrapper>() {
+			@Override
+			public void onDatabaseSuccess(final ScheduleWrapper scheduleWrapper) {
+				if (scheduleWrapper != null) {
+					ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
+					scheduleTitle.setText(scheduleWrapper.getTitle());
+					adapter.updateList(scheduleWrapper.getScheduleDays());
+					adapter.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							int positionSelected = recyclerView.getChildAdapterPosition(v);
+							if (scheduleWrapper.getScheduleDays().get(positionSelected).getDay() == null) {
+								ScheduleInfoActivity.startActivity(ScheduleActivity.this,
+										scheduleWrapper.getScheduleDays().get(positionSelected).getDescription());
+							} else {
+								ScheduleDayActivity.startActivity(ScheduleActivity.this,
+										scheduleWrapper.getScheduleDays().get(positionSelected));
+							}
+						}
+					});
+				}
+			}
+
 			@Override
 			public void onServerSuccess(final ScheduleWrapper scheduleWrapper) {
 				ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
