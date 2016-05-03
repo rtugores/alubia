@@ -4,13 +4,9 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +17,8 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.schedule.ScheduleDay;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleDayAdapter;
+import huitca1212.alubia13.utils.DialogParams;
+import huitca1212.alubia13.utils.Dialogs;
 
 public class ScheduleDayActivity extends AppCompatActivity {
 
@@ -44,9 +42,20 @@ public class ScheduleDayActivity extends AppCompatActivity {
 
 		setDefaultAdapter();
 
-		ScheduleDay scheduleDay = (ScheduleDay)getIntent().getSerializableExtra(BUNDLE_DAY_INFO);
+		final ScheduleDay scheduleDay = (ScheduleDay)getIntent().getSerializableExtra(BUNDLE_DAY_INFO);
 		if (scheduleDay != null) {
 			adapter.updateList(scheduleDay.getEvents());
+			adapter.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					int positionSelected = recyclerView.getChildAdapterPosition(v);
+					DialogParams params = new DialogParams();
+					params.setTitle(scheduleDay.getEvents().get(positionSelected).getScheduleEventDetails().getTitle());
+					params.setMessage(scheduleDay.getEvents().get(positionSelected).getScheduleEventDetails().getDescription());
+					params.setPositiveButton(getString(R.string.common_accept));
+					Dialogs.showGenericDialog(ScheduleDayActivity.this, params, null);
+				}
+			});
 		}
 
 		AdRequest adRequest = new AdRequest.Builder().build();
@@ -64,22 +73,5 @@ public class ScheduleDayActivity extends AppCompatActivity {
 		recyclerView.setLayoutManager(mLayoutManager);
 		adapter = new ScheduleDayAdapter();
 		recyclerView.setAdapter(adapter);
-	}
-
-	public Dialog crearDialogoAlerta(int id) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		switch (id) {
-			case 0:
-				builder.setTitle("Fútbol sala infantil");
-				builder.setMessage("Dosis de buen fútbol infantil para que puedan disfrutar " +
-						"tanto los pequeños como los más mayores.");
-				break;
-		}
-		builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
-		return builder.create();
 	}
 }
