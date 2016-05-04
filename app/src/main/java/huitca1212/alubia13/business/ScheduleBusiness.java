@@ -17,20 +17,20 @@ public class ScheduleBusiness {
 
 	public static void getDatabaseScheduleContent(final AllBusinessListener<ScheduleWrapper> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
-			ScheduleWrapper list;
+			ScheduleWrapper scheduleWrapper;
 
 			@Override
 			public String onBackground() {
-				RuntimeExceptionDao<ScheduleWrapper, Integer> simpleDao;
+				RuntimeExceptionDao<ScheduleWrapper, Integer> scheduleWrapperDao;
 				try {
-					simpleDao = DatabaseFunctions.getDbHelper().getScheduleWrapperDao();
+					scheduleWrapperDao = DatabaseFunctions.getDbHelper().getScheduleWrapperDao();
 				} catch (SQLException e) {
 					return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
 				}
-				list = new ScheduleWrapper();
+				scheduleWrapper = new ScheduleWrapper();
 				try {
-					if (simpleDao != null) {
-						list = (ScheduleWrapper)simpleDao.queryBuilder().orderBy("id", false).query();
+					if (scheduleWrapperDao != null) {
+						scheduleWrapper = (ScheduleWrapper)scheduleWrapperDao.queryBuilder().query();
 						return DefaultAsyncTask.ASYNC_TASK_OK;
 					} else {
 						return DefaultAsyncTask.ASYNC_TASK_DB_ERROR;
@@ -43,7 +43,7 @@ public class ScheduleBusiness {
 			@Override
 			public void onFinish(String result) {
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
-					listener.onDatabaseSuccess(list);
+					listener.onDatabaseSuccess(scheduleWrapper);
 				} else {
 					listener.onFailure(result);
 				}

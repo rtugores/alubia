@@ -13,6 +13,7 @@ import huitca1212.alubia13.AlubiaApplication;
 import huitca1212.alubia13.model.common.DatabaseHelper;
 import huitca1212.alubia13.model.forum.Comment;
 import huitca1212.alubia13.model.news.News;
+import huitca1212.alubia13.model.schedule.ScheduleWrapper;
 
 public class DatabaseFunctions {
 	private static DatabaseHelper databaseCommentsHelper = null;
@@ -35,21 +36,19 @@ public class DatabaseFunctions {
 		}
 	}
 
-	public static void setDatabaseScheduleWrapper(final ArrayList<News> data) {
+	public static void setDatabaseScheduleWrapper(final ScheduleWrapper data) {
 		try {
-			final RuntimeExceptionDao<News, Integer> newsDao = getDbHelper().getNewsDao();
-			newsDao.callBatchTasks(new Callable<Void>() {
+			final RuntimeExceptionDao<ScheduleWrapper, Integer> scheduleWrapperDao = getDbHelper().getScheduleWrapperDao();
+			scheduleWrapperDao.callBatchTasks(new Callable<Void>() {
 				@Override
 				public Void call() throws Exception {
-					newsDao.deleteBuilder().delete();
-					for (News aData : data) {
-						newsDao.create(aData);
-					}
+					scheduleWrapperDao.deleteBuilder().delete();
+					scheduleWrapperDao.createIfNotExists(data);
 					return null;
 				}
 			});
 		} catch (SQLException e) {
-			Log.e("DatabaseFunctions", "Error in setDatabaseNewsValues");
+			Log.e("DatabaseFunctions", "Error in setDatabaseScheduleWrapper");
 		}
 	}
 

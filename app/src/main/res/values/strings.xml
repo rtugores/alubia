@@ -15,7 +15,6 @@
     <string name="album_write_access_permissions_description">Se necesitan permisos de escritura para poder ver fotos de peñas y de la fiesta.</string>
     <string name="album_image_pager_1">Peñas</string>
     <string name="album_image_pager_2">Alubia \'15</string>
-    <string name="album_image_list_title">Image List</string>
     <string name="album_title">Álbum</string>
     <string name="album_api_error">Necesitas un móvil con una versión de Android superior a la 2.3.7 para ver el álbum</string>
 
@@ -227,7 +226,6 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <!-- Forum -->
     <string name="forum_menu_button">Iniciar sesión</string>
     <string name="forum_welcome">Bienvenido</string>
-    <string name="forum_register">Registro</string>
     <string name="forum_register_me">Registrarme</string>
     <string name="forum_enter_as_invited">Entrar como invitado</string>
     <string name="forum_insert_passwd">Introduce tu contraseña</string>

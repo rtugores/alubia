@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class ScheduleEventDetails implements Serializable {
 	private static final long serialVersionUID = -7227148394019800555L;
+	@DatabaseField(generatedId = true, columnName = "id") private Integer id;
 	@SerializedName("title") @DatabaseField(columnName = "title") private String title;
 	@SerializedName("description") @DatabaseField(columnName = "description") private String description;
 

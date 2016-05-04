@@ -11,6 +11,7 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ScheduleBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
@@ -86,6 +87,7 @@ public class ScheduleActivity extends AppCompatActivity {
 						}
 					}
 				});
+				DatabaseFunctions.setDatabaseScheduleWrapper(scheduleWrapper);
 			}
 
 			@Override
