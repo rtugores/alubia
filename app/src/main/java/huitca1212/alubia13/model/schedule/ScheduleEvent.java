@@ -2,18 +2,14 @@ package huitca1212.alubia13.model.schedule;
 
 import com.google.gson.annotations.SerializedName;
 
-import com.j256.ormlite.field.DatabaseField;
-
 import java.io.Serializable;
 
 public class ScheduleEvent implements Serializable {
 	private static final long serialVersionUID = -139948390714806666L;
-	@DatabaseField(generatedId = true, columnName = "id") private Integer id;
-	@SerializedName("hour") @DatabaseField(columnName = "hour") private String hour;
-	@SerializedName("name") @DatabaseField(columnName = "name") private String name;
-	@SerializedName("place") @DatabaseField(columnName = "place") private String place;
-	@SerializedName("details") @DatabaseField(columnName = "details", foreign = true) private transient ScheduleEventDetails scheduleEventDetails;
-	@DatabaseField(columnName = "scheduleDay", foreign = true, index = true) private transient ScheduleDay scheduleDay;
+	@SerializedName("hour") private String hour;
+	@SerializedName("name") private String name;
+	@SerializedName("place") private String place;
+	@SerializedName("details") private ScheduleEventDetails scheduleEventDetails;
 
 	public String getHour() {
 		return hour;

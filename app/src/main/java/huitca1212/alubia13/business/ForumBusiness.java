@@ -67,7 +67,7 @@ public class ForumBusiness {
 			@Override
 			public String onBackground() {
 				String url = "/descargar_comentarios.php";
-				data = AlubiaService.getDataFromRequest(url, CommentsWrapper.class);
+				data = AlubiaService.getObjectFromRequest(url, CommentsWrapper.class);
 				if (data == null) {
 					return DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR;
 				}
@@ -94,7 +94,7 @@ public class ForumBusiness {
 				try {
 					String url = "/anhadir_comentario.php?usuario=" + URLEncoder.encode(user, "UTF-8") +
 							"&comentario=" + URLEncoder.encode(comment, "UTF-8").replace(" ", "%20");
-					data = AlubiaService.getDataFromRequest(url, CommentWrapper.class);
+					data = AlubiaService.getObjectFromRequest(url, CommentWrapper.class);
 					if (data == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}
@@ -130,7 +130,7 @@ public class ForumBusiness {
 			public String onBackground() {
 				try {
 					String url = "/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");
-					result = AlubiaService.getDataFromRequest(url, Result.class);
+					result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}
@@ -156,7 +156,7 @@ public class ForumBusiness {
 			public String onBackground() {
 				try {
 					String url = "/borrar_cuenta.php?usuario=" + URLEncoder.encode(user, "UTF-8");
-					result = AlubiaService.getDataFromRequest(url, Result.class);
+					result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}

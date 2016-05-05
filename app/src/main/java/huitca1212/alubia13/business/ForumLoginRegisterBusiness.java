@@ -19,7 +19,7 @@ public class ForumLoginRegisterBusiness {
 			public String onBackground() {
 				try {
 					String url = "/comprobar_email.php?email=" + URLEncoder.encode(email, "UTF-8");
-					Result result = AlubiaService.getDataFromRequest(url, Result.class);
+					Result result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}
@@ -58,7 +58,7 @@ public class ForumLoginRegisterBusiness {
 				try {
 					String url = "/comprobar_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8") +
 							"&contrasenya=" + URLEncoder.encode(password, "UTF-8");
-					Result result = AlubiaService.getDataFromRequest(url, Result.class);
+					Result result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}
@@ -88,7 +88,7 @@ public class ForumLoginRegisterBusiness {
 				try {
 					String url = "/olvide_contrasenya.php?email=" + URLEncoder.encode(email, "UTF-8");
 
-					Result result = AlubiaService.getDataFromRequest(url, Result.class);
+					Result result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}
@@ -118,7 +118,7 @@ public class ForumLoginRegisterBusiness {
 				try {
 					String url = "/comprobar_usuario.php?usuario=" + URLEncoder.encode(user, "UTF-8").replace(" ", "%20");
 
-					Result result = AlubiaService.getDataFromRequest(url, Result.class);
+					Result result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}
@@ -150,7 +150,7 @@ public class ForumLoginRegisterBusiness {
 					String url = "/comprobar_codigo.php?usuario=" + URLEncoder.encode(user, "UTF-8") +
 							"&contrasenya=" + URLEncoder.encode(password, "UTF-8") + "&email=" + URLEncoder.encode(email, "UTF-8") +
 							"&codigo_penya=" + URLEncoder.encode(code, "UTF-8") + "&mobile_id=" + URLEncoder.encode(mobileId, "UTF-8");
-					Result result = AlubiaService.getDataFromRequest(url, Result.class);
+					Result result = AlubiaService.getObjectFromRequest(url, Result.class);
 					if (result == null) {
 						return DefaultAsyncTask.ASYNC_TASK_ERROR;
 					}

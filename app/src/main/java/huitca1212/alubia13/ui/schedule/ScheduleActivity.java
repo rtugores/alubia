@@ -11,7 +11,6 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.business.DatabaseFunctions;
 import huitca1212.alubia13.business.DefaultAsyncTask;
 import huitca1212.alubia13.business.ScheduleBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
@@ -46,54 +45,40 @@ public class ScheduleActivity extends AppCompatActivity {
 	}
 
 	private void getSchedule() {
-		ScheduleBusiness.getScheduleContent(new AllBusinessListener<ScheduleWrapper>() {
+		ScheduleBusiness.getScheduleContent(this, new AllBusinessListener<ScheduleWrapper>() {
 			@Override
-			public void onDatabaseSuccess(final ScheduleWrapper scheduleWrapper) {
-				if (scheduleWrapper != null) {
-					ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
-					scheduleTitle.setText(scheduleWrapper.getTitle());
-					adapter.updateList(scheduleWrapper.getScheduleDays());
-					adapter.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							int positionSelected = recyclerView.getChildAdapterPosition(v);
-							if (scheduleWrapper.getScheduleDays().get(positionSelected).getDay() == null) {
-								ScheduleInfoActivity.startActivity(ScheduleActivity.this,
-										scheduleWrapper.getScheduleDays().get(positionSelected).getDescription());
-							} else {
-								ScheduleDayActivity.startActivity(ScheduleActivity.this,
-										scheduleWrapper.getScheduleDays().get(positionSelected));
-							}
-						}
-					});
-				}
+			public void onDatabaseSuccess(ScheduleWrapper scheduleWrapper) {
+				drawList(scheduleWrapper);
 			}
 
 			@Override
-			public void onServerSuccess(final ScheduleWrapper scheduleWrapper) {
-				ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
-				scheduleTitle.setText(scheduleWrapper.getTitle());
-				adapter.updateList(scheduleWrapper.getScheduleDays());
-				adapter.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						int positionSelected = recyclerView.getChildAdapterPosition(v);
-						if (scheduleWrapper.getScheduleDays().get(positionSelected).getDay() == null) {
-							ScheduleInfoActivity.startActivity(ScheduleActivity.this,
-									scheduleWrapper.getScheduleDays().get(positionSelected).getDescription());
-						} else {
-							ScheduleDayActivity.startActivity(ScheduleActivity.this,
-									scheduleWrapper.getScheduleDays().get(positionSelected));
-						}
-					}
-				});
-				DatabaseFunctions.setDatabaseScheduleWrapper(scheduleWrapper);
+			public void onServerSuccess(ScheduleWrapper scheduleWrapper) {
+				drawList(scheduleWrapper);
 			}
 
 			@Override
 			public void onFailure(String result) {
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR)) {
 					Toast.makeText(ScheduleActivity.this, "Error", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+	}
+
+	private void drawList(final ScheduleWrapper scheduleWrapper) {
+		ScheduleActivity.this.scheduleWrapper = scheduleWrapper;
+		scheduleTitle.setText(scheduleWrapper.getTitle());
+		adapter.updateList(scheduleWrapper.getScheduleDays());
+		adapter.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int positionSelected = recyclerView.getChildAdapterPosition(v);
+				if (scheduleWrapper.getScheduleDays().get(positionSelected).getDay() == null) {
+					ScheduleInfoActivity.startActivity(ScheduleActivity.this,
+							scheduleWrapper.getScheduleDays().get(positionSelected).getDescription());
+				} else {
+					ScheduleDayActivity.startActivity(ScheduleActivity.this,
+							scheduleWrapper.getScheduleDays().get(positionSelected));
 				}
 			}
 		});

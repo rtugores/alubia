@@ -30,7 +30,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
 			TableUtils.createTable(connectionSource, Comment.class);
 			TableUtils.createTable(connectionSource, News.class);
-			TableUtils.createTable(connectionSource, ScheduleWrapper.class);
 		} catch (SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Unable to create databases", e);
 		}
@@ -41,7 +40,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
 			TableUtils.dropTable(connectionSource, Comment.class, true);
 			TableUtils.dropTable(connectionSource, News.class, true);
-			TableUtils.dropTable(connectionSource, ScheduleWrapper.class, true);
 			onCreate(db, connectionSource);
 		} catch (SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Unable to upgrade database from version " + previousVersion + " to new " + newVersion, e);
@@ -60,12 +58,5 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			newsDao = getRuntimeExceptionDao(News.class);
 		}
 		return newsDao;
-	}
-
-	public RuntimeExceptionDao<ScheduleWrapper, Integer> getScheduleWrapperDao() throws SQLException {
-		if (scheduleWrapperDao == null) {
-			scheduleWrapperDao = getRuntimeExceptionDao(ScheduleWrapper.class);
-		}
-		return scheduleWrapperDao;
 	}
 }

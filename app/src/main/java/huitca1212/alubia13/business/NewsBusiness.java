@@ -62,7 +62,7 @@ public class NewsBusiness {
 			@Override
 			public String onBackground() {
 				String url = "/descargar_novedades.php";
-				data = AlubiaService.getDataFromRequest(url, NewsWrapper.class);
+				data = AlubiaService.getObjectFromRequest(url, NewsWrapper.class);
 				if (data == null) {
 					return DefaultAsyncTask.ASYNC_TASK_SERVER_ERROR;
 				}

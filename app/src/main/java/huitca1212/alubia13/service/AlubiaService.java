@@ -18,39 +18,53 @@ import okhttp3.Response;
 public class AlubiaService {
 	private static final String BASE_URL = "http://rjapps.x10host.com";
 
-	public static <T> T getDataFromRequest(String url, Class<T> classofT) {
-		OkHttpClient client = new OkHttpClient();
+	public static <T> T getObjectFromRequest(String url, Class<T> classofT) {
+		String body = getStringFromRequest(url);
+		return convertStringToObject(body, classofT);
+	}
 
+	public static String getStringFromRequest(String url) {
+		OkHttpClient client = new OkHttpClient();
 		Request request = new Request.Builder()
 				.url(BASE_URL + url)
 				.build();
 		try {
 			Response response = client.newCall(request).execute();
 			InputStream in = response.body().byteStream();
-			String body = slurp(in, 1024);
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			Gson gson = gsonBuilder.create();
-			return gson.fromJson(body, classofT);
+			return slurp(in, 1024);
 		} catch (IOException e) {
 			Log.e(AlubiaService.class.getName(), "Exception in service: " + e.getMessage(), e);
-			return null;
-		} catch (JsonSyntaxException e) {
-			Log.e(AlubiaService.class.getName(), "Exception while parsing: " + e.getMessage(), e);
 			return null;
 		}
 	}
 
-	public static String slurp(final InputStream is, final int bufferSize) throws IOException {
+	public static <T> T convertStringToObject(String body, Class<T> classofT) {
+		try {
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			Gson gson = gsonBuilder.create();
+			return gson.fromJson(body, classofT);
+		} catch (JsonSyntaxException e) {
+			Log.e(AlubiaService.class.getName(), "Exception while parsing: " + e.getMessage(), e);
+			return null;
+		}
+
+	}
+
+	private static String slurp(final InputStream is, final int bufferSize) throws IOException {
 		final char[] buffer = new char[bufferSize];
 		final StringBuilder out = new StringBuilder();
 		Reader in;
 		in = new InputStreamReader(is, "UTF-8");
-		for (; ; ) {
-			int rsz = in.read(buffer, 0, buffer.length);
-			if (rsz < 0) {
-				break;
+		try {
+			for (; ; ) {
+				int rsz = in.read(buffer, 0, buffer.length);
+				if (rsz < 0) {
+					break;
+				}
+				out.append(buffer, 0, rsz);
 			}
-			out.append(buffer, 0, rsz);
+		}catch(IOException ex) {
+			throw ex;
 		}
 		return out.toString();
 	}

@@ -1,7 +1,5 @@
 package huitca1212.alubia13.ui.schedule;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.content.Context;
@@ -57,7 +55,7 @@ public class ScheduleDayActivity extends AppCompatActivity {
 				}
 			});
 		}
-
+/*
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 		adView.setAdListener(new AdListener() {
@@ -65,7 +63,7 @@ public class ScheduleDayActivity extends AppCompatActivity {
 			public void onAdLoaded() {
 				adView.setVisibility(View.VISIBLE);
 			}
-		});
+		});*/
 	}
 
 	private void setDefaultAdapter() {

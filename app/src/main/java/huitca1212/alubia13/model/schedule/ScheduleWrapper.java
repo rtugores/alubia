@@ -2,16 +2,13 @@ package huitca1212.alubia13.model.schedule;
 
 import com.google.gson.annotations.SerializedName;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 
-public class ScheduleWrapper {
-	@DatabaseField(generatedId = true, columnName = "id") private Integer id;
-	@SerializedName("title") @DatabaseField(columnName = "title") private String title;
-	@SerializedName("calendar") @ForeignCollectionField(eager = true, columnName = "calendar") private Collection<ScheduleDay> scheduleDays;
+public class ScheduleWrapper implements Serializable {
+	private static final long serialVersionUID = -8492860716990778L;
+	@SerializedName("title") private String title;
+	@SerializedName("calendar") private ArrayList<ScheduleDay> scheduleDays;
 
 	public String getTitle() {
 		return title;
@@ -22,10 +19,10 @@ public class ScheduleWrapper {
 	}
 
 	public ArrayList<ScheduleDay> getScheduleDays() {
-		return (ArrayList<ScheduleDay>)scheduleDays;
+		return scheduleDays;
 	}
 
-	public void setScheduleDays(Collection<ScheduleDay> scheduleDays) {
+	public void setScheduleDays(ArrayList<ScheduleDay> scheduleDays) {
 		this.scheduleDays = scheduleDays;
 	}
 }
