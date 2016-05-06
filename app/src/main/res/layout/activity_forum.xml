@@ -52,7 +52,7 @@
                 android:maxLines="6"
                 android:minLines="1"
                 android:scrollbars="vertical"
-                android:textColorHint="#d3d3d3"
+                android:textColorHint="@color/light_gray"
                 android:textSize="20sp" />
 
             <Button

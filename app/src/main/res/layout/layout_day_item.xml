@@ -34,7 +34,7 @@
                 android:id="@+id/day_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#3A6EA5"
+                android:textColor="@color/dark_blue"
                 android:textIsSelectable="false"
                 android:textSize="12sp"
                 tools:text="Place the event is shown" />

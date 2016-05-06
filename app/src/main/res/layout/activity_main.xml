@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_castle"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="@dimen/side_margin"
     android:weightSum="5">
 
     <TextView
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/home_subtitle"
         android:textColor="@android:color/white" />
@@ -27,45 +27,51 @@
     <Button
         android:id="@+id/schedule_button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
-        android:text="@string/home_schedule" />
+        android:text="@string/home_schedule"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/complex_image_button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
-        android:text="@string/album_title" />
+        android:text="@string/album_title"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/forum_button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
-        android:text="@string/home_forum" />
+        android:text="@string/home_forum"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/news_button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
-        android:text="@string/home_news" />
+        android:text="@string/home_news"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/more_button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
-        android:text="@string/home_more" />
+        android:text="@string/home_more"
+        android:textColor="@color/white" />
 
 </LinearLayout>

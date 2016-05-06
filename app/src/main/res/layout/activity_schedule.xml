@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_default"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/side_margin">
 
     <TextView
         android:id="@+id/schedule_title"
@@ -15,7 +15,7 @@
         android:padding="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:text="@string/schedule_title" />
+        tools:text="Fiesta de la Alubia" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/schedule_list"

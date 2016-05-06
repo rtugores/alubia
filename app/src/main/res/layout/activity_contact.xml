@@ -4,15 +4,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_default"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/side_margin">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dip"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
         android:text="@string/home_title"
         android:textSize="26sp"
@@ -34,12 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dip"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
         android:layout_marginTop="30dip"
         android:background="@drawable/d_button_green"
         android:text="@string/news_whatsapp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <Button
@@ -47,12 +44,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
         android:background="@drawable/d_button_blue"
         android:text="@string/news_email"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <TextView
@@ -64,5 +59,4 @@
         android:text="@string/contact_my_name"
         android:textSize="18sp"
         android:textStyle="bold" />
-
 </LinearLayout>

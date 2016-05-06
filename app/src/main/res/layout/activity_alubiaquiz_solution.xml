@@ -41,7 +41,7 @@
         android:layout_marginRight="20dip"
         android:background="@drawable/d_button_green"
         android:text="@string/alubiaquiz_good_solution"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
 

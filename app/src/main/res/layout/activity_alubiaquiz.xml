@@ -3,19 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EFE4B0"
+    android:background="@color/light_yellow"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/quiz_welcome"
         android:layout_width="match_parent"
         android:layout_height="40dip"
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/side_margin"
+        android:layout_marginRight="@dimen/side_margin"
+        android:layout_marginTop="10dp"
         android:layout_weight="0.1"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/alubiaquiz_easy_level_subtitle"
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -24,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
+        android:layout_marginLeft="@dimen/side_margin"
+        android:layout_marginRight="@dimen/side_margin"
         android:layout_weight="0.8"
         android:gravity="center|center_vertical"
         android:text="@string/alubiaquiz_title"
@@ -35,8 +37,8 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
+        android:layout_marginLeft="@dimen/side_margin"
+        android:layout_marginRight="@dimen/side_margin"
         android:layout_weight="0.8"
         android:gravity="center_vertical">
 
@@ -66,13 +68,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dip"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
+        android:layout_marginLeft="@dimen/side_margin"
+        android:layout_marginRight="@dimen/side_margin"
         android:layout_marginTop="10dip"
         android:layout_weight="0.05"
         android:background="@drawable/d_button_blue"
         android:text="@string/alubiaquiz_next"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <com.google.android.gms.ads.AdView

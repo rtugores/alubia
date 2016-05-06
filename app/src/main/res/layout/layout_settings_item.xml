@@ -14,7 +14,7 @@
         android:layout_marginRight="5dip"
         android:layout_marginTop="5dip"
         android:layout_weight="0.40"
-        android:textColor="#3A6EA5"
+        android:textColor="@color/dark_blue"
         android:textIsSelectable="false"
         android:textSize="18sp" />
 
