@@ -7,5 +7,8 @@
     android:horizontalSpacing="4dip"
     android:numColumns="3"
     android:padding="4dip"
+    android:paddingLeft="17dp"
+    android:paddingRight="17dp"
+    android:scrollbars="none"
     android:stretchMode="columnWidth"
     android:verticalSpacing="4dip" />

@@ -35,7 +35,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.Constants;
@@ -50,7 +49,7 @@ public class ImagePagerPenyasFragment extends BaseFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_image_pager, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_album_image_pager, container, false);
 		ViewPager pager = (ViewPager)rootView.findViewById(R.id.pager);
 		pager.setAdapter(new ImageAdapter(getActivity()));
 		pager.setCurrentItem(getArguments().getInt(Constants.Extra.IMAGE_POSITION, 0));
