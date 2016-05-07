@@ -20,7 +20,7 @@
 
     <RelativeLayout
         android:id="@+id/forum_inside_comment_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/divider_view2"
         android:background="@drawable/comment_left_white"
@@ -59,9 +59,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="21dp"
             android:layout_below="@id/forum_internal_comment_layout"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
@@ -70,15 +69,13 @@
             <Button
                 android:id="@+id/report_button"
                 android:layout_width="15dp"
-                android:layout_height="match_parent"
+                android:layout_height="15dp"
                 android:background="@android:drawable/ic_dialog_alert" />
 
             <TextView
                 android:id="@+id/group_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:gravity="right"
                 android:textIsSelectable="true"
