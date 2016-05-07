@@ -1,7 +1,5 @@
 package huitca1212.alubia13.ui.schedule;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.content.Context;
@@ -9,12 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.view.View;
 import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 
 public class ScheduleInfoActivity extends AppCompatActivity {
 
@@ -38,14 +36,6 @@ public class ScheduleInfoActivity extends AppCompatActivity {
 		if (dayInfo != null) {
 			infoContent.setText(Html.fromHtml(dayInfo));
 		}
-
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-		adView.setAdListener(new AdListener() {
-			@Override
-			public void onAdLoaded() {
-				adView.setVisibility(View.VISIBLE);
-			}
-		});
+		AdsAndAnalytics.loadAds(adView);
 	}
 }

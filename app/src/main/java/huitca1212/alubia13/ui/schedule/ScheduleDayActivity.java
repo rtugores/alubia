@@ -4,14 +4,14 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import org.w3c.dom.Text;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.schedule.ScheduleDay;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleDayAdapter;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 
@@ -62,14 +63,7 @@ public class ScheduleDayActivity extends AppCompatActivity {
 				}
 			});
 		}
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-		adView.setAdListener(new AdListener() {
-			@Override
-			public void onAdLoaded() {
-				adView.setVisibility(View.VISIBLE);
-			}
-		});
+		AdsAndAnalytics.loadAds(adView);
 	}
 
 	private void setDefaultAdapter() {

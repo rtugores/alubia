@@ -1,7 +1,5 @@
 package huitca1212.alubia13.ui.more.alubiaQuiz;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.content.DialogInterface;
@@ -18,6 +16,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.Dialogs;
 
 public class AlubiaQuizMediumActivity extends AppCompatActivity {
@@ -36,15 +35,6 @@ public class AlubiaQuizMediumActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alubiaquiz);
 		ButterKnife.bind(this);
-
-		AdRequest adRequest = new AdRequest.Builder().build();
-		adView.loadAd(adRequest);
-		adView.setAdListener(new AdListener() {
-			@Override
-			public void onAdLoaded() {
-				adView.setVisibility(View.VISIBLE);
-			}
-		});
 
 		quizWelcome.setText(R.string.alubiaquiz_medium_level_subtitle);
 		firstQuestion.setText(R.string.alubiaquiz_q1_m);
@@ -198,6 +188,7 @@ public class AlubiaQuizMediumActivity extends AppCompatActivity {
 				});
 			}
 		});
+		AdsAndAnalytics.loadAds(adView);
 	}
 
 	private void showAlubiaQuizWrongAnswerDialog(int numeroPregunta, final int respuesta) {

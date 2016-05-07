@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.text.util.Linkify;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,6 +109,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		forumViewHolder.id.setText(Integer.toString(comments.get(position).getId()));
 		forumViewHolder.user.setText(comments.get(position).getUser());
 		forumViewHolder.comment.setText(comments.get(position).getComment());
+		Linkify.addLinks(forumViewHolder.comment, Linkify.WEB_URLS);
 		forumViewHolder.group.setText(comments.get(position).getGroup());
 		forumViewHolder.date.setText(comments.get(position).getDate());
 

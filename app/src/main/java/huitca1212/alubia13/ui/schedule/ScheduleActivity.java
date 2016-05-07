@@ -16,7 +16,7 @@ import huitca1212.alubia13.business.ScheduleBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.schedule.ScheduleWrapper;
 import huitca1212.alubia13.ui.schedule.adapters.ScheduleAdapter;
-import huitca1212.alubia13.utils.Analytics;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.Notifications;
 
 public class ScheduleActivity extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class ScheduleActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_schedule);
 		ButterKnife.bind(this);
 
-		Analytics.setAnalytics(this);
+		AdsAndAnalytics.setAnalytics(this);
 		setDefaultAdapter();
 		getSchedule();
 	}

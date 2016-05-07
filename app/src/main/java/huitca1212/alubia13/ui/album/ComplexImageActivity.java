@@ -27,7 +27,7 @@ import android.support.v7.app.AppCompatActivity;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.fragment.ImageGridFragment;
 import huitca1212.alubia13.ui.album.fragment.ImageListFragment;
-import huitca1212.alubia13.utils.Analytics;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -41,7 +41,7 @@ public class ComplexImageActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_complex);
-		Analytics.setAnalytics(this);
+		AdsAndAnalytics.setAnalytics(this);
 
 		int pagerPosition = savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
 

@@ -23,7 +23,7 @@ import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.news.News;
 import huitca1212.alubia13.model.news.NewsWrapper;
 import huitca1212.alubia13.ui.news.adapter.NewsAdapter;
-import huitca1212.alubia13.utils.Analytics;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
@@ -45,7 +45,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 		sendNews.setOnClickListener(this);
 
 		setDefaultAdapter();
-		Analytics.setAnalytics(this);
+		AdsAndAnalytics.setAnalytics(this);
 		accessWebService();
 	}
 

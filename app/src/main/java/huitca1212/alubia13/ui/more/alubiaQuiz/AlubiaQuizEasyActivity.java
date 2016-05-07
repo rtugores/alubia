@@ -18,6 +18,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.Dialogs;
 
 public class AlubiaQuizEasyActivity extends AppCompatActivity {
@@ -198,6 +199,7 @@ public class AlubiaQuizEasyActivity extends AppCompatActivity {
 				});
 			}
 		});
+		AdsAndAnalytics.loadAds(adView);
 	}
 
 	private void showAlubiaQuizWrongAnswerDialog(int numeroPregunta, final int respuesta) {

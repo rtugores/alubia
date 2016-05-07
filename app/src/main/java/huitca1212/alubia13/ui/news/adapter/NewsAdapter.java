@@ -1,6 +1,7 @@
 package huitca1212.alubia13.ui.news.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 	public void onBindViewHolder(NewsViewHolder newsViewHolder, int position) {
 		newsViewHolder.date.setText(news.get(position).getDate());
 		newsViewHolder.comment.setText(news.get(position).getComment());
+		Linkify.addLinks(newsViewHolder.comment, Linkify.WEB_URLS);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import huitca1212.alubia13.business.listener.ResultBusinessListener;
 import huitca1212.alubia13.model.forum.Comment;
 import huitca1212.alubia13.ui.forum.adapter.ForumAdapter;
 import huitca1212.alubia13.ui.more.settings.SettingsActivity;
-import huitca1212.alubia13.utils.Analytics;
+import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.Checkers;
 import huitca1212.alubia13.utils.Notifications;
 
@@ -65,7 +65,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		commentBox.requestFocus();
 		getWindow().setBackgroundDrawableResource(R.drawable.background_forum);
 
-		Analytics.setAnalytics(this);
+		AdsAndAnalytics.setAnalytics(this);
 		setResultReportListener();
 		hideCommentBarIfInvited();
 		setDefaultAdapter();
@@ -103,10 +103,10 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 						Notifications.showSnackBar(coordinatorLayout, getString(R.string.settings_reported_ok));
 						break;
 					case DefaultAsyncTask.ASYNC_TASK_ERROR:
-						Notifications.showSnackBar(coordinatorLayout, getString(R.string.settings_error_comment_deleted));
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_internet_error));
 						break;
 					case "-2":
-						Notifications.showSnackBar(coordinatorLayout, getString(R.string.common_internet_error));
+						Notifications.showSnackBar(coordinatorLayout, getString(R.string.settings_error_comment_deleted));
 						break;
 				}
 			}
