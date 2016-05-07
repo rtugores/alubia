@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import huitca1212.alubia13.AlubiaApplication;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.schedule.ScheduleEvent;
 
@@ -50,7 +51,8 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 
 	@Override
 	public void onBindViewHolder(DayViewHolder dayViewHolder, int position) {
-		dayViewHolder.event.setText(Html.fromHtml("<font color='#B40431'>" + events.get(position).getHour() + "</font> " + events.get(position).getName()));
+		dayViewHolder.event.setText(Html.fromHtml("<font color='" + AlubiaApplication.getInstance().getResources().getColor(R.color.dark_purple) + "'>"
+				+ events.get(position).getHour() + "</font> " + events.get(position).getName()));
 		dayViewHolder.place.setText(events.get(position).getPlace());
 	}
 

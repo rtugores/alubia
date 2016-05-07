@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_yellow"
+    android:background="@color/yellow"
     android:orientation="vertical">
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_weight="0.1"
         android:gravity="center"
         android:text="@string/alubiaquiz_easy_level_subtitle"
-        android:textColor="@color/white"
+        android:textColor="@color/light_purple"
         android:textSize="15sp"
         android:textStyle="bold" />
 

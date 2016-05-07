@@ -68,7 +68,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/forum_privacy_2"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/dark_purple"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import huitca1212.alubia13.AlubiaApplication;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.ResultBusinessListener;
@@ -44,7 +45,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		this.invited = invited;
 		this.resultListener = resultListener;
 		userLogged = ctx.getSharedPreferences("PREFERENCE", 0).getString("username", "username");
-		marginPadding = convertDpToPixel(50);
+		marginPadding = convertDpToPixel(60);
 	}
 
 	public static class ForumViewHolder extends RecyclerView.ViewHolder {
@@ -158,9 +159,10 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_left_yellow);
 			}
 			if (itemType == TYPE_VIP) {
-				forumViewHolder.user.setTextColor(0xFFDF013A);
+				forumViewHolder.user.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.dark_purple));
 			}
 		} else if (itemType == TYPE_ADMIN || itemType == TYPE_ADMIN_REPEATED) {
+			forumViewHolder.user.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.dark_purple));
 			if (isUser) {
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_blue);
 			} else {
@@ -176,8 +178,8 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		}
 		if (itemType == TYPE_BAN || itemType == TYPE_BAN_REPEATED) {
 			forumViewHolder.comment.setText(R.string.forum_error_comment_blocked);
+			forumViewHolder.comment.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.red));
 			forumViewHolder.reportButton.setVisibility(View.GONE);
-			forumViewHolder.comment.setTextColor(0xFFFF0000);
 		}
 	}
 

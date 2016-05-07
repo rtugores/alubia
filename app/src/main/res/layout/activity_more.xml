@@ -11,44 +11,40 @@
         android:id="@+id/alubia_quiz"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginTop="25dp"
         android:layout_weight="1"
         android:background="@drawable/d_button_yellow"
         android:text="@string/alubiaquiz_title"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="45dp"
         android:layout_weight="1"
         android:background="@drawable/d_button_yellow"
         android:text="@string/more_festivity_info"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/settings"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="45dp"
         android:layout_weight="1"
         android:background="@drawable/d_button_yellow"
         android:text="@string/more_settings"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/contact"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="25dp"
         android:layout_weight="1"
         android:background="@drawable/d_button_yellow"
         android:text="@string/more_contact"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textColor="@color/white" />
 </LinearLayout>
