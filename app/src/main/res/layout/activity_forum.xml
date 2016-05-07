@@ -76,5 +76,4 @@
         android:layout_gravity="top|end"
         android:background="@drawable/ic_update"
         android:focusable="true" />
-
 </FrameLayout>

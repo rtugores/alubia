@@ -44,7 +44,7 @@ public class ScheduleDayAdapter extends RecyclerView.Adapter<ScheduleDayAdapter.
 	@Override
 	public DayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View itemView = LayoutInflater.from(parent.getContext())
-				.inflate(R.layout.layout_day_item, parent, false);
+				.inflate(R.layout.layout_schedule_event_item, parent, false);
 		itemView.setOnClickListener(this);
 		return new DayViewHolder(itemView);
 	}

@@ -11,7 +11,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dip"
-        android:background="@drawable/d_back"
+        android:background="@drawable/d_alubiaquiz_solution"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/alubiaquiz_solution"
         android:textSize="28sp"

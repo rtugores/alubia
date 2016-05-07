@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_default"
-    android:orientation="vertical"
-    android:padding="@dimen/side_margin">
+    android:padding="@dimen/side_margin"
+    android:background="@drawable/background_default">
 
-    <TextView
-        android:id="@+id/schedule_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="Fiesta de la Alubia" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/schedule_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/schedule_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Fiesta de la Alubia" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/schedule_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/progressbar_view"
+            layout="@layout/layout_progressbar_view" />
+    </LinearLayout>
+</FrameLayout>

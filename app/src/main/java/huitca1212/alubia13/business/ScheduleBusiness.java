@@ -19,6 +19,7 @@ import huitca1212.alubia13.service.AlubiaService;
 
 public class ScheduleBusiness {
 	private static final String SCHEDULE_FILENAME = "schedule_alubia.json";
+	private static boolean dbOperationSuccess = false;
 
 	public static void getScheduleContent(Context ctx, AllBusinessListener<ScheduleWrapper> listener) {
 		getDatabaseScheduleContent(ctx, listener);
@@ -77,8 +78,7 @@ public class ScheduleBusiness {
 			public void onFinish(String result) {
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
 					listener.onDatabaseSuccess(scheduleWrapper);
-				} else {
-					listener.onFailure(result);
+					dbOperationSuccess = true;
 				}
 				getBackendScheduleContent(ctx, listener);
 			}
@@ -136,7 +136,9 @@ public class ScheduleBusiness {
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
 					listener.onServerSuccess(dataObject);
 				} else {
-					listener.onFailure(result);
+					if (!dbOperationSuccess) {
+						listener.onFailure(result);
+					}
 				}
 			}
 		}).execute();

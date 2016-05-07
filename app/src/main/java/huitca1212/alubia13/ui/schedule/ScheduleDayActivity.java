@@ -4,6 +4,8 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import org.w3c.dom.Text;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,6 +29,7 @@ public class ScheduleDayActivity extends AppCompatActivity {
 	private LinearLayoutManager mLayoutManager;
 	private ScheduleDayAdapter adapter;
 	@Bind(R.id.ad_view) AdView adView;
+	@Bind(R.id.schedule_day_title) TextView scheduleDayTitle;
 	@Bind(R.id.schedule_list) RecyclerView recyclerView;
 
 	public static void startActivity(Context ctx, ScheduleDay dayInfo) {
@@ -44,6 +48,7 @@ public class ScheduleDayActivity extends AppCompatActivity {
 
 		final ScheduleDay scheduleDay = (ScheduleDay)getIntent().getSerializableExtra(BUNDLE_DAY_INFO);
 		if (scheduleDay != null) {
+			scheduleDayTitle.setText(scheduleDay.getTitle());
 			adapter.updateList(scheduleDay.getEvents());
 			adapter.setOnClickListener(new View.OnClickListener() {
 				@Override

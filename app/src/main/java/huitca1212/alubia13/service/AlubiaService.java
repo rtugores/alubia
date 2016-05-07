@@ -6,8 +6,6 @@ import com.google.gson.JsonSyntaxException;
 
 import android.util.Log;
 
-import java.io.IOException;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -28,8 +26,8 @@ public class AlubiaService {
 		try {
 			Response response = client.newCall(request).execute();
 			return response.body().string();
-		} catch (IOException e) {
-			Log.e(AlubiaService.class.getName(), "Exception in service: " + e.getMessage(), e);
+		} catch (Exception e) {
+			Log.e(AlubiaService.class.getName(), "Exception in service: " + e.getMessage());
 			return null;
 		}
 	}
@@ -40,7 +38,7 @@ public class AlubiaService {
 			Gson gson = gsonBuilder.create();
 			return gson.fromJson(body, classofT);
 		} catch (JsonSyntaxException e) {
-			Log.e(AlubiaService.class.getName(), "Exception while parsing: " + e.getMessage(), e);
+			Log.e(AlubiaService.class.getName(), "Exception while parsing: " + e.getMessage());
 			return null;
 		}
 	}
