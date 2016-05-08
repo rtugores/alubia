@@ -146,9 +146,17 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	private void setCommentType(ForumViewHolder forumViewHolder, int position) {
 		int itemType = forumViewHolder.getItemViewType();
 		boolean isUser = comments.get(position).getUser().equals(userLogged);
+
 		if (invited != null && invited.equals("OK")) {
 			forumViewHolder.reportButton.setVisibility(View.GONE);
-		} else if (isUser) {
+		} else if (!isUser) {
+			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
+			outsideParams.setMargins(0, 0, marginPadding, 0);
+			forumViewHolder.forumOutsideLayout.setGravity(Gravity.LEFT);
+			forumViewHolder.forumOutsideLayout.setLayoutParams(outsideParams);
+			forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_left_white);
+			forumViewHolder.reportButton.setVisibility(View.VISIBLE);
+		} else {
 			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
 			outsideParams.setMargins(marginPadding, 0, 0, 0);
 			forumViewHolder.forumOutsideLayout.setGravity(Gravity.RIGHT);
@@ -156,34 +164,32 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 			forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_white);
 			forumViewHolder.reportButton.setVisibility(View.GONE);
 		}
+
 		if (itemType == TYPE_VIP || itemType == TYPE_VIP_REPEATED) {
+			forumViewHolder.user.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.dark_purple));
 			if (isUser) {
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_yellow);
 			} else {
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_left_yellow);
 			}
-			if (itemType == TYPE_VIP) {
-				forumViewHolder.user.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.dark_purple));
-			}
 		} else if (itemType == TYPE_ADMIN || itemType == TYPE_ADMIN_REPEATED) {
 			forumViewHolder.user.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.dark_purple));
+			forumViewHolder.reportButton.setVisibility(View.GONE);
 			if (isUser) {
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_blue);
 			} else {
 				forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_left_blue);
 			}
-			forumViewHolder.comment.setTypeface(null, Typeface.BOLD);
+		} else if (itemType == TYPE_BAN || itemType == TYPE_BAN_REPEATED) {
+			forumViewHolder.comment.setText(R.string.forum_error_comment_blocked);
+			forumViewHolder.comment.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.red));
 			forumViewHolder.reportButton.setVisibility(View.GONE);
 		}
+
 		if (itemType == TYPE_VIP_REPEATED || itemType == TYPE_ADMIN_REPEATED || itemType == TYPE_BAN_REPEATED || itemType == TYPE_NORMAL_REPEATED) {
 			forumViewHolder.divider.setVisibility(View.GONE);
 			forumViewHolder.user.setVisibility(View.GONE);
 			forumViewHolder.group.setText("");
-		}
-		if (itemType == TYPE_BAN || itemType == TYPE_BAN_REPEATED) {
-			forumViewHolder.comment.setText(R.string.forum_error_comment_blocked);
-			forumViewHolder.comment.setTextColor(AlubiaApplication.getInstance().getResources().getColor(R.color.red));
-			forumViewHolder.reportButton.setVisibility(View.GONE);
 		}
 	}
 
