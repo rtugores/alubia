@@ -16,7 +16,6 @@
     <string name="album_image_pager_1">Peñas</string>
     <string name="album_image_pager_2">Alubia \'15</string>
     <string name="album_title">Álbum</string>
-    <string name="album_api_error">Necesitas un móvil con una versión de Android superior a la 2.3.7 para ver el álbum</string>
 
     <!-- Schedule -->
     <!-- Retrieved from the Internet: schedule_alubia.json -->

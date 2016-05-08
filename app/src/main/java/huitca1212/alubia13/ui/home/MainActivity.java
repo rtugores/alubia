@@ -4,7 +4,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -24,17 +23,16 @@ import huitca1212.alubia13.ui.news.NewsActivity;
 import huitca1212.alubia13.ui.schedule.ScheduleActivity;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
-import huitca1212.alubia13.utils.Notifications;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
+	private static final int PERMISSION_REQUEST_WRITE_ACCESS = 0;
 	@Bind(R.id.schedule_button) Button scheduleButton;
 	@Bind(R.id.complex_image_button) Button complexImageButton;
 	@Bind(R.id.forum_button) Button forumButton;
 	@Bind(R.id.news_button) Button newsButton;
 	@Bind(R.id.more_button) Button moreButton;
-	private static final int PERMISSION_REQUEST_WRITE_ACCESS = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	private void onAlbumClicked() {
 		if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 			// Access granted, load activity
-			loadAlbumActivity();
+			ComplexImageActivity.startActivity(MainActivity.this);
 		} else {
 			requestWriteAccessPermission();
 		}
@@ -86,14 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			ForumMenuActivity.startActivity(MainActivity.this);
 		} else {
 			ForumActivity.startActivity(MainActivity.this, "NOK");
-		}
-	}
-
-	private void loadAlbumActivity() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			ComplexImageActivity.startActivity(MainActivity.this);
-		} else {
-			Notifications.showToast(this, getString(R.string.album_api_error));
 		}
 	}
 
@@ -129,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			// Request for write access permissions
 			if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 				// Access granted, load activity
-				loadAlbumActivity();
+				ComplexImageActivity.startActivity(MainActivity.this);
 			}
 			// Else -> Permission request was denied.
 		}

@@ -22,13 +22,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,13 +50,22 @@ import huitca1212.alubia13.ui.album.SimpleImageActivity;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImageListFragment extends AbsListViewBaseFragment {
+public class ImageListFragment extends Fragment {
 
 	public ImageListFragment() {
 		//NOOP
 	}
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	protected ListView listView;
+	protected boolean pauseOnScroll = false;
+	protected boolean pauseOnFling = true;
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), pauseOnScroll, pauseOnFling));
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_album_image_list, container, false);
