@@ -16,11 +16,9 @@
             android:orientation="vertical"
             android:padding="@dimen/side_margin">
 
-
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="30dip"
                 android:layout_marginTop="10dip"
                 android:gravity="center"
@@ -56,18 +54,16 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/forum_privacy_3"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/politica2_text"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/forum_privacy_2"
                 android:textColor="@color/dark_purple"

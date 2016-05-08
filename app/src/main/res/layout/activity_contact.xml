@@ -8,9 +8,9 @@
     android:padding="@dimen/side_margin">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginBottom="30dip"
         android:layout_marginTop="10dip"
         android:text="@string/home_title"
@@ -18,9 +18,8 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="10dip"
         android:gravity="center"
         android:text="@string/contact_any_doubt"
@@ -51,9 +50,8 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="20dip"
         android:gravity="center"
         android:text="@string/contact_my_name"
