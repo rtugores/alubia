@@ -6,11 +6,12 @@ import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.util.Linkify;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -55,8 +56,8 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		@Bind(R.id.comment_textview) TextView comment;
 		@Bind(R.id.date_textview) TextView date;
 		@Bind(R.id.id_textview) TextView id;
-		@Bind(R.id.forum_outside_comment_layout) RelativeLayout forumOutsideLayout;
-		@Bind(R.id.forum_inside_comment_layout) RelativeLayout forumInsideLayout;
+		@Bind(R.id.forum_outside_comment_layout) LinearLayout forumOutsideLayout;
+		@Bind(R.id.forum_inside_comment_layout) LinearLayout forumInsideLayout;
 		@Bind(R.id.divider_view) View divider;
 		@Bind(R.id.report_button) Button reportButton;
 
@@ -150,6 +151,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		} else if (isUser) {
 			ViewGroup.MarginLayoutParams outsideParams = (ViewGroup.MarginLayoutParams)forumViewHolder.forumOutsideLayout.getLayoutParams();
 			outsideParams.setMargins(marginPadding, 0, 0, 0);
+			forumViewHolder.forumOutsideLayout.setGravity(Gravity.RIGHT);
 			forumViewHolder.forumOutsideLayout.setLayoutParams(outsideParams);
 			forumViewHolder.forumInsideLayout.setBackgroundResource(R.drawable.comment_right_white);
 			forumViewHolder.reportButton.setVisibility(View.GONE);
