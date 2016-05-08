@@ -127,6 +127,11 @@ public class ForumBusiness {
 			Result result;
 
 			@Override
+			public void onStart() {
+				listener.onStart();
+			}
+
+			@Override
 			public String onBackground() {
 				try {
 					String url = "/denunciar_comentario.php?id=" + URLEncoder.encode(id, "UTF-8");

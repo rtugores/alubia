@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -41,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 
 	public static final int SETTINGS_ACTIVITY_REQUEST_CODE = 333;
 	@Bind(R.id.schedule_list) ListView listOptions;
+	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
 
 	public static void startActivityForResult(Activity activity) {
 		Intent intent = new Intent(activity, SettingsActivity.class);
@@ -126,9 +128,11 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 				@Override
 				public void onPositive() {
 					String user = getSharedPreferences("PREFERENCE", Activity.MODE_PRIVATE).getString("username", "");
+					progressbarView.setVisibility(View.VISIBLE);
 					ForumBusiness.deleteForumAccount(user, new AllBusinessListener<String>() {
 						@Override
 						public void onServerSuccess(String object) {
+							progressbarView.setVisibility(View.GONE);
 							Notifications.showToast(SettingsActivity.this, getString(R.string.settings_delete_ok));
 							getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
 									.putString("username", "").commit();
@@ -140,6 +144,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 
 						@Override
 						public void onFailure(String result) {
+							progressbarView.setVisibility(View.GONE);
 							if (result.equals("-1")) {
 								Notifications.showToast(SettingsActivity.this, getString(R.string.common_internet_error));
 							} else if (result.equals("-2")) {

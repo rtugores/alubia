@@ -97,7 +97,13 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	private void setResultReportListener() {
 		resultListener = new ResultBusinessListener() {
 			@Override
+			public void onStart() {
+				blockScreenForEvent();
+			}
+
+			@Override
 			public void onResult(String result) {
+				unblockScreenForEvent();
 				switch (result) {
 					case DefaultAsyncTask.ASYNC_TASK_OK:
 						Notifications.showSnackBar(coordinatorLayout, getString(R.string.settings_reported_ok));

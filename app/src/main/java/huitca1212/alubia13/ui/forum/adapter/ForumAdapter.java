@@ -2,7 +2,6 @@ package huitca1212.alubia13.ui.forum.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.util.Linkify;
 import android.util.TypedValue;
@@ -70,7 +69,29 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 	@Override
 	public ForumAdapter.ForumViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_comment_item, parent, false);
-		return new ForumViewHolder(itemView);
+		final ForumViewHolder forumViewHolder = new ForumViewHolder(itemView);
+		forumViewHolder.reportButton.setClickable(true);
+		forumViewHolder.reportButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DialogParams params = new DialogParams();
+				params.setTitle(ctx.getString(R.string.forum_report_comment_title));
+				params.setMessage(ctx.getString(R.string.forum_report_comment_content));
+				params.setPositiveButton(ctx.getString(R.string.common_accept));
+				params.setNegativeButton(ctx.getString(R.string.common_cancel));
+				Dialogs.showGenericDialog(ctx, params, new Dialogs.DialogListener() {
+					@Override
+					public void onPositive() {
+						ForumBusiness.sendReportToBackend(forumViewHolder.id.getText().toString(), resultListener);
+					}
+
+					@Override
+					public void onNegative() {
+					}
+				});
+			}
+		});
+		return forumViewHolder;
 	}
 
 	@Override
@@ -114,27 +135,6 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 		forumViewHolder.group.setText(comments.get(position).getGroup());
 		forumViewHolder.date.setText(comments.get(position).getDate());
 
-		forumViewHolder.reportButton.setClickable(true);
-		forumViewHolder.reportButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				DialogParams params = new DialogParams();
-				params.setTitle(ctx.getString(R.string.forum_report_comment_title));
-				params.setMessage(ctx.getString(R.string.forum_report_comment_content));
-				params.setPositiveButton(ctx.getString(R.string.common_accept));
-				params.setNegativeButton(ctx.getString(R.string.common_cancel));
-				Dialogs.showGenericDialog(ctx, params, new Dialogs.DialogListener() {
-					@Override
-					public void onPositive() {
-						ForumBusiness.sendReportToBackend(forumViewHolder.id.getText().toString(), resultListener);
-					}
-
-					@Override
-					public void onNegative() {
-					}
-				});
-			}
-		});
 		setCommentType(forumViewHolder, position);
 	}
 
