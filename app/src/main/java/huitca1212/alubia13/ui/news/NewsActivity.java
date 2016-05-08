@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.news;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +36,11 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 	@Bind(R.id.coordinator_layout) CoordinatorLayout coordinatorLayout;
 	@Bind(R.id.recycler_view) RecyclerView recyclerView;
 	@Bind(R.id.send_news) Button sendNews;
+
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, NewsActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

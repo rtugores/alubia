@@ -38,13 +38,16 @@ import android.widget.ProgressBar;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.Constants;
+import huitca1212.alubia13.ui.album.SimpleImageActivity;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class ImageGridFragment extends AbsListViewBaseFragment {
 
-	public static final int INDEX = 1;
+	public ImageGridFragment(){
+		//NOOP
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,18 +57,15 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				startImagePagerActivityAlubia15(position);
+				SimpleImageActivity.startActivity(getActivity(), ImagePagerAlubia15Fragment.INDEX, position);
 			}
 		});
 		return rootView;
 	}
 
 	private static class ImageAdapter extends BaseAdapter {
-
 		private static final String[] IMAGE_URLS = Constants.IMAGES_ALUBIA15;
-
 		private LayoutInflater inflater;
-
 		private DisplayImageOptions options;
 
 		ImageAdapter(Context context) {

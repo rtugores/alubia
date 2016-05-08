@@ -17,6 +17,8 @@
  */
 package huitca1212.alubia13.ui.album;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -29,6 +31,14 @@ import huitca1212.alubia13.ui.album.fragment.ImagePagerPenyasFragment;
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class SimpleImageActivity extends FragmentActivity {
+
+	public static void startActivity(Context ctx, int index, int position) {
+		Intent intent = new Intent(ctx, SimpleImageActivity.class);
+		intent.putExtra(Constants.Extra.FRAGMENT_INDEX, index);
+		intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
+		ctx.startActivity(intent);
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

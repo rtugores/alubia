@@ -3,7 +3,6 @@ package huitca1212.alubia13.ui.home;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,27 +59,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.schedule_button) {
-			Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
-			startActivity(intent);
+			ScheduleActivity.startActivity(MainActivity.this);
 		} else if (id == R.id.complex_image_button) {
 			onAlbumClicked();
 		} else if (id == R.id.forum_button) {
 			onForumClicked();
 		} else if (id == R.id.news_button) {
-			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
-			startActivity(intent);
+			NewsActivity.startActivity(MainActivity.this);
 		} else if (id == R.id.more_button) {
-			Intent intent = new Intent(MainActivity.this, MoreActivity.class);
-			startActivity(intent);
-		}
-	}
-
-	private void loadAlbumActivity() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			Intent intent = new Intent(MainActivity.this, ComplexImageActivity.class);
-			startActivity(intent);
-		} else {
-			Notifications.showToast(this, getString(R.string.album_api_error));
+			MoreActivity.startActivity(MainActivity.this);
 		}
 	}
 
@@ -99,6 +86,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			ForumMenuActivity.startActivity(MainActivity.this);
 		} else {
 			ForumActivity.startActivity(MainActivity.this, "NOK");
+		}
+	}
+
+	private void loadAlbumActivity() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			ComplexImageActivity.startActivity(MainActivity.this);
+		} else {
+			Notifications.showToast(this, getString(R.string.album_api_error));
 		}
 	}
 

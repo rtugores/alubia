@@ -45,24 +45,27 @@ import java.util.List;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.Constants;
+import huitca1212.alubia13.ui.album.SimpleImageActivity;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class ImageListFragment extends AbsListViewBaseFragment {
 
-	public static final int INDEX = 0;
+	public ImageListFragment() {
+		//NOOP
+	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_album_image_list, container, false);
-		listView = (ListView) rootView.findViewById(android.R.id.list);
+		listView = (ListView)rootView.findViewById(android.R.id.list);
 		listView.setAdapter(new ImageAdapter(getActivity()));
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				startImagePagerActivityPenyas(position);
+				SimpleImageActivity.startActivity(getActivity(), ImagePagerPenyasFragment.INDEX, position);
 			}
 		});
 		return rootView;
@@ -75,13 +78,10 @@ public class ImageListFragment extends AbsListViewBaseFragment {
 	}
 
 	private static class ImageAdapter extends BaseAdapter {
-
 		private static final String[] IMAGE_URLS = Constants.IMAGES_PENYAS;
 		private static final String[] IMAGE_STRINGS = Constants.IMAGE_TITLES;
-
 		private LayoutInflater inflater;
 		private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
-
 		private DisplayImageOptions options;
 
 		ImageAdapter(Context context) {
@@ -120,11 +120,11 @@ public class ImageListFragment extends AbsListViewBaseFragment {
 			if (convertView == null) {
 				view = inflater.inflate(R.layout.layout_list_image_item, parent, false);
 				holder = new ViewHolder();
-				holder.text = (TextView) view.findViewById(R.id.text);
-				holder.image = (ImageView) view.findViewById(R.id.image);
+				holder.text = (TextView)view.findViewById(R.id.text);
+				holder.image = (ImageView)view.findViewById(R.id.image);
 				view.setTag(holder);
 			} else {
-				holder = (ViewHolder) view.getTag();
+				holder = (ViewHolder)view.getTag();
 			}
 
 			holder.text.setText(IMAGE_STRINGS[position]);
@@ -147,7 +147,7 @@ public class ImageListFragment extends AbsListViewBaseFragment {
 		@Override
 		public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
 			if (loadedImage != null) {
-				ImageView imageView = (ImageView) view;
+				ImageView imageView = (ImageView)view;
 				boolean firstDisplay = !displayedImages.contains(imageUri);
 				if (firstDisplay) {
 					FadeInBitmapDisplayer.animate(imageView, 500);

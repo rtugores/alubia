@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.more;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,11 @@ public class FestivityInfoActivity extends AppCompatActivity implements View.OnC
 	@Bind(R.id.button_maps) Button mapButton;
 	@Bind(R.id.info_write) TextView text;
 
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, FestivityInfoActivity.class);
+		ctx.startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +37,7 @@ public class FestivityInfoActivity extends AppCompatActivity implements View.OnC
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.button_maps) {
-			startActivity(new Intent(this, MapInfoActivity.class));
+			MapInfoActivity.startActivity(FestivityInfoActivity.this);
 		}
 	}
 }

@@ -304,6 +304,9 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <!-- Conctact -->
     <string name="contact_any_doubt">¿Tienes alguna duda o sugerencia?</string>
     <string name="contact_my_name">Rodrigo J. Tugores Blanco</string>
+    <string name="contact_my_phone">tel:664732632</string>
+    <string name="contact_my_email">mailto:huitca1212@gmail.com</string>
+    <string name="contact_send_text">Enviar mediante</string>
 
     <!-- News -->
     <string name="news_email">Email</string>

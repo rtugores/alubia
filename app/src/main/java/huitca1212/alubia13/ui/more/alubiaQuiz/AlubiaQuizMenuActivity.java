@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.more.alubiaQuiz;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,11 @@ public class AlubiaQuizMenuActivity extends AppCompatActivity implements View.On
 	@Bind(R.id.go_medium_button) Button goMediumButton;
 	@Bind(R.id.go_hard_button) Button goHardButton;
 
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, AlubiaQuizMenuActivity.class);
+		ctx.startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,15 +36,13 @@ public class AlubiaQuizMenuActivity extends AppCompatActivity implements View.On
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		Intent intent = null;
 		if (id == R.id.go_easy_button) {
-			intent = new Intent(AlubiaQuizMenuActivity.this, AlubiaQuizEasyActivity.class);
+			AlubiaQuizEasyActivity.startActivity(AlubiaQuizMenuActivity.this);
 		} else if (id == R.id.go_medium_button) {
-			intent = new Intent(AlubiaQuizMenuActivity.this, AlubiaQuizMediumActivity.class);
+			AlubiaQuizMediumActivity.startActivity((AlubiaQuizMenuActivity.this));
 		} else if (id == R.id.go_hard_button) {
-			intent = new Intent(AlubiaQuizMenuActivity.this, AlubiaQuizDifficultActivity.class);
+			AlubiaQuizDifficultActivity.startActivity(AlubiaQuizMenuActivity.this);
 		}
-		startActivity(intent);
 		finish();
 	}
 }

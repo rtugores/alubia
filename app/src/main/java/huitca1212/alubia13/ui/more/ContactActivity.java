@@ -36,11 +36,11 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 		int id = v.getId();
 		if (id == R.id.contactar_whatsapp) {
 			Intent i = new Intent(Intent.ACTION_DIAL);
-			i.setData(Uri.parse("tel:" + "664732632"));
+			i.setData(Uri.parse(getString(R.string.contact_my_phone)));
 			startActivity(i);
 		} else if (id == R.id.contactar_email) {
-			Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + "huitca1212@gmail.com"));
-			startActivity(Intent.createChooser(i, "Enviar mediante"));
+			Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(getString(R.string.contact_my_email)));
+			startActivity(Intent.createChooser(i, getString(R.string.contact_send_text)));
 		}
 	}
 }

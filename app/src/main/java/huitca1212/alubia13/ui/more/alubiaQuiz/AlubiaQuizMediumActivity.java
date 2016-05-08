@@ -2,6 +2,7 @@ package huitca1212.alubia13.ui.more.alubiaQuiz;
 
 import com.google.android.gms.ads.AdView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -29,6 +30,11 @@ public class AlubiaQuizMediumActivity extends AppCompatActivity {
 	@Bind(R.id.second_option) RadioButton secondOption;
 	@Bind(R.id.third_option) RadioButton thirdOption;
 	@Bind(R.id.ad_view) AdView adView;
+
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, AlubiaQuizMediumActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -226,12 +232,7 @@ public class AlubiaQuizMediumActivity extends AppCompatActivity {
 				builder.setMessage(R.string.alubiaquiz_s10_m);
 				builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						Intent intent = new Intent(AlubiaQuizMediumActivity.this, AlubiaQuizSolutionActivity.class);
-						String respuesta_s = Integer.toString(respuesta);
-						Bundle b = new Bundle();
-						b.putString("RESPUESTA", respuesta_s);
-						intent.putExtras(b);
-						AlubiaQuizMediumActivity.this.startActivity(intent);
+						AlubiaQuizSolutionActivity.startActivity(AlubiaQuizMediumActivity.this, Integer.toString(respuesta));
 						AlubiaQuizMediumActivity.this.finish();
 					}
 				});

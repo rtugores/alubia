@@ -7,12 +7,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import huitca1212.alubia13.R;
 
 public class MapInfoActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+	public static void startActivity(Activity activity) {
+		Intent intent = new Intent(activity, MapInfoActivity.class);
+		activity.startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

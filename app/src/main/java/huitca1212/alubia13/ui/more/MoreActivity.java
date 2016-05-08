@@ -1,5 +1,6 @@
 package huitca1212.alubia13.ui.more;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,11 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 	@Bind(R.id.settings) Button settings;
 	@Bind(R.id.contact) Button contact;
 
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, MoreActivity.class);
+		ctx.startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,18 +41,14 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 	@Override
 	public void onClick(View v) {
 		int id = v.getId();
-		Intent intent;
 		if (id == R.id.alubia_quiz) {
-			intent = new Intent(this, AlubiaQuizMenuActivity.class);
-			startActivity(intent);
+			AlubiaQuizMenuActivity.startActivity(MoreActivity.this);
 		} else if (id == R.id.about) {
-			intent = new Intent(this, FestivityInfoActivity.class);
-			startActivity(intent);
+			FestivityInfoActivity.startActivity(MoreActivity.this);
 		} else if (id == R.id.settings) {
 			SettingsActivity.startActivityForResult(MoreActivity.this);
 		} else if (id == R.id.contact) {
-			intent = new Intent(this, ContactActivity.class);
-			startActivity(intent);
+			ContactActivity.startActivity(MoreActivity.this);
 		}
 	}
 

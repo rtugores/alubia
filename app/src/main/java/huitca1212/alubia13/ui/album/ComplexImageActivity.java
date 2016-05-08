@@ -17,6 +17,8 @@
  */
 package huitca1212.alubia13.ui.album;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,9 +35,13 @@ import huitca1212.alubia13.utils.AdsAndAnalytics;
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class ComplexImageActivity extends AppCompatActivity {
-
 	private static final String STATE_POSITION = "STATE_POSITION";
 	private ViewPager pager;
+
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, ComplexImageActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,6 @@ public class ComplexImageActivity extends AppCompatActivity {
 	}
 
 	private class ImagePagerAdapter extends FragmentPagerAdapter {
-
 		Fragment listFragment;
 		Fragment gridFragment;
 

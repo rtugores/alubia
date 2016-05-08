@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -116,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 	private void onDeleteAccount() {
 		boolean notRegister = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("notregister", true);
 		if (notRegister) {
-			Toast.makeText(SettingsActivity.this, R.string.settings_error_logout, Toast.LENGTH_SHORT).show();
+			Notifications.showToast(SettingsActivity.this, getString(R.string.settings_error_logout));
 		} else {
 			DialogParams params = new DialogParams();
 			params.setTitle(getString(R.string.settings_delete_title));

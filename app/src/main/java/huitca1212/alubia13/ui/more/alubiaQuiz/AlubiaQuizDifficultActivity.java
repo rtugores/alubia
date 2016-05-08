@@ -4,6 +4,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -31,6 +32,11 @@ public class AlubiaQuizDifficultActivity extends AppCompatActivity {
 	@Bind(R.id.second_option) RadioButton secondOption;
 	@Bind(R.id.third_option) RadioButton thirdOption;
 	@Bind(R.id.ad_view) AdView adView;
+
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, AlubiaQuizDifficultActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -237,12 +243,7 @@ public class AlubiaQuizDifficultActivity extends AppCompatActivity {
 				builder.setMessage(R.string.alubiaquiz_s10_d);
 				builder.setPositiveButton(R.string.common_accept, new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						Intent intent = new Intent(AlubiaQuizDifficultActivity.this, AlubiaQuizSolutionActivity.class);
-						String respuesta_s = Integer.toString(respuesta);
-						Bundle b = new Bundle();
-						b.putString("RESPUESTA", respuesta_s);
-						intent.putExtras(b);
-						AlubiaQuizDifficultActivity.this.startActivity(intent);
+						AlubiaQuizSolutionActivity.startActivity(AlubiaQuizDifficultActivity.this, Integer.toString(respuesta));
 						AlubiaQuizDifficultActivity.this.finish();
 					}
 				});

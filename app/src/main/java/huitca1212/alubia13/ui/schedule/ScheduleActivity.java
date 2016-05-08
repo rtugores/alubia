@@ -1,5 +1,7 @@
 package huitca1212.alubia13.ui.schedule;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +29,11 @@ public class ScheduleActivity extends AppCompatActivity {
 	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
 	@Bind(R.id.schedule_list) RecyclerView recyclerView;
 	@Bind(R.id.schedule_title) TextView scheduleTitle;
+
+	public static void startActivity(Context ctx) {
+		Intent intent = new Intent(ctx, ScheduleActivity.class);
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

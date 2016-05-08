@@ -1,5 +1,7 @@
 package huitca1212.alubia13.ui.more.alubiaQuiz;
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,21 @@ public class AlubiaQuizSolutionActivity extends AppCompatActivity implements Vie
 	@Bind(R.id.text_answers) TextView answersTextView;
 	@Bind(R.id.text_solution) TextView solutionTextView;
 	@Bind(R.id.button_finish) Button buttonFinish;
+
+	public static void startActivity(Context ctx, String solution) {
+		Intent intent = new Intent(ctx, AlubiaQuizSolutionActivity.class);
+		intent.putExtra("RESPUESTA", solution);
+		ctx.startActivity(intent);
+	}
+
+	public static void startActivity(Context ctx, String solution, boolean withFlag) {
+		Intent intent = new Intent(ctx, AlubiaQuizSolutionActivity.class);
+		intent.putExtra("RESPUESTA", solution);
+		if (withFlag) {
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		}
+		ctx.startActivity(intent);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

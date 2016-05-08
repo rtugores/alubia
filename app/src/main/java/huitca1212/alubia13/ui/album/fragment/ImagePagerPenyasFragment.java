@@ -28,6 +28,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ import huitca1212.alubia13.utils.Notifications;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImagePagerPenyasFragment extends BaseFragment {
+public class ImagePagerPenyasFragment extends Fragment {
 
 	public static final int INDEX = 2;
 

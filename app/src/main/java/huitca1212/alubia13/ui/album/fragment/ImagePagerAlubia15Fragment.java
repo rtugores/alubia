@@ -28,6 +28,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -43,14 +44,14 @@ import huitca1212.alubia13.utils.Notifications;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ImagePagerAlubia15Fragment extends BaseFragment {
+public class ImagePagerAlubia15Fragment extends Fragment {
 
 	public static final int INDEX = 3;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_album_image_pager, container, false);
-		ViewPager pager = (ViewPager) rootView.findViewById(R.id.pager);
+		ViewPager pager = (ViewPager)rootView.findViewById(R.id.pager);
 		pager.setAdapter(new ImageAdapter(getActivity()));
 		pager.setCurrentItem(getArguments().getInt(Constants.Extra.IMAGE_POSITION, 0));
 		return rootView;
@@ -80,7 +81,7 @@ public class ImagePagerAlubia15Fragment extends BaseFragment {
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			container.removeView((View) object);
+			container.removeView((View)object);
 		}
 
 		@Override
@@ -92,8 +93,8 @@ public class ImagePagerAlubia15Fragment extends BaseFragment {
 		public Object instantiateItem(ViewGroup view, int position) {
 			View imageLayout = inflater.inflate(R.layout.layout_pager_image_item, view, false);
 			assert imageLayout != null;
-			ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
-			final ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
+			ImageView imageView = (ImageView)imageLayout.findViewById(R.id.image);
+			final ProgressBar spinner = (ProgressBar)imageLayout.findViewById(R.id.loading);
 
 			ImageLoader.getInstance().displayImage(IMAGE_URLS[position], imageView, options, new SimpleImageLoadingListener() {
 				@Override

@@ -48,13 +48,7 @@ public class Dialogs {
 		if (questionNumber == 10) {
 			builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					Intent intent = new Intent(ctx, AlubiaQuizSolutionActivity.class);
-					String respuesta_s = Integer.toString(answer);
-					Bundle b = new Bundle();
-					b.putString("RESPUESTA", respuesta_s);
-					intent.putExtras(b);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					ctx.startActivity(intent);
+					AlubiaQuizSolutionActivity.startActivity(ctx, Integer.toString(answer), true);
 					((Activity)ctx).finish();
 				}
 			});

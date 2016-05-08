@@ -20,44 +20,24 @@ package huitca1212.alubia13.ui.album.fragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
-import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.widget.AbsListView;
 
-import huitca1212.alubia13.ui.album.Constants;
 import huitca1212.alubia13.ui.album.SimpleImageActivity;
 
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public abstract class AbsListViewBaseFragment extends BaseFragment {
+public abstract class AbsListViewBaseFragment extends Fragment {
 
 	protected AbsListView listView;
-
 	protected boolean pauseOnScroll = false;
 	protected boolean pauseOnFling = true;
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		applyScrollListener();
-	}
-
-	protected void startImagePagerActivityPenyas(int position) {
-		Intent intent = new Intent(getActivity(), SimpleImageActivity.class);
-		intent.putExtra(Constants.Extra.FRAGMENT_INDEX, ImagePagerPenyasFragment.INDEX);
-		intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
-		startActivity(intent);
-	}
-
-	protected void startImagePagerActivityAlubia15(int position) {
-		Intent intent = new Intent(getActivity(), SimpleImageActivity.class);
-		intent.putExtra(Constants.Extra.FRAGMENT_INDEX, ImagePagerAlubia15Fragment.INDEX);
-		intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
-		startActivity(intent);
-	}
-
-	private void applyScrollListener() {
 		listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), pauseOnScroll, pauseOnFling));
 	}
 }
