@@ -1,36 +1,64 @@
 package huitca1212.alubia13.ui.more.settings;
 
-import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.model.Setting;
 
-public class SettingsAdapter extends ArrayAdapter<Setting> {
+public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ScheduleViewHolder> implements View.OnClickListener {
+	public ArrayList<Setting> items = new ArrayList<>();
+	private View.OnClickListener listener;
 
-    Activity context;
-    Setting[] datos;
+	@Override
+	public void onClick(View v) {
+		if (listener != null) {
+			listener.onClick(v);
+		}
+	}
 
-    SettingsAdapter(Activity context, Setting[] datos) {
-        super(context, R.layout.layout_settings_item, datos);
-        this.context = context;
-        this.datos = datos;
-    }
+	public void setOnClickListener(View.OnClickListener listener) {
+		this.listener = listener;
+	}
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
-        View item = inflater.inflate(R.layout.layout_settings_item, null);
+	public static class ScheduleViewHolder extends RecyclerView.ViewHolder {
+		@Bind(R.id.setting_title) TextView title;
+		@Bind(R.id.setting_subtitle) TextView subtitle;
 
-        TextView lblTitulo = (TextView) item.findViewById(R.id.setting_title);
-        lblTitulo.setText(datos[position].getTitulo());
+		public ScheduleViewHolder(View itemView) {
+			super(itemView);
+			ButterKnife.bind(this, itemView);
+		}
+	}
 
-        TextView lblSubtitulo = (TextView) item.findViewById(R.id.setting_subtitle);
-        lblSubtitulo.setText(datos[position].getSubtitulo());
+	@Override
+	public ScheduleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		View itemView = LayoutInflater.from(parent.getContext())
+				.inflate(R.layout.layout_settings_item, parent, false);
+		itemView.setOnClickListener(this);
+		return new ScheduleViewHolder(itemView);
+	}
 
-        return (item);
-    }
+	@Override
+	public void onBindViewHolder(ScheduleViewHolder scheduleViewHolder, int position) {
+		scheduleViewHolder.title.setText(items.get(position).getTitle());
+		scheduleViewHolder.subtitle.setText(items.get(position).getSubtitle());
+	}
+
+	@Override
+	public int getItemCount() {
+		return items.size();
+	}
+
+	public void updateList(ArrayList<Setting> items) {
+		this.items = items;
+		notifyDataSetChanged();
+	}
 }

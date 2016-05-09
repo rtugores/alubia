@@ -6,10 +6,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,7 +26,7 @@ import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
 
-public class SettingsActivity extends AppCompatActivity implements ListView.OnItemClickListener {
+public class SettingsActivity extends AppCompatActivity {
 
 	private enum SettingsItem {
 		logOut(0), forgotPasswd(1), deleteAccount(2), privacyPolicy(3), shareApp(4), updateApp(5);
@@ -39,9 +41,8 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 			return value;
 		}
 	}
-
 	public static final int SETTINGS_ACTIVITY_REQUEST_CODE = 333;
-	@Bind(R.id.schedule_list) ListView listOptions;
+	@Bind(R.id.settings_list) RecyclerView recyclerView;
 	@Bind(R.id.progressbar_view) ViewGroup progressbarView;
 
 	public static void startActivityForResult(Activity activity) {
@@ -55,22 +56,32 @@ public class SettingsActivity extends AppCompatActivity implements ListView.OnIt
 		setContentView(R.layout.activity_settings);
 		ButterKnife.bind(this);
 
-		SettingsAdapter adaptador = new SettingsAdapter(this, new Setting[]{
-				new Setting(getString(R.string.settings_logout), getString(R.string.settings_logout_sub)),
-				new Setting(getString(R.string.settings_forgot_passwd), getString(R.string.settings_forgot_passwd_sub)),
-				new Setting(getString(R.string.settings_delete_title), getString(R.string.settings_delete_title_sub)),
-				new Setting(getString(R.string.settings_privacy_policy), getString(R.string.settings_privacy_policy_sub)),
-				new Setting(getString(R.string.settings_share), getString(R.string.settings_share_sub)),
-				new Setting(getString(R.string.settings_update), getString(R.string.settings_update_sub)),
-				new Setting(getString(R.string.settings_version), BuildConfig.VERSION_NAME),
-		});
-
-		listOptions.setAdapter(adaptador);
-		listOptions.setOnItemClickListener(this);
+		setAdapter();
 	}
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	private void setAdapter() {
+		ArrayList<Setting> settings = new ArrayList<>();
+		settings.add(new Setting(getString(R.string.settings_logout), getString(R.string.settings_logout_sub)));
+		settings.add(new Setting(getString(R.string.settings_forgot_passwd), getString(R.string.settings_forgot_passwd_sub)));
+		settings.add(new Setting(getString(R.string.settings_delete_title), getString(R.string.settings_delete_title_sub)));
+		settings.add(new Setting(getString(R.string.settings_privacy_policy), getString(R.string.settings_privacy_policy_sub)));
+		settings.add(new Setting(getString(R.string.settings_share), getString(R.string.settings_share_sub)));
+		settings.add(new Setting(getString(R.string.settings_update), getString(R.string.settings_update_sub)));
+		settings.add(new Setting(getString(R.string.settings_version), BuildConfig.VERSION_NAME));
+		SettingsAdapter adapter = new SettingsAdapter();
+		adapter.updateList(settings);
+		adapter.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int positionSelected = recyclerView.getChildAdapterPosition(v);
+				onItemClick(positionSelected);
+			}
+		});
+		recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+		recyclerView.setAdapter(adapter);
+	}
+
+	private void onItemClick(int position) {
 		if (position == SettingsItem.logOut.getValue()) {
 			onLogOut();
 		} else if (position == SettingsItem.forgotPasswd.getValue()) {
