@@ -25,10 +25,10 @@ public class SettingsAdapter extends ArrayAdapter<Setting> {
         LayoutInflater inflater = context.getLayoutInflater();
         View item = inflater.inflate(R.layout.layout_settings_item, null);
 
-        TextView lblTitulo = (TextView) item.findViewById(R.id.LblTituloAjustes);
+        TextView lblTitulo = (TextView) item.findViewById(R.id.setting_title);
         lblTitulo.setText(datos[position].getTitulo());
 
-        TextView lblSubtitulo = (TextView) item.findViewById(R.id.LblSubtituloAjustes);
+        TextView lblSubtitulo = (TextView) item.findViewById(R.id.setting_subtitle);
         lblSubtitulo.setText(datos[position].getSubtitulo());
 
         return (item);

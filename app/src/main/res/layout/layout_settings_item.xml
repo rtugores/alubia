@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dip"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
 
     <TextView
-        android:id="@+id/LblTituloAjustes"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="5dip"
-        android:layout_marginRight="5dip"
-        android:layout_marginTop="5dip"
-        android:layout_weight="0.40"
-        android:textColor="@color/dark_purple"
-        android:textIsSelectable="false"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/LblSubtituloAjustes"
-        android:layout_width="wrap_content"
+        android:id="@+id/setting_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dip"
-        android:layout_marginEnd="5dip"
-        android:layout_marginRight="5dip"
-        android:layout_marginTop="5dip"
-        android:textIsSelectable="false" />
+        android:textColor="@color/dark_purple"
+        android:textSize="18sp"
+        tools:text="Setting title" />
 
+    <TextView
+        android:id="@+id/setting_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        tools:text="Setting subtitle" />
 </LinearLayout>
