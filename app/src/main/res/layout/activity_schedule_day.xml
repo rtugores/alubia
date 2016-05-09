@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,21 +16,19 @@
         android:textStyle="bold"
         tools:text="Fiesta de la Alubia" />
 
-    <com.google.android.gms.ads.AdView
+    <include
         android:id="@+id/ad_view"
+        layout="@layout/layout_ad_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/common_banner_ad_unit_id" />
+        android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/schedule_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_above="@id/ad_view"
-        android:layout_below="@id/schedule_day_title" />
+        android:layout_below="@id/schedule_day_title"
+        android:layout_marginBottom="5dp" />
 </RelativeLayout>

@@ -35,5 +35,4 @@
     <include
         android:id="@+id/progressbar_view"
         layout="@layout/layout_progressbar_view" />
-
 </FrameLayout>
