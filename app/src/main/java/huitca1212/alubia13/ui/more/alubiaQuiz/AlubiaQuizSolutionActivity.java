@@ -17,19 +17,20 @@ import huitca1212.alubia13.R;
 public class AlubiaQuizSolutionActivity extends AppCompatActivity implements View.OnClickListener {
 
 	private final static int NUM_QUESTIONS_FOR_ACCEPTANCE = 4;
+	private final static String ANSWER = "ANSWER";
 	@Bind(R.id.text_answers) TextView answersTextView;
 	@Bind(R.id.text_solution) TextView solutionTextView;
 	@Bind(R.id.button_finish) Button buttonFinish;
 
 	public static void startActivity(Context ctx, String solution) {
 		Intent intent = new Intent(ctx, AlubiaQuizSolutionActivity.class);
-		intent.putExtra("RESPUESTA", solution);
+		intent.putExtra(ANSWER, solution);
 		ctx.startActivity(intent);
 	}
 
 	public static void startActivity(Context ctx, String solution, boolean withFlag) {
 		Intent intent = new Intent(ctx, AlubiaQuizSolutionActivity.class);
-		intent.putExtra("RESPUESTA", solution);
+		intent.putExtra(ANSWER, solution);
 		if (withFlag) {
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		}
@@ -45,7 +46,7 @@ public class AlubiaQuizSolutionActivity extends AppCompatActivity implements Vie
 		buttonFinish.setOnClickListener(this);
 
 		Bundle bundle = this.getIntent().getExtras();
-		String resultString = bundle.getString("RESPUESTA");
+		String resultString = bundle.getString(ANSWER);
 		int resultInteger = 0;
 		if (resultString != null) {
 			resultInteger = Integer.parseInt(resultString);
