@@ -97,7 +97,7 @@
             android:name=".ui.album.SimpleImageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.album.ComplexImageActivity"
+            android:name=".ui.album.AlbumActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

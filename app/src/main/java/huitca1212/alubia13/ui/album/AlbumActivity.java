@@ -34,12 +34,12 @@ import huitca1212.alubia13.utils.AdsAndAnalytics;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ComplexImageActivity extends AppCompatActivity {
+public class AlbumActivity extends AppCompatActivity {
 	private static final String STATE_POSITION = "STATE_POSITION";
 	private ViewPager pager;
 
 	public static void startActivity(Context ctx) {
-		Intent intent = new Intent(ctx, ComplexImageActivity.class);
+		Intent intent = new Intent(ctx, AlbumActivity.class);
 		ctx.startActivity(intent);
 	}
 

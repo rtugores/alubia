@@ -15,7 +15,7 @@ import android.widget.Button;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.ui.album.ComplexImageActivity;
+import huitca1212.alubia13.ui.album.AlbumActivity;
 import huitca1212.alubia13.ui.forum.ForumActivity;
 import huitca1212.alubia13.ui.forum.ForumMenuActivity;
 import huitca1212.alubia13.ui.more.MoreActivity;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	private void onAlbumClicked() {
 		if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 			// Access granted, load activity
-			ComplexImageActivity.startActivity(MainActivity.this);
+			AlbumActivity.startActivity(MainActivity.this);
 		} else {
 			requestWriteAccessPermission();
 		}
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			// Request for write access permissions
 			if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 				// Access granted, load activity
-				ComplexImageActivity.startActivity(MainActivity.this);
+				AlbumActivity.startActivity(MainActivity.this);
 			}
 			// Else -> Permission request was denied.
 		}

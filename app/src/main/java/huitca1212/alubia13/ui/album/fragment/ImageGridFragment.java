@@ -31,7 +31,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -52,22 +51,22 @@ public class ImageGridFragment extends Fragment {
 		//NOOP
 	}
 
-	protected AbsListView listView;
+	protected GridView gridView;
 	protected boolean pauseOnScroll = false;
 	protected boolean pauseOnFling = true;
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), pauseOnScroll, pauseOnFling));
+		gridView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), pauseOnScroll, pauseOnFling));
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_album_image_grid, container, false);
-		listView = (GridView)rootView.findViewById(R.id.grid);
-		((GridView)listView).setAdapter(new ImageAdapter(getActivity()));
-		listView.setOnItemClickListener(new OnItemClickListener() {
+		gridView = (GridView)rootView.findViewById(R.id.grid);
+		gridView.setAdapter(new ImageAdapter(getActivity()));
+		gridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				SimpleImageActivity.startActivity(getActivity(), ImagePagerAlubia15Fragment.INDEX, position);
