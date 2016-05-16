@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="7">
 
     <TextView
         android:id="@+id/quiz_welcome"
         android:layout_width="match_parent"
-        android:layout_height="40dip"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/side_margin"
         android:layout_marginRight="@dimen/side_margin"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.1"
+        android:layout_weight="2"
         android:gravity="center"
         android:text="@string/alubiaquiz_easy_level_subtitle"
         android:textColor="@color/light_purple"
@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/side_margin"
         android:layout_marginRight="@dimen/side_margin"
-        android:layout_weight="0.8"
+        android:layout_weight="1"
         android:gravity="center|center_vertical"
         android:text="@string/alubiaquiz_title"
         android:textSize="18sp"
@@ -36,29 +36,33 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="@dimen/side_margin"
         android:layout_marginRight="@dimen/side_margin"
-        android:layout_weight="0.8"
+        android:layout_weight="4"
         android:gravity="center_vertical">
-
         <RadioButton
             android:id="@+id/first_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/alubiaquiz_title" />
-
+            android:padding="10dp"
+            android:textSize="15sp"
+            tools:text="@string/alubiaquiz_title" />
         <RadioButton
             android:id="@+id/second_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alubiaquiz_title" />
-
+            android:padding="10dp"
+            android:textSize="15sp"
+            tools:text="@string/alubiaquiz_title" />
         <RadioButton
             android:id="@+id/third_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alubiaquiz_title" />
+            android:padding="10dp"
+            android:textSize="15sp"
+            tools:text="@string/alubiaquiz_title" />
     </RadioGroup>
 
     <Button
@@ -66,11 +70,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="30dip"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="@dimen/side_margin"
         android:layout_marginRight="@dimen/side_margin"
-        android:layout_marginTop="10dip"
-        android:layout_weight="0.05"
         android:background="@drawable/d_button_blue"
         android:text="@string/alubiaquiz_next"
         android:textColor="@color/white"

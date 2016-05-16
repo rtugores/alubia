@@ -32,7 +32,8 @@
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
         android:text="@string/home_schedule"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/complex_image_button"
@@ -42,7 +43,8 @@
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
         android:text="@string/album_title"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/forum_button"
@@ -52,7 +54,8 @@
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
         android:text="@string/home_forum"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/news_button"
@@ -62,7 +65,8 @@
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
         android:text="@string/home_news"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/more_button"
@@ -72,6 +76,7 @@
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
         android:text="@string/home_more"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>
