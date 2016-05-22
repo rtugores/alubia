@@ -63,7 +63,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		ButterKnife.bind(this);
 
 		commentBox.requestFocus();
-		getWindow().setBackgroundDrawableResource(R.drawable.background_forum);
+		getWindow().setBackgroundDrawableResource(R.drawable.background_default);
 
 		AdsAndAnalytics.setAnalytics(this);
 		setResultReportListener();

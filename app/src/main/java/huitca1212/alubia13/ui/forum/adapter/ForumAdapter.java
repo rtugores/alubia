@@ -96,15 +96,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 
 	@Override
 	public int getItemViewType(int position) {
-		if (comments.get(position).getBan().equals("1")) {
-			if (position > 0) {
-				if (comments.get(position).getUser().equals(comments.get(position - 1).getUser())) {
-					return TYPE_BAN_REPEATED;
-				}
-			}
-			return TYPE_BAN;
-		}
-		if (comments.get(position).getVip().equals("1")) {
+		 if (comments.get(position).getVip().equals("1")) {
 			if (position > 0) {
 				if (comments.get(position).getUser().equals(comments.get(position - 1).getUser())) {
 					return TYPE_VIP_REPEATED;
@@ -118,6 +110,13 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 				}
 			}
 			return TYPE_ADMIN;
+		} else if (comments.get(position).getBan().equals("1")) {
+			if (position > 0) {
+				if (comments.get(position).getUser().equals(comments.get(position - 1).getUser())) {
+					return TYPE_BAN_REPEATED;
+				}
+			}
+			return TYPE_BAN;
 		} else if (position > 0) {
 			if (comments.get(position).getUser().equals(comments.get(position - 1).getUser())) {
 				return TYPE_NORMAL_REPEATED;

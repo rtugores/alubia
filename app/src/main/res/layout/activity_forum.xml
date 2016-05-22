@@ -33,8 +33,10 @@
             android:id="@+id/comment_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
+            android:background="@android:color/white"
             android:orientation="horizontal"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:weightSum="1">
 
             <EditText
@@ -42,8 +44,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="5dip"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:hint="@string/forum_write_message"
                 android:imeOptions="actionDone"
@@ -58,10 +59,12 @@
 
             <Button
                 android:id="@+id/send_button"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
                 android:layout_gravity="center"
-                android:background="@android:drawable/ic_menu_send" />
+                android:background="@drawable/ic_send" />
         </LinearLayout>
 
     </LinearLayout>
@@ -72,8 +75,8 @@
 
     <Button
         android:id="@+id/update_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="top|end"
         android:background="@drawable/ic_update"
         android:focusable="true" />
