@@ -15,12 +15,10 @@ android {
     buildTypes {
         debug {
             debuggable true
-            jniDebuggable true
             minifyEnabled false
         }
         release {
             debuggable false
-            jniDebuggable false
             shrinkResources true
             // minifyEnabled true
         }
