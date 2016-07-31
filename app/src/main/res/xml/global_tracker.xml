@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <!-- The application name. Defaults to name specified for the application label -->
-    <string name="ga_appName">Alubia \'16</string>
+    <string name="ga_appName">@string/common_app_name</string>
 
     <!-- The application version. Defaults to android:versionName specified in the AndroidManifest.xml -->
-    <string name="ga_appVersion">3.5</string>
+    <string name="ga_appVersion">3.6</string>
 
     <!-- The dispatching period in seconds when Google Play services is
          unavailable. The default period is 1800 seconds or 30 minutes -->
