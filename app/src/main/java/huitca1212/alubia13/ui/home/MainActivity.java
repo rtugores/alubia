@@ -1,6 +1,5 @@
 package huitca1212.alubia13.ui.home;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -45,12 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		forumButton.setOnClickListener(this);
 		newsButton.setOnClickListener(this);
 		moreButton.setOnClickListener(this);
-	}
-
-	@Override
-	public void onBackPressed() {
-		ImageLoader.getInstance().stop();
-		super.onBackPressed();
 	}
 
 	@Override

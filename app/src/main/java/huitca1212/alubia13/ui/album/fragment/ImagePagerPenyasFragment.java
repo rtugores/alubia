@@ -1,31 +1,8 @@
-/**
- * ****************************************************************************
- * Copyright 2011-2014 Sergey Tarasevich
- * <p/>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p/>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * *****************************************************************************
- */
 package huitca1212.alubia13.ui.album.fragment;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.squareup.picasso.Picasso;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -39,11 +16,7 @@ import android.widget.ProgressBar;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.Constants;
-import huitca1212.alubia13.utils.Notifications;
 
-/**
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- */
 public class ImagePagerPenyasFragment extends Fragment {
 
 	public static final int INDEX = 2;
@@ -62,21 +35,9 @@ public class ImagePagerPenyasFragment extends Fragment {
 		private static final String[] IMAGE_URLS = Constants.IMAGES_PENYAS;
 
 		private LayoutInflater inflater;
-		private DisplayImageOptions options;
 
 		ImageAdapter(Context context) {
 			inflater = LayoutInflater.from(context);
-
-			options = new DisplayImageOptions.Builder()
-					.showImageForEmptyUri(R.drawable.ic_empty)
-					.showImageOnFail(R.drawable.ic_error)
-					.resetViewBeforeLoading(true)
-					.cacheOnDisk(true)
-					.imageScaleType(ImageScaleType.EXACTLY)
-					.bitmapConfig(Bitmap.Config.RGB_565)
-					.considerExifParams(true)
-					.displayer(new FadeInBitmapDisplayer(300))
-					.build();
 		}
 
 		@Override
@@ -96,31 +57,11 @@ public class ImagePagerPenyasFragment extends Fragment {
 			final ImageView imageView = (ImageView)imageLayout.findViewById(R.id.image);
 			final ProgressBar spinner = (ProgressBar)imageLayout.findViewById(R.id.loading);
 
-			ImageLoader.getInstance().displayImage(IMAGE_URLS[position], imageView, options, new SimpleImageLoadingListener() {
-				@Override
-				public void onLoadingStarted(String imageUri, View view) {
-					spinner.setVisibility(View.VISIBLE);
-				}
-
-				@Override
-				public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-					switch (failReason.getType()) {
-						case IO_ERROR:
-						case DECODING_ERROR:
-						case NETWORK_DENIED:
-						case OUT_OF_MEMORY:
-						case UNKNOWN:
-							Notifications.showToast(view.getContext(), view.getContext().getString(R.string.common_internet_error));
-							break;
-					}
-					spinner.setVisibility(View.GONE);
-				}
-
-				@Override
-				public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-					spinner.setVisibility(View.GONE);
-				}
-			});
+			Picasso.with(view.getContext())
+					.load(IMAGE_URLS[position])
+					.placeholder(R.drawable.ic_stub)
+					.error(R.drawable.ic_error)
+					.into(imageView);
 
 			view.addView(imageLayout, 0);
 			return imageLayout;

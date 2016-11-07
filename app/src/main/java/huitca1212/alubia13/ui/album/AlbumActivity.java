@@ -1,20 +1,3 @@
-/**
- * ****************************************************************************
- * Copyright 2014 Sergey Tarasevich
- * <p/>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p/>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * *****************************************************************************
- */
 package huitca1212.alubia13.ui.album;
 
 import android.content.Context;
@@ -31,9 +14,6 @@ import huitca1212.alubia13.ui.album.fragment.ImageGridFragment;
 import huitca1212.alubia13.ui.album.fragment.ImageListFragment;
 import huitca1212.alubia13.utils.AdsAndAnalytics;
 
-/**
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- */
 public class AlbumActivity extends AppCompatActivity {
 	private static final String STATE_POSITION = "STATE_POSITION";
 	private ViewPager pager;
@@ -51,7 +31,7 @@ public class AlbumActivity extends AppCompatActivity {
 
 		int pagerPosition = savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
 
-		pager = (ViewPager)findViewById(R.id.pager);
+		pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(new ImagePagerAdapter(getSupportFragmentManager()));
 		pager.setCurrentItem(pagerPosition);
 	}
