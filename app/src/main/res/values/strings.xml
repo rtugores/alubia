@@ -3,7 +3,7 @@
 
     <!-- Common-->
     <string name="google_maps_api_key">AIzaSyBA2fDYEembDo6bCKCJyGbkBl08Qvz2epQ</string>
-    <string name="common_app_name">Alubia \'16</string>
+    <string name="common_app_name">Fiesta de la Alubia</string>
     <string name="common_internet_error">Algo fue mal! Comprueba tu conexión a Internet e inténtalo de nuevo.</string>
     <string name="common_no_internet">No hay conexión a Internet</string>
     <string name="common_accept">Aceptar</string>
@@ -21,7 +21,7 @@
     <!-- Retrieved from the Internet: schedule_alubia.json -->
 
     <!-- Main Activity -->
-    <string name="home_title">Fiesta de la Alubia 2016</string>
+    <string name="home_title">Fiesta de la Alubia</string>
     <string name="home_subtitle">Laguna de Negrillos</string>
     <string name="home_schedule">Programa de fiestas</string>
     <string name="home_groups">Peñas</string>
@@ -296,9 +296,9 @@ León, Valencia de Don Juan, Santa María del Páramo, La Bañeza, etc. Se puede
     <string name="settings_error_comment_deleted">No podemos encontrar este comentario. Probablemente ya haya sido eliminado</string>
     <string name="settings_reported_ok">Comentario denunciado correctamente. Será revisado por el administrador</string>
     <string name="settings_share_chooser">Compartir mediante</string>
-    <string name="settings_share_title">¡Descarga Alubia \'16!</string>
+    <string name="settings_share_title">¡Descarga Fiesta de la Alubia!</string>
     <string name="settings_share_content">"La aplicación de la fiesta de la Alubia en Laguna de Negrillos.
-        Disponible YA en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13"</string>
+        Disponible en Google Play: https://play.google.com/store/apps/details?id=huitca1212.alubia13"</string>
 
     <!-- Conctact -->
     <string name="contact_any_doubt">¿Tienes alguna duda o sugerencia?</string>
