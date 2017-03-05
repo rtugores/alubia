@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-
     defaultConfig {
         applicationId "huitca1212.alubia13"
         minSdkVersion 14
@@ -11,11 +10,17 @@ android {
         versionCode 32
         versionName "3.6"
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
-
+    signingConfigs {
+        release {
+            keyAlias 'key'
+            keyPassword 'Password01'
+            storeFile file('../key/key.keystore')
+            storePassword 'Password01'
+        }
+    }
     buildTypes {
         debug {
             debuggable true
@@ -23,8 +28,10 @@ android {
         }
         release {
             debuggable false
-            // shrinkResources true
-            // minifyEnabled true
+            shrinkResources true
+            minifyEnabled true
+            proguardFile '../proguard-project-release.txt'
+            signingConfig signingConfigs.release
         }
     }
 }
