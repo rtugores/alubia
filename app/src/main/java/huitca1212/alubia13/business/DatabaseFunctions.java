@@ -68,5 +68,4 @@ public class DatabaseFunctions {
 		}
 		return databaseCommentsHelper;
 	}
-
 }

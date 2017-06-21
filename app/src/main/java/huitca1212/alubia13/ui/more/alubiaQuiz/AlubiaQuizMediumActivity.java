@@ -50,7 +50,6 @@ public class AlubiaQuizMediumActivity extends AppCompatActivity implements View.
 		setInitialQuestion();
 	}
 
-
 	@Override
 	public void onClick(View view) {
 		int id = view.getId();
