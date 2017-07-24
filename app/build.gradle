@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "huitca1212.alubia13"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 32
         versionName "3.6"
@@ -51,6 +51,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-
     compile 'com.github.maksim88:PasswordEditText:v0.6'
+    compile 'io.github.rockerhieu:emojicon:1.4.2'
 }

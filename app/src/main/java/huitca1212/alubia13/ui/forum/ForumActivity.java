@@ -152,13 +152,13 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.update_button) {
-			onUpdateButtonPressed();
+			onUpdateButtonClick();
 		} else if (id == R.id.send_button) {
-			onSendButtonPressed();
+			onSendButtonClick();
 		}
 	}
 
-	private void onUpdateButtonPressed() {
+	private void onUpdateButtonClick() {
 		blockScreenForEvent();
 		ForumBusiness.getBackendForumContent(new AllBusinessListener<ArrayList<Comment>>() {
 			@Override
@@ -179,7 +179,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 		});
 	}
 
-	private void onSendButtonPressed() {
+	private void onSendButtonClick() {
 		String comment = commentBox.getText().toString().trim();
 		if (Checkers.isRightComment(this, comment, commentBox)) {
 			String user = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getString("username", "");
