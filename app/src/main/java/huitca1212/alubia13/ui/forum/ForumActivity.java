@@ -223,7 +223,6 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 	}
 
 	private void unblockScreenForEvent() {
-		//Animations.crossfadeViews(progressbarView, recyclerView, ForumActivity.this);
 		progressbarView.setVisibility(View.GONE);
 		updateButton.setEnabled(true);
 		sendButton.setEnabled(true);
@@ -235,7 +234,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 			DatabaseFunctions.setDatabaseComments(comments);
 		}
 		if (fromButton) {
-			recyclerView.setAdapter(adapter);
+			recyclerView.scrollToPosition(comments.size() - 1);
 		}
 	}
 
