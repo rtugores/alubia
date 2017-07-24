@@ -45,7 +45,7 @@ public class AlbumActivity extends AppCompatActivity {
 		Fragment listFragment;
 		Fragment gridFragment;
 
-		ImagePagerAdapter(FragmentManager fm) {
+		public ImagePagerAdapter(FragmentManager fm) {
 			super(fm);
 			listFragment = new ImageListFragment();
 			gridFragment = new ImageGridFragment();
@@ -74,7 +74,7 @@ public class AlbumActivity extends AppCompatActivity {
 				case 0:
 					return getString(R.string.home_groups);
 				case 1:
-					return getString(R.string.album_image_pager_2);
+					return getString(R.string.album_image_pager_title_alubia15);
 				default:
 					return null;
 			}

@@ -16,5 +16,4 @@ public class AlubiaApplication extends Application {
 	public static Context getInstance() {
 		return instance;
 	}
-
 }

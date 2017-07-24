@@ -1,7 +1,6 @@
 package huitca1212.alubia13.ui.album;
 
 public final class Constants {
-
 	public static final String[] IMAGES_PENYAS = new String[]{
 			"http://rjapps.x10host.com/penyas/b12.jpg",
 			"http://rjapps.x10host.com/penyas/bbdoble.jpg",
@@ -108,12 +107,4 @@ public final class Constants {
 			"Yokers",
 			"Zumbagaritos",
 	};
-
-	private Constants() {
-	}
-
-	public static class Extra {
-		public static final String FRAGMENT_INDEX = "FRAGMENT_INDEX";
-		public static final String IMAGE_POSITION = "IMAGE_POSITION";
-	}
 }

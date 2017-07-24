@@ -7,15 +7,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.ui.album.fragment.ImagePagerAlubia15Fragment;
-import huitca1212.alubia13.ui.album.fragment.ImagePagerPenyasFragment;
+import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
 
 public class SimpleImageActivity extends FragmentActivity {
 
-	public static void startActivity(Context ctx, int index, int position) {
+	public static final String FRAGMENT_TAG_ARG = "fragmentTagArg";
+	public static final String IMAGE_POSITION_ARG = "imagePosition";
+
+	public static void startActivity(Context ctx, String tag, int position) {
 		Intent intent = new Intent(ctx, SimpleImageActivity.class);
-		intent.putExtra(Constants.Extra.FRAGMENT_INDEX, index);
-		intent.putExtra(Constants.Extra.IMAGE_POSITION, position);
+		intent.putExtra(FRAGMENT_TAG_ARG, tag);
+		intent.putExtra(IMAGE_POSITION_ARG, position);
 		ctx.startActivity(intent);
 	}
 
@@ -23,33 +25,10 @@ public class SimpleImageActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		int frIndex = getIntent().getIntExtra(Constants.Extra.FRAGMENT_INDEX, 0);
-		Fragment fr;
-		String tag;
-		int titleRes;
-		switch (frIndex) {
-			default:
-			case ImagePagerPenyasFragment.INDEX:
-				tag = ImagePagerPenyasFragment.class.getSimpleName();
-				fr = getSupportFragmentManager().findFragmentByTag(tag);
-				if (fr == null) {
-					fr = new ImagePagerPenyasFragment();
-					fr.setArguments(getIntent().getExtras());
-				}
-				titleRes = R.string.album_image_pager_1;
-				break;
-			case ImagePagerAlubia15Fragment.INDEX:
-				tag = ImagePagerAlubia15Fragment.class.getSimpleName();
-				fr = getSupportFragmentManager().findFragmentByTag(tag);
-				if (fr == null) {
-					fr = new ImagePagerAlubia15Fragment();
-					fr.setArguments(getIntent().getExtras());
-				}
-				titleRes = R.string.album_image_pager_2;
-				break;
-		}
-
-		setTitle(titleRes);
+		String tag = getIntent().getStringExtra(FRAGMENT_TAG_ARG);
+		int position = getIntent().getIntExtra(IMAGE_POSITION_ARG, 0);
+		Fragment fr = ImagePagerFragment.newInstance(tag, position);
+		setTitle(tag.equals(ImagePagerFragment.PENYAS_TAG) ? R.string.album_image_pager_title_penyas : R.string.album_image_pager_title_alubia15);
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fr, tag).commit();
 	}
 }

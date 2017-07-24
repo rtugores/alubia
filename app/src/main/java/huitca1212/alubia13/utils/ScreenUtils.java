@@ -6,7 +6,7 @@ import android.util.TypedValue;
 
 public class ScreenUtils {
 
-	public static int convertDpToPixel(Context context, int dpMeasure) {
+	public static int dpToPx(Context context, int dpMeasure) {
 		Resources r = context.getResources();
 		return (int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP,

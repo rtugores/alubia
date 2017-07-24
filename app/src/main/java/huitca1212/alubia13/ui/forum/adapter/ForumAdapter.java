@@ -134,7 +134,7 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ForumViewHol
 			context = v.getContext();
 			this.userLogged = userLogged;
 			this.invited = invited;
-			marginPadding = ScreenUtils.convertDpToPixel(context, 60);
+			marginPadding = ScreenUtils.dpToPx(context, 60);
 			ButterKnife.bind(this, v);
 
 			reportButton.setClickable(true);
