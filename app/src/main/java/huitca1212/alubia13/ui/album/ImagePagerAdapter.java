@@ -20,11 +20,7 @@ public class ImagePagerAdapter extends PagerAdapter {
 
 	public ImagePagerAdapter(Context context, String type) {
 		inflater = LayoutInflater.from(context);
-		if (type.equals(ImagePagerFragment.PENYAS_TAG)) {
-			imageUrls = Constants.IMAGES_PENYAS;
-		} else {
-			imageUrls = Constants.IMAGES_ALUBIA15;
-		}
+		imageUrls = type.equals(ImagePagerFragment.PENYAS_TAG) ? Constants.IMAGES_PENYAS : Constants.IMAGES_ALUBIA15;
 	}
 
 	@Override

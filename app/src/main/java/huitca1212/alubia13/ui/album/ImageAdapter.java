@@ -72,6 +72,8 @@ public class ImageAdapter extends RecyclerView.Adapter {
 
 			Picasso.with(itemView.getContext())
 					.load(imageUrls[position])
+					.fit()
+					.centerCrop()
 					.placeholder(R.drawable.ic_stub)
 					.error(R.drawable.ic_error)
 					.into(image);
