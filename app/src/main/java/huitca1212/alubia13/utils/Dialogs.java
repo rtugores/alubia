@@ -3,8 +3,6 @@ package huitca1212.alubia13.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import huitca1212.alubia13.R;
@@ -41,24 +39,30 @@ public class Dialogs {
 		builder.show();
 	}
 
-	public static void showAlubiaQuizRightAnswerDialog(int questionNumber, final int answer, final Context ctx) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+	public static void showAlubiaQuizRightAnswerDialog(final int questionNumber, final int answer, final Activity activity) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 		builder.setTitle(R.string.alubiaquiz_congrats);
 		builder.setMessage(R.string.alubiaquiz_you_are_correct);
-		if (questionNumber == 10) {
-			builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					AlubiaQuizSolutionActivity.startActivity(ctx, Integer.toString(answer), true);
-					((Activity)ctx).finish();
-				}
-			});
-		} else {
-			builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-				}
-			});
-		}
+		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(final DialogInterface dialogInterface) {
+				checkQuestionNumberToLeave(questionNumber, activity, answer, dialogInterface);
+			}
+		});
+		builder.setPositiveButton(R.string.common_accept, new DialogInterface.OnClickListener() {
+			public void onClick(final DialogInterface dialogInterface, int which) {
+				checkQuestionNumberToLeave(questionNumber, activity, answer, dialogInterface);
+			}
+		});
 		builder.show();
+	}
+
+	private static void checkQuestionNumberToLeave(int questionNumber, Activity activity, int answer, DialogInterface dialogInterface) {
+		if (questionNumber == 10) {
+			AlubiaQuizSolutionActivity.startActivity(activity, Integer.toString(answer), true);
+			activity.finish();
+		} else {
+			dialogInterface.cancel();
+		}
 	}
 }

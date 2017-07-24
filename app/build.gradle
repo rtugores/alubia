@@ -2,20 +2,25 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
-
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "huitca1212.alubia13"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 32
         versionName "3.6"
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
-
+    signingConfigs {
+        release {
+            keyAlias 'key'
+            keyPassword 'Password01'
+            storeFile file('../key/key.keystore')
+            storePassword 'Password01'
+        }
+    }
     buildTypes {
         debug {
             debuggable true
@@ -23,21 +28,23 @@ android {
         }
         release {
             debuggable false
-            // shrinkResources true
-            // minifyEnabled true
+            shrinkResources true
+            minifyEnabled true
+            proguardFile '../proguard-project-release.txt'
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.0.0'
-    compile 'com.android.support:design:25.0.0'
-    compile 'com.android.support:cardview-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
-    compile 'com.google.android.gms:play-services-analytics:9.8.0'
-    compile 'com.google.android.gms:play-services-ads:9.8.0'
-    compile 'com.google.android.gms:play-services-maps:9.8.0'
-    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.google.android.gms:play-services-analytics:11.0.2'
+    compile 'com.google.android.gms:play-services-ads:11.0.2'
+    compile 'com.google.android.gms:play-services-maps:11.0.2'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
