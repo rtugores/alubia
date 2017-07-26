@@ -40,12 +40,25 @@ public class ImagePagerAdapter extends PagerAdapter {
 		View imageLayout = inflater.inflate(R.layout.layout_pager_image_item, view, false);
 		assert imageLayout != null;
 		ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
+		final View loader = imageLayout.findViewById(R.id.loader);
 
+		loader.setVisibility(View.VISIBLE);
 		Picasso.with(view.getContext())
 				.load(ImageUtils.generateImageResizeUrl(imageUrls[position], ScreenUtils.getScreenWidth()))
 				.placeholder(R.drawable.ic_stub)
 				.error(R.drawable.ic_error)
-				.into(imageView);
+				.into(imageView, new com.squareup.picasso.Callback() {
+					@Override
+					public void onSuccess() {
+						loader.setVisibility(View.GONE);
+					}
+
+					@Override
+					public void onError() {
+						loader.setVisibility(View.GONE);
+
+					}
+				});
 
 		view.addView(imageLayout, 0);
 		return imageLayout;
