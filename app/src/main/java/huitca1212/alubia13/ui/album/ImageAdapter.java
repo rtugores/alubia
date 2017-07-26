@@ -15,7 +15,7 @@ import huitca1212.alubia13.utils.ImageUtils;
 import huitca1212.alubia13.utils.ScreenUtils;
 
 public class ImageAdapter extends RecyclerView.Adapter {
-	private final String[] IMAGE_STRINGS = Constants.IMAGE_TITLES;
+	private final String[] IMAGE_STRINGS = Constants.TITLES_PENYAS;
 	private String[] imageUrls;
 	private LayoutInflater inflater;
 	private OnItemClickListener listener;

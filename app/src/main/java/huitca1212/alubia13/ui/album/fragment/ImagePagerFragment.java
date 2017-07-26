@@ -14,8 +14,9 @@ public class ImagePagerFragment extends Fragment {
 
 	private static final String TYPE_ARG = "typeArg";
 	private static final String POSITION_ARG = "positionArg";
-	public static final String PENYAS_TAG = "penyasTag";
-	public static final String ALUBIA_15_TAG = "alubia15Tag";
+	public static final String PENYAS = "penyas";
+	public static final String ALUBIA_16 = "alubia16";
+	public static final String ALUBIA_15 = "alubia15";
 
 	public static ImagePagerFragment newInstance(String type, int position) {
 		ImagePagerFragment fragment = new ImagePagerFragment();

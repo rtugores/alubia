@@ -22,7 +22,17 @@ public class ImagePagerAdapter extends PagerAdapter {
 
 	public ImagePagerAdapter(Context context, String type) {
 		inflater = LayoutInflater.from(context);
-		imageUrls = type.equals(ImagePagerFragment.PENYAS_TAG) ? Constants.IMAGES_PENYAS : Constants.IMAGES_ALUBIA15;
+		switch (type){
+			case ImagePagerFragment.PENYAS:
+				imageUrls = Constants.IMAGES_PENYAS;
+				break;
+			case ImagePagerFragment.ALUBIA_16:
+				imageUrls = Constants.IMAGES_ALUBIA16;
+				break;
+			case ImagePagerFragment.ALUBIA_15:
+				imageUrls = Constants.IMAGES_ALUBIA16;
+				break;
+		}
 	}
 
 	@Override
@@ -38,7 +48,6 @@ public class ImagePagerAdapter extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup view, int position) {
 		View imageLayout = inflater.inflate(R.layout.layout_pager_image_item, view, false);
-		assert imageLayout != null;
 		ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
 		final View loader = imageLayout.findViewById(R.id.loader);
 

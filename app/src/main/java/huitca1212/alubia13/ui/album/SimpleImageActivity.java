@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
 
 public class SimpleImageActivity extends FragmentActivity {
@@ -28,7 +27,6 @@ public class SimpleImageActivity extends FragmentActivity {
 		String tag = getIntent().getStringExtra(FRAGMENT_TAG_ARG);
 		int position = getIntent().getIntExtra(IMAGE_POSITION_ARG, 0);
 		Fragment fr = ImagePagerFragment.newInstance(tag, position);
-		setTitle(tag.equals(ImagePagerFragment.PENYAS_TAG) ? R.string.album_image_pager_title_penyas : R.string.album_image_pager_title_alubia15);
 		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fr, tag).commit();
 	}
 }

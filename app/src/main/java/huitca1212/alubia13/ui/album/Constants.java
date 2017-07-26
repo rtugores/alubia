@@ -68,7 +68,20 @@ public final class Constants {
 			"http://rjapps.x10host.com/alubia15/24.jpg",
 	};
 
-	public static final String[] IMAGE_TITLES = new String[]{
+	public static final String[] IMAGES_ALUBIA16 = new String[]{
+			"http://rjapps.x10host.com/alubia16/1.jpg",
+			"http://rjapps.x10host.com/alubia16/2.jpg",
+			"http://rjapps.x10host.com/alubia16/3.jpg",
+			"http://rjapps.x10host.com/alubia16/4.jpg",
+			"http://rjapps.x10host.com/alubia16/5.jpg",
+			"http://rjapps.x10host.com/alubia16/6.jpg",
+			"http://rjapps.x10host.com/alubia16/7.jpg",
+			"http://rjapps.x10host.com/alubia16/8.jpg",
+			"http://rjapps.x10host.com/alubia16/9.jpg",
+			"http://rjapps.x10host.com/alubia16/10.jpg",
+	};
+
+	public static final String[] TITLES_PENYAS = new String[]{
 			"B12",
 			"BBdoble",
 			"Birlybirloke",

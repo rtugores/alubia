@@ -29,6 +29,6 @@ public class ImageListFragment extends Fragment implements ImageAdapter.OnItemCl
 
 	@Override
 	public void onItemClick(int position) {
-		SimpleImageActivity.startActivity(getActivity(), ImagePagerFragment.PENYAS_TAG, position);
+		SimpleImageActivity.startActivity(getActivity(), ImagePagerFragment.PENYAS, position);
 	}
 }

@@ -42,27 +42,31 @@ public class AlbumActivity extends AppCompatActivity {
 	}
 
 	private class ImagePagerAdapter extends FragmentPagerAdapter {
-		Fragment listFragment;
-		Fragment gridFragment;
+		Fragment penyasFragment;
+		Fragment alubia16Fragment;
+		Fragment alubia15Fragment;
 
 		public ImagePagerAdapter(FragmentManager fm) {
 			super(fm);
-			listFragment = new ImageListFragment();
-			gridFragment = new ImageGridFragment();
+			penyasFragment = new ImageListFragment();
+			alubia16Fragment = ImageGridFragment.newInstance(ImageGridFragment.ALUBIA16);
+			alubia15Fragment = ImageGridFragment.newInstance(ImageGridFragment.ALUBIA15);
 		}
 
 		@Override
 		public int getCount() {
-			return 2;
+			return 3;
 		}
 
 		@Override
 		public Fragment getItem(int position) {
 			switch (position) {
 				case 0:
-					return listFragment;
+					return penyasFragment;
 				case 1:
-					return gridFragment;
+					return alubia16Fragment;
+				case 2:
+					return alubia15Fragment;
 				default:
 					return null;
 			}
@@ -74,6 +78,8 @@ public class AlbumActivity extends AppCompatActivity {
 				case 0:
 					return getString(R.string.home_groups);
 				case 1:
+					return getString(R.string.album_image_pager_title_alubia16);
+				case 2:
 					return getString(R.string.album_image_pager_title_alubia15);
 				default:
 					return null;

@@ -14,6 +14,7 @@
     <string name="album_write_access_permissions_title">Permisos de escritura</string>
     <string name="album_write_access_permissions_description">Se necesitan permisos de escritura para poder ver fotos de peñas y de la fiesta.</string>
     <string name="album_image_pager_title_penyas">Peñas</string>
+    <string name="album_image_pager_title_alubia16">Alubia \'16</string>
     <string name="album_image_pager_title_alubia15">Alubia \'15</string>
     <string name="album_title">Álbum</string>
 
