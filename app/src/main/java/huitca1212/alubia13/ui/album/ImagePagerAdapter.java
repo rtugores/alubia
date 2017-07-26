@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
+import huitca1212.alubia13.utils.ImageUtils;
+import huitca1212.alubia13.utils.ScreenUtils;
 
 public class ImagePagerAdapter extends PagerAdapter {
 
@@ -40,7 +42,7 @@ public class ImagePagerAdapter extends PagerAdapter {
 		ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
 
 		Picasso.with(view.getContext())
-				.load(imageUrls[position])
+				.load(ImageUtils.generateImageResizeUrl(imageUrls[position], ScreenUtils.getScreenWidth()))
 				.placeholder(R.drawable.ic_stub)
 				.error(R.drawable.ic_error)
 				.into(imageView);
