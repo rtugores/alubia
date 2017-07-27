@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.utils.ImageUtils;
-import huitca1212.alubia13.utils.ScreenUtils;
 
 public class ImageAdapter extends RecyclerView.Adapter {
 	private final String[] IMAGE_STRINGS = Constants.TITLES_PENYAS;
@@ -73,9 +71,7 @@ public class ImageAdapter extends RecyclerView.Adapter {
 			}
 
 			Picasso.with(itemView.getContext())
-					.load(ImageUtils.generateImageResizeUrl(imageUrls[position], ScreenUtils.getScreenWidth() / 3))
-					.fit()
-					.centerCrop()
+					.load(imageUrls[position] + ".thb")
 					.placeholder(R.drawable.ic_stub)
 					.error(R.drawable.ic_error)
 					.into(image);
