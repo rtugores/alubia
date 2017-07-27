@@ -55,7 +55,10 @@ public class ImagePagerAdapter extends PagerAdapter {
 
 		loader.setVisibility(View.VISIBLE);
 		if (titles != null) {
+			title.setVisibility(View.VISIBLE);
 			title.setText(titles[position]);
+		} else {
+			title.setVisibility(View.GONE);
 		}
 		Picasso.with(view.getContext())
 				.load(imageUrls[position])
