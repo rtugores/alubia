@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import huitca1212.alubia13.R;
 import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
@@ -16,19 +17,21 @@ import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
 public class ImagePagerAdapter extends PagerAdapter {
 
 	private String[] imageUrls;
+	private String[] titles;
 	private LayoutInflater inflater;
 
 	public ImagePagerAdapter(Context context, String type) {
 		inflater = LayoutInflater.from(context);
-		switch (type){
+		switch (type) {
 			case ImagePagerFragment.PENYAS:
 				imageUrls = Constants.IMAGES_PENYAS;
+				titles = Constants.TITLES_PENYAS;
 				break;
 			case ImagePagerFragment.ALUBIA_16:
 				imageUrls = Constants.IMAGES_ALUBIA16;
 				break;
 			case ImagePagerFragment.ALUBIA_15:
-				imageUrls = Constants.IMAGES_ALUBIA16;
+				imageUrls = Constants.IMAGES_ALUBIA15;
 				break;
 		}
 	}
@@ -47,13 +50,16 @@ public class ImagePagerAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup view, int position) {
 		View imageLayout = inflater.inflate(R.layout.layout_pager_image_item, view, false);
 		ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
+		TextView title = (TextView) imageLayout.findViewById(R.id.title);
 		final View loader = imageLayout.findViewById(R.id.loader);
 
 		loader.setVisibility(View.VISIBLE);
+		if (titles != null) {
+			title.setText(titles[position]);
+		}
 		Picasso.with(view.getContext())
 				.load(imageUrls[position])
-				.placeholder(R.drawable.ic_stub)
-				.error(R.drawable.ic_error)
+				.error(R.drawable.ic_stub)
 				.into(imageView, new com.squareup.picasso.Callback() {
 					@Override
 					public void onSuccess() {

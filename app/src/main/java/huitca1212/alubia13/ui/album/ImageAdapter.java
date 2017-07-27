@@ -73,7 +73,7 @@ public class ImageAdapter extends RecyclerView.Adapter {
 			Picasso.with(itemView.getContext())
 					.load(imageUrls[position] + ".thb")
 					.placeholder(R.drawable.ic_stub)
-					.error(R.drawable.ic_error)
+					.error(R.drawable.ic_stub)
 					.into(image);
 		}
 
