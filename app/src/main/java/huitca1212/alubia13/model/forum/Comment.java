@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import com.j256.ormlite.field.DatabaseField;
 
+import android.support.annotation.Keep;
+
+@Keep
 public class Comment {
 	@SerializedName("fecha") @DatabaseField(columnName = "date") private String date;
 	@SerializedName("usuario") @DatabaseField(columnName = "user") private String user;

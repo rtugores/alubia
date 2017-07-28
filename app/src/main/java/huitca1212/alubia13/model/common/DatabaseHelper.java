@@ -13,13 +13,11 @@ import java.sql.SQLException;
 
 import huitca1212.alubia13.model.forum.Comment;
 import huitca1212.alubia13.model.news.News;
-import huitca1212.alubia13.model.schedule.ScheduleWrapper;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private RuntimeExceptionDao<Comment, Integer> commentsDao;
 	private RuntimeExceptionDao<News, Integer> newsDao;
-	private RuntimeExceptionDao<ScheduleWrapper, Integer> scheduleWrapperDao;
 
 	public DatabaseHelper(Context context) {
 		super(context, "dbAlubia", null, 1);
