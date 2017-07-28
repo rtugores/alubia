@@ -48,6 +48,7 @@
         android:layout_weight="1"
         android:background="@drawable/d_button_alubia"
         android:text="@string/home_forum"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:textStyle="bold" />
 

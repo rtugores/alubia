@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:id="@+id/forum_outside_comment_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -42,7 +41,7 @@
                 android:textStyle="bold"
                 tools:text="User Number 1" />
 
-            <io.github.rockerhieu.emojicon.EmojiconTextView
+            <extView
                 android:id="@+id/comment_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,8 +51,6 @@
                 android:lineSpacingMultiplier="1.1"
                 android:textSize="15sp"
                 android:textStyle="normal"
-                emojicon:emojiconAlignment="baseline"
-                emojicon:emojiconSize="24sp"
                 tools:text="Lorem ipsum" />
         </LinearLayout>
 

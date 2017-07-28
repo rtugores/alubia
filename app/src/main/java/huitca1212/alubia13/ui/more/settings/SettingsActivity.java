@@ -20,8 +20,6 @@ import huitca1212.alubia13.R;
 import huitca1212.alubia13.business.ForumBusiness;
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.model.Setting;
-import huitca1212.alubia13.ui.forum.ForumForgottenPasswordActivity;
-import huitca1212.alubia13.ui.forum.ForumPrivacyActivity;
 import huitca1212.alubia13.utils.DialogParams;
 import huitca1212.alubia13.utils.Dialogs;
 import huitca1212.alubia13.utils.Notifications;
@@ -29,7 +27,7 @@ import huitca1212.alubia13.utils.Notifications;
 public class SettingsActivity extends AppCompatActivity {
 
 	private enum SettingsItem {
-		logOut(0), forgotPasswd(1), deleteAccount(2), privacyPolicy(3), shareApp(4), updateApp(5);
+		shareApp(0), updateApp(1);
 
 		private int value;
 
@@ -61,10 +59,10 @@ public class SettingsActivity extends AppCompatActivity {
 
 	private void setAdapter() {
 		ArrayList<Setting> settings = new ArrayList<>();
-		settings.add(new Setting(getString(R.string.settings_logout), getString(R.string.settings_logout_sub)));
-		settings.add(new Setting(getString(R.string.settings_forgot_passwd), getString(R.string.settings_forgot_passwd_sub)));
-		settings.add(new Setting(getString(R.string.settings_delete_title), getString(R.string.settings_delete_title_sub)));
-		settings.add(new Setting(getString(R.string.settings_privacy_policy), getString(R.string.settings_privacy_policy_sub)));
+		//settings.add(new Setting(getString(R.string.settings_logout), getString(R.string.settings_logout_sub)));
+		//settings.add(new Setting(getString(R.string.settings_forgot_passwd), getString(R.string.settings_forgot_passwd_sub)));
+		//settings.add(new Setting(getString(R.string.settings_delete_title), getString(R.string.settings_delete_title_sub)));
+		//settings.add(new Setting(getString(R.string.settings_privacy_policy), getString(R.string.settings_privacy_policy_sub)));
 		settings.add(new Setting(getString(R.string.settings_share), getString(R.string.settings_share_sub)));
 		settings.add(new Setting(getString(R.string.settings_update), getString(R.string.settings_update_sub)));
 		settings.add(new Setting(getString(R.string.settings_version), BuildConfig.VERSION_NAME));
@@ -82,7 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
 	}
 
 	private void onItemClick(int position) {
-		if (position == SettingsItem.logOut.getValue()) {
+		/*if (position == SettingsItem.logOut.getValue()) {
 			onLogOut();
 		} else if (position == SettingsItem.forgotPasswd.getValue()) {
 			ForumForgottenPasswordActivity.startActivity(SettingsActivity.this);
@@ -90,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
 			onDeleteAccount();
 		} else if (position == SettingsItem.privacyPolicy.getValue()) {
 			ForumPrivacyActivity.startActivity(SettingsActivity.this);
-		} else if (position == SettingsItem.shareApp.getValue()) {
+		} else*/ if (position == SettingsItem.shareApp.getValue()) {
 			onShareApp();
 		} else if (position == SettingsItem.updateApp.getValue()) {
 			onUpdateApp();
