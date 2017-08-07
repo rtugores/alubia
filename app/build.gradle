@@ -7,8 +7,8 @@ android {
         applicationId "huitca1212.alubia13"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 34
-        versionName "3.6.1"
+        versionCode 35
+        versionName "3.6.2"
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -44,10 +44,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:11.0.4'
     compile 'com.google.android.gms:play-services-ads:11.0.4'
     compile 'com.google.android.gms:play-services-maps:11.0.4'
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'

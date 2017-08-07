@@ -5,6 +5,7 @@ public final class Constants {
 			"http://rjapps.x10host.com/penyas/b12.jpg",
 			"http://rjapps.x10host.com/penyas/bbdoble.jpg",
 			"http://rjapps.x10host.com/penyas/birlybirloke.jpg",
+			"http://rjapps.x10host.com/penyas/benito_camelas.jpg",
 			"http://rjapps.x10host.com/penyas/blanconegro.jpg",
 			"http://rjapps.x10host.com/penyas/desfase.jpg",
 			"http://rjapps.x10host.com/penyas/descoloke.jpg",
@@ -20,6 +21,7 @@ public final class Constants {
 			"http://rjapps.x10host.com/penyas/kachi_chirin.jpeg",
 			"http://rjapps.x10host.com/penyas/kamensoky.jpg",
 			"http://rjapps.x10host.com/penyas/kelnozz_ceda.jpg",
+			"http://rjapps.x10host.com/penyas/komando_kubata.jpg",
 			"http://rjapps.x10host.com/penyas/coral.jpg",
 			"http://rjapps.x10host.com/penyas/loonatics.jpg",
 			"http://rjapps.x10host.com/penyas/loscolgaos.jpg",
@@ -32,6 +34,7 @@ public final class Constants {
 			"http://rjapps.x10host.com/penyas/rambosteroides.jpg",
 			"http://rjapps.x10host.com/penyas/rockambole.jpg",
 			"http://rjapps.x10host.com/penyas/taboo.jpg",
+			"http://rjapps.x10host.com/penyas/the_madness.jpg",
 			"http://rjapps.x10host.com/penyas/tibuky.jpg",
 			"http://rjapps.x10host.com/penyas/tocapelotas.jpg",
 			"http://rjapps.x10host.com/penyas/vaganzia_pura.jpg",
@@ -39,6 +42,7 @@ public final class Constants {
 			"http://rjapps.x10host.com/penyas/yaestamostodos.jpg",
 			"http://rjapps.x10host.com/penyas/yokers.jpg",
 			"http://rjapps.x10host.com/penyas/zumbagaritos.jpg",
+			"http://rjapps.x10host.com/penyas/zumbapajascervecistas.jpg"
 	};
 
 	public static final String[] IMAGES_ALUBIA15 = new String[]{
@@ -85,6 +89,7 @@ public final class Constants {
 			"B12",
 			"BBdoble",
 			"Birlybirloke",
+			"Benito Camelas",
 			"B&N (Blanco y negro)",
 			"Desfase",
 			"Descoloke",
@@ -100,6 +105,7 @@ public final class Constants {
 			"Kachi-chirín",
 			"Kamensoky",
 			"Kelnozz & Ceda el vaso",
+			"Komando Kubata",
 			"La coral",
 			"Loonatics",
 			"Los colgaos",
@@ -112,6 +118,7 @@ public final class Constants {
 			"Rambosteroides",
 			"Rockambole",
 			"Taboo",
+			"The Madness",
 			"Tibuky",
 			"TOCAPELOTAS 2.0",
 			"Vaganzia pura",
@@ -119,5 +126,6 @@ public final class Constants {
 			"Ya estamos todos",
 			"Yokers",
 			"Zumbagaritos",
+			"Zumbapajascervecistas"
 	};
 }
