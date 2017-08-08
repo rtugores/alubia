@@ -4,28 +4,28 @@ import android.content.Context;
 
 import huitca1212.alubia13.business.listener.AllBusinessListener;
 import huitca1212.alubia13.business.listener.AsyncTaskBusinessListener;
-import huitca1212.alubia13.model.schedule.ScheduleWrapper;
+import huitca1212.alubia13.model.album.AlbumWrapper;
 import huitca1212.alubia13.service.AlubiaService;
 import huitca1212.alubia13.utils.FileUtils;
 
-public class ScheduleBusiness {
-	private static final String SCHEDULE_FILENAME = "schedule_alubia.json";
+public class AlbumBusiness {
+	private static final String ALBUM_FILENAME = "album_alubia.json";
 	private static boolean dbOperationSuccess = false;
 
-	public static void getScheduleContent(Context ctx, AllBusinessListener<ScheduleWrapper> listener) {
-		getDatabaseScheduleContent(ctx, listener);
+	public static void getAlbumContent(Context ctx, AllBusinessListener<AlbumWrapper> listener) {
+		getDatabaseAlbumContent(ctx, listener);
 	}
 
-	public static void getDatabaseScheduleContent(final Context ctx, final AllBusinessListener<ScheduleWrapper> listener) {
+	public static void getDatabaseAlbumContent(final Context ctx, final AllBusinessListener<AlbumWrapper> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
-			ScheduleWrapper scheduleWrapper;
+			AlbumWrapper albumWrapper;
 
 			@Override
 			public String onBackground() {
-				String data = FileUtils.readFileToData(ctx, SCHEDULE_FILENAME);
+				String data = FileUtils.readFileToData(ctx, ALBUM_FILENAME);
 				if (data != null) {
-					scheduleWrapper = AlubiaService.convertStringToObject(data, ScheduleWrapper.class);
-					if (scheduleWrapper != null) {
+					albumWrapper = AlubiaService.convertStringToObject(data, AlbumWrapper.class);
+					if (albumWrapper != null) {
 						return DefaultAsyncTask.ASYNC_TASK_OK;
 					}
 				}
@@ -36,25 +36,25 @@ public class ScheduleBusiness {
 			@Override
 			public void onFinish(String result) {
 				if (result.equals(DefaultAsyncTask.ASYNC_TASK_OK)) {
-					listener.onDatabaseSuccess(scheduleWrapper);
+					listener.onDatabaseSuccess(albumWrapper);
 					dbOperationSuccess = true;
 				}
-				getBackendScheduleContent(ctx, listener);
+				getBackendAlbumContent(ctx, listener);
 			}
 		}).execute();
 	}
 
-	public static void getBackendScheduleContent(final Context ctx, final AllBusinessListener<ScheduleWrapper> listener) {
+	public static void getBackendAlbumContent(final Context ctx, final AllBusinessListener<AlbumWrapper> listener) {
 		new DefaultAsyncTask(new AsyncTaskBusinessListener() {
 			String dataString;
-			ScheduleWrapper dataObject;
+			AlbumWrapper dataObject;
 
 			@Override
 			public String onBackground() {
-				String url = "/schedule_alubia.json";
+				String url = "/album_alubia.json";
 				dataString = AlubiaService.getStringFromRequest(url);
-				if (dataString != null && FileUtils.writeDataToFile(ctx, SCHEDULE_FILENAME, dataString)) {
-					dataObject = AlubiaService.convertStringToObject(dataString, ScheduleWrapper.class);
+				if (dataString != null && FileUtils.writeDataToFile(ctx, ALBUM_FILENAME, dataString)) {
+					dataObject = AlubiaService.convertStringToObject(dataString, AlbumWrapper.class);
 					if (dataObject != null) {
 						return DefaultAsyncTask.ASYNC_TASK_OK;
 					} else {

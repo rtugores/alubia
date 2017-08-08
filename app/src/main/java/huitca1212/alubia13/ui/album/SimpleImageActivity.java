@@ -6,16 +6,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import huitca1212.alubia13.model.album.AlbumItem;
 import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
 
 public class SimpleImageActivity extends FragmentActivity {
 
-	public static final String FRAGMENT_TAG_ARG = "fragmentTagArg";
+	public static final String ALBUM_ITEM_ARG = "albumItem";
 	public static final String IMAGE_POSITION_ARG = "imagePosition";
 
-	public static void startActivity(Context ctx, String tag, int position) {
+	public static void startActivity(Context ctx, AlbumItem item, int position) {
 		Intent intent = new Intent(ctx, SimpleImageActivity.class);
-		intent.putExtra(FRAGMENT_TAG_ARG, tag);
+		intent.putExtra(ALBUM_ITEM_ARG, item);
 		intent.putExtra(IMAGE_POSITION_ARG, position);
 		ctx.startActivity(intent);
 	}
@@ -24,9 +25,9 @@ public class SimpleImageActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		String tag = getIntent().getStringExtra(FRAGMENT_TAG_ARG);
+		AlbumItem albumItem = (AlbumItem) getIntent().getSerializableExtra(ALBUM_ITEM_ARG);
 		int position = getIntent().getIntExtra(IMAGE_POSITION_ARG, 0);
-		Fragment fr = ImagePagerFragment.newInstance(tag, position);
-		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fr, tag).commit();
+		Fragment fr = ImagePagerFragment.newInstance(albumItem, position);
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fr, albumItem.getTitle()).commit();
 	}
 }

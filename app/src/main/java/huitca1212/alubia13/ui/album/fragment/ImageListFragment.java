@@ -9,26 +9,40 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.ui.album.Constants;
+import huitca1212.alubia13.model.album.AlbumItem;
 import huitca1212.alubia13.ui.album.ImageAdapter;
 import huitca1212.alubia13.ui.album.SimpleImageActivity;
 
 public class ImageListFragment extends Fragment implements ImageAdapter.OnItemClickListener {
+
+	private static final String ALBUM_ITEM_ARG = "albumItemArg";
+	private AlbumItem albumItem;
+
+	public static Fragment newInstance(AlbumItem albumItem) {
+		Fragment fragment = new ImageListFragment();
+		Bundle args = new Bundle();
+		args.putSerializable(ALBUM_ITEM_ARG, albumItem);
+		fragment.setArguments(args);
+		return fragment;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_album_image_list, container, false);
 		RecyclerView imageList = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
-		ImageAdapter adapter = new ImageAdapter(getActivity(), this, Constants.IMAGES_PENYAS, R.layout.layout_list_image_item);
-		imageList.setLayoutManager(new LinearLayoutManager(getActivity()));
-		imageList.setAdapter(adapter);
+		albumItem = (AlbumItem) getArguments().getSerializable(ALBUM_ITEM_ARG);
+		if (albumItem != null) {
+			ImageAdapter adapter = new ImageAdapter(getActivity(), this, albumItem.getLinks(), R.layout.layout_list_image_item);
+			imageList.setLayoutManager(new LinearLayoutManager(getActivity()));
+			imageList.setAdapter(adapter);
+		}
 
 		return rootView;
 	}
 
 	@Override
 	public void onItemClick(int position) {
-		SimpleImageActivity.startActivity(getActivity(), ImagePagerFragment.PENYAS, position);
+		SimpleImageActivity.startActivity(getActivity(), albumItem, position);
 	}
 }

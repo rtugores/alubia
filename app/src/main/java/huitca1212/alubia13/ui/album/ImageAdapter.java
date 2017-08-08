@@ -10,16 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import huitca1212.alubia13.R;
+import huitca1212.alubia13.model.album.AlbumLink;
 
 public class ImageAdapter extends RecyclerView.Adapter {
-	private final String[] IMAGE_STRINGS = Constants.TITLES_PENYAS;
-	private String[] imageUrls;
+	private List<AlbumLink> imageUrls;
 	private LayoutInflater inflater;
 	private OnItemClickListener listener;
 	private int layoutRes;
 
-	public ImageAdapter(Context context, OnItemClickListener listener, String[] imageUrls, int layoutRes) {
+	public ImageAdapter(Context context, OnItemClickListener listener, List<AlbumLink> imageUrls, int layoutRes) {
 		this.imageUrls = imageUrls;
 		this.listener = listener;
 		this.layoutRes = layoutRes;
@@ -44,7 +46,7 @@ public class ImageAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public int getItemCount() {
-		return imageUrls.length;
+		return imageUrls.size();
 	}
 
 	public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -67,11 +69,11 @@ public class ImageAdapter extends RecyclerView.Adapter {
 		private void onBind(int position) {
 			this.position = position;
 			if (text != null) {
-				text.setText(IMAGE_STRINGS[position]);
+				text.setText(imageUrls.get(position).getTitle());
 			}
 
 			Picasso.with(itemView.getContext())
-					.load(imageUrls[position] + ".thb")
+					.load(imageUrls.get(position).getUrl() + ".thb")
 					.placeholder(R.drawable.ic_stub)
 					.error(R.drawable.ic_stub)
 					.into(image);

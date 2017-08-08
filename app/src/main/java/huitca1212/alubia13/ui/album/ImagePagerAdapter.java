@@ -12,28 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import huitca1212.alubia13.R;
-import huitca1212.alubia13.ui.album.fragment.ImagePagerFragment;
+import huitca1212.alubia13.model.album.AlbumItem;
+import huitca1212.alubia13.model.album.AlbumLink;
 
 public class ImagePagerAdapter extends PagerAdapter {
 
-	private String[] imageUrls;
-	private String[] titles;
 	private LayoutInflater inflater;
+	private AlbumItem albumItem;
 
-	public ImagePagerAdapter(Context context, String type) {
+	public ImagePagerAdapter(Context context, AlbumItem albumItem) {
 		inflater = LayoutInflater.from(context);
-		switch (type) {
-			case ImagePagerFragment.PENYAS:
-				imageUrls = Constants.IMAGES_PENYAS;
-				titles = Constants.TITLES_PENYAS;
-				break;
-			case ImagePagerFragment.ALUBIA_16:
-				imageUrls = Constants.IMAGES_ALUBIA16;
-				break;
-			case ImagePagerFragment.ALUBIA_15:
-				imageUrls = Constants.IMAGES_ALUBIA15;
-				break;
-		}
+		this.albumItem = albumItem;
 	}
 
 	@Override
@@ -43,7 +32,7 @@ public class ImagePagerAdapter extends PagerAdapter {
 
 	@Override
 	public int getCount() {
-		return imageUrls.length;
+		return albumItem.getLinks().size();
 	}
 
 	@Override
@@ -53,15 +42,17 @@ public class ImagePagerAdapter extends PagerAdapter {
 		TextView title = (TextView) imageLayout.findViewById(R.id.title);
 		final View loader = imageLayout.findViewById(R.id.loader);
 
+		AlbumLink albumLink = albumItem.getLinks().get(position);
+
 		loader.setVisibility(View.VISIBLE);
-		if (titles != null) {
+		if (albumLink.getTitle() != null) {
 			title.setVisibility(View.VISIBLE);
-			title.setText(titles[position]);
+			title.setText(albumLink.getTitle());
 		} else {
 			title.setVisibility(View.GONE);
 		}
 		Picasso.with(view.getContext())
-				.load(imageUrls[position])
+				.load(albumLink.getUrl())
 				.error(R.drawable.ic_stub)
 				.into(imageView, new com.squareup.picasso.Callback() {
 					@Override
