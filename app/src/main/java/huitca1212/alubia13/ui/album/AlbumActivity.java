@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,7 +27,6 @@ import huitca1212.alubia13.utils.AdsAndAnalytics;
 import huitca1212.alubia13.utils.Notifications;
 
 public class AlbumActivity extends AppCompatActivity {
-	private static final String STATE_POSITION = "STATE_POSITION";
 	@Bind(R.id.progressbar_view) View progressbarView;
 	@Bind(R.id.pager) ViewPager pager;
 
@@ -43,27 +43,22 @@ public class AlbumActivity extends AppCompatActivity {
 
 		ButterKnife.bind(this);
 
-		getAlbum(savedInstanceState);
+		getAlbum();
 	}
 
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		outState.putInt(STATE_POSITION, pager.getCurrentItem());
-	}
-
-	private void getAlbum(final Bundle savedInstanceState) {
+	private void getAlbum() {
 		progressbarView.setVisibility(View.VISIBLE);
 		AlbumBusiness.getAlbumContent(this, new AllBusinessListener<AlbumWrapper>() {
 			@Override
 			public void onDatabaseSuccess(AlbumWrapper scheduleWrapper) {
 				progressbarView.setVisibility(View.GONE);
-				drawPager(scheduleWrapper.getAlbumItems(), savedInstanceState);
+				drawPager(scheduleWrapper.getAlbumItems());
 			}
 
 			@Override
 			public void onServerSuccess(AlbumWrapper scheduleWrapper) {
 				progressbarView.setVisibility(View.GONE);
-				drawPager(scheduleWrapper.getAlbumItems(), savedInstanceState);
+				drawPager(scheduleWrapper.getAlbumItems());
 			}
 
 			@Override
@@ -76,24 +71,21 @@ public class AlbumActivity extends AppCompatActivity {
 		});
 	}
 
-	private void drawPager(List<AlbumItem> albumItems, Bundle savedInstanceState) {
-		int pagerPosition = savedInstanceState == null ? 0 : savedInstanceState.getInt(STATE_POSITION);
+	private void drawPager(List<AlbumItem> albumItems) {
 		pager.setAdapter(new ImagePagerAdapter(getSupportFragmentManager(), albumItems));
-		pager.setCurrentItem(pagerPosition);
 	}
 
 	private class ImagePagerAdapter extends FragmentPagerAdapter {
+		List<Fragment> fragments = new ArrayList<>();
 		List<AlbumItem> albumItems;
-		Fragment penyasFragment;
-		Fragment alubia16Fragment;
-		Fragment alubia15Fragment;
 
 		public ImagePagerAdapter(FragmentManager fm, List<AlbumItem> albumItems) {
 			super(fm);
 			this.albumItems = albumItems;
-			penyasFragment = ImageListFragment.newInstance(albumItems.get(0));
-			alubia16Fragment = ImageGridFragment.newInstance(albumItems.get(1));
-			alubia15Fragment = ImageGridFragment.newInstance(albumItems.get(2));
+			fragments.add(ImageListFragment.newInstance(albumItems.get(0)));
+			for (int i = 1; i < albumItems.size(); i++) {
+				fragments.add(ImageGridFragment.newInstance(albumItems.get(i)));
+			}
 		}
 
 		@Override
@@ -103,16 +95,7 @@ public class AlbumActivity extends AppCompatActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			switch (position) {
-				case 0:
-					return penyasFragment;
-				case 1:
-					return alubia16Fragment;
-				case 2:
-					return alubia15Fragment;
-				default:
-					return null;
-			}
+			return fragments.get(position);
 		}
 
 		@Override
